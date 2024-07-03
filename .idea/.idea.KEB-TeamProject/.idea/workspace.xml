@@ -4,7 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82981f5e-987f-4011-80a6-831b01039c1b" name="Changes" comment="Added note rails" />
+    <list default="true" id="82981f5e-987f-4011-80a6-831b01039c1b" name="Changes" comment="Added note rails">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.KEB-TeamProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.KEB-TeamProject/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Resource/Down Arrow.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Resource/Down Arrow.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Resource/Up Arrow.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Resource/Up Arrow.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/ButtonController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/ButtonController.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/HitJudgement.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/HitJudgement.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/NoteObject.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/NoteObject.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/RunManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/RunManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/Score.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/Score.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Scene/RecordPlay.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Scene/RecordPlay.unity" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -115,7 +132,7 @@
       <workItem from="1719897721441" duration="320000" />
       <workItem from="1719903446973" duration="139000" />
       <workItem from="1719903613458" duration="6204000" />
-      <workItem from="1719975094470" duration="210000" />
+      <workItem from="1719975094470" duration="5997000" />
     </task>
     <task id="LOCAL-00001" summary="Run Pigeon Run Referenced mini game: in progress...">
       <option name="closed" value="true" />
