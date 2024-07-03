@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4525604208768001820}
   - component: {fileID: 1263860103842822979}
-  - component: {fileID: 4052992173190567732}
   m_Layer: 5
   m_Name: Up Arrow
   m_TagString: Untagged
@@ -89,18 +88,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4052992173190567732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 182779807954002322}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2f3174f10dbd3f4db3f628eccc8efec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultImage: {fileID: 21300000, guid: 061cc66d5f077e44ab43de7c4bb05c8c, type: 3}
-  pressedImage: {fileID: 21300000, guid: 78db75af41c18844899faf4e67fbeda0, type: 3}
-  keyToPress: 119
