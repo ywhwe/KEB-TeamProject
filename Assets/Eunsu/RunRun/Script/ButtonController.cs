@@ -6,6 +6,8 @@ using UnityEngine.Serialization;
 
 public class ButtonController : MonoBehaviour
 {
+    public ScoreBoard scoreBoard;
+    
     private SpriteRenderer theSR;
     public Sprite defaultImage;
     public Sprite pressedImage;
@@ -13,6 +15,8 @@ public class ButtonController : MonoBehaviour
     private Vector2 buttonSize;
     
     public KeyCode keyToPress;
+
+    public int noteScore;
 
     private void Awake()
     {
@@ -40,6 +44,7 @@ public class ButtonController : MonoBehaviour
             else if (judge.CompareTag("JudgeLine"))
             {
                 Destroy(judge.gameObject);
+                scoreBoard.SetScore(noteScore);
             }
         }
         

@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82981f5e-987f-4011-80a6-831b01039c1b" name="Changes" comment="Note move, Judge completed">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="82981f5e-987f-4011-80a6-831b01039c1b" name="Changes" comment=".gitignore modified">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.KEB-TeamProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.KEB-TeamProject/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Scene/RunRun.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Scene/RunRun.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/ButtonController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/ButtonController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +126,7 @@
       <workItem from="1719975094470" duration="13505000" />
       <workItem from="1720050678939" duration="2175000" />
       <workItem from="1720066642116" duration="4807000" />
-      <workItem from="1720073481224" duration="6524000" />
+      <workItem from="1720073481224" duration="7316000" />
     </task>
     <task id="LOCAL-00001" summary="Run Pigeon Run Referenced mini game: in progress...">
       <option name="closed" value="true" />
@@ -158,7 +160,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720080003206</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary=".gitignore modified">
+      <option name="closed" value="true" />
+      <created>1720080101096</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1720080101096</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -189,6 +199,7 @@
     <MESSAGE value="Added note rails" />
     <MESSAGE value="Restarted all; Note random generator, Button interaction added" />
     <MESSAGE value="Note move, Judge completed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Note move, Judge completed" />
+    <MESSAGE value=".gitignore modified" />
+    <option name="LAST_COMMIT_MESSAGE" value=".gitignore modified" />
   </component>
 </project>

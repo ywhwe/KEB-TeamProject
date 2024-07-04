@@ -554,9 +554,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f3174f10dbd3f4db3f628eccc8efec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreBoard: {fileID: 2078012284}
   defaultImage: {fileID: 21300000, guid: e6274661ad471d641b2b6f3e7c5cfefb, type: 3}
   pressedImage: {fileID: 21300000, guid: 363525f68e12a384a927c3a4e311a323, type: 3}
   keyToPress: 115
+  noteScore: 100
 --- !u!212 &639339946
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -895,9 +897,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f3174f10dbd3f4db3f628eccc8efec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreBoard: {fileID: 2078012284}
   defaultImage: {fileID: 21300000, guid: 061cc66d5f077e44ab43de7c4bb05c8c, type: 3}
   pressedImage: {fileID: 21300000, guid: 78db75af41c18844899faf4e67fbeda0, type: 3}
   keyToPress: 119
+  noteScore: 100
 --- !u!212 &1115058749
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1293,6 +1297,7 @@ GameObject:
   - component: {fileID: 2078012281}
   - component: {fileID: 2078012283}
   - component: {fileID: 2078012282}
+  - component: {fileID: 2078012284}
   m_Layer: 5
   m_Name: Score Board
   m_TagString: Untagged
@@ -1359,6 +1364,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2078012280}
   m_CullTransparentMesh: 1
+--- !u!114 &2078012284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078012280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d7066d6d3b1abf4dae9b5403051e9b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 1988708440}
+  score: 100
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
