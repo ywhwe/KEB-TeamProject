@@ -6,6 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="82981f5e-987f-4011-80a6-831b01039c1b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.KEB-TeamProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.KEB-TeamProject/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Resource/New Material 1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Resource/New Material 1.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Resource/New Material 3.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Resource/New Material 3.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Resource/New Material 4.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Resource/New Material 4.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Resource/New Material 5.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Resource/New Material 5.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Scene/RecordPlay.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Scene/RecordPlay.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sinbi/Record/Sence/RecordSence.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sinbi/Record/Sence/RecordSence.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +38,9 @@
     &quot;accountId&quot;: &quot;24c644b5-8f44-4aee-9508-bd9e351f0cd6&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Sinbi/Record/Script/RotateLight.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 0
@@ -62,7 +71,7 @@
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity 2022.3.34f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="$USER_HOME$/Downloads/2022.3.34f1/Unity.app/Contents/MacOS/Unity" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath C:\UnityLecture\KEB-TeamProject -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\UnityLecture\KEB-TeamProject" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -70,7 +79,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity 2022.3.34f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="$USER_HOME$/Downloads/2022.3.34f1/Unity.app/Contents/MacOS/Unity" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath C:\UnityLecture\KEB-TeamProject -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\UnityLecture\KEB-TeamProject" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -110,6 +119,7 @@
       <workItem from="1719983063968" duration="4027000" />
       <workItem from="1719994527916" duration="11000" />
       <workItem from="1719994707056" duration="16000" />
+      <workItem from="1720070720478" duration="1802000" />
     </task>
     <servers />
   </component>
