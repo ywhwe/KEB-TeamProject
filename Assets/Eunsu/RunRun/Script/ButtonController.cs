@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,8 +10,12 @@ public class ButtonController : MonoBehaviour
     public Sprite pressedImage;
 
     public KeyCode keyToPress;
-    
-    // Start is called before the first frame update
+
+    private void Awake()
+    {
+        GetComponentInChildren<BoxCollider>().enabled = false;
+    }
+
     void Start()
     {
         theSR = GetComponent<SpriteRenderer>();
@@ -23,11 +28,13 @@ public class ButtonController : MonoBehaviour
         if (Input.GetKeyDown(keyToPress))
         {
             theSR.sprite = pressedImage;
+            GetComponentInChildren<BoxCollider>().enabled = true;
         }
         
         if (Input.GetKeyUp(keyToPress))
         {
             theSR.sprite = defaultImage;
+            GetComponentInChildren<BoxCollider>().enabled = false;
         }
     }
 }

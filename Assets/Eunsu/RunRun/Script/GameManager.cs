@@ -20,8 +20,9 @@ public class GameManager : MonoBehaviour
         controller.GenNotes(rand);
         if (Time.deltaTime > 1f)
         {
-            controller.DestroyNotes();
+            Destroy(gameObject);
             Debug.Log("destroyed");
         }
+        
     }
 }

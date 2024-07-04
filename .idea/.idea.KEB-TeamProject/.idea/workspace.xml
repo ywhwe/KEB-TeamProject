@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82981f5e-987f-4011-80a6-831b01039c1b" name="Changes" comment="" />
+    <list default="true" id="82981f5e-987f-4011-80a6-831b01039c1b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.KEB-TeamProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.KEB-TeamProject/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Resource/Down Note.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Resource/Down Note.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Resource/Up Note.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Resource/Up Note.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Scene/RunRun.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Scene/RunRun.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/ButtonController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/ButtonController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/NoteController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/NoteController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,8 +40,8 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock://C:/UnityLecture/KEB-TeamProject/KEB-TeamProject/Assets/Eunsu/RunRun/Resource/Down Arrow.prefab" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/834804db60ae4eb981294088cf979056175e00/07/d3a2f345/Object.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/834804db60ae4eb981294088cf979056175e00/76/142b0f56/SpriteRenderer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/834804db60ae4eb981294088cf979056175e00/82/b160f403/Component.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/834804db60ae4eb981294088cf979056175e00/af/afca9966/Transform.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -118,6 +127,8 @@
       <workItem from="1719903446973" duration="139000" />
       <workItem from="1719903613458" duration="6204000" />
       <workItem from="1719975094470" duration="13505000" />
+      <workItem from="1720050678939" duration="2175000" />
+      <workItem from="1720066642116" duration="4807000" />
     </task>
     <task id="LOCAL-00001" summary="Run Pigeon Run Referenced mini game: in progress...">
       <option name="closed" value="true" />

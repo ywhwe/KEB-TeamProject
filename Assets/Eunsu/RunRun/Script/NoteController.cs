@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 
 public class NoteController : MonoBehaviour
 {
     public float genRate;
     private float genTime;
+    private Note note;
     
     public GameObject UpNotePrefab;
     public GameObject DownNotePrefab;
@@ -14,27 +16,15 @@ public class NoteController : MonoBehaviour
     private Transform canvasTrans;
 
     private GameObject upNote;
-    private Vector3 upNotePos;
+    private Vector3 upNotePos = new Vector3(910f, 75f, 0f);
     
     private GameObject downNote;
-    private Vector3 downNotePos;
+    private Vector3 downNotePos = new Vector3(910f, -75f, 0f);
 
 
     private void Awake()
     {
         canvasTrans = GameObject.FindGameObjectWithTag("Canvas").transform;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
     
     public void GenNotes(int dir)
@@ -47,14 +37,12 @@ public class NoteController : MonoBehaviour
         switch (dir)
         {
             case > 50 and <= 100:
-                upNote = Instantiate(UpNotePrefab, new Vector3(910f, 75f, 0f), Quaternion.identity);
+                upNote = Instantiate(UpNotePrefab, upNotePos, Quaternion.identity);
                 upNote.transform.SetParent(canvasTrans, false);
-                Debug.Log("gen up");
                 break;
             case > 0 and <= 50:
-                downNote = Instantiate(DownNotePrefab, new Vector3(910f, -75f, 0f), Quaternion.identity);
+                downNote = Instantiate(DownNotePrefab, downNotePos, Quaternion.identity);
                 downNote.transform.SetParent(canvasTrans, false);
-                Debug.Log("gen down");
                 break;
             default:
                 Debug.Log("Unexpected Range");
@@ -62,8 +50,9 @@ public class NoteController : MonoBehaviour
         }
     }
 
-    public void DestroyNotes()
+    public void DestroyNotes(GameObject note)
     {
-        Destroy(gameObject);
+        Destroy(note);
+        Debug.Log("note destroyed");
     }
 }
