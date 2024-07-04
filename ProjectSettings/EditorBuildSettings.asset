@@ -9,9 +9,9 @@ EditorBuildSettings:
     path: Assets/Main/Scenes/Main.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Main/Scenes/TestScene1.unity
-    guid: c70f98d0ee0322048b3c949767dc2892
+    path: Assets/Kanghyeon/RecordPlay/Scene/RecordPlay.unity
+    guid: 0f3e21a872502024fbdf1f0d71b39004
   - enabled: 1
-    path: Assets/Main/Scenes/TestScene2.unity
-    guid: d149126afd9283b4ebe49182d36d8f0c
+    path: Assets/Kanghyeon/Hammer/Scene/Hammer.unity
+    guid: 17580d5f1d4cd1b48a9774285db6c0a6
   m_configObjects: {}
