@@ -38,7 +38,6 @@ public class TotalManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
         volumeSlider.onValueChanged.AddListener(SetLevel);
-        Ready();
     }
 
     public void Update()
