@@ -7,7 +7,6 @@ using UnityEngine.Serialization;
 public class ButtonController : MonoBehaviour
 {
     public ScoreBoard scoreBoard;
-    
     private SpriteRenderer theSR;
     public Sprite defaultImage;
     public Sprite pressedImage;
@@ -39,12 +38,15 @@ public class ButtonController : MonoBehaviour
             var judge = Physics2D.OverlapBox(transform.position, buttonSize, 0f);
             if (judge is null)
             {
-                Debug.Log("null");
+                Debug.Log("Note Missed");
             }
             else if (judge.CompareTag("JudgeLine"))
             {
                 Destroy(judge.gameObject);
+                NoteController.instance.noteCount--;
                 scoreBoard.SetScore(noteScore);
+                Debug.Log("Note: " + NoteController.instance.noteCount);
+                
             }
         }
         

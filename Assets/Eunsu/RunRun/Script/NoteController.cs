@@ -1,58 +1,91 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class NoteController : MonoBehaviour
 {
-    public float genRate;
-    private float genTime;
-    private Note note;
+    private WaitForSeconds term = new(0.9f);
+    
+    private Transform canvasTrans;
     
     public GameObject UpNotePrefab;
     public GameObject DownNotePrefab;
     
-    private Transform canvasTrans;
-
     private GameObject upNote;
     private Vector3 upNotePos = new Vector3(910f, 75f, 0f);
     
     private GameObject downNote;
     private Vector3 downNotePos = new Vector3(910f, -75f, 0f);
+    
+    private float timeLimit = 0.2f;
+    private float curTime;
+    public float genRate;
+    private Note note;
+    private int rand;
 
+    private bool isTimedOut;
+    public bool IsTimedOut => isTimedOut;
+    
+    private bool isFinished;
+    public bool IsFinished
+    {
+        get => isFinished;
+        set => isFinished = value;
+    }
+
+    public int noteCount = 0;
+
+    public static NoteController instance;
 
     private void Awake()
     {
+        instance = this;
         canvasTrans = GameObject.FindGameObjectWithTag("Canvas").transform;
     }
-    
-    public void GenNotes(int dir)
-    {
-        genTime += Time.deltaTime;
-        if (!(genTime > genRate)) return;
 
-        genTime -= genRate;
+    public IEnumerator GenNotes()
+    {
+        curTime = 0f;
+        isTimedOut = false;
+        isFinished = false;
         
-        switch (dir)
+        while (true)
         {
-            case > 50 and <= 100:
-                upNote = Instantiate(UpNotePrefab, upNotePos, Quaternion.identity);
-                upNote.transform.SetParent(canvasTrans, false);
+            yield return term;
+            
+            curTime += Time.deltaTime;
+            
+            rand = Random.Range(0, 101);
+
+            if (curTime > timeLimit)
+            {
+                isTimedOut = true;
                 break;
-            case > 0 and <= 50:
-                downNote = Instantiate(DownNotePrefab, downNotePos, Quaternion.identity);
-                downNote.transform.SetParent(canvasTrans, false);
-                break;
-            default:
-                Debug.Log("Unexpected Range");
-                break;
+            }
+
+            switch (rand)
+            {
+                case > 50 and <= 100:
+                    upNote = Instantiate(UpNotePrefab, upNotePos, Quaternion.identity);
+                    upNote.transform.SetParent(canvasTrans, false);
+                    noteCount++;
+                    break;
+                case > 0 and <= 50:
+                    downNote = Instantiate(DownNotePrefab, downNotePos, Quaternion.identity);
+                    downNote.transform.SetParent(canvasTrans, false);
+                    noteCount++;
+                    break;
+                default:
+                    Debug.Log("Unexpected Range");
+                    break;
+            }
         }
     }
 
-    public void DestroyNotes(GameObject note)
+    public void GenStop()
     {
-        Destroy(note);
-        Debug.Log("note destroyed");
+        StopCoroutine(GenNotes());
+        Debug.Log("Gen Stopped");
     }
 }

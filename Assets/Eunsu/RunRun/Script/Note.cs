@@ -1,11 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Note : MonoBehaviour
 {
-    private NoteController nController;
     private RectTransform _rectTransform;
     private WaitForSeconds hmm = new (0.01f);
     private float noteSpeed = 1f;
@@ -21,14 +21,16 @@ public class Note : MonoBehaviour
     void Start()
     {
         StartCoroutine(MoveNote());
+        
     }
     
     void Update()
     {
         durationTime += Time.deltaTime;
-        if (!(durationTime > 10f)) return;
+        if (durationTime < 10f) return;
         Destroy(gameObject);
-        Debug.Log("note destroyed");
+        NoteController.instance.noteCount--;
+        Debug.Log("Note: " + NoteController.instance.noteCount);
     }
 
     private IEnumerator MoveNote()
@@ -45,7 +47,7 @@ public class Note : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("collision detected");
+        Debug.Log("");
         Destroy(gameObject);
     }
 }

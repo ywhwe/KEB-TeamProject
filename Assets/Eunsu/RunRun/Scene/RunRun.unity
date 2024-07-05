@@ -555,6 +555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreBoard: {fileID: 2078012284}
+  nController: {fileID: 1005743475}
   defaultImage: {fileID: 21300000, guid: e6274661ad471d641b2b6f3e7c5cfefb, type: 3}
   pressedImage: {fileID: 21300000, guid: 363525f68e12a384a927c3a4e311a323, type: 3}
   keyToPress: 115
@@ -845,9 +846,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d81edba2004a256438d4aeb1760843b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  genRate: 1
   UpNotePrefab: {fileID: 2913420432027634928, guid: d9f5f1cf9e50abc42bd3d0daff68c4e7, type: 3}
   DownNotePrefab: {fileID: 3748040575701395322, guid: 7e27653bbab16d148b8cda2385dfa1fd, type: 3}
+  genRate: 1
+  noteCount: 0
 --- !u!1 &1115058746
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,6 +900,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreBoard: {fileID: 2078012284}
+  nController: {fileID: 1005743475}
   defaultImage: {fileID: 21300000, guid: 061cc66d5f077e44ab43de7c4bb05c8c, type: 3}
   pressedImage: {fileID: 21300000, guid: 78db75af41c18844899faf4e67fbeda0, type: 3}
   keyToPress: 119
@@ -1114,7 +1117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dff22af36e9ab349ae4e31a60b4edff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 1005743475}
+  nController: {fileID: 1005743475}
 --- !u!1 &1735338350
 GameObject:
   m_ObjectHideFlags: 0
@@ -1377,7 +1380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1988708440}
-  score: 100
+  score: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

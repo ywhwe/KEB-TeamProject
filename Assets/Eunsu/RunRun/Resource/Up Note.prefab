@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5003596702630292437}
   - component: {fileID: 8475966886551918300}
   - component: {fileID: 381609245290596649}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Up Note
   m_TagString: JudgeLine
   m_Icon: {fileID: 0}

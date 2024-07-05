@@ -1,28 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
-    public NoteController controller;
-    private int rand = 0;
-    
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        StartCoroutine(NoteController.instance.GenNotes());
+        if (NoteController.instance.IsTimedOut) NoteController.instance.GenStop();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        rand = Random.Range(0, 101);
-        controller.GenNotes(rand);
-        if (Time.deltaTime > 1f)
+        if (!(Time.deltaTime > 1f)) return;
+        Destroy(NoteController.instance.gameObject);
+
+        if (NoteController.instance.noteCount < 1)
         {
-            Destroy(gameObject);
-            Debug.Log("destroyed");
+            NoteController.instance.IsFinished = true;
+            Debug.Log("Note Cleared");
+            UnityEditor.EditorApplication.ExitPlaymode();
         }
-        
+    }
+    
+    private void ExitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else 
+        Application.Quit();
+#endif
     }
 }
