@@ -11,6 +11,8 @@ public class ScoreWall : MonoBehaviour
     private Vector3 notepos;
     private RaycastHit hitnote;
 
+    public GameObject hiteffect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +28,9 @@ public class ScoreWall : MonoBehaviour
                     Quaternion.identity,
                     3f, 1 << 6))
             {
+                var vfx = Instantiate(hiteffect, hitnote.transform.position, Quaternion.Euler(90f,90f,0f));
                 Destroy(hitnote.collider.gameObject);
+                Destroy(vfx,0.5f);
             }
         }
 
@@ -36,7 +40,9 @@ public class ScoreWall : MonoBehaviour
                     Quaternion.identity,
                     3f, 1 << 6))
             {
+                var vfx = Instantiate(hiteffect, hitnote.transform.position, Quaternion.Euler(90f,90f,0f));
                 Destroy(hitnote.collider.gameObject);
+                Destroy(vfx,0.5f);
             }
         }
 
@@ -47,7 +53,9 @@ public class ScoreWall : MonoBehaviour
                     out hitnote, Quaternion.identity,
                     3f, 1 << 6))
             {
+                var vfx = Instantiate(hiteffect, hitnote.transform.position, Quaternion.Euler(90f,90f,0f));
                 Destroy(hitnote.collider.gameObject);
+                Destroy(vfx,0.5f);
             }
 
         }
@@ -58,7 +66,9 @@ public class ScoreWall : MonoBehaviour
                     out hitnote, Quaternion.identity,
                     3f, 1 << 6))
             {
+                var vfx = Instantiate(hiteffect, hitnote.transform.position, Quaternion.Euler(90f,90f,0f));
                 Destroy(hitnote.collider.gameObject);
+                Destroy(vfx,0.5f);
             }
         }
     }
