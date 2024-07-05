@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using static NoteController;
 
 public class Note : MonoBehaviour
 {
@@ -27,7 +26,7 @@ public class Note : MonoBehaviour
         durationTime += Time.deltaTime;
         if (durationTime < 10f) return;
         Destroy(gameObject);
-        instance.noteCount--;
+        NoteController.instance.noteCount--;
     }
 
     private IEnumerator MoveNote()

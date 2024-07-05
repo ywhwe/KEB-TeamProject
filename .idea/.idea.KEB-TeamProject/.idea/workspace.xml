@@ -9,6 +9,27 @@
       <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/ButtonController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/ButtonController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/GameManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/Note.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/Note.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/NoteController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/NoteController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/ScoreBoard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/ScoreBoard.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Kanghyeon.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Resource.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Resource/New Material 1.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Resource/New Material 1.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Resource/New Material 2.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Resource/New Material 2.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Resource/New Material 3.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Resource/New Material 3.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Resource/New Material 4.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Resource/New Material 4.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Resource/New Material 5.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Resource/New Material 5.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Resource/New Material.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Resource/New Material.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Scene.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Scene/RecordPlay.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Scene/RecordPlay.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Script.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +57,10 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock://C:/UnityLecture/KEB-TeamProject/KEB-TeamProject/Assets/Eunsu/RunRun/Script/ButtonController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/UnityLecture/KEB-TeamProject/KEB-TeamProject/Assets/Eunsu/RunRun/Script/ButtonController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/Test.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_Settings.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/834804db60ae4eb981294088cf979056175e00/07/d3a2f345/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/834804db60ae4eb981294088cf979056175e00/76/142b0f56/SpriteRenderer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/834804db60ae4eb981294088cf979056175e00/82/b160f403/Component.cs" root0="SKIP_HIGHLIGHTING" />
@@ -129,6 +153,7 @@
       <workItem from="1720066642116" duration="4807000" />
       <workItem from="1720073481224" duration="9338000" />
       <workItem from="1720152089905" duration="6688000" />
+      <workItem from="1720162711195" duration="148000" />
     </task>
     <task id="LOCAL-00001" summary="Run Pigeon Run Referenced mini game: in progress...">
       <option name="closed" value="true" />

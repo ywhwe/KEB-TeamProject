@@ -1,5 +1,4 @@
 using UnityEngine;
-using static NoteController;
 
 public class ButtonController : MonoBehaviour
 {
@@ -42,7 +41,7 @@ public class ButtonController : MonoBehaviour
                 Destroy(judge.gameObject);
                 NoteController.instance.noteCount--;
                 scoreBoard.SetScore(noteScore);
-                Debug.Log("Note: " + instance.noteCount);
+                Debug.Log("Note: " + NoteController.instance.noteCount);
                 
             }
         }

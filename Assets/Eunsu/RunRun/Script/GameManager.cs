@@ -1,26 +1,25 @@
 using System;
 using UnityEngine;
-using static NoteController;
 
 public class GameManager : MonoBehaviour
 {
     private void Start()
     {
-        StartCoroutine(instance.GenNotes());
+        StartCoroutine(NoteController.instance.GenNotes());
     }
 
     private void Update()
     {
         if (!(Time.deltaTime > 1f)) return;
-        Destroy(instance.gameObject);
+        Destroy(NoteController.instance.gameObject);
     }
     
     private void LateUpdate()
     {
-        if (instance.noteCount < 1 && instance.IsTimedOut)
-            instance.IsFinished = true;
+        if (NoteController.instance.noteCount < 1 && NoteController.instance.IsTimedOut)
+            NoteController.instance.IsFinished = true;
         
-        if (instance.IsFinished)
+        if (NoteController.instance.IsFinished)
         {
             Debug.Log("Note Cleared");
             UnityEditor.EditorApplication.ExitPlaymode();
