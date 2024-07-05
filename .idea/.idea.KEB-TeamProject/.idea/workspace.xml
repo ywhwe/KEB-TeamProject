@@ -6,12 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="82981f5e-987f-4011-80a6-831b01039c1b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.KEB-TeamProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.KEB-TeamProject/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Resource/New Material 1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Resource/New Material 1.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Resource/New Material 3.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Resource/New Material 3.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Resource/New Material 4.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Resource/New Material 4.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Resource/New Material 5.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Resource/New Material 5.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Scene/RecordPlay.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Kanghyeon/RecordPlay/Scene/RecordPlay.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sinbi/Record/Sence/RecordSence.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sinbi/Record/Sence/RecordSence.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +115,7 @@
       <workItem from="1719983063968" duration="4027000" />
       <workItem from="1719994527916" duration="11000" />
       <workItem from="1719994707056" duration="16000" />
-      <workItem from="1720070720478" duration="1802000" />
+      <workItem from="1720070720478" duration="3932000" />
     </task>
     <servers />
   </component>
