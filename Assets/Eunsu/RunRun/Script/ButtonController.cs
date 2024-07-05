@@ -1,8 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
+using static NoteController;
 
 public class ButtonController : MonoBehaviour
 {
@@ -45,7 +42,7 @@ public class ButtonController : MonoBehaviour
                 Destroy(judge.gameObject);
                 NoteController.instance.noteCount--;
                 scoreBoard.SetScore(noteScore);
-                Debug.Log("Note: " + NoteController.instance.noteCount);
+                Debug.Log("Note: " + instance.noteCount);
                 
             }
         }

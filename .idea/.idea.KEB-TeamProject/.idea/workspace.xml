@@ -6,14 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="82981f5e-987f-4011-80a6-831b01039c1b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.KEB-TeamProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.KEB-TeamProject/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Resource/Down Note.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Resource/Down Note.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Resource/Up Note.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Resource/Up Note.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Scene/RunRun.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Scene/RunRun.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/ButtonController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/ButtonController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/GameManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/Note.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/Note.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/NoteController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/NoteController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
