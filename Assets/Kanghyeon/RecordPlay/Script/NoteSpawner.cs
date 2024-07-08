@@ -9,8 +9,7 @@ public class NoteSpawner : MonoBehaviour
     public GameObject note;
     public Transform noteparents;
     public Records record;
-
-    public GameObject Test;
+    
 
     public float nowangle=0f;
     // Start is called before the first frame update
