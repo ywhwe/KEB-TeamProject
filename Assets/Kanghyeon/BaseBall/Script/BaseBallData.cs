@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,13 +6,4 @@ using UnityEngine;
 public class BaseBallData : ScriptableObject
 {
     public BallData[] balldata;
-}
-
-[Serializable]
-public class BallData
-{
-    public float time;
-    public float ballspeed;
-    public float delay;
-    public AnimationCurve curve;
 }

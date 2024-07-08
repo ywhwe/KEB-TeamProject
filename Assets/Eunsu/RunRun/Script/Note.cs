@@ -24,7 +24,7 @@ public class Note : MonoBehaviour
     void Update()
     {
         durationTime += Time.deltaTime;
-        if (durationTime < 10f) return;
+        if (durationTime < 15f) return;
         Destroy(gameObject);
         NoteController.instance.noteCount--;
     }
