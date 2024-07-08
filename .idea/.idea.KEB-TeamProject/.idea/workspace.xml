@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="82981f5e-987f-4011-80a6-831b01039c1b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.KEB-TeamProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.KEB-TeamProject/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Scene/RunRun.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Scene/RunRun.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/Note.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/Note.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +34,7 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="mock://C:/UnityLecture/KEB-TeamProject/KEB-TeamProject/Assets/Eunsu/RunRun/Script/ButtonController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/UnityLecture/KEB-TeamProject/KEB-TeamProject/Assets/Eunsu/RunRun/Script/Note.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Eunsu/RunRun/Script/Test.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_Settings.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/834804db60ae4eb981294088cf979056175e00/07/d3a2f345/Object.cs" root0="SKIP_HIGHLIGHTING" />
@@ -130,7 +129,8 @@
       <workItem from="1720066642116" duration="4807000" />
       <workItem from="1720073481224" duration="9338000" />
       <workItem from="1720152089905" duration="6688000" />
-      <workItem from="1720162711195" duration="1451000" />
+      <workItem from="1720162711195" duration="1614000" />
+      <workItem from="1720406173469" duration="1313000" />
     </task>
     <task id="LOCAL-00001" summary="Run Pigeon Run Referenced mini game: in progress...">
       <option name="closed" value="true" />
@@ -188,7 +188,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720163048758</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Note speed modified">
+      <option name="closed" value="true" />
+      <created>1720164774934</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1720164774934</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -222,6 +230,7 @@
     <MESSAGE value=".gitignore modified" />
     <MESSAGE value="Connected ScoreBoard with ButtonController" />
     <MESSAGE value="Deleted Static mamber, Unused floder" />
-    <option name="LAST_COMMIT_MESSAGE" value="Deleted Static mamber, Unused floder" />
+    <MESSAGE value="Note speed modified" />
+    <option name="LAST_COMMIT_MESSAGE" value="Note speed modified" />
   </component>
 </project>
