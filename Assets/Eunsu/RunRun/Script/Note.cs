@@ -35,8 +35,11 @@ public class Note : MonoBehaviour
         {
             yield return hmm;
 
-            movePos -= noteSpeed;
-            _rectTransform.anchoredPosition = new Vector2(movePos, _rectTransform.anchoredPosition.y);
+            //movePos -= noteSpeed;
+            var vector2 = _rectTransform.anchoredPosition;
+            vector2.x -= noteSpeed;
+            _rectTransform.anchoredPosition = vector2;
+            _rectTransform.anchoredPosition = new Vector2(_rectTransform.anchoredPosition.x, _rectTransform.anchoredPosition.y);
             // gameObject.transform.Translate(-1f * (noteSpeed * Time.deltaTime), 0f, 0f);
         }
     }
