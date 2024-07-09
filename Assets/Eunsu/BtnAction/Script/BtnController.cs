@@ -4,7 +4,7 @@ public class BtnController : MonoBehaviour
 {
     private KeyCode inputKeyCode = KeyCode.None;
     
-    private bool isMatch = false;
+    private bool isMatch = true;
     public bool IsMatch => isMatch;
 
     private void Awake()
@@ -14,6 +14,7 @@ public class BtnController : MonoBehaviour
 
     void Update()
     {
+        isMatch = false;
         SetKey();
         if (inputKeyCode is KeyCode.None) return;
         CompKey();

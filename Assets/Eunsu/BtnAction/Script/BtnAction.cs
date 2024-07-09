@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -8,7 +9,6 @@ public class BtnAction : MonoBehaviour
     private Animator ani;
     public TextMeshProUGUI qteBtn;
     public static BtnAction Instance;
-    private float timeGap = 1f;
     public BtnController btnController;
     
     [HideInInspector]
@@ -17,7 +17,7 @@ public class BtnAction : MonoBehaviour
     private float timer;
     private float timeLimit = 5f;
     private static readonly int Gen = Animator.StringToHash("Gen");
-    private static readonly int Wait = Animator.StringToHash("Wait");
+    private static readonly int isWait = Animator.StringToHash("isWait");
 
     void Awake()
     {
@@ -35,20 +35,15 @@ public class BtnAction : MonoBehaviour
     {
         while (timer < timeLimit)
         {
-            yield return new WaitForSeconds(timeGap);
-            
-            timeGap = 1f;
+            // if IsMatch is false, suspends coroutine 'til it is true
+            yield return new WaitUntil(() => btnController.IsMatch);
 
             timer += Time.deltaTime;
             
             rand = Random.Range(0, 100);
             BtnControl(rand);
             
-            ani.SetTrigger(Wait);
-            if (btnController.IsMatch)
-            {
-                timeGap = 0.5f; // this need to fix
-            }
+            if (btnController.IsMatch) ani.SetBool(isWait, false);
         }
     }
     
@@ -82,5 +77,6 @@ public class BtnAction : MonoBehaviour
                 ani.SetTrigger(Gen);
                 break;
         }
+        ani.SetBool(isWait, true);
     }
 }
