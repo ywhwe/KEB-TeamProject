@@ -14,7 +14,7 @@ public class NoteSpawner : MonoBehaviour
     public GameObject noteD;
     public Transform noteparents;
     public Records record;
-    
+
 
     public float nowangle=0f;
     // Start is called before the first frame update
