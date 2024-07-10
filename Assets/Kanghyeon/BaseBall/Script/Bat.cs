@@ -14,6 +14,8 @@ public class Bat : MonoBehaviour
     private static readonly int Swing = Animator.StringToHash("Swing");
 
     private RaycastHit ballhit;
+
+    private float ballendtime;
     
     void Start()
     {
@@ -21,8 +23,7 @@ public class Bat : MonoBehaviour
         ani = GetComponent<Animator>();
         
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))
