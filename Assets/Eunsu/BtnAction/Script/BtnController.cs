@@ -8,6 +8,8 @@ public class BtnController : MonoBehaviour
     public GameObject Abtn;
     public GameObject Sbtn;
     public GameObject Dbtn;
+    
+    public static BtnController controllerInstance;
 
     private Color tempColor = Color.black;
     
@@ -71,7 +73,7 @@ public class BtnController : MonoBehaviour
     // compares generated button and stocked user input
     private void CompKey()
     {
-        if (BtnAction.Instance.waitingKeyCode == inputKeyCode)
+        if (BtnAction.actionInstance.waitingKeyCode == inputKeyCode)
         {
             inputKeyCode = KeyCode.None;
             isMatch = true;
