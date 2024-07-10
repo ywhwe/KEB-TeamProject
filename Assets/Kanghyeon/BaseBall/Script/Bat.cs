@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -16,6 +17,8 @@ public class Bat : MonoBehaviour
     private RaycastHit ballhit;
 
     private float ballendtime;
+
+    public TextMeshProUGUI scoreboard;
     
     void Start()
     {
@@ -29,22 +32,28 @@ public class Bat : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             ani.SetTrigger(Swing);
-            BatRayCast();
-            SwingBat();
-            ballmanager.Check(ballhit.collider.GetComponent<TestBall>().endtime);
+            if (IsBallHit())
+            {
+                SwingBat();
+                Check(ballendtime);
+            }
+            else
+            {
+                scoreboard.text = "Strike";
+            }
+            
+            
         }
     }
-
+    
     public void SwingBat()
     {
-        if (ballhit.collider != null)
+        if (0 <= (ballendtime - Time.time) && (ballendtime - Time.time) <= 0.3f)
         {
-            var ballcomp = ballhit.collider.GetComponent<TestBall>();
-            if (0<=(ballcomp.endtime-Time.time)&&(ballcomp.endtime-Time.time)<=0.3f)
-            {
-                var time = Mathf.Abs(2f - ballhit.transform.position.x) / ballcomp.ballspeed;
-                Invoke("BallAway",time);
-            }
+            var time = Mathf.Abs(2f - ballhit.transform.position.x) / ballhit.collider.GetComponent<TestBall>().ballspeed;
+            Destroy(ballhit.collider.gameObject,3f);
+            Invoke("BallAway", time);
+            
         }
     }
 
@@ -52,31 +61,31 @@ public class Bat : MonoBehaviour
     {
         ballhit.collider.GetComponent<Rigidbody>().AddForce(-24f,10f,5f,ForceMode.Impulse);
     }
-
-    private void BatRayCast()
+    
+    private bool IsBallHit()
     {
         var pos = transform.position;
         pos.x = 3f;
-        Physics.BoxCast(pos, new Vector3(0.5f, 0.5f, 0.5f), Vector3.left, out ballhit,
-            Quaternion.identity, 5f);
+        if (Physics.BoxCast(pos, new Vector3(0.5f, 0.5f, 0.5f), Vector3.left, out ballhit,
+                Quaternion.identity, 5f))
+        {
+            ballendtime = ballhit.collider.GetComponent<TestBall>().endtime;
+            return true;
+        }
+
+        return false;
     }
-    // public void Check(float endtime)
-    // {
-    //     
-    //     {
-    //         ballscore.text = "Finish";
-    //         return;
-    //     }
-    //
-    //     if (0<=(endtime-Time.time)&&(endtime-Time.time) <= 0.3f)
-    //     {
-    //         ballscore.text = "HomeRun";
-    //         ballorder.RemoveAt(0);
-    //         return;
-    //     }
-    //
-    //     ballscore.text = "Strike";
-    //     ballorder.RemoveAt(0);
-    // }
+    
+    public void Check(float endtime)
+    {
+        
+        if (0<=(endtime-Time.time)&&(endtime-Time.time) <= 0.3f)
+        {
+            scoreboard.text = "HomeRun";
+            ballmanager.CountScore();
+            return;
+        }
+        scoreboard.text = "Strike";
+    }
 
 }

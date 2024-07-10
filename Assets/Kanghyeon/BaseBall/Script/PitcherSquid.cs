@@ -25,6 +25,7 @@ public class PitcherSquid : MonoBehaviour
             balllist.Add(data);
         }
         
+        
         ShootBall();
     }
     
@@ -33,7 +34,7 @@ public class PitcherSquid : MonoBehaviour
  
         var ball = Instantiate(Ball, transform.position, Quaternion.identity);
         ball.GetComponent<Animator>().SetInteger(Curve,0);
-        Destroy(ball,5f);
+        
     }
     
     private void ShootBall()
