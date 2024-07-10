@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fa4aa4a5c1d9341885ad1cbc5ce076, type: 3}
+  m_Name: New RecordNote Data
+  m_EditorClassIdentifier: 
+  notepos:
+  - sethaW:
+    - 90
+    - 0
+    - 180
+    sethaA:
+    - 90
+    sethaS:
+    - 0
+    - 180
+    sethaD: []
+  - sethaW: []
+    sethaA: []
+    sethaS:
+    - 0
+    sethaD: []
+  - sethaW:
+    - 0
+    sethaA: []
+    sethaS: []
+    sethaD: []

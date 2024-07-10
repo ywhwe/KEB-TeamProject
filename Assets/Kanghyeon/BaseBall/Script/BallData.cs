@@ -4,8 +4,10 @@ using UnityEngine;
 [Serializable]
 public class BallData
 {
-    public float time;
-    public float ballspeed;
+    public int ballnum;
     public float delay;
-    public AnimationCurve curve;
+    public float endtime;
+    public string ballname;
+
 }
+
