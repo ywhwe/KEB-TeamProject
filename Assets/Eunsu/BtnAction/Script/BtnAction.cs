@@ -10,7 +10,7 @@ public class BtnAction : MonoBehaviour
     public TextMeshProUGUI qteBtn;
     public static BtnAction Instance;
     public BtnController btnController;
-    private float disabledTime = 0.5f;
+    // private float disabledTime = 0.5f;
     
     [HideInInspector]
     public KeyCode waitingKeyCode = KeyCode.None;
