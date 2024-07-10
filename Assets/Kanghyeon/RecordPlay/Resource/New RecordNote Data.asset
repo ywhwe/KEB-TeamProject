@@ -17,19 +17,50 @@ MonoBehaviour:
     - 90
     - 0
     - 180
+    - 25
     sethaA:
     - 90
+    - 60
+    - 300
     sethaS:
     - 0
     - 180
-    sethaD: []
-  - sethaW: []
-    sethaA: []
+    - 130
+    sethaD:
+    - 80
+    - 20
+    - 230
+  - sethaW:
+    - 90
+    - 0
+    - 180
+    - 25
+    sethaA:
+    - 90
+    - 60
+    - 300
     sethaS:
     - 0
-    sethaD: []
+    - 180
+    - 130
+    sethaD:
+    - 80
+    - 20
+    - 230
   - sethaW:
+    - 90
     - 0
-    sethaA: []
-    sethaS: []
-    sethaD: []
+    - 180
+    - 25
+    sethaA:
+    - 90
+    - 60
+    - 300
+    sethaS:
+    - 0
+    - 180
+    - 130
+    sethaD:
+    - 80
+    - 20
+    - 230
