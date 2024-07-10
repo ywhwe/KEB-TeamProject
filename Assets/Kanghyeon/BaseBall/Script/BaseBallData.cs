@@ -6,4 +6,5 @@ using UnityEngine;
 public class BaseBallData : ScriptableObject
 {
     public BallData[] balldata;
+
 }

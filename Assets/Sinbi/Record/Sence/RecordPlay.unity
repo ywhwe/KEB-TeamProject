@@ -2701,7 +2701,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 140997d2128dd8642b7f1a75fa7fe052, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  note: {fileID: 7105944227131998957, guid: 9506b45b46dccb549a55b8bcefd06e17, type: 3}
+  notedb: {fileID: 11400000, guid: 769a88d303d58c64fbd274e94390a9bf, type: 2}
+  noteW: {fileID: 0}
+  noteA: {fileID: 0}
+  noteS: {fileID: 0}
+  noteD: {fileID: 0}
   noteparents: {fileID: 1684972594}
   record: {fileID: 1329825000}
   nowangle: 0
