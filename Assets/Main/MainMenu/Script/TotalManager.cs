@@ -28,10 +28,7 @@ public class TotalManager : MonoBehaviour
     public Slider volumeSlider;
     private float perVolume;
 
-    private float readyTimer = 1f;
-    private float readyTime = 0f;
-    private int startTime = 0;
-    
+    private WholeGameManager gm;
     
     private void Awake()
     {
@@ -60,26 +57,14 @@ public class TotalManager : MonoBehaviour
     public void MoveScene(int id)
     {
         StartCoroutine(MoveSceneWithFade(id));
-
     }
-
-    public void MoveScene(string sceneName)
-    {
-        StartCoroutine(MoveSceneWithFade(sceneName));
-    }
+    
 
     private IEnumerator MoveSceneWithFade(int id)
     {
-        yield return StartCoroutine(FadeScreen(true));// yield return이 Coroutine이 끝날때까지 기다림
+        yield return StartCoroutine(FadeScreen(true));
         SceneManager.LoadScene(id);
-        yield return StartCoroutine(FadeScreen(false));
-        
-    }
-    
-    private IEnumerator MoveSceneWithFade(string sceneName)
-    {
-        yield return StartCoroutine(FadeScreen(true));// yield return이 Coroutine이 끝날때까지 기다림
-        SceneManager.LoadScene(sceneName);
+        //gm 게임 매니저 받기 JS
         yield return StartCoroutine(FadeScreen(false));
     }
 
@@ -123,9 +108,16 @@ public class TotalManager : MonoBehaviour
 
     public void GoToIngame()
     {
-        int gameNumber = Random.Range(1, 3);
+        int gameNumber = Random.Range(1, 2);
         TotalManager.instance.MoveScene(gameNumber);
         gameStartButton.interactable = false;
+        
+        // gm.GameStart(); JS
+    }
+
+    private IEnumerator CountBeforeStart()
+    {
+        yield return new WaitForSeconds(5);
     }
     
     public void ResumeGame()

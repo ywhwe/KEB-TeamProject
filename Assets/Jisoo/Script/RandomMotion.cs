@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class RandomMotion : MonoBehaviour
 {
@@ -14,43 +16,44 @@ public class RandomMotion : MonoBehaviour
     
     public int randomMotionNumber;
     private int stage = 0;
-    private static float timeRate = 50f;
+    private WaitForSeconds calTime;
+    public float calRate = 4;
     
     public GameObject player1;
     public GameObject player2;
     private int player1Motion, player2Motion;
     private int player1Life, player2Life = 3;
-    
-    
+
     void Start()
     {
         ani.GetComponent<Animator>();
+        calTime = new WaitForSeconds(calRate);
+
+        StartCoroutine(PlayGameRoutine());
     }
     
     void Update()
     {
-        RandomAction();
-        for (float timer = 0f; timer < timeRate;)
-        {
-            Debug.Log(timer);
-            timer += Time.deltaTime;
-            player1Motion = player1.GetComponent<CharacterControl>().motionNumber;
-            player2Motion = player2.GetComponent<CharacterControl>().motionNumber;
-
-        }
-            CompareMotionNumber(player1Motion, player1Life);
-            CompareMotionNumber(player2Motion, player2Life);
-            
-            EndGame();
-            
-            stage++;
-            if (stage >= 5)
-            {
-                Time.timeScale += 0.5f;
-                stage = 0;
-            }
+        player1Motion = player1.GetComponent<CharacterControl>().motionNumber;
+        player2Motion = player2.GetComponent<CharacterControl>().motionNumber;
     }
-
+    private IEnumerator PlayGameRoutine()
+    {
+        yield return calTime;
+        
+        RandomAction();
+        
+        Debug.Log(player1Motion);
+        Debug.Log(player2Motion);
+        
+        CompareMotionNumber(player1Motion, player1Life);
+        CompareMotionNumber(player2Motion, player2Life);
+        
+        Debug.Log("life1 "+ player1Life + " life2 "+player2Life);
+        
+        StartCoroutine(PlayGameRoutine());
+    }
+    
     public void RandomAction()
     {
             randomMotionNumber = 0;
@@ -73,7 +76,13 @@ public class RandomMotion : MonoBehaviour
                 ani.SetTrigger(IsDMove);
             }
 
-
+            stage++;
+            if (stage >= 5)
+            {
+                Time.timeScale += 0.5f;
+                stage = 0;
+            }
+            Debug.Log("random motion");
     }
 
     public int CompareMotionNumber(int playerMotionNumber, int playerLife)
@@ -82,7 +91,6 @@ public class RandomMotion : MonoBehaviour
         {
             playerLife--;
         }
-        
         return playerLife;
     }
 
