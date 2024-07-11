@@ -2,13 +2,15 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 using Random = UnityEngine.Random;
 
 public class BtnAction : MonoBehaviour
 {
     private Animator ani;
     public TextMeshProUGUI qteBtn;
-    public static BtnAction Instance;
+    public static BtnAction actionInstance;
+
     public BtnController btnController;
     // private float disabledTime = 0.5f;
     
@@ -21,23 +23,23 @@ public class BtnAction : MonoBehaviour
 
     void Awake()
     {
-        Instance = this;
+        actionInstance = this;
         ani = GetComponent<Animator>();
         successCount = 0;
     }
 
     private void Start()
     {
-        StartCoroutine(GenQTE());
+        GenQTE().Forget();
     }
 
     // button generator for coroutine
-    private IEnumerator GenQTE()
+    private async UniTask GenQTE()
     {
         while (successCount < 10) // if successCount bigger than setting value stops coroutine
         {
             // if IsMatch is false, suspends coroutine 'til it is true
-            yield return new WaitUntil(() => btnController.IsMatch);
+            await UniTask.WaitUntil(() => btnController.IsMatch);
             
             rand = Random.Range(0, 100);
             BtnControl(rand);

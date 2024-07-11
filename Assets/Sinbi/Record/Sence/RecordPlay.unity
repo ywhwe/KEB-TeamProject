@@ -2671,10 +2671,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   notedb: {fileID: 11400000, guid: 769a88d303d58c64fbd274e94390a9bf, type: 2}
-  noteW: {fileID: 0}
-  noteA: {fileID: 0}
-  noteS: {fileID: 0}
-  noteD: {fileID: 0}
+  noteW: {fileID: 1783171561}
+  noteA: {fileID: 849316852}
+  noteS: {fileID: 591527041}
+  noteD: {fileID: 1886796500}
   noteparents: {fileID: 1684972594}
   record: {fileID: 1329825000}
   nowangle: 0

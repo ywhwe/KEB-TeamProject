@@ -71,7 +71,7 @@ public class BtnController : MonoBehaviour
     // compares generated button and stocked user input
     private void CompKey()
     {
-        if (BtnAction.Instance.waitingKeyCode == inputKeyCode)
+        if (BtnAction.actionInstance.waitingKeyCode == inputKeyCode)
         {
             inputKeyCode = KeyCode.None;
             isMatch = true;

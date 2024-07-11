@@ -1,24 +1,26 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using Vector3 = UnityEngine.Vector3;
+using Vector2 = UnityEngine.Vector2;
 
 public class CameraFollow : MonoBehaviour
 {
-    public float smoothness;
-    private Transform targetObject;
-    private Vector3 initialOffset;
-    private Vector3 cameraPosition;
+    private Transform target;
+    private Vector3 positionOffset = new (-1f, 2f, -2f);
+    private Vector3 velocity = Vector3.zero;
+    private float smoothTime = 0.5f;
 
     private void Start()
     {
-        targetObject = GameManagerBtn.instance.trolleyClone.GetComponent<Transform>();
-        initialOffset = transform.position - targetObject.position;
+        target = GameObject.FindWithTag("Trolley").transform;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        cameraPosition = targetObject.position + initialOffset;
-        transform.position = Vector3.Lerp(transform.position, cameraPosition, smoothness*Time.fixedDeltaTime);
+        var targetPosition = target.position + positionOffset;
+        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
     }
 }

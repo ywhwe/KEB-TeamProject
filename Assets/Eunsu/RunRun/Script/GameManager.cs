@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
         
         if (NoteController.instance.IsFinished)
         {
-            Debug.Log("Note Cleared");
             UnityEditor.EditorApplication.ExitPlaymode();
         }
     }
