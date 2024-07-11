@@ -6,14 +6,14 @@ using UnityEngine;
 
 public class Catcher : MonoBehaviour
 {
-    public BallManager _ballmanager;
+    public BallManager ballmanager;
     public TextMeshProUGUI text;
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer==6)
         {
-            Destroy(other);
-            _ballmanager.DeleteOrder();
+            ballmanager.CountBall();
+            Destroy(other.gameObject);
             text.text = "Strike";
         }
     }

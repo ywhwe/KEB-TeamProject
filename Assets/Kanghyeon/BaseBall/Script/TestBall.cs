@@ -11,6 +11,7 @@ public class TestBall : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody>();
         rigid.AddForce(ballspeed,0f,0f,ForceMode.VelocityChange);
+        
     }
     
     void Update()

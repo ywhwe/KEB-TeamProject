@@ -13,10 +13,17 @@ public class ScoreWall : MonoBehaviour
 
     public GameObject hiteffect;
 
+    private Vector3 posW;
+    private Vector3 posA;
+    private Vector3 posS;
+    private Vector3 posD;
     // Start is called before the first frame update
     void Start()
     {
-
+        posW = boardForW.transform.position;
+        posA = boardForA.transform.position;
+        posD = boardForD.transform.position;
+        posS = boardForS.transform.position;
     }
 
     // Update is called once per frame
@@ -28,9 +35,9 @@ public class ScoreWall : MonoBehaviour
                     Quaternion.identity,
                     3f, 1 << 6))
             {
-                var vfx = Instantiate(hiteffect, hitnote.transform.position, Quaternion.Euler(90f,90f,0f));
+                var vfx = Instantiate(hiteffect, new Vector3(2.32f,0.6f,0f), Quaternion.identity);
                 Destroy(hitnote.collider.gameObject);
-                Destroy(vfx,0.5f);
+                Destroy(vfx,0.7f);
             }
         }
 
@@ -40,9 +47,9 @@ public class ScoreWall : MonoBehaviour
                     Quaternion.identity,
                     3f, 1 << 6))
             {
-                var vfx = Instantiate(hiteffect, hitnote.transform.position, Quaternion.Euler(90f,90f,0f));
+                var vfx = Instantiate(hiteffect, new Vector3(2.77f,0.6f,0f), Quaternion.identity);
                 Destroy(hitnote.collider.gameObject);
-                Destroy(vfx,0.5f);
+                Destroy(vfx,0.7f);
             }
         }
 
@@ -53,9 +60,9 @@ public class ScoreWall : MonoBehaviour
                     out hitnote, Quaternion.identity,
                     3f, 1 << 6))
             {
-                var vfx = Instantiate(hiteffect, hitnote.transform.position, Quaternion.Euler(90f,90f,0f));
+                var vfx = Instantiate(hiteffect, new Vector3(3.23f,0.6f,0f), Quaternion.identity);
                 Destroy(hitnote.collider.gameObject);
-                Destroy(vfx,0.5f);
+                Destroy(vfx,0.7f);
             }
 
         }
@@ -66,9 +73,9 @@ public class ScoreWall : MonoBehaviour
                     out hitnote, Quaternion.identity,
                     3f, 1 << 6))
             {
-                var vfx = Instantiate(hiteffect, hitnote.transform.position, Quaternion.Euler(90f,90f,0f));
+                var vfx = Instantiate(hiteffect, new Vector3(3.71f, 0.6f, 0f), Quaternion.identity);
                 Destroy(hitnote.collider.gameObject);
-                Destroy(vfx,0.5f);
+                Destroy(vfx,0.7f);
             }
         }
     }

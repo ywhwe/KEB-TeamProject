@@ -36,9 +36,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _GlossMapScale: 0
-    - _Glossiness: 0.44
+    - _Glossiness: 0.423
     - _GlossyReflections: 0
-    - _Metallic: 0.22
+    - _Metallic: 0.387
     - _Parallax: 0.005
     m_Colors: []
   m_BuildTextureStacks: []
