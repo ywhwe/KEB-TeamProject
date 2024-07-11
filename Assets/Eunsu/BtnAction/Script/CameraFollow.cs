@@ -13,11 +13,6 @@ public class CameraFollow : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
     private float smoothTime = 0.5f;
 
-    private void Awake()
-    {
-        
-    }
-
     private void Start()
     {
         target = GameObject.FindWithTag("Trolley").transform;

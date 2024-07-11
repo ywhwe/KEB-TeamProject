@@ -1,4 +1,6 @@
+using UnityEditor.Scripting;
 using UnityEngine;
+using static System.MathF;
 
 public class ButtonController : MonoBehaviour
 {
@@ -34,10 +36,24 @@ public class ButtonController : MonoBehaviour
             var judge = Physics2D.OverlapBox(transform.position, buttonSize, 0f);
             if (judge is null)
             {
-                Debug.Log("Note Missed");
+                // When Note Missed
             }
-            else if (judge.CompareTag("JudgeLine"))
+            else if (judge.CompareTag("JudgeLine")) // When Note Hit
             {
+                var dist = gameObject.transform.position - judge.transform.position;
+                var distance = Abs(dist.x);
+                switch (distance)
+                {
+                    case < 2:
+                        Debug.Log("Perfect");
+                        break;
+                    case < 15:
+                        Debug.Log("Great");
+                        break;
+                    default:
+                        Debug.Log("Good");
+                        break;
+                }
                 Destroy(judge.gameObject);
                 NoteController.instance.noteCount--;
                 scoreBoard.SetScore(noteScore);

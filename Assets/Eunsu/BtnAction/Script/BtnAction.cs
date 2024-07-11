@@ -10,6 +10,8 @@ public class BtnAction : MonoBehaviour
     private Animator ani;
     public TextMeshProUGUI qteBtn;
     public static BtnAction actionInstance;
+
+    public BtnController btnController;
     // private float disabledTime = 0.5f;
     
     [HideInInspector]
@@ -37,12 +39,12 @@ public class BtnAction : MonoBehaviour
         while (successCount < 10) // if successCount bigger than setting value stops coroutine
         {
             // if IsMatch is false, suspends coroutine 'til it is true
-            await UniTask.WaitUntil(() => BtnController.controllerInstance.IsMatch);
+            await UniTask.WaitUntil(() => btnController.IsMatch);
             
             rand = Random.Range(0, 100);
             BtnControl(rand);
             
-            if (BtnController.controllerInstance.IsMatch) // user input matched with QTE buttons increase successCount
+            if (btnController.IsMatch) // user input matched with QTE buttons increase successCount
             {
                 ani.SetBool(isWait, false);
                 successCount++;

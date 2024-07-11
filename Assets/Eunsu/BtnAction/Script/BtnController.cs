@@ -8,8 +8,6 @@ public class BtnController : MonoBehaviour
     public GameObject Abtn;
     public GameObject Sbtn;
     public GameObject Dbtn;
-    
-    public static BtnController controllerInstance;
 
     private Color tempColor = Color.black;
     
