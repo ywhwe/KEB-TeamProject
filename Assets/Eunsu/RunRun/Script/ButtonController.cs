@@ -26,8 +26,7 @@ public class ButtonController : MonoBehaviour
         theSR = GetComponent<SpriteRenderer>();
         theSR.sprite = defaultImage;
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         if (Input.GetKeyDown(keyToPress))

@@ -845,6 +845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d81edba2004a256438d4aeb1760843b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 9544418}
   UpNotePrefab: {fileID: 2913420432027634928, guid: d9f5f1cf9e50abc42bd3d0daff68c4e7, type: 3}
   DownNotePrefab: {fileID: 3748040575701395322, guid: 7e27653bbab16d148b8cda2385dfa1fd, type: 3}
   genRate: 1

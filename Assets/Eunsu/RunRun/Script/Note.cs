@@ -18,7 +18,6 @@ public class Note : MonoBehaviour
     void Start()
     {
         StartCoroutine(MoveNote());
-
     }
 
     void Update()

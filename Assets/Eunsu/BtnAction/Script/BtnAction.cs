@@ -17,18 +17,30 @@ public class BtnAction : MonoBehaviour
     [HideInInspector]
     public KeyCode waitingKeyCode = KeyCode.None;
     private float rand;
-    private int successCount;
+    public int successCount;
     private static readonly int Gen = Animator.StringToHash("Gen");
     private static readonly int isWait = Animator.StringToHash("isWait");
 
+    private bool condition = true;
+
     void Awake()
     {
+        // When GameManager inheritance Fixed, this should be in StartGame()
         actionInstance = this;
         ani = GetComponent<Animator>();
         successCount = 0;
     }
 
-    private void Start()
+    private void Update()
+    {
+        // GenQTE().Forget();
+        if (condition)
+        {
+            condition = false;
+        }
+    }
+    
+    public void StartGen()
     {
         GenQTE().Forget();
     }

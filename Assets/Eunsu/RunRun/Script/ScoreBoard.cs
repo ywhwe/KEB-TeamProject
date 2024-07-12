@@ -4,6 +4,7 @@ using UnityEngine;
 public class ScoreBoard : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
+    public static ScoreBoard scoreInstance;
     public int score;
 
     private void Awake()

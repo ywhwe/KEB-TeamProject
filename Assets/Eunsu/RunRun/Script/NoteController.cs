@@ -5,15 +5,15 @@ using Random = UnityEngine.Random;
 public class NoteController : MonoBehaviour
 {
     private WaitForSeconds term = new(0.9f);
-    
+
+    public GameObject canvas;
     private Transform canvasTrans;
     
     public GameObject UpNotePrefab;
-    public GameObject DownNotePrefab;
-    
     private GameObject upNote;
     private Vector3 upNotePos = new Vector3(910f, 75f, 0f);
     
+    public GameObject DownNotePrefab;
     private GameObject downNote;
     private Vector3 downNotePos = new Vector3(910f, -75f, 0f);
     
@@ -40,7 +40,7 @@ public class NoteController : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        canvasTrans = GameObject.FindGameObjectWithTag("Canvas").transform;
+        canvasTrans = canvas.transform;
     }
 
     public IEnumerator GenNotes()
