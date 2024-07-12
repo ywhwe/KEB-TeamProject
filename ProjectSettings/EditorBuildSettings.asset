@@ -9,9 +9,12 @@ EditorBuildSettings:
     path: Assets/Main/MainMenu/Scenes/Main.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Kanghyeon/RecordPlay/Scene/RecordPlay.unity
-    guid: 0f3e21a872502024fbdf1f0d71b39004
+    path: Assets/Jisoo/Scene/Follow The Action.unity
+    guid: 3b86738f529ba234c8136b4e37dca203
   - enabled: 1
-    path: Assets/Kanghyeon/Temp/Scene/Hammer.unity
-    guid: 17580d5f1d4cd1b48a9774285db6c0a6
+    path: Assets/Main/MainMenu/Scenes/ScoreBoard.unity
+    guid: 4ab20b0fb2148f34eae8154cae281599
+  - enabled: 1
+    path: Assets/Main/MainMenu/Scenes/Opening.unity
+    guid: 352357ab4c6ca5140b130ee074b5f760
   m_configObjects: {}
