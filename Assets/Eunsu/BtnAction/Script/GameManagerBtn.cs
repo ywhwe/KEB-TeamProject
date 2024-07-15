@@ -25,13 +25,6 @@ public class GameManagerBtn : WholeGameManager
         instance = this; 
         Instantiate(trolleyPrefab, trolleyPos, Quaternion.identity);
     }
-
-    private void Start()
-    {
-        BGMover.bgInstance.BgMove().Forget();
-        RailMove().Forget();
-        BtnAction.actionInstance.StartGen(); // When GameManager inheritance Fixed, this should be in StartGame()
-    }
     
     private async UniTask RailMove()
     {
@@ -43,8 +36,8 @@ public class GameManagerBtn : WholeGameManager
             
             rails1 ??= Instantiate(railPrefab, nextRailPos, Quaternion.identity);
             
-            rails.transform.Translate(railMoveVector * railSpeed * Time.deltaTime);
-            rails1.transform.Translate(railMoveVector * railSpeed * Time.deltaTime);
+            rails.transform.Translate(railMoveVector * (railSpeed * Time.deltaTime));
+            rails1.transform.Translate(railMoveVector * (railSpeed * Time.deltaTime));
 
             if (!(rails1.transform.position.x < -1.8f)) continue;
             var rails2 = Instantiate(railPrefab, nextRailPos, Quaternion.identity);
@@ -56,7 +49,9 @@ public class GameManagerBtn : WholeGameManager
 
     public override void GameStart()
     {
-        Start();
+        BGMover.bgInstance.BgMove().Forget();
+        RailMove().Forget();
+        BtnAction.actionInstance.StartGen();
     }
 
     public override void GetScore()
@@ -66,6 +61,6 @@ public class GameManagerBtn : WholeGameManager
 
     public override void GameEnd()
     {
-        Application.Quit();
+        TotalManager.instance.ScoreBoardTest();
     }
 }

@@ -10,12 +10,6 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
         instance = this;
     }
 
-    private void Start()
-    {
-        // When GameManager inheritance Fixed, this should be in StartGame()
-        StartCoroutine(NoteController.instance.GenNotes());
-    }
-
     private void Update()
     {
         if (!(Time.deltaTime > 1f)) return;
@@ -46,6 +40,6 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
 
     public override void GameEnd()
     {
-        throw new NotImplementedException();
+        TotalManager.instance.ScoreBoardTest();
     }
 }

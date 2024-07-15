@@ -11,7 +11,7 @@ public class BaseBallGameManager : WholeGameManager
     public TextMeshProUGUI finishboard;
     public PitcherSquid pitcher;
     public Bat bat;
-    public float score;
+    // public float score;
     public float starttime;
     public int balltotal;
     public int ballcount;
