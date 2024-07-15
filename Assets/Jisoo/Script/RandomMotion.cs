@@ -38,16 +38,13 @@ public class RandomMotion : MonoBehaviour
     
     void Update()
     {
-        player1Motion = player1.GetComponent<CharacterControl>().motionNumber;
         player2Motion = player2.GetComponent<CharacterControl>().motionNumber;
+        player1Motion = player1.GetComponent<CharacterControl>().motionNumber;
     }
     public IEnumerator PlayGameRoutine()
     {
         RandomAction();
 
-        player1Motion = 0;
-        player2Motion = 0;
-        
         yield return calTime;
         
         Debug.Log(player1Motion);
@@ -70,8 +67,8 @@ public class RandomMotion : MonoBehaviour
     
     public void RandomAction()
     {
-        player1Motion = 0;
-        player2Motion = 0;
+        player2.GetComponent<CharacterControl>().motionNumber = 0;
+        player1.GetComponent<CharacterControl>().motionNumber = 0;
         randomMotionNumber = 0;
         randomMotionNumber = Random.Range(1, 5);
 
@@ -98,7 +95,7 @@ public class RandomMotion : MonoBehaviour
             Time.timeScale += 0.5f;
             stage = 0;
         }
-        Debug.Log("random motion");
+        Debug.Log(randomMotionNumber);
     }
 
     public int CompareMotionNumber(int playerMotionNumber, int playerLife)
@@ -117,7 +114,8 @@ public class RandomMotion : MonoBehaviour
 
     public void EndGame()
     {
-        
+        Time.timeScale = 1f;
+        stage = 0;
         GameManagerFTM.instance.GameEnd();
     }
 }

@@ -2258,6 +2258,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeScreen: {fileID: 1174207166}
   optionScreen: {fileID: 280211600}
+  countingScreen: {fileID: 0}
   optionGameExitButton: {fileID: 819171501}
   optionResumeButton: {fileID: 819310437}
   volumeText: {fileID: 226540384}

@@ -16,6 +16,7 @@ public class TotalManager : MonoBehaviour
     
     public Image fadeScreen;
     public Image optionScreen;
+    public Image countingScreen;
     
     public Button optionGameExitButton;
     public Button optionResumeButton;
