@@ -7,16 +7,19 @@ public class BtnAction : MonoBehaviour
 {
     private Animator ani;
     public TextMeshProUGUI qteBtn;
-    public static BtnAction actionInstance;
-
     public BtnController btnController;
-    // private float disabledTime = 0.5f;
+    
+    public static BtnAction actionInstance;
     
     [HideInInspector]
     public KeyCode waitingKeyCode = KeyCode.None;
+    
     private float rand;
     public int successCount;
-    private float clearTime = 0;
+
+    [HideInInspector]
+    public float clearTime = 0;
+    
     private static readonly int Gen = Animator.StringToHash("Gen");
     private static readonly int isWait = Animator.StringToHash("isWait");
 
