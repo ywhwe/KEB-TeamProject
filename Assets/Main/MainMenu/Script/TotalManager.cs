@@ -34,6 +34,9 @@ public class TotalManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
         volumeSlider.onValueChanged.AddListener(SetLevel);
+        AudioSource BGM = GetComponent<AudioSource>();
+        BGM.Play();
+        Debug.Log("BGM");
     }
 
     public void Update()
@@ -97,12 +100,6 @@ public class TotalManager : MonoBehaviour
 
     public void SetLevel(float sliderVal) {
         mixer.SetFloat("BGM", Mathf.Log10(sliderVal)*20);
-    }
-
-    public void ButtonSFX()
-    {
-        AudioSource buttonSFX = GetComponent<AudioSource>();
-        buttonSFX.Play();
     }
 
     public void GoToIngame()
