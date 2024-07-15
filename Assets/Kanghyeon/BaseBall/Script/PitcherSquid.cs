@@ -16,7 +16,7 @@ public class PitcherSquid : MonoBehaviour
     private static readonly int HitTrigger = Animator.StringToHash("HitTrigger");
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         ani = GetComponent<Animator>();
         balllist = new List<BallData>();
@@ -25,8 +25,6 @@ public class PitcherSquid : MonoBehaviour
             balllist.Add(data);
         }
         
-        
-        ShootBall();
     }
     
     private void ThrowNum0Ball()
@@ -37,7 +35,7 @@ public class PitcherSquid : MonoBehaviour
         
     }
     
-    private void ShootBall()
+    public void ShootBall()
     {
         ani.SetTrigger(balllist[0].ballname);
         if (balllist.Count > 1)
@@ -54,7 +52,7 @@ public class PitcherSquid : MonoBehaviour
         pos.x = -19f;
         pos.y = 1.4f;
         var ball = Instantiate(Ball, pos, Quaternion.identity).GetComponent<TestBall>();
-        ball.Init(balllist[0].endtime);
+        ball.Init(balllist[0].endtime+BaseBallGameManager.instance.starttime);
         balllist.RemoveAt(0);
     }
 }

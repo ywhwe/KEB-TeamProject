@@ -12,7 +12,7 @@ public class Catcher : MonoBehaviour
     {
         if (other.gameObject.layer==6)
         {
-            ballmanager.CountBall();
+            BaseBallGameManager.instance.CountBall();
             Destroy(other.gameObject);
             text.text = "Strike";
         }
