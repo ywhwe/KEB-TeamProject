@@ -13,8 +13,6 @@ using Random = UnityEngine.Random;
 public class TotalManager : MonoBehaviour
 {
     public static TotalManager instance;
-
-    public Button gameStartButton;
     
     public Image fadeScreen;
     public Image optionScreen;
@@ -28,13 +26,17 @@ public class TotalManager : MonoBehaviour
     public Slider volumeSlider;
     private float perVolume;
 
-    private WholeGameManager gm;
-    
+    public GameObject gameManager;
+    private WaitForSeconds wait = new WaitForSeconds(6f);
+
     private void Awake()
     {
         instance = this;
         DontDestroyOnLoad(gameObject);
         volumeSlider.onValueChanged.AddListener(SetLevel);
+        AudioSource BGM = GetComponent<AudioSource>();
+        BGM.Play();
+        Debug.Log("BGM");
     }
 
     public void Update()
@@ -64,8 +66,8 @@ public class TotalManager : MonoBehaviour
     {
         yield return StartCoroutine(FadeScreen(true));
         SceneManager.LoadScene(id);
-        //gm 게임 매니저 받기 JS
         yield return StartCoroutine(FadeScreen(false));
+        gameManager = GameObject.Find("GameManager");
     }
 
     private IEnumerator FadeScreen(bool fadeOut)
@@ -100,24 +102,17 @@ public class TotalManager : MonoBehaviour
         mixer.SetFloat("BGM", Mathf.Log10(sliderVal)*20);
     }
 
-    public void ButtonSFX()
-    {
-        AudioSource buttonSFX = GetComponent<AudioSource>();
-        buttonSFX.Play();
-    }
-
     public void GoToIngame()
     {
         int gameNumber = Random.Range(1, 2);
-        TotalManager.instance.MoveScene(gameNumber);
-        gameStartButton.interactable = false;
-        
-        // gm.GameStart(); JS
+        MoveScene(gameNumber);
+        StartCoroutine(CountBeforeStart());
     }
 
     private IEnumerator CountBeforeStart()
     {
-        yield return new WaitForSeconds(5);
+        yield return wait;
+        gameManager.GetComponent<WholeGameManager>().GameStart();
     }
     
     public void ResumeGame()
@@ -133,5 +128,10 @@ public class TotalManager : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+    public void ScoreBoardTest()
+    {
+        MoveScene(2);
     }
 }
