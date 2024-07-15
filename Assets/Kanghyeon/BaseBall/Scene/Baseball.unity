@@ -241,11 +241,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 467298fa8880f1d40b24fbca202a0ea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &243301961
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 243301963}
+  - component: {fileID: 243301962}
+  m_Layer: 0
+  m_Name: Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &243301962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243301961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e3e8f642ffa0c4eada666e93583eca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  finishboard: {fileID: 1460529567}
+  pitcher: {fileID: 404209230}
+  bat: {fileID: 2118377604}
+  score: 0
+  starttime: 0
   balltotal: 4
   ballcount: 0
+  finalscore: 0
   IsGameStart: 0
   IsGameEnd: 0
-  finishboard: {fileID: 1460529567}
+--- !u!4 &243301963
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243301961}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.149893, y: 0.4075009, z: 4.3969355}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &267463854
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,6 +387,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -78.039, z: 0}
+--- !u!114 &404209230 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5572338123769223222, guid: d90f13c40df4ee145a29bc3d87bade9b, type: 3}
+  m_PrefabInstance: {fileID: 1977331205}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5236f6b90959a1141bab1491f65c18b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &420475977
 GameObject:
   m_ObjectHideFlags: 0
@@ -1167,6 +1227,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &2118377604 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6816929263167300614, guid: 11594e505e29ff84b8260f16049d07a0, type: 3}
+  m_PrefabInstance: {fileID: 311292983905181308}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5bcefb96a96f1c4db23643ae8a38744, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &311292983905181308
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1412,3 +1483,4 @@ SceneRoots:
   - {fileID: 1977331205}
   - {fileID: 6824825775303187941}
   - {fileID: 709308651}
+  - {fileID: 243301963}
