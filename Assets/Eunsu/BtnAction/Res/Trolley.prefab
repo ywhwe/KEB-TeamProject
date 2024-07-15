@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2925831903148760982}
   m_Layer: 0
   m_Name: RFWheel
-  m_TagString: Untagged
+  m_TagString: Wheels
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94,7 +94,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9a8cd1b4a943e754582cad22f38c84d8, type: 2}
+  - {fileID: 2100000, guid: 332eb67345604d14cad945e67f5cca61, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -133,7 +133,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5000001
   m_Height: 2
@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 6691163779000203854}
   m_Layer: 0
   m_Name: LFWheel
-  m_TagString: Untagged
+  m_TagString: Wheels
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -202,10 +202,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.243, y: 0.786, z: 0.235}
-  m_LocalScale: {x: 1.8636786, y: 0.17676888, z: 1.1481}
+  m_LocalScale: {x: 1.8636787, y: 0.17676888, z: 1.1481001}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6669615517523068043}
+  m_Father: {fileID: 1429120658371080781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3739886505075438566
 MonoBehaviour:
@@ -12584,6 +12584,39 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!1 &5302593963527679490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1429120658371080781}
+  m_Layer: 0
+  m_Name: TrolleyBody
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1429120658371080781
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5302593963527679490}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1797002759054415739}
+  - {fileID: 1733395073623524439}
+  m_Father: {fileID: 6669615517523068043}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5655972555440074262
 GameObject:
   m_ObjectHideFlags: 0
@@ -12614,11 +12647,11 @@ Transform:
   m_GameObject: {fileID: 5655972555440074262}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.644, y: 0.152, z: 0.275}
-  m_LocalScale: {x: 0.95778054, y: 0.7307, z: 1.0867897}
+  m_LocalPosition: {x: -1.644, y: 0.152, z: 0.27500004}
+  m_LocalScale: {x: 0.95778054, y: 0.7307, z: 1.0867898}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6669615517523068043}
+  m_Father: {fileID: 1429120658371080781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4034483981824813241
 MonoBehaviour:
@@ -25612,7 +25645,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 3443
+  m_VersionIndex: 3446
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -25665,7 +25698,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 727a71766d920d54994bfa006f26eebe, type: 2}
+  - {fileID: 2100000, guid: 5299b141f1de470458b603818f8919d9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -25728,7 +25761,7 @@ GameObject:
   - component: {fileID: 5991593436066415809}
   m_Layer: 0
   m_Name: RBWheel
-  m_TagString: Untagged
+  m_TagString: Wheels
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25811,7 +25844,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9a8cd1b4a943e754582cad22f38c84d8, type: 2}
+  - {fileID: 2100000, guid: 332eb67345604d14cad945e67f5cca61, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -25850,7 +25883,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5000001
   m_Height: 2
@@ -25865,6 +25898,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6669615517523068043}
+  - component: {fileID: 7044626109118608811}
+  - component: {fileID: 8953968590679098065}
   m_Layer: 0
   m_Name: Trolley
   m_TagString: Trolley
@@ -25889,10 +25924,46 @@ Transform:
   - {fileID: 6691163779000203854}
   - {fileID: 2925831903148760982}
   - {fileID: 3357134651902538833}
-  - {fileID: 1797002759054415739}
-  - {fileID: 1733395073623524439}
+  - {fileID: 1429120658371080781}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7044626109118608811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6845186158050518054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3973ccd743c2d0f49a40e9e9a3541551, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wheel1: {fileID: 6420566166912120736}
+  wheel2: {fileID: 2437671026704953804}
+  wheel3: {fileID: 2046661101471084267}
+  wheel4: {fileID: 7002938628487833696}
+--- !u!95 &8953968590679098065
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6845186158050518054}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bb77b31c4e2d2804d80fefa5f8eee40f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7002938628487833696
 GameObject:
   m_ObjectHideFlags: 0
@@ -25904,7 +25975,7 @@ GameObject:
   - component: {fileID: 3357134651902538833}
   m_Layer: 0
   m_Name: LBWheel
-  m_TagString: Untagged
+  m_TagString: Wheels
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25987,7 +26058,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9a8cd1b4a943e754582cad22f38c84d8, type: 2}
+  - {fileID: 2100000, guid: 332eb67345604d14cad945e67f5cca61, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -26026,7 +26097,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5000001
   m_Height: 2
@@ -26094,7 +26165,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9a8cd1b4a943e754582cad22f38c84d8, type: 2}
+  - {fileID: 2100000, guid: 332eb67345604d14cad945e67f5cca61, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -26133,7 +26204,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5000001
   m_Height: 2

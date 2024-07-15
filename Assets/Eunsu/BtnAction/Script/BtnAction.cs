@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using TMPro;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
@@ -18,10 +16,9 @@ public class BtnAction : MonoBehaviour
     public KeyCode waitingKeyCode = KeyCode.None;
     private float rand;
     public int successCount;
+    private float clearTime = 0;
     private static readonly int Gen = Animator.StringToHash("Gen");
     private static readonly int isWait = Animator.StringToHash("isWait");
-
-    private bool condition = true;
 
     void Awake()
     {
@@ -33,13 +30,9 @@ public class BtnAction : MonoBehaviour
 
     private void Update()
     {
-        // GenQTE().Forget();
-        if (condition)
-        {
-            condition = false;
-        }
+        clearTime += Time.deltaTime;
     }
-    
+
     public void StartGen()
     {
         GenQTE().Forget();
@@ -62,6 +55,8 @@ public class BtnAction : MonoBehaviour
                 successCount++;
             }
         }
+        
+        Debug.Log("Buttons are all cleared in " + clearTime + " sec");
     }
     
     // randomly decides next presenting button; depending on random value in range 0-100
