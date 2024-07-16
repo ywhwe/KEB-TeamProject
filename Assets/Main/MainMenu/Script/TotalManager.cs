@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -10,7 +11,7 @@ using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class TotalManager : MonoBehaviour
+public class TotalManager : MonoBehaviourPunCallbacks
 {
     public static TotalManager instance;
     
@@ -66,7 +67,7 @@ public class TotalManager : MonoBehaviour
     private IEnumerator MoveSceneWithFade(int id)
     {
         yield return StartCoroutine(FadeScreen(true));
-        SceneManager.LoadScene(id);
+        PhotonNetwork.LoadLevel(id);
         yield return StartCoroutine(FadeScreen(false));
         gameManager = GameObject.Find("GameManager");
     }

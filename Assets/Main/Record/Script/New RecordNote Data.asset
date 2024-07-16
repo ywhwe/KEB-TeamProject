@@ -14,27 +14,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   notepos:
   - sethaW:
-    - 90
-    - 0
+    - 70
+    - 78
+    - 86
+    - 94
     - 180
-    - 25
+    - 280
+    - 260
     sethaA:
-    - 90
-    - 60
-    - 300
-    sethaS:
-    - 0
-    - 180
-    - 130
-    sethaD:
     - 80
-    - 20
     - 230
+    - 240
+    sethaS:
+    - 10
+    - 250
+    - 120
+    - 60
+    sethaD:
+    - 20
+    - 30
+    - 40
+    - 100
+    - 300
   - sethaW:
-    - 90
     - 0
-    - 180
-    - 25
+    - 0
+    - 0
+    - 0
     sethaA:
     - 90
     - 60
