@@ -68,6 +68,7 @@ public class TotalManager : MonoBehaviourPunCallbacks
     {
         yield return StartCoroutine(FadeScreen(true));
         PhotonNetwork.LoadLevel(id);
+        // SceneManager.LoadScene(id);
         yield return StartCoroutine(FadeScreen(false));
         gameManager = GameObject.Find("GameManager");
     }

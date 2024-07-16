@@ -28,7 +28,7 @@ public class BGMover : MonoBehaviour
     private Quaternion initBgAngle = new (0f, 0.7071068f, -0.7071068f, 0f);
     private Quaternion initGroundAngle = new (0f, 0f, 0f, 1f);
     
-    private float bgSpeed = 8f;
+    private float bgSpeed = 1f;
     private float duration = 0.1f;
 
     private void Awake()
@@ -38,9 +38,9 @@ public class BGMover : MonoBehaviour
 
     public async UniTask BgMove()
     {
-        while (Application.isPlaying)
+        while (GameManagerBtn.instance.flag)
         {
-            await UniTask.WaitForSeconds(duration);
+            await UniTask.Yield();
             
             currentBackground ??= Instantiate(backgroundPrefab, initBgPos, initBgAngle);
             currentGround ??= Instantiate(groundPrefab, initGroundPos, initGroundAngle);

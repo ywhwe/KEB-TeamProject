@@ -1,9 +1,13 @@
+using System;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 
 public class GameManagerBtn : WholeGameManager
 {
     public static GameManagerBtn instance;
+
+    [HideInInspector]
+    public bool flag = true;
     
     public GameObject railPrefab;
     public GameObject trolleyPrefab;
@@ -17,20 +21,30 @@ public class GameManagerBtn : WholeGameManager
     private Vector3 nextRailPos = new(10f, 0.05f, 1.04f);
     private Vector3 trolleyPos = new (2f, 0.25f, -0.197f);
     
-    private float railSpeed = 8f;
+    private float railSpeed = 1f;
+    private float timer = 0f;
 
     private void Awake()
     {
         // When GameManager inheritance Fixed, this should be in StartGame()
         instance = this; 
-        Instantiate(trolleyPrefab, trolleyPos, Quaternion.identity);
     }
-    
+
+    private void Start()
+    {
+        BGMover.bgInstance.BgMove().Forget();
+        RailMove().Forget();
+        Instantiate(trolleyPrefab, trolleyPos, Quaternion.identity);
+        BtnAction.actionInstance.GenQTE().Forget();
+    }
+
     private async UniTask RailMove()
     {
-        while (Application.isPlaying)
+        while (flag)
         {
-            await UniTask.WaitForSeconds(0.1f);
+            await UniTask.Yield();
+            
+            SpeedController().Forget();
             
             rails ??= Instantiate(railPrefab, railPos, Quaternion.identity);
             
@@ -47,10 +61,26 @@ public class GameManagerBtn : WholeGameManager
         }
     }
 
+    private async UniTask SpeedController()
+    {
+        if (BtnController.ctrlInstance.isAccel)
+        {
+            railSpeed = 3f;
+            BtnController.ctrlInstance.isAccel = false;
+        }
+        else
+        {
+            railSpeed = 1f;
+        }
+        
+        await UniTask.WaitForSeconds(0.5f);
+    }
+
     public override void GameStart()
     {
         BGMover.bgInstance.BgMove().Forget();
         RailMove().Forget();
+        Instantiate(trolleyPrefab, trolleyPos, Quaternion.identity);
         BtnAction.actionInstance.GenQTE().Forget();
     }
 
@@ -61,6 +91,7 @@ public class GameManagerBtn : WholeGameManager
 
     public override void GameEnd()
     {
+        flag = false;
         TotalManager.instance.ScoreBoardTest();
     }
 }

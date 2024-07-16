@@ -1,8 +1,13 @@
+using System;
+using Cysharp.Threading.Tasks;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BtnController : MonoBehaviour
 {
+    public static BtnController ctrlInstance;
+    
     public GameObject Wbtn;
     public GameObject Abtn;
     public GameObject Sbtn;
@@ -14,6 +19,14 @@ public class BtnController : MonoBehaviour
     
     private bool isMatch = true;
     public bool IsMatch => isMatch;
+    
+    [HideInInspector]
+    public bool isAccel = true;
+
+    private void Awake()
+    {
+        ctrlInstance = this;
+    }
 
     void Update()
     {
@@ -68,16 +81,18 @@ public class BtnController : MonoBehaviour
     }
     
     // compares generated button and stocked user input
-    private void CompKey()
+    private async void CompKey()
     {
         if (BtnAction.actionInstance.waitingKeyCode == inputKeyCode)
         {
             inputKeyCode = KeyCode.None;
             isMatch = true;
+            isAccel = true;
         }
         else
         {
             inputKeyCode = KeyCode.None;
+            await UniTask.WaitForSeconds(1f);
             isMatch = false;
         }
     }
