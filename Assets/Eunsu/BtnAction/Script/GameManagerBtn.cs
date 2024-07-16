@@ -51,7 +51,7 @@ public class GameManagerBtn : WholeGameManager
     {
         BGMover.bgInstance.BgMove().Forget();
         RailMove().Forget();
-        BtnAction.actionInstance.StartGen();
+        BtnAction.actionInstance.GenQTE().Forget();
     }
 
     public override void GetScore()

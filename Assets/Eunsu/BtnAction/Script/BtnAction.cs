@@ -42,7 +42,7 @@ public class BtnAction : MonoBehaviour
     }
 
     // button generator for coroutine
-    private async UniTask GenQTE()
+    public async UniTask GenQTE()
     {
         while (successCount < 10) // if successCount bigger than setting value stops coroutine
         {
@@ -51,12 +51,10 @@ public class BtnAction : MonoBehaviour
             
             rand = Random.Range(0, 100);
             BtnControl(rand);
-            
-            if (btnController.IsMatch) // user input matched with QTE buttons increase successCount
-            {
-                ani.SetBool(isWait, false);
-                successCount++;
-            }
+
+            if (!btnController.IsMatch) continue; // user input matched with QTE buttons increase successCount
+            ani.SetBool(isWait, false);
+            successCount++;
         }
         
         Debug.Log("Buttons are all cleared in " + clearTime + " sec");

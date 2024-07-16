@@ -48,11 +48,11 @@ public class BGMover : MonoBehaviour
             nextBackground ??= Instantiate(backgroundPrefab, secBgPos, initBgAngle);
             nextGround ??= Instantiate(groundPrefab, secGroundPos, initGroundAngle);
             
-            currentBackground.transform.Translate(bgMoveVector * bgSpeed * Time.deltaTime);
-            currentGround.transform.Translate(groundMoveVector * bgSpeed * Time.deltaTime);
+            currentBackground.transform.Translate(bgMoveVector * (bgSpeed * Time.deltaTime));
+            currentGround.transform.Translate(groundMoveVector * (bgSpeed * Time.deltaTime));
             
-            nextBackground.transform.Translate(bgMoveVector * bgSpeed * Time.deltaTime);
-            nextGround.transform.Translate(groundMoveVector * bgSpeed * Time.deltaTime);
+            nextBackground.transform.Translate(bgMoveVector * (bgSpeed * Time.deltaTime));
+            nextGround.transform.Translate(groundMoveVector * (bgSpeed * Time.deltaTime));
             
             if (!(nextBackground.transform.position.x < -8.7f && nextGround.transform.position.x < -8.7f)) continue;
             
@@ -66,7 +66,7 @@ public class BGMover : MonoBehaviour
             currentGround = nextGround;
             
             nextBackground = background;
-            nextGround = background;
+            nextGround = ground;
         }
     }
 }
