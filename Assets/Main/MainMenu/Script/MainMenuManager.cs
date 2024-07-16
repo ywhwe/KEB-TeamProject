@@ -12,7 +12,7 @@ public class MainMenuManager : MonoBehaviour
 
     void Start()
     {
-        startButton.onClick.AddListener(TotalManager.instance.GoToIngame);
+        // startButton.onClick.AddListener(TotalManager.instance.GoToIngame);
         startButton.onClick.AddListener(() => SoundManager.instance.PlaySound("s1"));
         exitButton.onClick.AddListener(TotalManager.instance.ExitGame);
     }

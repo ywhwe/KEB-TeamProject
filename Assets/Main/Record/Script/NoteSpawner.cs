@@ -21,6 +21,7 @@ public class NoteSpawner : MonoBehaviour
     void Start()
     {
         var randnum = Random.Range(0, 3);
+        randnum = 0;
         foreach (var ang in notedb.notepos[randnum].sethaW)
         {
             SpawnNote(ang,2.2f,noteW);

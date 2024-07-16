@@ -23,12 +23,7 @@ public class BaseBallGameManager : WholeGameManager
     {
         instance = this;
     }
-
-    private void Start()
-    {
-        GameStart();
-    }
-
+    
     public override void GameStart()
     {
         starttime = Time.time;
@@ -43,7 +38,7 @@ public class BaseBallGameManager : WholeGameManager
 
     public override void GameEnd()
     {
-        bat.IsGameEnd();
+        TotalManager.instance.ScoreBoardTest();
     }
     
     public void CountBall()
@@ -53,10 +48,16 @@ public class BaseBallGameManager : WholeGameManager
         {
             IsGameEnd = true;
             finishboard.text = "End"+" Score:"+finalscore;
-            
+            StartCoroutine(EndScene());
+
         }
     }
 
+    private IEnumerator EndScene()
+    {
+        yield return new WaitForSeconds(1f);
+        GameEnd();
+    }
     public void CountScore()
     {
         finalscore++;
