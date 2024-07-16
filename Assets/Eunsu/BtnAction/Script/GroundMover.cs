@@ -4,28 +4,46 @@ using Cysharp.Threading.Tasks;
 public class GroundMover : MonoBehaviour
 {
     public static GroundMover groundInstance;
-    public GameObject ground;
-    private Transform groundTrans;
+    
+    public GameObject groundPrefab;
+    
+    private GameObject currentGround;
+    private GameObject nextGround;
+    
+    private Vector3 initGroundPos = new (10.62f, 0.1f, -1.4f);
+    private Vector3 secGroundPos = new(55.36f, 0.1f, -1.4f);
+    private Vector3 nextGroundPos = new (35.36f, 0.1f, -1.4f);
+    
     private Vector3 groundMoveVector = new (-3f, 0f, 0f);
+
+    private Quaternion initAngle = new (0f, 0f, 0f, 1f);
+    
     private float groundSpeed = 8f;
     private float duration = 0.1f;
-
-    private bool flag = true;
 
     private void Awake()
     {
         groundInstance = this;
-        groundTrans = ground.transform;
     }
 
     public async UniTask GroundMove()
     {
-        while (flag)
+        while (Application.isPlaying)
         {
             await UniTask.WaitForSeconds(duration);
-            groundTrans.Translate(groundMoveVector * groundSpeed * Time.deltaTime);
             
-            if (groundTrans.position.x < -47f) flag = false;
+            currentGround ??= Instantiate(groundPrefab, initGroundPos, initAngle);
+            
+            nextGround ??= Instantiate(groundPrefab, secGroundPos, initAngle);
+            
+            currentGround.transform.Translate(groundMoveVector * groundSpeed * Time.deltaTime);
+            nextGround.transform.Translate(groundMoveVector * groundSpeed * Time.deltaTime);
+
+            if (!(nextGround.transform.position.x < -8.8f)) continue;
+            var background = Instantiate(groundPrefab, nextGroundPos, initAngle);
+            Destroy(currentGround);
+            currentGround = nextGround;
+            nextGround = background;
         }
     }
 }

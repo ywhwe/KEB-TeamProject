@@ -19,10 +19,7 @@ public class ButtonController : MonoBehaviour
     {
         buttonSize.x = 30f;
         buttonSize.y = 100f;
-    }
-
-    void Start()
-    {
+        
         theSR = GetComponent<SpriteRenderer>();
         theSR.sprite = defaultImage;
     }

@@ -7,16 +7,19 @@ public class BtnAction : MonoBehaviour
 {
     private Animator ani;
     public TextMeshProUGUI qteBtn;
-    public static BtnAction actionInstance;
-
     public BtnController btnController;
-    // private float disabledTime = 0.5f;
+    
+    public static BtnAction actionInstance;
     
     [HideInInspector]
     public KeyCode waitingKeyCode = KeyCode.None;
+    
     private float rand;
     public int successCount;
-    private float clearTime = 0;
+
+    [HideInInspector]
+    public float clearTime = 0;
+    
     private static readonly int Gen = Animator.StringToHash("Gen");
     private static readonly int isWait = Animator.StringToHash("isWait");
 
@@ -39,7 +42,7 @@ public class BtnAction : MonoBehaviour
     }
 
     // button generator for coroutine
-    private async UniTask GenQTE()
+    public async UniTask GenQTE()
     {
         while (successCount < 10) // if successCount bigger than setting value stops coroutine
         {
@@ -48,12 +51,10 @@ public class BtnAction : MonoBehaviour
             
             rand = Random.Range(0, 100);
             BtnControl(rand);
-            
-            if (btnController.IsMatch) // user input matched with QTE buttons increase successCount
-            {
-                ani.SetBool(isWait, false);
-                successCount++;
-            }
+
+            if (!btnController.IsMatch) continue; // user input matched with QTE buttons increase successCount
+            ani.SetBool(isWait, false);
+            successCount++;
         }
         
         Debug.Log("Buttons are all cleared in " + clearTime + " sec");
