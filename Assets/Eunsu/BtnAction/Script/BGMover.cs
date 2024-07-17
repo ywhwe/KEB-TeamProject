@@ -29,7 +29,6 @@ public class BGMover : MonoBehaviour
     private Quaternion initGroundAngle = new (0f, 0f, 0f, 1f);
     
     private float bgSpeed = 1f;
-    private float duration = 0.1f;
 
     private void Awake()
     {
@@ -41,6 +40,8 @@ public class BGMover : MonoBehaviour
         while (GameManagerBtn.instance.flag)
         {
             await UniTask.Yield();
+            
+            SpeedController().Forget();
             
             currentBackground ??= Instantiate(backgroundPrefab, initBgPos, initBgAngle);
             currentGround ??= Instantiate(groundPrefab, initGroundPos, initGroundAngle);
@@ -67,6 +68,24 @@ public class BGMover : MonoBehaviour
             
             nextBackground = background;
             nextGround = ground;
+        }
+    }
+    
+    private async UniTask SpeedController()
+    {
+        // bgSpeed = BtnController.ctrlInstance.IsMatch ? 5f : 1f;
+        var tempVec1 = bgMoveVector;
+        var tempVec2 = groundMoveVector;
+        
+        if (BtnController.ctrlInstance.IsMatch)
+        {
+            bgMoveVector = new Vector3(10f, 0f, 0f);
+            groundMoveVector = new Vector3(-10f, 0f, 0f);
+            
+            await UniTask.Delay(1000);
+
+            bgMoveVector = tempVec1;
+            groundMoveVector = tempVec2;
         }
     }
 }

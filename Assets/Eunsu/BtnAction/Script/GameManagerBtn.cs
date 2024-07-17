@@ -22,7 +22,6 @@ public class GameManagerBtn : WholeGameManager
     private Vector3 trolleyPos = new (2f, 0.25f, -0.197f);
     
     private float railSpeed = 1f;
-    private float timer = 0f;
 
     private void Awake()
     {
@@ -63,17 +62,16 @@ public class GameManagerBtn : WholeGameManager
 
     private async UniTask SpeedController()
     {
-        if (BtnController.ctrlInstance.isAccel)
-        {
-            railSpeed = 3f;
-            BtnController.ctrlInstance.isAccel = false;
-        }
-        else
-        {
-            railSpeed = 1f;
-        }
+        var tempVec1 = railMoveVector;
         
-        await UniTask.WaitForSeconds(0.5f);
+        if (BtnController.ctrlInstance.IsMatch)
+        {
+            railMoveVector = new Vector3(-10f, 0f, 0f);
+            
+            await UniTask.Delay(1000);
+
+            railMoveVector = tempVec1;
+        }
     }
 
     public override void GameStart()
