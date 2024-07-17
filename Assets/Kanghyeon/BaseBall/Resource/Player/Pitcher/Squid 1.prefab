@@ -330,6 +330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5236f6b90959a1141bab1491f65c18b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  balldb: []
   Ball: {fileID: 2016970454336987005, guid: 053e7189123927f439c639d49830c14f, type: 3}
 --- !u!1 &2874476769911672451
 GameObject:

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
+using Photon.Pun.UtilityScripts;
 using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -78,6 +79,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public void LeaveRoom()
     {
         PhotonNetwork.LeaveRoom();
+        Destroy(GameObject.Find("NetworkManager"));
     }
 
     #endregion
@@ -93,7 +95,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         }
 
         Debug.LogFormat("PhotonNetwork : Loading Level : baseball");
-        TotalManager.instance.GoToIngame();
+        TotalManager.instance.GoToGameWith();
     }
 
     #endregion

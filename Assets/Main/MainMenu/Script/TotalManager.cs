@@ -30,7 +30,8 @@ public class TotalManager : MonoBehaviourPunCallbacks
 
     public GameObject gameManager;
     private WaitForSeconds wait = new WaitForSeconds(6f);
-
+    public PhotonView PV;
+    private int isGameEnd=0;
     private void Awake()
     {
         instance = this;
@@ -104,16 +105,25 @@ public class TotalManager : MonoBehaviourPunCallbacks
         mixer.SetFloat("BGM", Mathf.Log10(sliderVal)*20);
     }
 
+    public void GoToGameWith()
+    {
+        PV.RPC("GoToIngame",RpcTarget.All);
+    }
+    [PunRPC]
     public void GoToIngame()
     {
         int gameNumber = Random.Range(1, 2);
         MoveScene(gameNumber);
-        StartCoroutine(CountBeforeStart());
+        StartCoroutine(CountBeforeStart()); // sendgameend 방식을 응용해서 플레이어가 준비 되면 start하는걸 고민
     }
 
     private IEnumerator CountBeforeStart()
     {
         yield return wait;
+        if (gameManager == null)
+        {
+            gameManager = GameObject.Find("GameManager");
+        }
         gameManager.GetComponent<WholeGameManager>().GameStart();
     }
     
@@ -134,6 +144,22 @@ public class TotalManager : MonoBehaviourPunCallbacks
 
     public void ScoreBoardTest()
     {
-        MoveScene(2);
+        SendGameEnd();
+        
+    }
+
+    void SendGameEnd()
+    {
+        PV.RPC("rpcSendgameEnd",RpcTarget.MasterClient);
+    }
+    [PunRPC]
+    void rpcSendgameEnd()
+    {
+        isGameEnd++;
+        if (isGameEnd == PhotonNetwork.PlayerList.Length)
+        {
+            PhotonNetwork.LoadLevel(2);
+            isGameEnd = 0;
+        }
     }
 }

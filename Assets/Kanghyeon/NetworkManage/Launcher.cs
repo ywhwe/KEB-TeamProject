@@ -81,4 +81,5 @@ public class Launcher : MonoBehaviourPunCallbacks
             PhotonNetwork.LoadLevel("Lobby");
         }
     }
+    
 }
