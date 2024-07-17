@@ -1179,7 +1179,6 @@ MonoBehaviour:
   Abtn: {fileID: 2016317194}
   Sbtn: {fileID: 503327107}
   Dbtn: {fileID: 827327709}
-  isAccel: 1
 --- !u!1 &1234923849
 GameObject:
   m_ObjectHideFlags: 0

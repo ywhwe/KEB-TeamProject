@@ -14,16 +14,22 @@ public class Trolley : MonoBehaviour
     {
         StartCoroutine(Spin());
     }
-
+    
+    // Make wheels spin
     private IEnumerator Spin()
     {
         while (BtnAction.actionInstance.successCount < 10)
         {
             yield return wait;
+
+            if (BtnController.ctrlInstance.IsMatch) angle = 34f;
+            
             wheel1.transform.Rotate(Vector3.back, angle, Space.World);
             wheel2.transform.Rotate(Vector3.back, angle, Space.World);
             wheel3.transform.Rotate(Vector3.back, angle, Space.World);
             wheel4.transform.Rotate(Vector3.back, angle, Space.World);
+
+            angle = 7f;
         }
     }
 }

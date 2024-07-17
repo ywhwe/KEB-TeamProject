@@ -2,6 +2,7 @@ using System.Threading;
 using TMPro;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class BtnAction : MonoBehaviour
@@ -19,7 +20,9 @@ public class BtnAction : MonoBehaviour
     public int successCount;
 
     [HideInInspector]
-    public float clearTime = 0;
+    public float score = 1000;
+
+    private float recutionRate = 2f;
     
     private static readonly int Gen = Animator.StringToHash("Gen");
     private static readonly int isWait = Animator.StringToHash("isWait");
@@ -34,7 +37,8 @@ public class BtnAction : MonoBehaviour
 
     private void Update()
     {
-        clearTime += Time.deltaTime;
+        // Score is reduced by time
+        score -= Time.deltaTime * recutionRate;
     }
 
     public void StartGen()
@@ -58,7 +62,7 @@ public class BtnAction : MonoBehaviour
             successCount++;
         }
         
-        Debug.Log("Buttons are all cleared in " + clearTime + " sec");
+        Debug.Log("Remain score: " + score);
     }
     
     // randomly decides next presenting button; depending on random value in range 0-100

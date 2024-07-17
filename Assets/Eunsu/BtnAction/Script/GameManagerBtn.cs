@@ -25,18 +25,19 @@ public class GameManagerBtn : WholeGameManager
 
     private void Awake()
     {
-        // When GameManager inheritance Fixed, this should be in StartGame()
         instance = this; 
     }
 
     private void Start()
     {
+        // These will be deleted in build version
         BGMover.bgInstance.BgMove().Forget();
         RailMove().Forget();
         Instantiate(trolleyPrefab, trolleyPos, Quaternion.identity);
         BtnAction.actionInstance.GenQTE().Forget();
     }
-
+    
+    // Make rails move backward
     private async UniTask RailMove()
     {
         while (flag)
@@ -59,7 +60,8 @@ public class GameManagerBtn : WholeGameManager
             rails1 = rails2;
         }
     }
-
+    
+    // Controls rail speed. When player input is correct, rail moves faster
     private async UniTask SpeedController()
     {
         var tempVec1 = railMoveVector;
@@ -84,7 +86,7 @@ public class GameManagerBtn : WholeGameManager
 
     public override void GetScore()
     {
-        var clearTime = BtnAction.actionInstance.clearTime;
+        var clearTime = BtnAction.actionInstance.score;
     }
 
     public override void GameEnd()

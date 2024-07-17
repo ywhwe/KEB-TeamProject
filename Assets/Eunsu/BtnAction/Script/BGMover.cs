@@ -34,7 +34,8 @@ public class BGMover : MonoBehaviour
     {
         bgInstance = this;
     }
-
+    
+    // Make background moves backward
     public async UniTask BgMove()
     {
         while (GameManagerBtn.instance.flag)
@@ -71,6 +72,7 @@ public class BGMover : MonoBehaviour
         }
     }
     
+    // Controls background speed. When player input is correct, background moves faster
     private async UniTask SpeedController()
     {
         // bgSpeed = BtnController.ctrlInstance.IsMatch ? 5f : 1f;

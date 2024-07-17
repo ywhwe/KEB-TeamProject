@@ -31,7 +31,7 @@ public class BtnController : MonoBehaviour
         CompKey();
     }
     
-    // stock user input in range WASD
+    // Stocks user input in range WASD and change color of buttons
     private void SetKey()
     {
         if (Input.GetKeyDown(KeyCode.W))
