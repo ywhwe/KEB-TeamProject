@@ -1,11 +1,13 @@
-using UnityEditor.Scripting;
 using UnityEngine;
+using UnityEngine.UI;
 using static System.MathF;
 
 public class ButtonController : MonoBehaviour
 {
     public ScoreBoard scoreBoard;
-    private SpriteRenderer theSR;
+
+    private Image img;
+    
     public Sprite defaultImage;
     public Sprite pressedImage;
     
@@ -19,16 +21,16 @@ public class ButtonController : MonoBehaviour
     {
         buttonSize.x = 30f;
         buttonSize.y = 100f;
-        
-        theSR = GetComponent<SpriteRenderer>();
-        theSR.sprite = defaultImage;
+
+        img = GetComponent<Image>();
+        img.sprite = defaultImage;
     }
     
     void Update()
     {
         if (Input.GetKeyDown(keyToPress))
         {
-            theSR.sprite = pressedImage;
+            img.sprite = pressedImage;
             var judge = Physics2D.OverlapBox(transform.position, buttonSize, 0f);
             if (judge is null)
             {
@@ -60,7 +62,7 @@ public class ButtonController : MonoBehaviour
         
         if (Input.GetKeyUp(keyToPress))
         {
-            theSR.sprite = defaultImage;
+            img.sprite = defaultImage;
         }
     }
 }

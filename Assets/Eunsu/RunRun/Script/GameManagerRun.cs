@@ -10,6 +10,11 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
         instance = this;
     }
 
+    private void Start()
+    {
+        StartCoroutine(NoteController.instance.GenNotes());
+    }
+
     private void Update()
     {
         if (!(Time.deltaTime > 1f)) return;
