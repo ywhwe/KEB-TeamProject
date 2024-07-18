@@ -11,11 +11,11 @@ public class NoteController : MonoBehaviour
     
     public GameObject UpNotePrefab;
     private GameObject upNote;
-    private Vector3 upNotePos = new Vector3(910f, 75f, 0f);
+    private Vector3 upNotePos = new Vector3(910f, 100f, 0f);
     
     public GameObject DownNotePrefab;
     private GameObject downNote;
-    private Vector3 downNotePos = new Vector3(910f, -75f, 0f);
+    private Vector3 downNotePos = new Vector3(910f, -100f, 0f);
     
     private float timeLimit = 0.2f;
     private float curTime;
