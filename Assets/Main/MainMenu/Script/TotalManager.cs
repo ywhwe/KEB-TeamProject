@@ -17,7 +17,9 @@ public class TotalManager : MonoBehaviourPunCallbacks
     
     public Image fadeScreen;
     public Image optionScreen;
-    public Image countingScreen;
+    public Image waitScreen;
+    public Text waitText;
+
     
     public Button optionGameExitButton;
     public Button optionResumeButton;
@@ -29,7 +31,8 @@ public class TotalManager : MonoBehaviourPunCallbacks
     private float perVolume;
 
     public GameObject gameManager;
-    private WaitForSeconds wait = new WaitForSeconds(6f);
+    private WaitForSeconds waitOneSecond = new WaitForSeconds(1f);
+    private WaitForSeconds waitFiveSeconds = new WaitForSeconds(5f);
 
     private void Awake()
     {
@@ -110,11 +113,30 @@ public class TotalManager : MonoBehaviourPunCallbacks
         MoveScene(gameNumber);
         StartCoroutine(CountBeforeStart());
     }
-
+    
     private IEnumerator CountBeforeStart()
     {
-        yield return wait;
+        waitScreen.GameObject().SetActive(true);
+        yield return waitOneSecond;
+        for (int i = 5; i >= 1; i--)
+        {
+            waitText.text = i.ToString();
+            yield return waitOneSecond;
+        }
+        waitText.text= "GAME START!";
+        yield return waitOneSecond;
+        waitScreen.GameObject().SetActive(false);
         gameManager.GetComponent<WholeGameManager>().GameStart();
+    }
+
+    private IEnumerator CountBeforeFinish()
+    {
+        waitScreen.GameObject().SetActive(true);
+        waitText.text = "FINISH!";
+        yield return waitFiveSeconds;
+        waitText.text = "";
+        waitScreen.GameObject().SetActive(false);
+        MoveScene(2);
     }
     
     public void ResumeGame()
@@ -134,6 +156,6 @@ public class TotalManager : MonoBehaviourPunCallbacks
 
     public void ScoreBoardTest()
     {
-        MoveScene(2);
+        StartCoroutine(CountBeforeFinish());
     }
 }
