@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -17,14 +18,13 @@ public class RandomMotion : MonoBehaviour
     
     public int randomMotionNumber;
     protected int stage = 0;
-    protected WaitForSeconds calTime = new WaitForSeconds(4f);
+    protected WaitForSeconds calTime = new WaitForSeconds(5f);
     
     public GameObject player1;
     public GameObject player2;
     protected int player1Motion, player2Motion;
     public int player1Life = 3; 
     public int player2Life = 3;
-    public bool IsGameEnd = false;
 
     private void Awake()
     {
@@ -44,7 +44,7 @@ public class RandomMotion : MonoBehaviour
     public IEnumerator PlayGameRoutine()
     {
         RandomAction();
-
+        
         yield return calTime;
         
         Debug.Log(player1Motion);

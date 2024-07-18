@@ -31,8 +31,8 @@ public class TotalManager : MonoBehaviourPunCallbacks
     private float perVolume;
 
     public GameObject gameManager;
-    private WaitForSeconds waitOneSecond = new WaitForSeconds(1f);
-    private WaitForSeconds waitFiveSeconds = new WaitForSeconds(5f);
+    public WaitForSeconds waitOneSecond = new WaitForSeconds(1f);
+    public WaitForSeconds waitFiveSeconds = new WaitForSeconds(5f);
 
     private void Awake()
     {
