@@ -19,7 +19,7 @@ public class TimeBarManager : MonoBehaviour
 
     private void Update()
     {
-        if (waitForStart <= 6f)
+        if (waitForStart <= 5f)
         {
             waitForStart += Time.deltaTime;
         }

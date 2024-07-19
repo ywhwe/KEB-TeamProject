@@ -31,7 +31,8 @@ public class TotalManager : MonoBehaviourPunCallbacks
     private float perVolume;
 
     public GameObject gameManager;
-    public WaitForSeconds waitOneSecond = new WaitForSeconds(1f);
+    public WaitForSeconds waitHalfSecond = new WaitForSeconds(0.5f);
+    public WaitForSeconds waitTwoSecond = new WaitForSeconds(2f);
     public WaitForSeconds waitFiveSeconds = new WaitForSeconds(5f);
 
     private void Awake()
@@ -117,14 +118,16 @@ public class TotalManager : MonoBehaviourPunCallbacks
     private IEnumerator CountBeforeStart()
     {
         waitScreen.GameObject().SetActive(true);
-        yield return waitOneSecond;
-        for (int i = 5; i >= 1; i--)
+        yield return waitTwoSecond;
+        waitText.text = "Ready";
+        yield return waitTwoSecond;
+        for (int i = 3; i >= 1; i--)
         {
             waitText.text = i.ToString();
-            yield return waitOneSecond;
+            yield return waitHalfSecond;
         }
-        waitText.text= "GAME START!";
-        yield return waitOneSecond;
+        waitText.text= "Go!";
+        yield return waitHalfSecond;
         waitScreen.GameObject().SetActive(false);
         gameManager.GetComponent<WholeGameManager>().GameStart();
     }
