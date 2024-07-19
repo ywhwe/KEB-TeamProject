@@ -244,7 +244,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Taipan Motion
+  m_Name: Random Motion
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: isWMove
@@ -305,7 +305,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -2597794908530434257, guid: 1c77555fce85aa74da16fd6cadfac6b8, type: 3}
+  m_Motion: {fileID: 5539831331247536789, guid: 1c77555fce85aa74da16fd6cadfac6b8, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

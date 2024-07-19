@@ -6,10 +6,10 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
-public class RandomMotion : MonoBehaviour
+public class RandomMotion2p : MonoBehaviour
 {
     public Animator ani;
-    public static RandomMotion instance;
+    public static RandomMotion2p instance;
     
     protected static readonly int IsWMove = Animator.StringToHash("isWMove");
     protected static readonly int IsAMove = Animator.StringToHash("isAMove");
@@ -21,8 +21,10 @@ public class RandomMotion : MonoBehaviour
     protected WaitForSeconds calTime = new WaitForSeconds(5f);
     
     public GameObject player1;
-    protected int player1Motion;
+    public GameObject player2;
+    protected int player1Motion, player2Motion;
     public int player1Life = 3; 
+    public int player2Life = 3;
 
     private void Awake()
     {
@@ -36,6 +38,7 @@ public class RandomMotion : MonoBehaviour
     
     void Update()
     {
+        player2Motion = player2.GetComponent<CharacterControl>().motionNumber;
         player1Motion = player1.GetComponent<CharacterControl>().motionNumber;
     }
     public IEnumerator PlayGameRoutine()
@@ -44,13 +47,15 @@ public class RandomMotion : MonoBehaviour
         
         yield return calTime;
         
-        Debug.Log(player1Motion); ;
+        Debug.Log(player1Motion);
+        Debug.Log(player2Motion);
         
         player1Life = CompareMotionNumber(player1Motion, player1Life);
+        player2Life = CompareMotionNumber(player2Motion, player2Life);
         
-        Debug.Log("life1 "+ player1Life);
+        Debug.Log("life1 "+ player1Life + " life2 "+player2Life);
         
-        if (player1Life == 0)
+        if (player1Life == 0 || player2Life == 0)
         {
             EndGame();
         }
@@ -62,6 +67,7 @@ public class RandomMotion : MonoBehaviour
     
     public void RandomAction()
     {
+        player2.GetComponent<CharacterControl>().motionNumber = 0;
         player1.GetComponent<CharacterControl>().motionNumber = 0;
         randomMotionNumber = 0;
         randomMotionNumber = Random.Range(1, 5);
