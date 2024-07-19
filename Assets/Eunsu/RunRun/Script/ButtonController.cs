@@ -11,7 +11,7 @@ public class ButtonController : MonoBehaviour
     public Sprite defaultImage;
     public Sprite pressedImage;
     
-    private Vector2 buttonSize;
+    private Vector2 hitboxSize;
     
     public KeyCode keyToPress;
 
@@ -19,8 +19,8 @@ public class ButtonController : MonoBehaviour
 
     private void Awake()
     {
-        buttonSize.x = 30f;
-        buttonSize.y = 100f;
+        hitboxSize.x = 30f;
+        hitboxSize.y = 100f;
 
         img = GetComponent<Image>();
         img.sprite = defaultImage;
@@ -31,7 +31,8 @@ public class ButtonController : MonoBehaviour
         if (Input.GetKeyDown(keyToPress))
         {
             img.sprite = pressedImage;
-            var judge = Physics2D.OverlapBox(transform.position, buttonSize, 0f);
+            var judge = Physics2D.OverlapBox(transform.position, hitboxSize, 0f);
+            
             if (judge is null)
             {
                 // When Note Missed
@@ -40,23 +41,26 @@ public class ButtonController : MonoBehaviour
             {
                 var dist = gameObject.transform.position - judge.transform.position;
                 var distance = Abs(dist.x);
+                
                 switch (distance)
                 {
                     case < 2:
                         Debug.Log("Perfect");
+                        noteScore = 200;
                         break;
                     case < 15:
                         Debug.Log("Great");
+                        noteScore = 100;
                         break;
                     default:
                         Debug.Log("Good");
+                        noteScore = 50;
                         break;
                 }
+                
                 Destroy(judge.gameObject);
                 NoteController.instance.noteCount--;
                 scoreBoard.SetScore(noteScore);
-                Debug.Log("Note: " + NoteController.instance.noteCount);
-                
             }
         }
         

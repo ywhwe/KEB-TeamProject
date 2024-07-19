@@ -14,11 +14,11 @@ public class Background : MonoBehaviour
     private Vector3 initPos = new(0f, 0f, 0f);
     private Vector3 nextPos = new(1920f, 0f, 0f);
 
-    private Vector3 movePos = new Vector3(-3f, 0f, 0f);
+    private Vector3 movePos = new(-3f, 0f, 0f);
 
     private Quaternion defaultAngle = new(0f, 0f, 0f, 1f);
 
-    private float moveSpeed = 2f;
+    private float moveSpeed = 5f;
 
     private void Awake()
     {
