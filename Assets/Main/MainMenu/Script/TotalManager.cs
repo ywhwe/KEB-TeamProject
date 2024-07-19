@@ -14,6 +14,8 @@ using Random = UnityEngine.Random;
 public class TotalManager : MonoBehaviourPunCallbacks
 {
     public static TotalManager instance;
+
+    public GameObject playerPrefab;
     
     public Image fadeScreen;
     public Image optionScreen;

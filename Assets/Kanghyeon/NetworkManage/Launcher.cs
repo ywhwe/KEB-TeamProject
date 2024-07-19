@@ -35,7 +35,6 @@ public class Launcher : MonoBehaviourPunCallbacks
     public void Connect()
     {
         progressLabel.SetActive(true);
-        controlPanel.SetActive(false);
         if (PhotonNetwork.IsConnected)
         {
             PhotonNetwork.JoinRandomRoom();

@@ -5365,6 +5365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d026ec8387351ef46b0a61e2020eb469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 0}
   fadeScreen: {fileID: 1174207166}
   optionScreen: {fileID: 280211600}
   waitScreen: {fileID: 489330785}
@@ -5374,7 +5375,7 @@ MonoBehaviour:
   volumeText: {fileID: 226540384}
   mixer: {fileID: 24100000, guid: e17877d3279a2f44889b195a8ea494fc, type: 2}
   volumeSlider: {fileID: 22749827}
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 6095159506538284724, guid: ff49f4712544318429a6d9b8af862f4c, type: 3}
 --- !u!4 &2119134637
 Transform:
   m_ObjectHideFlags: 0
