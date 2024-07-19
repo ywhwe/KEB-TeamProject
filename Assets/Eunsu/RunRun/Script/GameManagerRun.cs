@@ -37,6 +37,7 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
     public override void GameStart()
     {
         StartCoroutine(NoteController.instance.GenNotes());
+        TwoKeyPlayer.playerInstance.KeyInteraction().Forget();
     }
 
     public override void GetScore()

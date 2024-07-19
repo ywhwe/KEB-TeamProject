@@ -81,6 +81,7 @@ public class GameManagerBtn : WholeGameManager
         BGMover.bgInstance.BgMove().Forget();
         RailMove().Forget();
         Instantiate(trolleyPrefab, trolleyPos, Quaternion.identity);
+        BtnPlayer.playerInstance.gameObject.SetActive(true);
         BtnAction.actionInstance.GenQTE().Forget();
     }
 
