@@ -1,4 +1,4 @@
-using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class GameManagerRun : WholeGameManager // Need fix for inheritance
@@ -12,7 +12,8 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
 
     private void Start()
     {
-        StartCoroutine(NoteController.instance.GenNotes());
+        Background.bgInstance.BackgroundMove().Forget();
+        StartCoroutine(NoteController.instance.GenNotes()); // This will be deleted when build version
     }
 
     private void Update()
