@@ -142,14 +142,20 @@ public class TotalManager : MonoBehaviourPunCallbacks
         gameManager.GetComponent<WholeGameManager>().GameStart();
     }
 
+    public void StartFinish()
+    {
+        StartCoroutine(CountBeforeFinish());
+    }
     private IEnumerator CountBeforeFinish()
     {
+        gameManager.GetComponent<WholeGameManager>().GetScore();
+        yield return waitHalfSecond;
         waitScreen.GameObject().SetActive(true);
         waitText.text = "FINISH!";
-        yield return waitFiveSeconds;
+        yield return waitTwoSecond;
         waitText.text = "";
         waitScreen.GameObject().SetActive(false);
-        MoveScene(2);
+        SendGameEnd();
     }
     
     public void ResumeGame()
@@ -180,10 +186,11 @@ public class TotalManager : MonoBehaviourPunCallbacks
     void rpcSendgameEnd()
     {
         isGameEnd++;
+        
         if (isGameEnd == PhotonNetwork.PlayerList.Length)
         {
             
-            PhotonNetwork.LoadLevel(2);
+            PhotonNetwork.LoadLevel("ScoreBoard");
             isGameEnd = 0;
         }
     }

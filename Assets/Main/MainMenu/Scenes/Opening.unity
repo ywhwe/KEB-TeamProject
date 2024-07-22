@@ -5377,6 +5377,7 @@ MonoBehaviour:
   mixer: {fileID: 24100000, guid: e17877d3279a2f44889b195a8ea494fc, type: 2}
   volumeSlider: {fileID: 22749827}
   gameManager: {fileID: 0}
+  PV: {fileID: 2119134639}
 --- !u!4 &2119134637
 Transform:
   m_ObjectHideFlags: 0
@@ -5434,7 +5435,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 2106991210}
   - {fileID: 2089486148}
-  - {fileID: 2119134637}
   - {fileID: 427176407}
   - {fileID: 28100942}
   - {fileID: 2004804608}
+  - {fileID: 2119134637}

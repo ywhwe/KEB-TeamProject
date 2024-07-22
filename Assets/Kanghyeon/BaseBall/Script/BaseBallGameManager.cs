@@ -40,12 +40,13 @@ public class BaseBallGameManager : WholeGameManager
     public override void GetScore()
     {
         score = finalscore;
+        AddScore(PhotonNetwork.LocalPlayer.NickName,finalscore);
+
     }
 
     public override void GameEnd()
     {
-        AddScore(PhotonNetwork.LocalPlayer.NickName,finalscore);
-        TotalManager.instance.ScoreBoardTest();
+        TotalManager.instance.StartFinish();
     }
 
     public void CalculSocre()
