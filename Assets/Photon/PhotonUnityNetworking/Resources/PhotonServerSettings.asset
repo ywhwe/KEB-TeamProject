@@ -39,6 +39,15 @@ MonoBehaviour:
   - DestroySpaceship
   - Fire
   - RespawnSpaceship
+  - MoveScene
+  - GoToIngame
+  - WriteScore
+  - _RPCAddScore
+  - AddCoin
+  - SetUpPlayer
+  - UpdateScore
+  - rpcAddScore
+  - rpcSendgameEnd
   DisableAutoOpenWizard: 1
-  ShowSettings: 0
+  ShowSettings: 1
   DevRegionSetOnce: 1

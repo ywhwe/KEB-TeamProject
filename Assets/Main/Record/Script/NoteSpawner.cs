@@ -13,10 +13,7 @@ public class NoteSpawner : MonoBehaviour
     public GameObject noteS;
     public GameObject noteD;
     public Transform noteparents;
-    public Records record;
-
-
-    public float nowangle=0f;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -41,14 +38,6 @@ public class NoteSpawner : MonoBehaviour
         
     }
     
-    void Update()
-    {
-        nowangle += Time.deltaTime * record.rotatespeed;
-        if (nowangle >= 360)
-        {
-            nowangle -= 360;
-        }
-    }
     
     private void SpawnNote(float angle,float rad,GameObject note)
     {

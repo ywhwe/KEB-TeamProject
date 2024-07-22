@@ -171,6 +171,20 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.upscalebaby.generic-serializable-dictionary": {
+      "version": "https://github.com/upscalebaby/generic-serializable-dictionary.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "e86261d4e9d0e683500d9011642a0cd4a8535c07"
+    },
+    "com.veriorpies.parrelsync": {
+      "version": "https://github.com/VeriorPies/ParrelSync.git?path=/ParrelSync",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "d1ef610e9fe3ad0b490cce91594449fc0af809a6"
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,

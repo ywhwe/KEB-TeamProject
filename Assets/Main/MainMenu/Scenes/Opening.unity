@@ -5250,6 +5250,7 @@ GameObject:
   - component: {fileID: 2119134636}
   - component: {fileID: 2119134635}
   - component: {fileID: 2119134638}
+  - component: {fileID: 2119134639}
   m_Layer: 0
   m_Name: TotalManager
   m_TagString: Untagged
@@ -5375,7 +5376,7 @@ MonoBehaviour:
   volumeText: {fileID: 226540384}
   mixer: {fileID: 24100000, guid: e17877d3279a2f44889b195a8ea494fc, type: 2}
   volumeSlider: {fileID: 22749827}
-  gameManager: {fileID: 6095159506538284724, guid: ff49f4712544318429a6d9b8af862f4c, type: 3}
+  gameManager: {fileID: 0}
 --- !u!4 &2119134637
 Transform:
   m_ObjectHideFlags: 0
@@ -5405,6 +5406,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27583d0c51c6f3844a6bf7300ef36157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2119134639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119134634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 999
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

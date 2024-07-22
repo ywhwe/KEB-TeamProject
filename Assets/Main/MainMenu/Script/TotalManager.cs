@@ -33,6 +33,8 @@ public class TotalManager : MonoBehaviourPunCallbacks
     private float perVolume;
 
     public GameObject gameManager;
+    public PhotonView PV;
+    private int isGameEnd=0;
     public WaitForSeconds waitHalfSecond = new WaitForSeconds(0.5f);
     public WaitForSeconds waitTwoSecond = new WaitForSeconds(2f);
     public WaitForSeconds waitFiveSeconds = new WaitForSeconds(5f);
@@ -111,11 +113,16 @@ public class TotalManager : MonoBehaviourPunCallbacks
         mixer.SetFloat("BGM", Mathf.Log10(sliderVal)*20);
     }
 
+    public void GoToGameWith()
+    {
+        PV.RPC("GoToIngame",RpcTarget.All);
+    }
+    [PunRPC]
     public void GoToIngame()
     {
         int gameNumber = Random.Range(1, 2);
         MoveScene(gameNumber);
-        StartCoroutine(CountBeforeStart());
+        StartCoroutine(CountBeforeStart()); // sendgameend 방식을 응용해서 플레이어가 준비 되면 start하는걸 고민
     }
     
     private IEnumerator CountBeforeStart()
@@ -162,6 +169,22 @@ public class TotalManager : MonoBehaviourPunCallbacks
 
     public void ScoreBoardTest()
     {
-        StartCoroutine(CountBeforeFinish());
+        SendGameEnd();
+    }
+
+    void SendGameEnd()
+    {
+        PV.RPC("rpcSendgameEnd",RpcTarget.MasterClient);
+    }
+    [PunRPC]
+    void rpcSendgameEnd()
+    {
+        isGameEnd++;
+        if (isGameEnd == PhotonNetwork.PlayerList.Length)
+        {
+            
+            PhotonNetwork.LoadLevel(2);
+            isGameEnd = 0;
+        }
     }
 }
