@@ -9,6 +9,7 @@ public class CharacterControl : MonoBehaviour
     public Animator ani;
     public int motionNumber = 0;
     
+    
     private static readonly int IsWMove = Animator.StringToHash("isWMove");
     private static readonly int IsAMove = Animator.StringToHash("isAMove");
     private static readonly int IsSMove = Animator.StringToHash("isSMove");
