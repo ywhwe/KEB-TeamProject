@@ -14,10 +14,14 @@ using Random = UnityEngine.Random;
 public class TotalManager : MonoBehaviourPunCallbacks
 {
     public static TotalManager instance;
+
+    public GameObject playerPrefab;
     
     public Image fadeScreen;
     public Image optionScreen;
-    public Image countingScreen;
+    public Image waitScreen;
+    public Text waitText;
+
     
     public Button optionGameExitButton;
     public Button optionResumeButton;
@@ -29,7 +33,9 @@ public class TotalManager : MonoBehaviourPunCallbacks
     private float perVolume;
 
     public GameObject gameManager;
-    private WaitForSeconds wait = new WaitForSeconds(6f);
+    public WaitForSeconds waitHalfSecond = new WaitForSeconds(0.5f);
+    public WaitForSeconds waitTwoSecond = new WaitForSeconds(2f);
+    public WaitForSeconds waitFiveSeconds = new WaitForSeconds(5f);
 
     private void Awake()
     {
@@ -111,11 +117,32 @@ public class TotalManager : MonoBehaviourPunCallbacks
         MoveScene(gameNumber);
         StartCoroutine(CountBeforeStart());
     }
-
+    
     private IEnumerator CountBeforeStart()
     {
-        yield return wait;
+        waitScreen.GameObject().SetActive(true);
+        yield return waitTwoSecond;
+        waitText.text = "Ready";
+        yield return waitTwoSecond;
+        for (int i = 3; i >= 1; i--)
+        {
+            waitText.text = i.ToString();
+            yield return waitHalfSecond;
+        }
+        waitText.text= "Go!";
+        yield return waitHalfSecond;
+        waitScreen.GameObject().SetActive(false);
         gameManager.GetComponent<WholeGameManager>().GameStart();
+    }
+
+    private IEnumerator CountBeforeFinish()
+    {
+        waitScreen.GameObject().SetActive(true);
+        waitText.text = "FINISH!";
+        yield return waitFiveSeconds;
+        waitText.text = "";
+        waitScreen.GameObject().SetActive(false);
+        MoveScene(2);
     }
     
     public void ResumeGame()
@@ -135,6 +162,6 @@ public class TotalManager : MonoBehaviourPunCallbacks
 
     public void ScoreBoardTest()
     {
-        MoveScene(2);
+        StartCoroutine(CountBeforeFinish());
     }
 }
