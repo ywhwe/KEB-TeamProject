@@ -17,9 +17,9 @@ public class BaseBallGameManager : WholeGameManager
 
     // public float score;
     public float starttime;
-    public int balltotal;
-    public int ballcount;
-    public int finalscore;
+    public float balltotal;
+    public float ballcount;
+    public float finalscore;
 
     public bool IsGameStart = false;
     public bool IsGameEnd = false;
@@ -48,9 +48,13 @@ public class BaseBallGameManager : WholeGameManager
         TotalManager.instance.ScoreBoardTest();
     }
 
+    public void CalculSocre()
+    {
+        
+    }
     public void CountBall()
     {
-        ballcount++;
+        ballcount = ballcount + 1f;
         if (ballcount == balltotal)
         {
             IsGameEnd = true;
@@ -68,15 +72,15 @@ public class BaseBallGameManager : WholeGameManager
 
     public void CountScore()
     {
-        finalscore++;
+        finalscore = finalscore + 1f;
         CountBall();
     }
-    public void AddScore(string name, int score)
+    public void AddScore(string name, float score)
     {
         PV.RPC("rpcAddScore",RpcTarget.All,name,score);
     }
     [PunRPC]
-    void rpcAddScore(string name, int score)
+    void rpcAddScore(string name, float score)
     {
         NetworkManager.instance.currentplayerscore[name] = score;
     }

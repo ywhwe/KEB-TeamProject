@@ -38,12 +38,12 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
         NetworkManager.instance.InitCurScore();
     }
 
-    public void CalculScore(GenericDictionary<string,int> scoredb)
+    public void CalculScore(GenericDictionary<string,float> scoredb)
     {
         var sortedscore = scoredb.OrderByDescending(x => x.Value).ToList();
 
         int currentRankPt = 4;
-        int currentScore = sortedscore[0].Value;
+        float currentScore = sortedscore[0].Value;
         int k = 0;
         for (int i = 0; i < sortedscore.Count; i++)  //점수계산을 위한 식
         {

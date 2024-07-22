@@ -158,6 +158,7 @@ public class TotalManager : MonoBehaviourPunCallbacks
         isGameEnd++;
         if (isGameEnd == PhotonNetwork.PlayerList.Length)
         {
+            
             PhotonNetwork.LoadLevel(2);
             isGameEnd = 0;
         }

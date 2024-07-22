@@ -12,7 +12,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public static NetworkManager instance;
     public List<string> scoredb;
     public GenericDictionary<string, int> playerscores = new GenericDictionary<string, int>();
-    public GenericDictionary<string, int> currentplayerscore = new GenericDictionary<string, int>();
+    public GenericDictionary<string, float> currentplayerscore = new GenericDictionary<string, float>();
+    public Dictionary<int, int> rankPt = new Dictionary<int, int>()
+    {
+        {4,10},{3,5},{2,3},{1,1}
+    };
     
     private void Awake()
     {
