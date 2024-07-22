@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Main/MainMenu/Scenes/Main.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
+    path: Assets/Eunsu/RunRun/Scene/RunRun.unity
+    guid: 0ba516eee7349b547b935226ad43a160
+  - enabled: 0
     path: Assets/Kanghyeon/BaseBall/Scene/Baseball.unity
     guid: a27c5352792ebca4798f8ee8941c1e2b
   - enabled: 1
@@ -17,9 +20,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Eunsu/BtnAction/Scene/BtnAction.unity
     guid: 6ab5bf47520d6ae46b22786e6b951e30
-  - enabled: 1
-    path: Assets/Eunsu/RunRun/Scene/RunRun.unity
-    guid: 0ba516eee7349b547b935226ad43a160
   - enabled: 1
     path: Assets/Main/MainMenu/Scenes/ScoreBoard.unity
     guid: 4ab20b0fb2148f34eae8154cae281599

@@ -1,15 +1,24 @@
+using System;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using Photon.Pun;
 
 public class GameManagerRun : WholeGameManager // Need fix for inheritance
 {
     public static GameManagerRun instance;
-
+    public PhotonView pvTest;
+    
     private void Awake()
     {
         instance = this;
     }
 
+    private void Start()
+    {
+        Background.bgInstance.BackgroundMove().Forget();
+        StartCoroutine(NoteController.instance.GenNotes());
+        // TwoKeyPlayer.playerInstance.KeyInteraction().Forget();
+    }
     // private void Start()
     // {
     //     Background.bgInstance.BackgroundMove().Forget();
@@ -30,8 +39,14 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
         if (NoteController.instance.IsFinished)
         {
             StopCoroutine(NoteController.instance.GenNotes());
-            // UnityEditor.EditorApplication.ExitPlaymode();
+            UniTask.WaitForSeconds(1f);
+            GameEnd();
         }
+    }
+    
+    void rpcAddScore(string curName, float curScore)
+    {
+        NetworkManager.instance.currentplayerscore[curName] = curScore;
     }
 
     public override void GameStart()
@@ -43,11 +58,12 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
 
     public override void GetScore()
     {
-        var score = ScoreBoard.scoreInstance.score;
+        score = ScoreBoard.scoreInstance.score;
+        pvTest.RPC("rpcAddScore",RpcTarget.All,PhotonNetwork.LocalPlayer.NickName,score);
     }
 
     public override void GameEnd()
     {
-        TotalManager.instance.ScoreBoardTest();
+        TotalManager.instance.StartFinish();
     }
 }

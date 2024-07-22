@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -5,7 +6,7 @@ using Random = UnityEngine.Random;
 public class NoteController : MonoBehaviour
 {
     private WaitForSeconds term = new(0.9f);
-
+    
     public GameObject canvas;
     private Transform canvasTrans;
     
@@ -19,9 +20,14 @@ public class NoteController : MonoBehaviour
     
     private float timeLimit = 0.2f;
     private float curTime;
-    public float genRate;
-    private Note note;
     private int rand;
+
+    private float musicBPM = 117f;
+    private float musicTempo = 4f;
+    private float stdBPM = 60f;
+    private float stdTempo = 4f;
+
+    private float genTime = 0f;
 
     private bool isTimedOut;
     public bool IsTimedOut => isTimedOut;
@@ -43,6 +49,11 @@ public class NoteController : MonoBehaviour
         canvasTrans = canvas.transform;
     }
 
+    private void Update()
+    {
+        genTime = (stdBPM / musicBPM) * (musicTempo / stdTempo);
+    }
+
     public IEnumerator GenNotes()
     {
         curTime = 0f;
@@ -51,7 +62,7 @@ public class NoteController : MonoBehaviour
         
         while (true)
         {
-            yield return term;
+            yield return new WaitForSeconds(genTime);
             
             curTime += Time.deltaTime;
             
@@ -65,12 +76,12 @@ public class NoteController : MonoBehaviour
 
             switch (rand)
             {
-                case > 50 and <= 100:
+                case > 60 and <= 100:
                     upNote = Instantiate(UpNotePrefab, upNotePos, Quaternion.identity);
                     upNote.transform.SetParent(canvasTrans, false);
                     noteCount++;
                     break;
-                case > 0 and <= 50:
+                case > 0 and <= 40:
                     downNote = Instantiate(DownNotePrefab, downNotePos, Quaternion.identity);
                     downNote.transform.SetParent(canvasTrans, false);
                     noteCount++;

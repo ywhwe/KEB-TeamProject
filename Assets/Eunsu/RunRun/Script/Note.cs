@@ -5,7 +5,7 @@ public class Note : MonoBehaviour
 {
     private RectTransform _rectTransform;
     private WaitForSeconds hmm = new(0.01f);
-    private float noteSpeed = 3f;
+    private float noteSpeed = 7f;
     private float movePos;
 
     private float durationTime = 0f;

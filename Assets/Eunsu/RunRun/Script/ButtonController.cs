@@ -58,6 +58,8 @@ public class ButtonController : MonoBehaviour
                         break;
                 }
                 
+                SoundManager.instance.PlaySound("ClearNote");
+                
                 Destroy(judge.gameObject);
                 NoteController.instance.noteCount--;
                 scoreBoard.SetScore(noteScore);
