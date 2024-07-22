@@ -1,9 +1,12 @@
+using System;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class TwoKeyPlayer : MonoBehaviour
 {
     public static TwoKeyPlayer playerInstance;
+
+    public GameObject playerContainer;
     
     public GameObject playerModel;
     private Transform modelTrans;
@@ -19,8 +22,12 @@ public class TwoKeyPlayer : MonoBehaviour
     private void Awake()
     {
         playerInstance = this;
-        
+    }
+
+    private void Start() // Make this as identical method
+    {
         var player = Instantiate(playerModel, Vector3.zero, Quaternion.identity);
+        player.transform.SetParent(playerContainer.transform);
 
         modelAni = player.GetComponent<Animator>();
         

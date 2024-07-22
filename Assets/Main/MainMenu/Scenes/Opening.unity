@@ -2256,6 +2256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d026ec8387351ef46b0a61e2020eb469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerModel: {fileID: 6182162820492919152, guid: 84b7c8441f160174fa5c6f94cf397f0a, type: 3}
   fadeScreen: {fileID: 1174207166}
   optionScreen: {fileID: 280211600}
   countingScreen: {fileID: 0}

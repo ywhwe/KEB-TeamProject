@@ -10,11 +10,11 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
         instance = this;
     }
 
-    private void Start()
-    {
-        Background.bgInstance.BackgroundMove().Forget();
-        StartCoroutine(NoteController.instance.GenNotes()); // This will be deleted when build version
-    }
+    // private void Start()
+    // {
+    //     Background.bgInstance.BackgroundMove().Forget();
+    //     StartCoroutine(NoteController.instance.GenNotes()); // This will be deleted when build version
+    // }
 
     private void Update()
     {
@@ -36,6 +36,7 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
 
     public override void GameStart()
     {
+        Background.bgInstance.BackgroundMove().Forget();
         StartCoroutine(NoteController.instance.GenNotes());
         TwoKeyPlayer.playerInstance.KeyInteraction().Forget();
     }
