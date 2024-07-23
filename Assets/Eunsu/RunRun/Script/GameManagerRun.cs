@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Photon.Pun;
@@ -6,24 +7,21 @@ using Photon.Pun;
 public class GameManagerRun : WholeGameManager // Need fix for inheritance
 {
     public static GameManagerRun instance;
+    private float playerScore;
     public PhotonView pvTest;
+    private bool isGameEnded = false;
     
     private void Awake()
     {
         instance = this;
     }
 
-    private void Start()
+    /*private void Start()
     {
         Background.bgInstance.BackgroundMove().Forget();
         StartCoroutine(NoteController.instance.GenNotes());
         // TwoKeyPlayer.playerInstance.KeyInteraction().Forget();
-    }
-    // private void Start()
-    // {
-    //     Background.bgInstance.BackgroundMove().Forget();
-    //     StartCoroutine(NoteController.instance.GenNotes()); // This will be deleted when build version
-    // }
+    }*/
 
     private void Update()
     {
@@ -36,15 +34,15 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
         if (NoteController.instance.noteCount < 1 && NoteController.instance.IsTimedOut)
             NoteController.instance.IsFinished = true;
         
-        if (NoteController.instance.IsFinished)
-        {
-            StopCoroutine(NoteController.instance.GenNotes());
-            UniTask.WaitForSeconds(1f);
-            GameEnd();
-        }
+        if (!NoteController.instance.IsFinished) return;
+
+        if (isGameEnded) return;
+        StopCoroutine(NoteController.instance.GenNotes());
+        StartCoroutine(EndScene());
     }
     
-    void rpcAddScore(string curName, float curScore)
+    [PunRPC]
+    void RPCAddScore(string curName, float curScore)
     {
         NetworkManager.instance.currentplayerscore[curName] = curScore;
     }
@@ -59,11 +57,18 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
     public override void GetScore()
     {
         score = ScoreBoard.scoreInstance.score;
-        pvTest.RPC("rpcAddScore",RpcTarget.All,PhotonNetwork.LocalPlayer.NickName,score);
+        pvTest.RPC("RPCAddScore",RpcTarget.All,PhotonNetwork.LocalPlayer.NickName,score);
     }
 
     public override void GameEnd()
     {
         TotalManager.instance.StartFinish();
+    }
+    
+    private IEnumerator EndScene()
+    {
+        yield return new WaitForSeconds(1f);
+        isGameEnded = true;
+        GameEnd();
     }
 }
