@@ -55,7 +55,7 @@ public class Bat : MonoBehaviour
         var pos = transform.position;
         pos.x = 3f;
         if (Physics.BoxCast(pos, new Vector3(0.5f, 0.5f, 0.5f), Vector3.left, out ballhit,
-                Quaternion.identity, 5f))
+                Quaternion.identity, 7f))
         {
             ballendtime = ballhit.collider.GetComponent<TestBall>().endtime;
             return true;
@@ -78,7 +78,8 @@ public class Bat : MonoBehaviour
 
     private void BallAway()
     {
-        ballhit.collider.GetComponent<Rigidbody>().AddForce(-24f, 10f, 5f, ForceMode.Impulse);
+        var angle = new Vector3(-15f,5f,3f).normalized * 70f;
+        ballhit.collider.GetComponent<Rigidbody>().AddForce(angle, ForceMode.VelocityChange);
     }
 
     public void Check(float endtime)

@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   balldata:
   - ballnum: 0
-    delay: 2
-    endtime: 2.3
+    delay: 0.5
+    endtime: 2
     ballname: Throw0
   - ballnum: 0
-    delay: 2
-    endtime: 4.3
+    delay: 0.5
+    endtime: 4
     ballname: Throw0
   - ballnum: 0
-    delay: 2
-    endtime: 6.3
+    delay: 0.5
+    endtime: 6
     ballname: Throw0
   - ballnum: 0
-    delay: 2
-    endtime: 8.3
+    delay: 0.5
+    endtime: 8
     ballname: Throw0

@@ -6,7 +6,7 @@ public class TestBall : MonoBehaviour
 {
     private Rigidbody rigid;
     public float endtime;
-    public float ballspeed=10f;
+    public float ballspeed=20f/0.3f;
     void Start()
     {
         rigid = GetComponent<Rigidbody>();
@@ -23,4 +23,5 @@ public class TestBall : MonoBehaviour
     {
         endtime = time;
     }
+    
 }

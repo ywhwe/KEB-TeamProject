@@ -76,7 +76,7 @@ public class BaseBallGameManager : WholeGameManager
         finalscore = finalscore + 1f;
         CountBall();
     }
-    public void AddScore(string name, float score)
+    private void AddScore(string name, float score)
     {
         PV.RPC("rpcAddScore",RpcTarget.All,name,score);
     }

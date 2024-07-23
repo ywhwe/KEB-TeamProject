@@ -38,6 +38,7 @@ public class ScoreWall : MonoBehaviour
                 var vfx = Instantiate(hiteffect, new Vector3(2.4f,0.6f,0f), Quaternion.identity);
                 Destroy(hitnote.collider.gameObject);
                 Destroy(vfx,0.7f);
+                RecordGameManager.instance.CountScoreRecord();
             }
         }
 
@@ -50,6 +51,7 @@ public class ScoreWall : MonoBehaviour
                 var vfx = Instantiate(hiteffect, new Vector3(2.83f,0.6f,0f), Quaternion.identity);
                 Destroy(hitnote.collider.gameObject);
                 Destroy(vfx,0.7f);
+                RecordGameManager.instance.CountScoreRecord();
             }
         }
 
@@ -63,6 +65,7 @@ public class ScoreWall : MonoBehaviour
                 var vfx = Instantiate(hiteffect, new Vector3(3.3f,0.6f,0f), Quaternion.identity);
                 Destroy(hitnote.collider.gameObject);
                 Destroy(vfx,0.7f);
+                RecordGameManager.instance.CountScoreRecord();
             }
 
         }
@@ -76,6 +79,7 @@ public class ScoreWall : MonoBehaviour
                 var vfx = Instantiate(hiteffect, new Vector3(3.8f, 0.6f, 0f), Quaternion.identity);
                 Destroy(hitnote.collider.gameObject);
                 Destroy(vfx,0.7f);
+                RecordGameManager.instance.CountScoreRecord();
             }
         }
     }

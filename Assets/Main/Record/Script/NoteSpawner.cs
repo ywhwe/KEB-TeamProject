@@ -45,6 +45,7 @@ public class NoteSpawner : MonoBehaviour
         var position = new Vector3(Mathf.Cos(setha)*rad,0.08f,Mathf.Sin(setha)*rad);
         var newnote = Instantiate(note, position, Quaternion.identity);
         newnote.transform.SetParent(noteparents);
+        RecordGameManager.instance.PlusCountRecord();
 
     }
    

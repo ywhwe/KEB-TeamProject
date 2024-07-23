@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endtime: 0
-  ballspeed: 10
+  ballspeed: 30
 --- !u!54 &-4242781459518146890
 Rigidbody:
   m_ObjectHideFlags: 0

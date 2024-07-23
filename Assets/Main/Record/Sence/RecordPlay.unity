@@ -2630,8 +2630,6 @@ MonoBehaviour:
   noteS: {fileID: 6672602155270072642, guid: 76ab7567ce21d4cfe80742bc4b390dd1, type: 3}
   noteD: {fileID: 6672602155270072642, guid: 0a4c1f00a7f40427692b681c9c0ece80, type: 3}
   noteparents: {fileID: 1684972594}
-  record: {fileID: 1329825005}
-  nowangle: 0
 --- !u!1001 &1186139794
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3049,6 +3047,7 @@ GameObject:
   - component: {fileID: 1329825002}
   - component: {fileID: 1329825005}
   - component: {fileID: 1329825001}
+  - component: {fileID: 1329825006}
   m_Layer: 0
   m_Name: Record
   m_TagString: Untagged
@@ -3159,6 +3158,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1fac3a6fa31e408898058fdcf905b9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1329825006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329824999}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7728e93acf4f3040b125901618560c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotatespeed: 45
@@ -3963,6 +3974,79 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1760370352
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1760370354}
+  - component: {fileID: 1760370353}
+  - component: {fileID: 1760370355}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1760370353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760370352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76290f894f5fe0643930b4eae90a72d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
+  isGameEnd: 0
+  rotatespeed: 0
+  record: {fileID: 1329825006}
+  recordtime: 0
+  PV: {fileID: 1760370355}
+--- !u!4 &1760370354
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760370352}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -32.90548, y: -28.58086, z: 5.901011}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1760370355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760370352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 1
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1783171561
 GameObject:
   m_ObjectHideFlags: 0
@@ -4588,3 +4672,4 @@ SceneRoots:
   - {fileID: 1195595142}
   - {fileID: 1727207738}
   - {fileID: 1269471463}
+  - {fileID: 1760370354}

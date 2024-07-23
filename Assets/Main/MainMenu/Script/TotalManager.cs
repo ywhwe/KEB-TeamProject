@@ -81,6 +81,27 @@ public class TotalManager : MonoBehaviourPunCallbacks
         gameManager = GameObject.Find("GameManager");
     }
 
+    #region TestSceneField //test씬 만들기
+    
+    public void MoveTestScene()
+    {
+        StartCoroutine(GoTestScene());
+    }
+    public IEnumerator GoTestScene()
+    {
+        yield return StartCoroutine(FadeScreen(true));
+        SceneManager.LoadScene(1);
+        yield return StartCoroutine(FadeScreen(false));
+        gameManager = GameObject.Find("GameManager");
+    }
+    public void GoToTestgame()
+    {
+        int gameNumber = Random.Range(1, 2);
+        MoveTestScene();
+        StartCoroutine(CountBeforeStart()); // sendgameend 방식을 응용해서 플레이어가 준비 되면 start하는걸 고민
+    }
+    #endregion
+
     private IEnumerator FadeScreen(bool fadeOut)
     {
         var fadeTimer = 0f;
