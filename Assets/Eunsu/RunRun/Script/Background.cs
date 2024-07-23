@@ -37,8 +37,8 @@ public class Background : MonoBehaviour
             currentBg.transform.SetParent(backComp.transform, false);
             nextBg.transform.SetParent(backComp.transform, false);
             
-            currentBg.transform.Translate(movePos * moveSpeed * Time.deltaTime);
-            nextBg.transform.Translate(movePos * moveSpeed * Time.deltaTime);
+            currentBg.transform.Translate(movePos * (moveSpeed * Time.deltaTime));
+            nextBg.transform.Translate(movePos * (moveSpeed * Time.deltaTime));
 
             if (!(nextBg.transform.position.x < 0.5f)) continue;
             

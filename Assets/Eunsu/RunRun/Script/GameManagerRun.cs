@@ -51,7 +51,7 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
     {
         Background.bgInstance.BackgroundMove().Forget();
         StartCoroutine(NoteController.instance.GenNotes());
-        TwoKeyPlayer.playerInstance.KeyInteraction().Forget();
+        //TwoKeyPlayer.playerInstance.KeyInteraction().Forget();
     }
 
     public override void GetScore()
@@ -67,8 +67,8 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
     
     private IEnumerator EndScene()
     {
-        yield return new WaitForSeconds(1f);
         isGameEnded = true;
+        yield return new WaitForSeconds(1f);
         GameEnd();
     }
 }
