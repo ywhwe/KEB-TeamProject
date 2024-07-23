@@ -5,7 +5,7 @@ public class Note : MonoBehaviour
 {
     private RectTransform _rectTransform;
     private WaitForSeconds hmm = new(0.01f);
-    private float noteSpeed = 3f;
+    private float noteSpeed = 7f;
     private float movePos;
 
     private float durationTime = 0f;
@@ -23,7 +23,7 @@ public class Note : MonoBehaviour
     void Update()
     {
         durationTime += Time.deltaTime;
-        if (durationTime < 15f) return;
+        if (durationTime < 13f) return;
         Destroy(gameObject);
         NoteController.instance.noteCount--;
     }

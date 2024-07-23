@@ -9,6 +9,7 @@ public class ScoreBoard : MonoBehaviour
 
     private void Awake()
     {
+        scoreInstance = this;
         scoreText.text = 0.ToString();
     }
 

@@ -1,20 +1,27 @@
+using System;
+using System.Collections;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using Photon.Pun;
 
 public class GameManagerRun : WholeGameManager // Need fix for inheritance
 {
     public static GameManagerRun instance;
-
+    private float playerScore;
+    public PhotonView pvTest;
+    private bool isGameEnded = false;
+    
     private void Awake()
     {
         instance = this;
     }
 
-    // private void Start()
-    // {
-    //     Background.bgInstance.BackgroundMove().Forget();
-    //     StartCoroutine(NoteController.instance.GenNotes()); // This will be deleted when build version
-    // }
+    /*private void Start()
+    {
+        Background.bgInstance.BackgroundMove().Forget();
+        StartCoroutine(NoteController.instance.GenNotes());
+        // TwoKeyPlayer.playerInstance.KeyInteraction().Forget();
+    }*/
 
     private void Update()
     {
@@ -27,11 +34,17 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
         if (NoteController.instance.noteCount < 1 && NoteController.instance.IsTimedOut)
             NoteController.instance.IsFinished = true;
         
-        if (NoteController.instance.IsFinished)
-        {
-            StopCoroutine(NoteController.instance.GenNotes());
-            // UnityEditor.EditorApplication.ExitPlaymode();
-        }
+        if (!NoteController.instance.IsFinished) return;
+
+        if (isGameEnded) return;
+        StopCoroutine(NoteController.instance.GenNotes());
+        StartCoroutine(EndScene());
+    }
+    
+    [PunRPC]
+    void RPCAddScore(string curName, float curScore)
+    {
+        NetworkManager.instance.currentplayerscore[curName] = curScore;
     }
 
     public override void GameStart()
@@ -43,11 +56,19 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
 
     public override void GetScore()
     {
-        var score = ScoreBoard.scoreInstance.score;
+        score = ScoreBoard.scoreInstance.score;
+        pvTest.RPC("RPCAddScore",RpcTarget.All,PhotonNetwork.LocalPlayer.NickName,score);
     }
 
     public override void GameEnd()
     {
-        TotalManager.instance.ScoreBoardTest();
+        TotalManager.instance.StartFinish();
+    }
+    
+    private IEnumerator EndScene()
+    {
+        yield return new WaitForSeconds(1f);
+        isGameEnded = true;
+        GameEnd();
     }
 }

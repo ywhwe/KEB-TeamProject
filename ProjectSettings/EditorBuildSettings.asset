@@ -27,9 +27,6 @@ EditorBuildSettings:
     path: Assets/Eunsu/BtnAction/Scene/BtnAction.unity
     guid: 6ab5bf47520d6ae46b22786e6b951e30
   - enabled: 1
-    path: Assets/Eunsu/RunRun/Scene/RunRun.unity
-    guid: 0ba516eee7349b547b935226ad43a160
-  - enabled: 1
     path: Assets/Main/MainMenu/Scenes/ScoreBoard.unity
     guid: 4ab20b0fb2148f34eae8154cae281599
   - enabled: 1
