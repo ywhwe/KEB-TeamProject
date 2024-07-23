@@ -40,13 +40,14 @@ public class TotalManager : MonoBehaviourPunCallbacks
     public WaitForSeconds waitHalfSecond = new WaitForSeconds(0.5f);
     public WaitForSeconds waitTwoSecond = new WaitForSeconds(2f);
     public WaitForSeconds waitFiveSeconds = new WaitForSeconds(5f);
-
+    public AudioSource BGM;
+    
     private void Awake()
     {
         instance = this;
         DontDestroyOnLoad(gameObject);
         volumeSlider.onValueChanged.AddListener(SetLevel);
-        AudioSource BGM = GetComponent<AudioSource>();
+        BGM = GetComponent<AudioSource>();
         BGM.Play();
         Debug.Log("BGM");
     }
@@ -117,6 +118,7 @@ public class TotalManager : MonoBehaviourPunCallbacks
 
     public void GoToGameWith()
     {
+        
         PV.RPC("GoToIngame",RpcTarget.All);
     }
     [PunRPC]
@@ -124,6 +126,7 @@ public class TotalManager : MonoBehaviourPunCallbacks
     {
         int gameNumber = Random.Range(1, 2);
         MoveScene(gameNumber);
+        BGM.Stop();
         StartCoroutine(CountBeforeStart()); // sendgameend 방식을 응용해서 플레이어가 준비 되면 start하는걸 고민
     }
     

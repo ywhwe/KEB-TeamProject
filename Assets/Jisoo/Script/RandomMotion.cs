@@ -32,6 +32,8 @@ public class RandomMotion : MonoBehaviour
     void Start()
     {
         ani.GetComponent<Animator>();
+        player1 = CreatePlayer.instance.player1.gameObject;
+        
     }
     
     void Update()
