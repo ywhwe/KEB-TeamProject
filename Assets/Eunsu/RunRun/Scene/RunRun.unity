@@ -1102,9 +1102,9 @@ GameObject:
   m_Component:
   - component: {fileID: 639339944}
   - component: {fileID: 639339945}
+  - component: {fileID: 639339948}
   - component: {fileID: 639339947}
   - component: {fileID: 639339946}
-  - component: {fileID: 639339948}
   m_Layer: 5
   m_Name: Down Button
   m_TagString: Untagged
@@ -1146,6 +1146,7 @@ MonoBehaviour:
   scoreBoard: {fileID: 2078012284}
   defaultImage: {fileID: 21300000, guid: 07edcfa1e8b2abf4cb21aeb23877144e, type: 3}
   pressedImage: {fileID: 21300000, guid: 553ffb236860c2a4ab0b3b302b83f720, type: 3}
+  hitFX: {fileID: 1967835574231978638, guid: 2dd368c9eba194140a30c73fc1ff43f0, type: 3}
   keyToPress: 115
   noteScore: 100
 --- !u!114 &639339946
@@ -1201,7 +1202,7 @@ MonoBehaviour:
   soundResources:
   - key: ClearNote
     Clip: {fileID: 8300000, guid: 1c3959f207c5dbe4296d09da5001c5e1, type: 3}
-  poolSize: 10
+  poolSize: 3
   soundNodePrefab: {fileID: 262796814095983562, guid: 0409cd171cfdecd43ab743452bfaf037, type: 3}
 --- !u!1 &738906993
 GameObject:
@@ -13909,9 +13910,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1115058747}
   - component: {fileID: 1115058748}
+  - component: {fileID: 1115058751}
   - component: {fileID: 1115058750}
   - component: {fileID: 1115058749}
-  - component: {fileID: 1115058751}
   m_Layer: 5
   m_Name: Up Button
   m_TagString: Untagged
@@ -13953,6 +13954,7 @@ MonoBehaviour:
   scoreBoard: {fileID: 2078012284}
   defaultImage: {fileID: 21300000, guid: 0a17623efc0c1c74fad1e984cf97953b, type: 3}
   pressedImage: {fileID: 21300000, guid: 02054c2350683084185c82e061451ffe, type: 3}
+  hitFX: {fileID: 1967835574231978638, guid: 2dd368c9eba194140a30c73fc1ff43f0, type: 3}
   keyToPress: 119
   noteScore: 100
 --- !u!114 &1115058749
@@ -14008,7 +14010,7 @@ MonoBehaviour:
   soundResources:
   - key: ClearNote
     Clip: {fileID: 8300000, guid: 1c3959f207c5dbe4296d09da5001c5e1, type: 3}
-  poolSize: 10
+  poolSize: 3
   soundNodePrefab: {fileID: 262796814095983562, guid: 0409cd171cfdecd43ab743452bfaf037, type: 3}
 --- !u!1 &1213217406
 GameObject:

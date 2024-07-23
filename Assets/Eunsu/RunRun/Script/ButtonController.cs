@@ -12,6 +12,8 @@ public class ButtonController : MonoBehaviour
     public Sprite pressedImage;
     
     private Vector2 hitboxSize;
+
+    [SerializeField] private GameObject hitFX;
     
     public KeyCode keyToPress;
 
@@ -59,8 +61,11 @@ public class ButtonController : MonoBehaviour
                 }
                 
                 SoundManager.instance.PlaySound("ClearNote");
+                var fx = Instantiate(hitFX, judge.transform.position, Quaternion.identity);
                 
                 Destroy(judge.gameObject);
+                Destroy(fx,0.5f);
+                
                 NoteController.instance.noteCount--;
                 scoreBoard.SetScore(noteScore);
             }
