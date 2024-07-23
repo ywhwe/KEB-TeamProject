@@ -30,11 +30,8 @@ public class GameManagerBtn : WholeGameManager
 
     private void Start()
     {
-        // These will be deleted in build version
         BGMover.bgInstance.BgMove().Forget();
         RailMove().Forget();
-        Instantiate(trolleyPrefab, trolleyPos, Quaternion.identity);
-        BtnAction.actionInstance.GenQTE().Forget();
     }
     
     // Make rails move backward
@@ -78,10 +75,7 @@ public class GameManagerBtn : WholeGameManager
 
     public override void GameStart()
     {
-        BGMover.bgInstance.BgMove().Forget();
-        RailMove().Forget();
         Instantiate(trolleyPrefab, trolleyPos, Quaternion.identity);
-        BtnPlayer.playerInstance.gameObject.SetActive(true);
         BtnAction.actionInstance.GenQTE().Forget();
     }
 

@@ -41,11 +41,6 @@ public class BtnAction : MonoBehaviour
         score -= Time.deltaTime * recutionRate;
     }
 
-    public void StartGen()
-    {
-        GenQTE().Forget();
-    }
-
     // button generator for coroutine
     public async UniTask GenQTE()
     {

@@ -5,8 +5,9 @@ using UnityEngine;
 public class TwoKeyPlayer : MonoBehaviour
 {
     public static TwoKeyPlayer playerInstance;
-
-    public GameObject playerContainer;
+    
+    [SerializeField]
+    private GameObject playerContainer;
     
     public GameObject playerModel;
     private Transform modelTrans;
