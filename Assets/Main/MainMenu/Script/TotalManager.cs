@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
@@ -55,12 +54,12 @@ public class TotalManager : MonoBehaviourPunCallbacks
         {
             if (optionEnabled)
             {
-                optionScreen.GameObject().SetActive(false);
+                optionScreen.gameObject.SetActive(false);
                 optionEnabled = false;
             }
             else
             {
-                optionScreen.GameObject().SetActive(true);
+                optionScreen.gameObject.SetActive(true);
                 optionEnabled = true;
             }
         }
@@ -127,7 +126,7 @@ public class TotalManager : MonoBehaviourPunCallbacks
     
     private IEnumerator CountBeforeStart()
     {
-        waitScreen.GameObject().SetActive(true);
+        waitScreen.gameObject.SetActive(true);
         yield return waitTwoSecond;
         waitText.text = "Ready";
         yield return waitTwoSecond;
@@ -138,7 +137,7 @@ public class TotalManager : MonoBehaviourPunCallbacks
         }
         waitText.text= "Go!";
         yield return waitHalfSecond;
-        waitScreen.GameObject().SetActive(false);
+        waitScreen.gameObject.SetActive(false);
         gameManager.GetComponent<WholeGameManager>().GameStart();
     }
 
@@ -150,17 +149,17 @@ public class TotalManager : MonoBehaviourPunCallbacks
     {
         gameManager.GetComponent<WholeGameManager>().GetScore();
         yield return waitHalfSecond;
-        waitScreen.GameObject().SetActive(true);
+        waitScreen.gameObject.SetActive(true);
         waitText.text = "FINISH!";
         yield return waitTwoSecond;
         waitText.text = "";
-        waitScreen.GameObject().SetActive(false);
+        waitScreen.gameObject.SetActive(false);
         SendGameEnd();
     }
     
     public void ResumeGame()
     {
-        optionScreen.GameObject().SetActive(false);
+        optionScreen.gameObject.SetActive(false);
         optionEnabled = false;
     }
 

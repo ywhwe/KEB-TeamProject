@@ -21,7 +21,6 @@ public class MainMenuManager : MonoBehaviour
         customizeButton.onClick.AddListener(CustomizeScreenOn);
         cusomizeScreenOffButton.onClick.AddListener(CustomizeScreenOff);
         exitButton.onClick.AddListener(TotalManager.instance.ExitGame);
-        Instantiate(TotalManager.instance.playerPrefab);
     }
     
     public void CustomizeScreenOn()

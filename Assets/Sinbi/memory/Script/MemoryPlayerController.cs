@@ -11,9 +11,11 @@ public class MemoryPlayerController : MonoBehaviour
     protected static readonly int IsAMove = Animator.StringToHash("isAMove");
     protected static readonly int IsSMove = Animator.StringToHash("isSMove");
     protected static readonly int IsDMove = Animator.StringToHash("isDMove");
-    
+
+    public static float a = 5f; 
     public List<int> randomMotions = new List<int>();
-    protected WaitForSeconds calTime = new WaitForSeconds(5f);
+    protected WaitForSeconds calTime = new WaitForSeconds(a);
+    
     
     public GameObject player;
     protected List<int> playerMotions = new List<int>();
@@ -42,12 +44,14 @@ public class MemoryPlayerController : MonoBehaviour
         RandomAction();
         
         yield return calTime;
+        a=a+0.5f;
         
         Debug.Log("Player Motions: " + string.Join(", ", playerMotions));
         
         playerLife = CompareMotionNumber(playerMotions, randomMotions, playerLife);
         
         Debug.Log("Life: " + playerLife);
+        
         
         
         if (playerLife == 0)
