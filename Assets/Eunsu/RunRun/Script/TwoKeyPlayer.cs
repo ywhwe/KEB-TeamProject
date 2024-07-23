@@ -26,6 +26,7 @@ public class TwoKeyPlayer : MonoBehaviour
 
     private void Start() // Make this as identical method
     {
+        playerModel = TotalManager.instance.playerPrefab;
         var player = Instantiate(playerModel, Vector3.zero, Quaternion.identity);
         player.transform.SetParent(playerContainer.transform);
 

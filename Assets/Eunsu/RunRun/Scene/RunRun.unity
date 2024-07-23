@@ -19754,7 +19754,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   isGameEnd: 0
-  scoreBoard: {fileID: 2078012280}
   pvTest: {fileID: 1446660599}
 --- !u!114 &1446660599
 MonoBehaviour:
@@ -25628,7 +25627,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2093373477}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ced14d9fbc65454a909dc70d5b1afcf, type: 3}
   m_Name: 
