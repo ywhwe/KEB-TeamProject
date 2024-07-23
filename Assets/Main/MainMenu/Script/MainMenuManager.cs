@@ -13,7 +13,7 @@ public class MainMenuManager : MonoBehaviour
     public Button customizeButton;
     public Button exitButton;
     public Image customizeScreen;
-    public Button cusomizeScreenOffButton;
+    public Button customizeScreenOffButton;
     public Button testscenebutton;
 
 
@@ -25,8 +25,6 @@ public class MainMenuManager : MonoBehaviour
         customizeScreenOffButton.onClick.AddListener(CustomizeScreenOff);
         exitButton.onClick.AddListener(TotalManager.instance.ExitGame);
         testscenebutton.onClick.AddListener(TotalManager.instance.GoToTestgame);
-        Instantiate(TotalManager.instance.playerPrefab);
-     
     }
     
     public void CustomizeScreenOn()

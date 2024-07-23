@@ -2129,11 +2129,37 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2550051179717675589, guid: b84e9513ffad8bd41bbe550189737a5e, type: 3}
   m_PrefabInstance: {fileID: 2010050974}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &878897970 stripped
+--- !u!1 &878897970
 GameObject:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 2051007875642603820, guid: b16c8242d0efe8c4781c41ea1f45cc85, type: 3}
-  m_PrefabInstance: {fileID: 338616365}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 878897971}
+  m_Layer: 0
+  m_Name: 
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &878897971
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878897970}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &900466445
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3859,7 +3885,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 665801612}
-  - {fileID: 338616366}
   - {fileID: 2010050975}
   - {fileID: 1788475247}
   - {fileID: 1806369569}
@@ -3927,7 +3952,7 @@ MonoBehaviour:
   customizeButton: {fileID: 333587832}
   exitButton: {fileID: 1190692826}
   customizeScreen: {fileID: 1487528274}
-  cusomizeScreenOffButton: {fileID: 1732140486}
+  customizeScreenOffButton: {fileID: 1732140486}
   testscenebutton: {fileID: 1311746514}
 --- !u!4 &1842401907
 Transform:
@@ -4621,6 +4646,7 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 878897971}
   - {fileID: 963194228}
   - {fileID: 705507995}
   - {fileID: 567360554}
