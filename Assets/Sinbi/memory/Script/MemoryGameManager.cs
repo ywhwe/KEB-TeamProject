@@ -2,17 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MemoryGameManager : MonoBehaviour
+public class MemoryGameManager : WholeGameManager
 {
-    // Start is called before the first frame update
-    void Start()
+    public static MemoryGameManager instance;
+    
+    private void Awake()
     {
-        
+        instance = this;
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    public override void GameStart()
     {
-        
+        MemoryPlayerController.instance.StartGame();
     }
+    
+    public override void GetScore()
+    {
+    
+    }
+    
+    public override void GameEnd()
+    {
+        TotalManager.instance.ScoreBoardTest();
+    }
+    
 }
