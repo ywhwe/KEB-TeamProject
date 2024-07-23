@@ -11,13 +11,14 @@ public class CreatePlayer : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        GameObject temp = Instantiate(TotalManager.instance.playerPrefab, transform.position, transform.rotation);
+        temp.transform.SetParent(transform);
+        player1 = temp;
     }
 
     void Start()
     {
-        player1 = TotalManager.instance.playerPrefab;
-        GameObject temp = Instantiate(player1, transform.position, Quaternion.identity);
-        temp.transform.SetParent(transform);
+        
     }
 
     // Update is called once per frame
