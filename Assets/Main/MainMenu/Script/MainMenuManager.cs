@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
@@ -12,16 +13,16 @@ public class MainMenuManager : MonoBehaviour
     public Button customizeButton;
     public Button exitButton;
     public Image customizeScreen;
-    public Button cusomizeScreenOffButton;
+    public Button customizeScreenOffButton;
+
 
     void Start()
     {
         // startButton.onClick.AddListener(TotalManager.instance.GoToIngame);
         startButton.onClick.AddListener(() => SoundManager.instance.PlaySound("s1"));
         customizeButton.onClick.AddListener(CustomizeScreenOn);
-        cusomizeScreenOffButton.onClick.AddListener(CustomizeScreenOff);
+        customizeScreenOffButton.onClick.AddListener(CustomizeScreenOff);
         exitButton.onClick.AddListener(TotalManager.instance.ExitGame);
-        Instantiate(TotalManager.instance.playerPrefab);
     }
     
     public void CustomizeScreenOn()

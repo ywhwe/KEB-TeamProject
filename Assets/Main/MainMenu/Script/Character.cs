@@ -1,20 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {
+    private int prevIndex = 0;
+    
+    
     public GameObject[] characterPrefab;
-    public GameObject currentCharacter;
+
     void Start()
     {
-        currentCharacter = Instantiate(characterPrefab[0],this.transform.position,this.transform.rotation);
-        currentCharacter.transform.parent = this.transform;
-        currentCharacter.transform.localScale = new Vector3(1f, 1f, 1f);
+        
     }
 
-    void Update()
+    public void CustomizeSelect(int prefabNumber)
     {
-        
+        characterPrefab[prevIndex].SetActive(false);
+        characterPrefab[prefabNumber].SetActive(true);
+        prevIndex = prefabNumber;
+        TotalManager.instance.playerPrefabNumber = prefabNumber;
     }
 }
