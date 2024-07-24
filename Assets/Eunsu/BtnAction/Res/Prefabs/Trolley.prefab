@@ -12594,7 +12594,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5299461094420172739}
   m_Layer: 0
-  m_Name: BackWheel
+  m_Name: BackWheels
   m_TagString: Wheels
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25964,7 +25964,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6669615517523068043}
-  - component: {fileID: 7044626109118608811}
   - component: {fileID: 8953968590679098065}
   - component: {fileID: 2963289152619367576}
   m_Layer: 0
@@ -25993,22 +25992,6 @@ Transform:
   - {fileID: 9053645395068481902}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7044626109118608811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6845186158050518054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3973ccd743c2d0f49a40e9e9a3541551, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wheel1: {fileID: 6420566166912120736}
-  wheel2: {fileID: 2437671026704953804}
-  wheel3: {fileID: 2046661101471084267}
-  wheel4: {fileID: 7002938628487833696}
 --- !u!95 &8953968590679098065
 Animator:
   serializedVersion: 5

@@ -22,7 +22,6 @@ public class GameManagerBtn : WholeGameManager
     
     [Header("Button")]
     public TextMeshProUGUI qteBtnText;
-    public GameObject qteBtn;
     [HideInInspector]
     public KeyCode waitingKeyCode = KeyCode.None;
     
@@ -31,20 +30,19 @@ public class GameManagerBtn : WholeGameManager
     [HideInInspector]
     public int successCount;
     
-    private Animator ani;
-    private static readonly int Gen = Animator.StringToHash("Gen");
-    
     private float objSpeed = 1f;
     
     private bool isMatch = true;
     public bool IsMatch => isMatch;
+
+    [HideInInspector]
+    public bool isGen = false;
     
     public PhotonView PV;
 
     private void Awake()
     {
         instance = this;
-        ani = GetComponent<Animator>();
         successCount = 0;
     }
 
@@ -65,14 +63,17 @@ public class GameManagerBtn : WholeGameManager
         if (BtnController.ctrlInstance.inputKeyCode is KeyCode.None) return;
         CompKey();
 
-        if (successCount is not 10) return;
-
-        StartCoroutine(EndScene());
+        if (isGameEnd)
+        {
+            StartCoroutine(EndScene());
+            isGameEnd = false;
+        }
+        
     }
     
     private async UniTask GenQTE()
     {
-        while (successCount < 10) // if successCount bigger than setting value stops coroutine
+        while (successCount < 10) // if successCount bigger than setting value stops loop
         {
             rand = Random.Range(0, 100);
             BtnControl(rand);
@@ -80,10 +81,11 @@ public class GameManagerBtn : WholeGameManager
             // if IsMatch is false, suspends coroutine 'til it is true
             await UniTask.WaitUntil(() => IsMatch);
 
-            if (!IsMatch) continue; // user input matched with QTE buttons increase successCount
+            if (!IsMatch) continue; // user input matched with QTE buttons, increase successCount
             successCount++;
         }
-        
+
+        isGameEnd = true;
         Debug.Log("Remain score: " + score);
     }
     
@@ -94,22 +96,22 @@ public class GameManagerBtn : WholeGameManager
             case >= 0 and < 25 :
                 qteBtnText.text = "[ W ]";
                 waitingKeyCode = KeyCode.W;
-                ani.SetTrigger(Gen);
+                isGen = true;
                 break;
             case >= 25 and < 50 :
                 qteBtnText.text = "[ A ]";
                 waitingKeyCode = KeyCode.A;
-                ani.SetTrigger(Gen);
+                isGen = true;
                 break;
             case >= 50 and <75 :
                 qteBtnText.text = "[ S ]";
                 waitingKeyCode = KeyCode.S;
-                ani.SetTrigger(Gen);
+                isGen = true;
                 break;
             case >= 75 and < 100 :
                 qteBtnText.text = "[ D ]";
                 waitingKeyCode = KeyCode.D;
-                ani.SetTrigger(Gen);
+                isGen = true;
                 break;
         }
     }
@@ -121,20 +123,23 @@ public class GameManagerBtn : WholeGameManager
             BtnController.ctrlInstance.inputKeyCode = KeyCode.None;
             isMatch = true;
             ObjMover.ObjInstance.angle = 34f;
+            ObjMover.ObjInstance.SpeedController().Forget();
+            await UniTask.Delay(1000);
+            ObjMover.ObjInstance.angle = 3f;
         }
         else
         {
             BtnController.ctrlInstance.inputKeyCode = KeyCode.None;
             await UniTask.WaitForSeconds(1f);
             isMatch = false;
-            ObjMover.ObjInstance.angle = 7f;
+            ObjMover.ObjInstance.angle = 3f;
         }
     }
     
     public override void GameStart()
     {
         trolleyClone = Instantiate(trolleyPrefab, trolleyPos, Quaternion.identity);
-        ObjMover.ObjInstance.Spin().Forget();
+        ObjMover.ObjInstance.Spin(trolleyClone).Forget();
         GenQTE().Forget();
     }
 
@@ -151,7 +156,7 @@ public class GameManagerBtn : WholeGameManager
     
     private IEnumerator EndScene()
     {
-        isGameEnd = true;
+        if (!isGameEnd) yield break;
         yield return new WaitForSeconds(1f);
         GameEnd();
     }

@@ -196,6 +196,7 @@ GameObject:
   m_Component:
   - component: {fileID: 54390359}
   - component: {fileID: 54390361}
+  - component: {fileID: 54390362}
   m_Layer: 5
   m_Name: QTE Controller
   m_TagString: Untagged
@@ -231,7 +232,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 54390358}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 7917a859b782d5d45bd3ece31a536f17, type: 2}
   m_CullingMode: 0
@@ -244,6 +245,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &54390362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54390358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b64596b208e34604a8257eceb105bc20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManagerBtn: {fileID: 1234923850}
 --- !u!1 &107344102
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,7 +511,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 450671880}
-  - component: {fileID: 450671879}
+  - component: {fileID: 450671881}
   m_Layer: 0
   m_Name: ObjectMover
   m_TagString: Untagged
@@ -505,22 +519,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &450671879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 450671878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d75e543ed21a4c44289c6bdcfed3714d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  railPrefab: {fileID: 8709836341167068479, guid: 0d609343bf0a5aa45a701ce3e3dd31ee, type: 3}
-  backgroundPrefab: {fileID: 4411711532500489255, guid: 8cbf455d36a55b34bb15180ab5a05923, type: 3}
-  groundPrefab: {fileID: 2876460022645049671, guid: 71e0684f08d7bb34dbfcaed8fb3bafa2, type: 3}
-  angle: 7
 --- !u!4 &450671880
 Transform:
   m_ObjectHideFlags: 0
@@ -536,6 +534,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &450671881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450671878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d75e543ed21a4c44289c6bdcfed3714d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  railPrefab: {fileID: 8709836341167068479, guid: 0d609343bf0a5aa45a701ce3e3dd31ee, type: 3}
+  backgroundPrefab: {fileID: 4411711532500489255, guid: 8cbf455d36a55b34bb15180ab5a05923, type: 3}
+  groundPrefab: {fileID: 2876460022645049671, guid: 71e0684f08d7bb34dbfcaed8fb3bafa2, type: 3}
+  angle: 3
 --- !u!1 &490897249
 GameObject:
   m_ObjectHideFlags: 0
@@ -1221,7 +1235,6 @@ GameObject:
   - component: {fileID: 1234923851}
   - component: {fileID: 1234923850}
   - component: {fileID: 1234923854}
-  - component: {fileID: 1234923855}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1247,9 +1260,9 @@ MonoBehaviour:
   trolleyPrefab: {fileID: 6845186158050518054, guid: cc0d90e89cf5bee4fb620d2a97822e18, type: 3}
   trolleyClone: {fileID: 0}
   qteBtnText: {fileID: 2066567624}
-  qteBtn: {fileID: 107344102}
   waitingKeyCode: 0
   successCount: 0
+  isGen: 0
   PV: {fileID: 1234923854}
 --- !u!4 &1234923851
 Transform:
@@ -1288,27 +1301,6 @@ MonoBehaviour:
   sceneViewId: 1
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!95 &1234923855
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1234923849}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7917a859b782d5d45bd3ece31a536f17, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1516278215
 GameObject:
   m_ObjectHideFlags: 0

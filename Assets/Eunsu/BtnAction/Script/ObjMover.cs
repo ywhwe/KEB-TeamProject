@@ -1,12 +1,15 @@
 using System;
-using System.Collections;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
-using Unity.VisualScripting;
+using Quaternion = UnityEngine.Quaternion;
+using Vector3 = UnityEngine.Vector3;
 
 public class ObjMover : MonoBehaviour
 {
     public static ObjMover ObjInstance;
+    private const float Coefficient = 1f;
+
+    [Header("Trolley")]
     
     [Header("Rail")]
     public GameObject railPrefab;
@@ -48,20 +51,16 @@ public class ObjMover : MonoBehaviour
     private Quaternion initGroundAngle = new (0f, 0f, 0f, 1f);
     
     private float objSpeed = 1f;
-    
-    [HideInInspector]
-    public float angle = 7f;
 
-    private GameObject trolley;
+    [HideInInspector] public float angle = 3f;
+
+    private GameObject[] trolley;
+
+    private float timer = 0;
 
     private void Awake()
     {
         ObjInstance = this;
-    }
-
-    private void Start()
-    {
-        
     }
 
     public async UniTask RailMove()
@@ -69,8 +68,6 @@ public class ObjMover : MonoBehaviour
         while (GameManagerBtn.instance.flag)
         {
             await UniTask.Yield();
-            
-            SpeedController().Forget();
             
             rails ??= Instantiate(railPrefab, railPos, Quaternion.identity);
             
@@ -92,8 +89,6 @@ public class ObjMover : MonoBehaviour
         while (GameManagerBtn.instance.flag)
         {
             await UniTask.Yield();
-            
-            SpeedController().Forget();
             
             currentBackground ??= Instantiate(backgroundPrefab, initBgPos, initBgAngle);
             currentGround ??= Instantiate(groundPrefab, initGroundPos, initGroundAngle);
@@ -123,43 +118,41 @@ public class ObjMover : MonoBehaviour
         }
     }
     
-    private async UniTask SpeedController()
+    public async UniTask SpeedController()
     {
-        var tempVec1 = railMoveVector;
+        /*var tempVec1 = railMoveVector;
         var tempVec2 = bgMoveVector;
-        var tempVec3 = groundMoveVector;
+        var tempVec3 = groundMoveVector;*/
         
         if (GameManagerBtn.instance.IsMatch)
         {
-            railMoveVector = new Vector3(-10f, 0f, 0f);
+            while (timer < MathF.PI)
+            {
+                timer += Time.deltaTime;
+                objSpeed = 5f * MathF.Sin(timer) + Coefficient;
+            }
+
+            UniTask.Delay(4000);
+            /*railMoveVector = new Vector3(-10f, 0f, 0f);
             bgMoveVector = new Vector3(10f, 0f, 0f);
             groundMoveVector = new Vector3(-10f, 0f, 0f);
-            
+
             await UniTask.Delay(1000);
 
             railMoveVector = tempVec1;
             bgMoveVector = tempVec2;
-            groundMoveVector = tempVec3;
+            groundMoveVector = tempVec3;*/
         }
     }
     
-    public async UniTask Spin()
+    public async UniTask Spin(GameObject hmm)
     {
-        trolley = GameManagerBtn.instance.trolleyClone
-            .GetComponentInChildren<GameObject>();
-        
         while (GameManagerBtn.instance.successCount < 10)
         {
             await UniTask.Yield();
-
-            if (GameManagerBtn.instance.IsMatch) angle = 34f;
             
-            if (trolley.tag is "Wheels")
-                GameManagerBtn.instance
-                    .trolleyClone.transform
-                    .Rotate(Vector3.back, angle, Space.World);
-            
-            angle = 7f;
+            hmm.transform.Find("FrontWheels").Rotate(Vector3.back, angle, Space.Self);
+            hmm.transform.Find("BackWheels").Rotate(Vector3.back, angle, Space.Self);
         }
     }
 }
