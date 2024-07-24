@@ -10,9 +10,9 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
     private float playerScore;
     public PhotonView pvTest;
     private bool isGameEnded = false;
-    public GameObject[] playerposdb;
-    private GameObject playerpref;
-    private GameObject playerpos;
+    public GameObject[] playerposdb; // 각 플레이어 pos 데이터
+    private GameObject playerpref; // local 플레이어의 프리펩
+    private GameObject playerpos; // local 플레이어의 pos위치
     private void Awake()
     {
         instance = this;
@@ -34,7 +34,7 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
     {
         StartCoroutine(DelayInst());
     }
-    IEnumerator DelayInst()
+    IEnumerator DelayInst() //플레이어 instant 함수
     {
         yield return new WaitForSeconds(1f);
         PhotonNetwork.Instantiate(playerpref.name, playerpos.transform.position, Quaternion.identity);

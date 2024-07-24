@@ -419,7 +419,10 @@ GameObject:
   - component: {fileID: 6834753913337642853}
   - component: {fileID: 4057869524488933876}
   - component: {fileID: 5881788666550442663}
-  - component: {fileID: 3086448563758015554}
+  - component: {fileID: -3543479940829330485}
+  - component: {fileID: -1691623671297282077}
+  - component: {fileID: -6403256214234712346}
+  - component: {fileID: 7576025881446472732}
   m_Layer: 0
   m_Name: Obs_Taipan
   m_TagString: Untagged
@@ -488,7 +491,7 @@ Animator:
   m_GameObject: {fileID: 5418767941780303649}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 1c77555fce85aa74da16fd6cadfac6b8, type: 3}
-  m_Controller: {fileID: 9100000, guid: 1c9d490855405a8428fe67c307f3abd0, type: 2}
+  m_Controller: {fileID: 9100000, guid: 29239613addc3d9479e4cd8497944f95, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -511,7 +514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: c48cacdb6fcf52c429d69f6f6604052f, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: 364e06e101d7f2946bc2df0efe873ee1, type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -526,9 +529,9 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3086448563758015554}
-        m_TargetAssemblyTypeName: CharacterControl, Assembly-CSharp
-        m_MethodName: WMotion
+      - m_Target: {fileID: -3543479940829330485}
+        m_TargetAssemblyTypeName: ObsPlayerControl, Assembly-CSharp
+        m_MethodName: UPMotion
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -538,13 +541,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 5f8377ef-32a4-4c8e-8ab6-371b73ace97e
-    m_ActionName: Motion/WMotion[/Keyboard/w]
+    m_ActionId: 6ff2640d-8d00-44a3-b321-77c24c7a6ea6
+    m_ActionName: Motion/Up Arrow[/Keyboard/upArrow]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3086448563758015554}
-        m_TargetAssemblyTypeName: CharacterControl, Assembly-CSharp
-        m_MethodName: AMotion
+      - m_Target: {fileID: -3543479940829330485}
+        m_TargetAssemblyTypeName: ObsPlayerControl, Assembly-CSharp
+        m_MethodName: DownMotion
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -554,13 +557,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 5a8b4b1c-c1f8-4540-9d86-e7c2e57b34e3
-    m_ActionName: Motion/AMotion[/Keyboard/a]
+    m_ActionId: d4201620-866c-4b63-8983-fd274047c622
+    m_ActionName: Motion/Down Arrow[/Keyboard/downArrow]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3086448563758015554}
-        m_TargetAssemblyTypeName: CharacterControl, Assembly-CSharp
-        m_MethodName: SMotion
+      - m_Target: {fileID: -3543479940829330485}
+        m_TargetAssemblyTypeName: ObsPlayerControl, Assembly-CSharp
+        m_MethodName: LeftMotion
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -570,13 +573,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 63aa1c87-c71d-4ba0-8715-68b2009cdcb3
-    m_ActionName: Motion/SMotion[/Keyboard/s]
+    m_ActionId: ed34404f-dbbf-4fc0-aa28-561a3cd6c6f6
+    m_ActionName: Motion/Left Arrow[/Keyboard/leftArrow]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3086448563758015554}
-        m_TargetAssemblyTypeName: CharacterControl, Assembly-CSharp
-        m_MethodName: DMotion
+      - m_Target: {fileID: -3543479940829330485}
+        m_TargetAssemblyTypeName: ObsPlayerControl, Assembly-CSharp
+        m_MethodName: RightMotion
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -586,14 +589,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: f6bf3094-c3da-4589-baf2-515a3cab43e9
-    m_ActionName: Motion/DMotion[/Keyboard/d]
+    m_ActionId: 29a72d43-fe79-4be7-92c3-31bc695e92a9
+    m_ActionName: Motion/Right Arrow[/Keyboard/rightArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Motion
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &3086448563758015554
+--- !u!114 &-3543479940829330485
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -602,11 +605,80 @@ MonoBehaviour:
   m_GameObject: {fileID: 5418767941780303649}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b0c7443c345ed5438252e68e62ca797, type: 3}
+  m_Script: {fileID: 11500000, guid: 543d0a6deace9b04a917858712fb3d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ani: {fileID: 4057869524488933876}
-  motionNumber: 0
+--- !u!114 &-1691623671297282077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5418767941780303649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: -6403256214234712346}
+  - {fileID: 7576025881446472732}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &-6403256214234712346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5418767941780303649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 9
+    SynchronizeType: 1
+    Name: UpA
+  - Type: 9
+    SynchronizeType: 1
+    Name: DownA
+  - Type: 9
+    SynchronizeType: 1
+    Name: LeftA
+  - Type: 9
+    SynchronizeType: 1
+    Name: RightA
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
+--- !u!114 &7576025881446472732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5418767941780303649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &5657534094287089034
 GameObject:
   m_ObjectHideFlags: 0

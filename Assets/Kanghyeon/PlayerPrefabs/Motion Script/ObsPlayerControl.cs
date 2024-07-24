@@ -5,7 +5,7 @@ using Photon.Pun;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class tempcontrol : MonoBehaviourPun
+public class ObsPlayerControl : MonoBehaviourPun
 {
     public Animator ani;
     
