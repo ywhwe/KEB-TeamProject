@@ -1,0 +1,94 @@
+{
+    "name": "Obs_Player Motion",
+    "maps": [
+        {
+            "name": "Motion",
+            "id": "9adc23df-f442-4a72-8a29-1d34afa313a0",
+            "actions": [
+                {
+                    "name": "Up Arrow",
+                    "type": "Button",
+                    "id": "6ff2640d-8d00-44a3-b321-77c24c7a6ea6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Down Arrow",
+                    "type": "Button",
+                    "id": "d4201620-866c-4b63-8983-fd274047c622",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Left Arrow",
+                    "type": "Button",
+                    "id": "ed34404f-dbbf-4fc0-aa28-561a3cd6c6f6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Right Arrow",
+                    "type": "Button",
+                    "id": "29a72d43-fe79-4be7-92c3-31bc695e92a9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "20c7b6d8-b301-4fec-b47e-37862d207758",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Up Arrow",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4ba3539e-4701-444a-b0f2-b9e76bff38b7",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Down Arrow",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d658be2f-1342-46e7-a52b-00bd948efdf3",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left Arrow",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "26117ebc-8ce8-49ad-be15-df719ccda20c",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right Arrow",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

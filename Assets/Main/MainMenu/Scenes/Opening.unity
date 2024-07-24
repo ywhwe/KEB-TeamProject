@@ -5375,6 +5375,15 @@ MonoBehaviour:
   - {fileID: 6349251540357761729, guid: e222440714d71884c906fe459c20cf28, type: 3}
   - {fileID: 7424971432624032287, guid: 82cc703319692d0449c6d96f2653ade9, type: 3}
   - {fileID: 5418767941780303649, guid: be08659ad894ef040870cc2aad31af7b, type: 3}
+  obprefabDB:
+  - {fileID: 6095159506538284724, guid: 0fd8bf0c9515e7c4cbb764e748aef10b, type: 3}
+  - {fileID: 2051007875642603820, guid: 89466748ab8a2684282ccff83f0a73df, type: 3}
+  - {fileID: 2550051179717675589, guid: daff2d69bbf69aa4296f38eb7571461f, type: 3}
+  - {fileID: 438370889554586757, guid: d5e87424462d2e64290678740d903f1a, type: 3}
+  - {fileID: 4099112196981185630, guid: b9e8542603b73bf40a551517cb9040c1, type: 3}
+  - {fileID: 6349251540357761729, guid: e11b9677de51f0a459f2655f269c351c, type: 3}
+  - {fileID: 7424971432624032287, guid: 862072df3371ca149881f4e3d7772e15, type: 3}
+  - {fileID: 5418767941780303649, guid: d0dd1196bb71fb64b875f2fa5d94c8c2, type: 3}
   playerPrefabNumber: 0
   fadeScreen: {fileID: 1174207166}
   optionScreen: {fileID: 280211600}
@@ -5387,6 +5396,7 @@ MonoBehaviour:
   volumeSlider: {fileID: 22749827}
   gameManager: {fileID: 0}
   PV: {fileID: 2119134639}
+  BGM: {fileID: 0}
 --- !u!4 &2119134637
 Transform:
   m_ObjectHideFlags: 0

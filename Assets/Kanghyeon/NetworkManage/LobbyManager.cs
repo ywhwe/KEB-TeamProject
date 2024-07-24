@@ -55,6 +55,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         Debug.LogFormat("OnPlayerEnteredRoom() {0}", other.NickName); // not seen if you're the player connecting
         if (PhotonNetwork.IsMasterClient)
         {
+            Debug.Log(PhotonNetwork.PlayerList[0]);
+            Debug.Log(PhotonNetwork.PlayerList[1]);
+            Debug.Log(PhotonNetwork.PlayerList[2]);
             Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}",
                 PhotonNetwork.IsMasterClient); // called before OnPlayerLeftRoom
         }
@@ -66,6 +69,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.IsMasterClient)
         {
+            Debug.Log(PhotonNetwork.PlayerList[0]);
+            Debug.Log(PhotonNetwork.PlayerList[1]);
+            Debug.Log(PhotonNetwork.PlayerList[2]);
             Debug.LogFormat("OnPlayerLeftRoom IsMasterClient {0}",
                 PhotonNetwork.IsMasterClient); // called before OnPlayerLeftRoom
 
