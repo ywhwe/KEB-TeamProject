@@ -245,6 +245,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   isGameEnd: 0
+  turnDB:
+  - numOfSeq: 3
+    motionPlayTime: 0
+  - numOfSeq: 4
+    motionPlayTime: 0
+  - numOfSeq: 5
+    motionPlayTime: 0
+  cpuAni: {fileID: 9111850140442019992}
 --- !u!4 &1056880218
 Transform:
   m_ObjectHideFlags: 0
@@ -260,11 +268,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1485795357 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6349251540357761729, guid: e222440714d71884c906fe459c20cf28, type: 3}
-  m_PrefabInstance: {fileID: 1636729351}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1636729351
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -299,7 +302,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8806814893376970571, guid: e222440714d71884c906fe459c20cf28, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.18
+      value: 8.39
       objectReference: {fileID: 0}
     - target: {fileID: 8806814893376970571, guid: e222440714d71884c906fe459c20cf28, type: 3}
       propertyPath: m_LocalRotation.w
@@ -645,11 +648,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6349251540132180342 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1933797351486664943, guid: f9093dd0265564ea8b72f06e1f51e53e, type: 3}
-  m_PrefabInstance: {fileID: 8146939189586264899}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8146939189586264899
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -704,7 +702,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: d0c1e2fd2857b43909192dec2502dc14, type: 2}
     - target: {fileID: 1933797351486664943, guid: f9093dd0265564ea8b72f06e1f51e53e, type: 3}
       propertyPath: m_Name
-      value: Sparrow
+      value: Cpu Player
       objectReference: {fileID: 0}
     - target: {fileID: 2425388903869420427, guid: f9093dd0265564ea8b72f06e1f51e53e, type: 3}
       propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -725,32 +723,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1933797351486664943, guid: f9093dd0265564ea8b72f06e1f51e53e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 9111850140442019993}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9093dd0265564ea8b72f06e1f51e53e, type: 3}
 --- !u!95 &9111850140442019992 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 1676232677737346571, guid: f9093dd0265564ea8b72f06e1f51e53e, type: 3}
   m_PrefabInstance: {fileID: 8146939189586264899}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &9111850140442019993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6349251540132180342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 451338bd3031a4d92a73e76226bea051, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ani: {fileID: 9111850140442019992}
-  randomMotions: 
-  player: {fileID: 1485795357}
-  playerLife: 100
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
