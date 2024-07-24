@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 public class BtnAction : MonoBehaviour
 {
-    private Animator ani;
+    /*private Animator ani;
     public TextMeshProUGUI qteBtn;
     public BtnController btnController;
     
@@ -22,7 +22,7 @@ public class BtnAction : MonoBehaviour
     [HideInInspector]
     public float score = 1000;
 
-    private float recutionRate = 2f;
+    private float reductionRate = 2f;
     
     private static readonly int Gen = Animator.StringToHash("Gen");
     private static readonly int isWait = Animator.StringToHash("isWait");
@@ -38,7 +38,7 @@ public class BtnAction : MonoBehaviour
     private void Update()
     {
         // Score is reduced by time
-        score -= Time.deltaTime * recutionRate;
+        score -= Time.deltaTime * reductionRate;
     }
 
     // button generator for coroutine
@@ -46,11 +46,11 @@ public class BtnAction : MonoBehaviour
     {
         while (successCount < 10) // if successCount bigger than setting value stops coroutine
         {
-            // if IsMatch is false, suspends coroutine 'til it is true
-            await UniTask.WaitUntil(() => btnController.IsMatch);
-            
             rand = Random.Range(0, 100);
             BtnControl(rand);
+            
+            // if IsMatch is false, suspends coroutine 'til it is true
+            await UniTask.WaitUntil(() => btnController.IsMatch);
 
             if (!btnController.IsMatch) continue; // user input matched with QTE buttons increase successCount
             ani.SetBool(isWait, false);
@@ -87,5 +87,5 @@ public class BtnAction : MonoBehaviour
                 break;
         }
         ani.SetBool(isWait, true);
-    }
+    }*/
 }

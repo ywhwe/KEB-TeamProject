@@ -5387,6 +5387,7 @@ MonoBehaviour:
   volumeSlider: {fileID: 22749827}
   gameManager: {fileID: 0}
   PV: {fileID: 2119134639}
+  BGM: {fileID: 0}
 --- !u!4 &2119134637
 Transform:
   m_ObjectHideFlags: 0

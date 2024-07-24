@@ -13,26 +13,16 @@ public class BtnController : MonoBehaviour
 
     private Color tempColor = Color.black;
     
-    private KeyCode inputKeyCode = KeyCode.None;
-    
-    private bool isMatch = true;
-    public bool IsMatch => isMatch;
+    [HideInInspector]
+    public KeyCode inputKeyCode = KeyCode.None;
 
     private void Awake()
     {
         ctrlInstance = this;
     }
-
-    void Update()
-    {
-        isMatch = false;
-        SetKey();
-        if (inputKeyCode is KeyCode.None) return;
-        CompKey();
-    }
     
     // Stocks user input in range WASD and change color of buttons
-    private void SetKey()
+    public void SetKey()
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
@@ -72,22 +62,6 @@ public class BtnController : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.D))
         {
             Dbtn.GetComponent<Image>().color = tempColor;
-        }
-    }
-    
-    // compares generated button and stocked user input
-    private async void CompKey()
-    {
-        if (BtnAction.actionInstance.waitingKeyCode == inputKeyCode)
-        {
-            inputKeyCode = KeyCode.None;
-            isMatch = true;
-        }
-        else
-        {
-            inputKeyCode = KeyCode.None;
-            await UniTask.WaitForSeconds(1f);
-            isMatch = false;
         }
     }
 }

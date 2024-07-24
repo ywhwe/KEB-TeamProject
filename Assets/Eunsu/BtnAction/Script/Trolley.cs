@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Trolley : MonoBehaviour
 {
-    public GameObject wheel1;
+    /*public GameObject wheel1;
     public GameObject wheel2;
     public GameObject wheel3;
     public GameObject wheel4;
@@ -31,5 +31,5 @@ public class Trolley : MonoBehaviour
 
             angle = 7f;
         }
-    }
+    }*/
 }

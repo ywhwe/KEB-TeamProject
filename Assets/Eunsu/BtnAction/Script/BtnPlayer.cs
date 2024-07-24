@@ -22,8 +22,8 @@ public class BtnPlayer : MonoBehaviour
     private void Start()
     {
         playerModel = TotalManager.instance.playerPrefab;
-        var player = Instantiate(playerModel, Vector3.zero, Quaternion.identity);
-        player.transform.SetParent(playerContainer.transform, false);
+        var player = Instantiate(playerModel, Vector3.zero, Quaternion.identity, playerContainer.transform);
+        // Setting parent later instead of setting while instantiating is generating prefab twice
         
         modelTrans = player.transform;
 

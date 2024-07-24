@@ -1,6 +1,11 @@
 using System;
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
+using Random = UnityEngine.Random;
+using Photon.Pun;
+using UnityEngine.Serialization;
 
 public class GameManagerBtn : WholeGameManager
 {
@@ -9,84 +14,145 @@ public class GameManagerBtn : WholeGameManager
     [HideInInspector]
     public bool flag = true;
     
-    public GameObject railPrefab;
+    [Header("Trolley")]
     public GameObject trolleyPrefab;
-
-    private GameObject rails;
-    private GameObject rails1;
-    private Transform railTrans;
-    private Vector3 railMoveVector = new (-3f, 0f, 0f);
-    
-    private Vector3 railPos = new (-1.84f, 0.05f, 1.04f);
-    private Vector3 nextRailPos = new(10f, 0.05f, 1.04f);
     private Vector3 trolleyPos = new (2f, 0.25f, -0.197f);
+    [HideInInspector]
+    public GameObject trolleyClone;
     
-    private float railSpeed = 1f;
+    [Header("Button")]
+    public TextMeshProUGUI qteBtnText;
+    public GameObject qteBtn;
+    [HideInInspector]
+    public KeyCode waitingKeyCode = KeyCode.None;
+    
+    private float reductionRate = 2f;
+    private float rand;
+    [HideInInspector]
+    public int successCount;
+    
+    private Animator ani;
+    private static readonly int Gen = Animator.StringToHash("Gen");
+    
+    private float objSpeed = 1f;
+    
+    private bool isMatch = true;
+    public bool IsMatch => isMatch;
+    
+    public PhotonView PV;
 
     private void Awake()
     {
-        instance = this; 
+        instance = this;
+        ani = GetComponent<Animator>();
+        successCount = 0;
     }
 
     private void Start()
     {
-        BGMover.bgInstance.BgMove().Forget();
-        RailMove().Forget();
+        ObjMover.ObjInstance.BgMove().Forget();
+        ObjMover.ObjInstance.RailMove().Forget();
+        score = 1000;
+        isGameEnd = false;
     }
-    
-    // Make rails move backward
-    private async UniTask RailMove()
-    {
-        while (flag)
-        {
-            await UniTask.Yield();
-            
-            SpeedController().Forget();
-            
-            rails ??= Instantiate(railPrefab, railPos, Quaternion.identity);
-            
-            rails1 ??= Instantiate(railPrefab, nextRailPos, Quaternion.identity);
-            
-            rails.transform.Translate(railMoveVector * (railSpeed * Time.deltaTime));
-            rails1.transform.Translate(railMoveVector * (railSpeed * Time.deltaTime));
 
-            if (!(rails1.transform.position.x < -1.8f)) continue;
-            var rails2 = Instantiate(railPrefab, nextRailPos, Quaternion.identity);
-            Destroy(rails);
-            rails = rails1;
-            rails1 = rails2;
-        }
-    }
-    
-    // Controls rail speed. When player input is correct, rail moves faster
-    private async UniTask SpeedController()
+    private void Update()
     {
-        var tempVec1 = railMoveVector;
+        isMatch = false;
+        score -= Time.deltaTime * reductionRate;
         
-        if (BtnController.ctrlInstance.IsMatch)
-        {
-            railMoveVector = new Vector3(-10f, 0f, 0f);
-            
-            await UniTask.Delay(1000);
+        BtnController.ctrlInstance.SetKey();
+        if (BtnController.ctrlInstance.inputKeyCode is KeyCode.None) return;
+        CompKey();
 
-            railMoveVector = tempVec1;
+        if (successCount is not 10) return;
+
+        StartCoroutine(EndScene());
+    }
+    
+    private async UniTask GenQTE()
+    {
+        while (successCount < 10) // if successCount bigger than setting value stops coroutine
+        {
+            rand = Random.Range(0, 100);
+            BtnControl(rand);
+            
+            // if IsMatch is false, suspends coroutine 'til it is true
+            await UniTask.WaitUntil(() => IsMatch);
+
+            if (!IsMatch) continue; // user input matched with QTE buttons increase successCount
+            successCount++;
+        }
+        
+        Debug.Log("Remain score: " + score);
+    }
+    
+    private void BtnControl(float random)
+    {
+        switch (random)
+        {
+            case >= 0 and < 25 :
+                qteBtnText.text = "[ W ]";
+                waitingKeyCode = KeyCode.W;
+                ani.SetTrigger(Gen);
+                break;
+            case >= 25 and < 50 :
+                qteBtnText.text = "[ A ]";
+                waitingKeyCode = KeyCode.A;
+                ani.SetTrigger(Gen);
+                break;
+            case >= 50 and <75 :
+                qteBtnText.text = "[ S ]";
+                waitingKeyCode = KeyCode.S;
+                ani.SetTrigger(Gen);
+                break;
+            case >= 75 and < 100 :
+                qteBtnText.text = "[ D ]";
+                waitingKeyCode = KeyCode.D;
+                ani.SetTrigger(Gen);
+                break;
         }
     }
-
+    
+    private async void CompKey()
+    {
+        if (waitingKeyCode == BtnController.ctrlInstance.inputKeyCode)
+        {
+            BtnController.ctrlInstance.inputKeyCode = KeyCode.None;
+            isMatch = true;
+            ObjMover.ObjInstance.angle = 34f;
+        }
+        else
+        {
+            BtnController.ctrlInstance.inputKeyCode = KeyCode.None;
+            await UniTask.WaitForSeconds(1f);
+            isMatch = false;
+            ObjMover.ObjInstance.angle = 7f;
+        }
+    }
+    
     public override void GameStart()
     {
-        Instantiate(trolleyPrefab, trolleyPos, Quaternion.identity);
-        BtnAction.actionInstance.GenQTE().Forget();
+        trolleyClone = Instantiate(trolleyPrefab, trolleyPos, Quaternion.identity);
+        ObjMover.ObjInstance.Spin().Forget();
+        GenQTE().Forget();
     }
 
     public override void GetScore()
     {
-        var clearTime = BtnAction.actionInstance.score;
+        PV.RPC("RPCAddScore",RpcTarget.All,PhotonNetwork.LocalPlayer.NickName,score);
     }
 
     public override void GameEnd()
     {
         flag = false;
-        TotalManager.instance.ScoreBoardTest();
+        TotalManager.instance.StartFinish();
+    }
+    
+    private IEnumerator EndScene()
+    {
+        isGameEnd = true;
+        yield return new WaitForSeconds(1f);
+        GameEnd();
     }
 }
