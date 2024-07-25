@@ -17,14 +17,12 @@ public class RandomMotion : MonoBehaviour
     
     public int randomMotionNumber;
     protected int stage = 0;
-    protected WaitForSeconds calTime = new WaitForSeconds(4f);
+    protected WaitForSeconds calTime = new WaitForSeconds(5f);
     
-    public GameObject player1;
-    public GameObject player2;
-    protected int player1Motion, player2Motion;
+    public GameObject player;
+    protected int player1Motion;
     public int player1Life = 3; 
-    public int player2Life = 3;
-    public bool IsGameEnd = false;
+    
 
     private void Awake()
     {
@@ -34,14 +32,12 @@ public class RandomMotion : MonoBehaviour
     void Start()
     {
         ani.GetComponent<Animator>();
-        player1 = CreatePlayer.instance.player1.gameObject;
-        
+        player = CreatePlayer.instance.player1;
     }
     
     void Update()
     {
-        player2Motion = player2.GetComponent<CharacterControl>().motionNumber;
-        player1Motion = player1.GetComponent<CharacterControl>().motionNumber;
+        player1Motion = player.GetComponent<CharacterControl>().motionNumber;
     }
     public IEnumerator PlayGameRoutine()
     {
@@ -50,14 +46,13 @@ public class RandomMotion : MonoBehaviour
         yield return calTime;
         
         Debug.Log(player1Motion);
-        Debug.Log(player2Motion);
         
         player1Life = CompareMotionNumber(player1Motion, player1Life);
-        player2Life = CompareMotionNumber(player2Motion, player2Life);
         
-        Debug.Log("life1 "+ player1Life + " life2 "+player2Life);
         
-        if (player1Life == 0 || player2Life == 0)
+        Debug.Log("life1 "+ player1Life);
+        
+        if (player1Life == 0)
         {
             EndGame();
         }
@@ -69,8 +64,7 @@ public class RandomMotion : MonoBehaviour
     
     public void RandomAction()
     {
-        player2.GetComponent<CharacterControl>().motionNumber = 0;
-        player1.GetComponent<CharacterControl>().motionNumber = 0;
+        player.GetComponent<CharacterControl>().motionNumber = 0;
         randomMotionNumber = 0;
         randomMotionNumber = Random.Range(1, 5);
 
@@ -111,6 +105,8 @@ public class RandomMotion : MonoBehaviour
 
     public void StartGame()
     {
+        GameManagerFTM.instance.startTime = Time.time;
+        Debug.Log(GameManagerFTM.instance.startTime);
         StartCoroutine(PlayGameRoutine());
     }
 
@@ -118,6 +114,8 @@ public class RandomMotion : MonoBehaviour
     {
         Time.timeScale = 1f;
         stage = 0;
+        GameManagerFTM.instance.finishTime = Time.time;
+        Debug.Log(GameManagerFTM.instance.finishTime);
         GameManagerFTM.instance.GameEnd();
     }
 }
