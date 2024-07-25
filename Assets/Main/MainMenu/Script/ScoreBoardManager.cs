@@ -33,7 +33,6 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
     {
         CalculScore(NetworkManager.instance.currentplayerscore,NetworkManager.instance.isDescending);
         UpdateScoreUI();
-        NetworkManager.instance.InitCurScore();
     }
 
     public void CalculScore(GenericDictionary<string,float> scoredb,bool Descending)

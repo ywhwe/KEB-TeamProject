@@ -24,9 +24,11 @@ public class RecordGameManager : WholeGameManager
         int index = Array.FindIndex(PhotonNetwork.PlayerList, x => x.NickName == PhotonNetwork.LocalPlayer.NickName);
         Debug.Log(index);
         playerpos= playerposdb[index];
+        
     }
     private void Start()
     {
+        NetworkManager.instance.isDescending = false;
         StartCoroutine(DelayInst());
     }
     IEnumerator DelayInst() //플레이어 instant 함수
@@ -65,6 +67,7 @@ public class RecordGameManager : WholeGameManager
         if (recordnum == 0)
         {
             score = Time.time - recordtime;
+            Debug.Log(score);
             TotalManager.instance.StartFinish();
         }
     }

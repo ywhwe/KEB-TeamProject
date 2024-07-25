@@ -17,15 +17,17 @@ public abstract class WholeGameManager : MonoBehaviourPunCallbacks
 
     public  void GetScore()
     {
-        photonView.RPC("rpcAddScore",RpcTarget.All,name,score);
+        photonView.RPC("rpcAddScore",RpcTarget.All,PhotonNetwork.LocalPlayer.NickName,score);
+        Debug.Log(score);
     }
 
     // public abstract void GameEnd();
     
 
     [PunRPC]
-    void rpcAddScore(string name, float score)
+    protected void rpcAddScore(string name, float score)
     {
+        Debug.Log(score);
         NetworkManager.instance.currentplayerscore[name] = score;
     }
 
