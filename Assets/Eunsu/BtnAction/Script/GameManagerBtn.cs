@@ -53,6 +53,7 @@ public class GameManagerBtn : WholeGameManager
 
     private void Start()
     {
+        NetworkManager.instance.isDescending = false;
         ObjMover.ObjInstance.BgMove().Forget();
         ObjMover.ObjInstance.RailMove().Forget();
         score = 1000;
@@ -154,34 +155,19 @@ public class GameManagerBtn : WholeGameManager
         await UniTask.Delay(2000);
     }
     
-    [PunRPC]
-    private void RPCAddScore(string curName, float curScore)
-    {
-        NetworkManager.instance.currentplayerscore[curName] = curScore;
-    }
-    
     public override void GameStart()
     {
         trolleyClone = Instantiate(trolleyPrefab, trolleyPos, Quaternion.identity);
         ObjMover.ObjInstance.Spin().Forget();
         GenQTE().Forget();
     }
-
-    public override void GetScore()
-    {
-        PV.RPC("RPCAddScore",RpcTarget.All,PhotonNetwork.LocalPlayer.NickName,clearTime);
-    }
-
-    public override void GameEnd()
-    {
-        flag = false;
-        TotalManager.instance.StartFinish();
-    }
     
     private IEnumerator EndScene()
     {
         if (!isGameEnd) yield break;
+        score = clearTime;
         yield return new WaitForSeconds(1f);
-        GameEnd();
+        flag = false;
+        TotalManager.instance.StartFinish();
     }
 }

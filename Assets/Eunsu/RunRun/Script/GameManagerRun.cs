@@ -32,6 +32,7 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
 
     private void Start()
     {
+        NetworkManager.instance.isDescending = true;
         StartCoroutine(DelayInst());
     }
     IEnumerator DelayInst() //플레이어 instant 함수
@@ -57,34 +58,18 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
         StopCoroutine(NoteController.instance.GenNotes());
         StartCoroutine(EndScene());
     }
-    
-    [PunRPC]
-    private void RPCAddScore(string curName, float curScore)
-    {
-        NetworkManager.instance.currentplayerscore[curName] = curScore;
-    }
 
     public override void GameStart()
     {
         Background.bgInstance.BackgroundMove().Forget();
         StartCoroutine(NoteController.instance.GenNotes());
     }
-
-    public override void GetScore()
-    {
-        score = ScoreBoard.scoreInstance.score;
-        pvTest.RPC("RPCAddScore",RpcTarget.All,PhotonNetwork.LocalPlayer.NickName,score);
-    }
-
-    public override void GameEnd()
-    {
-        TotalManager.instance.StartFinish();
-    }
     
     private IEnumerator EndScene()
     {
+        score = ScoreBoard.scoreInstance.score;
         isGameEnded = true;
         yield return new WaitForSeconds(1f);
-        GameEnd();
+        TotalManager.instance.StartFinish();
     }
 }

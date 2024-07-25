@@ -7,7 +7,7 @@ using UnityEngine;
 
 public abstract class WholeGameManager : MonoBehaviourPunCallbacks
 {
-    protected float score;
+    public float score; // Should be protected
     public bool isGameEnd;
     public bool isDescend;
     

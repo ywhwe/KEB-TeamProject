@@ -44,6 +44,7 @@ public class MemoryGameManager : WholeGameManager
     {
         instance = this;
         playerController.OnKeyPressed += PlayerInput;
+        NetworkManager.instance.isDescending = true; // If change score system make this false
     }
 
     private void Update()
@@ -55,30 +56,6 @@ public class MemoryGameManager : WholeGameManager
     {
       StartGame();
     }
-
-    public override void GetScore()
-    {
-        score = getScore;
-        AddScore(PhotonNetwork.LocalPlayer.NickName,score);
-    }
-    
-    private void AddScore(string name, float score)
-    {
-        PV.RPC("rpcAddScore",RpcTarget.All,name,score);
-    }
-    
-    [PunRPC]
-    
-    void rpcAddScore(string name, float score)
-    {
-        NetworkManager.instance.currentplayerscore[name] = score;
-    }
-
-    public override void GameEnd()
-    {
-       TotalManager.instance.StartFinish();
-    }
-
 
     private void StartGame()
     {
@@ -178,7 +155,8 @@ public class MemoryGameManager : WholeGameManager
         
         Debug.Log($"Score is {getScore}");
         
-        GameEnd();
+        score = getScore;
+        TotalManager.instance.StartFinish();
     }
 
     private void Timer()

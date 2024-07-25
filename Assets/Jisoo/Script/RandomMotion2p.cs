@@ -116,6 +116,9 @@ public class RandomMotion2p : MonoBehaviour
     {
         Time.timeScale = 1f;
         stage = 0;
-        GameManagerFTM.instance.GameEnd();
+        GameManagerFTM.instance.score
+            = GameManagerFTM.instance.finishTime
+              - GameManagerFTM.instance.startTime;
+        TotalManager.instance.StartFinish();
     }
 }

@@ -116,6 +116,9 @@ public class RandomMotion : MonoBehaviour
         stage = 0;
         GameManagerFTM.instance.finishTime = Time.time;
         Debug.Log(GameManagerFTM.instance.finishTime);
-        GameManagerFTM.instance.GameEnd();
+        GameManagerFTM.instance.score
+            = GameManagerFTM.instance.finishTime
+              - GameManagerFTM.instance.startTime;
+        TotalManager.instance.StartFinish();
     }
 }
