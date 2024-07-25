@@ -55,4 +55,16 @@ public class PitcherSquid : MonoBehaviour
         ball.Init(balllist[0].endtime+BaseBallGameManager.instance.starttime);
         balllist.RemoveAt(0);
     }
+
+    public void SoundYap()
+    {
+        SoundManager.instance.PlaySound("Shout_yap");
+
+    }
+
+    public void SoundHap()
+    {
+        SoundManager.instance.PlaySound("Shout_hap");
+
+    }
 }
