@@ -7,15 +7,17 @@ public class MemoryPlayerController : MonoBehaviour
     public Animator ani;
     public static MemoryPlayerController instance;
     
+   
+    public static float a = 5f; 
+    
+    protected WaitForSeconds calTime = new WaitForSeconds(a);
+    
     protected static readonly int IsWMove = Animator.StringToHash("isWMove");
     protected static readonly int IsAMove = Animator.StringToHash("isAMove");
     protected static readonly int IsSMove = Animator.StringToHash("isSMove");
     protected static readonly int IsDMove = Animator.StringToHash("isDMove");
-
-    public static float a = 5f; 
-    public List<int> randomMotions = new List<int>();
-    protected WaitForSeconds calTime = new WaitForSeconds(a);
     
+    private List<int> randomMotions = new();
     
     public GameObject player;
     protected List<int> playerMotions = new List<int>();
