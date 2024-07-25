@@ -32,6 +32,8 @@ public class GameManagerBtn : WholeGameManager
     
     [HideInInspector]
     public int successCount;
+
+    private float clearTime;
     
     private bool isMatch = true; // This checks user input is correct
     public bool IsMatch => isMatch;
@@ -60,7 +62,8 @@ public class GameManagerBtn : WholeGameManager
     private async void Update()
     {
         isMatch = false;
-        score -= Time.deltaTime * reductionRate;
+        // score -= Time.deltaTime * reductionRate;
+        clearTime += Time.deltaTime;
 
         if (isLegal)
         {
@@ -166,7 +169,7 @@ public class GameManagerBtn : WholeGameManager
 
     public override void GetScore()
     {
-        PV.RPC("RPCAddScore",RpcTarget.All,PhotonNetwork.LocalPlayer.NickName,score);
+        PV.RPC("RPCAddScore",RpcTarget.All,PhotonNetwork.LocalPlayer.NickName,clearTime);
     }
 
     public override void GameEnd()
