@@ -11,6 +11,7 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
     public TextMeshProUGUI[] scoretxt;
     public PhotonView PV;
     private GenericDictionary<string, int> finalscore;
+    private List<KeyValuePair<string, int>> ranklist;
     public void RestartGame()
     {
         if (!PhotonNetwork.IsMasterClient)
@@ -61,7 +62,7 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
             finalscore[sortedscore[i].Key] += currentRankPt; // 점수변화가 없으면 계속 같은점수를 받음
         }
 
-        finalscore.OrderByDescending(x => x.Value);
+        ranklist = finalscore.OrderByDescending(x => x.Value).ToList();
     }
 
     public void UpdateScoreUI()
@@ -73,7 +74,7 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
     public void UpdateScore()
     {
         int index = 0;
-        foreach (var player in finalscore)
+        foreach (var player in ranklist)
         {
             if (index < scoretxt.Length)
             {

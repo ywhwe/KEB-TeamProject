@@ -94,6 +94,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
             return;
         }
 
+        PhotonNetwork.CurrentRoom.IsOpen = false;
         Debug.LogFormat("PhotonNetwork : Loading Level : baseball");
         TotalManager.instance.GoToGameWith();
     }

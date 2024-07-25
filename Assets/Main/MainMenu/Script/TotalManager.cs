@@ -15,8 +15,10 @@ public class TotalManager : MonoBehaviourPunCallbacks
     public static TotalManager instance;
 
     public GameObject[] prefabDB;
+    public GameObject[] obprefabDB;
     public int playerPrefabNumber = 0;
     public GameObject playerPrefab => prefabDB[playerPrefabNumber];
+    public GameObject obplayerPrefab => obprefabDB[playerPrefabNumber];
     
     public Image fadeScreen;
     public Image optionScreen;
