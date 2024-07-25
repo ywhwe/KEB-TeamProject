@@ -66,6 +66,7 @@ public class MemoryGameManager : WholeGameManager
     {
         PV.RPC("rpcAddScore",RpcTarget.All,name,score);
     }
+    
     [PunRPC]
     
     void rpcAddScore(string name, float score)
