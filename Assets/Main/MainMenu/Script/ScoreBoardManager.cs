@@ -10,8 +10,7 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
 {
     public TextMeshProUGUI[] scoretxt;
     public PhotonView PV;
-    private GenericDictionary<string, int> finalscore;
-    private List<KeyValuePair<string, int>> ranklist;
+    private List<KeyValuePair<string, float>> ranklist;
     public void RestartGame()
     {
         if (!PhotonNetwork.IsMasterClient)
@@ -32,37 +31,41 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
     
     private void Start()
     {
-        finalscore = NetworkManager.instance.playerscores;
-        CalculScore(NetworkManager.instance.currentplayerscore);
+        CalculScore(NetworkManager.instance.currentplayerscore,NetworkManager.instance.isDescending);
         UpdateScoreUI();
-        NetworkManager.instance.playerscores = finalscore;
         NetworkManager.instance.InitCurScore();
     }
 
-    public void CalculScore(GenericDictionary<string,float> scoredb)
+    public void CalculScore(GenericDictionary<string,float> scoredb,bool Descending)
     {
-        var sortedscore = scoredb.OrderByDescending(x => x.Value).ToList();
-
-        int currentRankPt = 4;
-        float currentScore = sortedscore[0].Value;
-        int k = 0;
-        for (int i = 0; i < sortedscore.Count; i++)  //점수계산을 위한 식
+        // var sortedscore = scoredb.OrderByDescending(x => x.Value).ToList();
+        //
+        // int currentRankPt = 4;
+        // float currentScore = sortedscore[0].Value;
+        // int k = 0;
+        // for (int i = 0; i < sortedscore.Count; i++)  //점수계산을 위한 식
+        // {
+        //     if (sortedscore[i].Value < currentScore) // 점수가 감소되면 차등된 점수를 받음, 동점일때를 위한 점수 계산을 위해 k를 사용
+        //     {
+        //         currentRankPt -= k;
+        //         k = 0;
+        //         k++;
+        //         currentScore = sortedscore[i].Value;
+        //         finalscore[sortedscore[i].Key] += currentRankPt;
+        //         continue;
+        //     }
+        //
+        //     k++;
+        //     finalscore[sortedscore[i].Key] += currentRankPt; // 점수변화가 없으면 계속 같은점수를 받음
+        // }
+        if (Descending)
         {
-            if (sortedscore[i].Value < currentScore) // 점수가 감소되면 차등된 점수를 받음, 동점일때를 위한 점수 계산을 위해 k를 사용
-            {
-                currentRankPt -= k;
-                k = 0;
-                k++;
-                currentScore = sortedscore[i].Value;
-                finalscore[sortedscore[i].Key] += currentRankPt;
-                continue;
-            }
-
-            k++;
-            finalscore[sortedscore[i].Key] += currentRankPt; // 점수변화가 없으면 계속 같은점수를 받음
+            ranklist = scoredb.OrderByDescending(x => x.Value).ToList();
         }
-
-        ranklist = finalscore.OrderByDescending(x => x.Value).ToList();
+        else
+        {
+            ranklist = scoredb.OrderBy(x => x.Value).ToList();
+        }
     }
 
     public void UpdateScoreUI()

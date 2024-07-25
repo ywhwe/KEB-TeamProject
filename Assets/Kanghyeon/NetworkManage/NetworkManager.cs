@@ -11,12 +11,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 {
     public static NetworkManager instance;
     public List<string> scoredb;
-    public GenericDictionary<string, int> playerscores = new GenericDictionary<string, int>();
     public GenericDictionary<string, float> currentplayerscore = new GenericDictionary<string, float>();
-    public Dictionary<int, int> rankPt = new Dictionary<int, int>()
-    {
-        {4,10},{3,5},{2,3},{1,1}
-    };
+    // public Dictionary<int, int> rankPt = new Dictionary<int, int>()
+    // {
+    //     {4,10},{3,5},{2,3},{1,1}
+    // };
+
+    public bool isDescending;
     
     private void Awake()
     {
@@ -31,7 +32,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         }
         scoredb = new List<string>();
         Debug.Log("netM on");
-        InitScore();
+        InitCurScore();
     }
 
     void Start()
@@ -44,16 +45,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         
     }
-
-    public void InitScore()
-    {
-        playerscores.Clear();
-        foreach (var player in PhotonNetwork.PlayerList)
-        {
-            playerscores[player.NickName] = 0;
-        }
-  
-    }
+    
 
     public void InitCurScore()
     {
@@ -68,13 +60,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Player other)
     {
         Debug.Log("New Player initScore");
-        Debug.Log(playerscores);
-        InitScore();
+        InitCurScore();
     }
     public override void OnPlayerLeftRoom(Player other)
     {
         Debug.Log("Lefted Player initScore");
-        playerscores.Remove(other.NickName);
         currentplayerscore.Remove(other.NickName);
     }
     

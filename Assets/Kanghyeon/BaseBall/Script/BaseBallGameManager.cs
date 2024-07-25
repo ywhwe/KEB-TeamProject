@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Photon.Pun;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class BaseBallGameManager : WholeGameManager
@@ -28,6 +29,7 @@ public class BaseBallGameManager : WholeGameManager
     private void Awake()
     {
         instance = this;
+        isDescend = true;
     }
 
     public override void GameStart()
@@ -35,19 +37,18 @@ public class BaseBallGameManager : WholeGameManager
         starttime = Time.time;
         pitcher.ShootBall();
         bat.IsGameStart();
+        NetworkManager.instance.isDescending = isDescend;
     }
 
-    public override void GetScore()
-    {
-        score = finalscore;
-        AddScore(PhotonNetwork.LocalPlayer.NickName,finalscore);
+    // public override void GetScore()
+    // {
+    //     score = finalscore;
+    //     AddScore(PhotonNetwork.LocalPlayer.NickName,score);
+    // }
 
-    }
-
-    public override void GameEnd()
-    {
-        TotalManager.instance.StartFinish();
-    }
+    // public override void GameEnd()
+    // {
+    // }
 
     public void CalculSocre()
     {
@@ -59,7 +60,7 @@ public class BaseBallGameManager : WholeGameManager
         if (ballcount == balltotal)
         {
             IsGameEnd = true;
-            finishboard.text = "End" + " Score:" + finalscore;
+            finishboard.text = "End" + " Score:" + score;
             StartCoroutine(EndScene());
 
         }
@@ -68,23 +69,23 @@ public class BaseBallGameManager : WholeGameManager
     private IEnumerator EndScene()
     {
         yield return new WaitForSeconds(1f);
-        GameEnd();
+        TotalManager.instance.StartFinish();
     }
 
     public void CountScore()
     {
-        finalscore = finalscore + 1f;
+        score = score + 1f;
         CountBall();
     }
-    private void AddScore(string name, float score)
-    {
-        PV.RPC("rpcAddScore",RpcTarget.All,name,score);
-    }
-    [PunRPC]
-    void rpcAddScore(string name, float score)
-    {
-        NetworkManager.instance.currentplayerscore[name] = score;
-    }
+    // private void AddScore(string name, float score)
+    // {
+    //     photonView.RPC("rpcAddScore",RpcTarget.All,name,score);
+    // }
+    // [PunRPC]
+    // void rpcAddScore(string name, float score)
+    // {
+    //     NetworkManager.instance.currentplayerscore[name] = score;
+    // }
   
   
     

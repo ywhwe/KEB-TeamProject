@@ -58,13 +58,13 @@ public class PitcherSquid : MonoBehaviour
 
     public void SoundYap()
     {
-        SoundManager.instance.PlaySound("Shout_yap");
+        SoundManager.instance.PlaySound("Yap");
 
     }
 
     public void SoundHap()
     {
-        SoundManager.instance.PlaySound("Shout_hap");
+        SoundManager.instance.PlaySound("Hap");
 
     }
 }

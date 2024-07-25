@@ -348,11 +348,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundResources:
-  - key: hap
+  - key: Hap
     Clip: {fileID: 8300000, guid: a2f7f42f6fd2d4a4aba02abb7c2675d7, type: 3}
-  - key: yap
+  - key: Yap
     Clip: {fileID: 8300000, guid: 75275de83362d3c419d4660a92747717, type: 3}
-  poolSize: 2
+  poolSize: 3
   soundNodePrefab: {fileID: 650559423976733254, guid: ee71c4f01bccf444499c9bbd63e3d249, type: 3}
 --- !u!1 &2874476769911672451
 GameObject:

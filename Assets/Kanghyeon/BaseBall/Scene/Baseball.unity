@@ -273,6 +273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   isGameEnd: 0
+  isDescend: 0
   finishboard: {fileID: 1460529567}
   pitcher: {fileID: 404209230}
   bat: {fileID: 2118377604}
@@ -282,7 +283,7 @@ MonoBehaviour:
   finalscore: 0
   IsGameStart: 0
   IsGameEnd: 0
-  PV: {fileID: 243301964}
+  PV: {fileID: 0}
 --- !u!4 &243301963
 Transform:
   m_ObjectHideFlags: 0

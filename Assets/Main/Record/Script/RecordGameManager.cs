@@ -41,18 +41,18 @@ public class RecordGameManager : WholeGameManager
         recordtime = Time.time;
     }
 
-    public override void GetScore()
-    {
-        score = 10000 - recordtime * 10;
-        AddScore(PhotonNetwork.LocalPlayer.NickName,score);
-        
-    }
+    // public override void GetScore()
+    // {
+    //     score = recordtime;
+    //     AddScore(PhotonNetwork.LocalPlayer.NickName,score);
+    //     
+    // }
 
-    public override void GameEnd()
-    {
-        recordtime = Time.time - recordtime;
-        TotalManager.instance.StartFinish();
-    }
+    // public override void GameEnd()
+    // {
+    //    
+    //     TotalManager.instance.StartFinish();
+    // }
 
     public void PlusCountRecord()
     {
@@ -64,18 +64,19 @@ public class RecordGameManager : WholeGameManager
         recordnum--;
         if (recordnum == 0)
         {
-            GameEnd();
+            score = Time.time - recordtime;
+            TotalManager.instance.StartFinish();
         }
     }
     
-    private void AddScore(string name, float score)
-    {
-        PV.RPC("rpcAddScore",RpcTarget.All,name,score);
-    }
-    [PunRPC]
-    void rpcAddScore(string name, float score)
-    {
-        NetworkManager.instance.currentplayerscore[name] = score;
-    }
+    // private void AddScore(string name, float score)
+    // {
+    //     PV.RPC("rpcAddScore",RpcTarget.All,name,score);
+    // }
+    // [PunRPC]
+    // void rpcAddScore(string name, float score)
+    // {
+    //     NetworkManager.instance.currentplayerscore[name] = score;
+    // }
 
 }
