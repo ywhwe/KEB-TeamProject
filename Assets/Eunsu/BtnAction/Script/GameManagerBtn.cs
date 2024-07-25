@@ -68,12 +68,12 @@ public class GameManagerBtn : WholeGameManager
         }
         else
         {
-            await DenyInput();
+            DenyInput();
             isLegal = true;
         }
 
         if (BtnController.ctrlInstance.inputKeyCode is KeyCode.None) return;
-        await CompKey();
+        CompKey();
 
         if (!isGameEnd) return;
         StartCoroutine(EndScene());
@@ -126,17 +126,15 @@ public class GameManagerBtn : WholeGameManager
         }
     }
     
-    private async UniTask CompKey()
+    private async void CompKey()
     {
         if (waitingKeyCode == BtnController.ctrlInstance.inputKeyCode)
         {
             BtnController.ctrlInstance.inputKeyCode = KeyCode.None;
             isMatch = true;
             isLegal = true;
-            ObjMover.ObjInstance.angle = 34f;
+            
             ObjMover.ObjInstance.SpeedController().Forget();
-            await UniTask.Delay(1000);
-            ObjMover.ObjInstance.angle = 3f;
         }
         else
         {
@@ -148,7 +146,7 @@ public class GameManagerBtn : WholeGameManager
         }
     }
 
-    private static async UniTask DenyInput()
+    private static async void DenyInput()
     {
         await UniTask.Delay(2000);
     }
@@ -162,7 +160,7 @@ public class GameManagerBtn : WholeGameManager
     public override void GameStart()
     {
         trolleyClone = Instantiate(trolleyPrefab, trolleyPos, Quaternion.identity);
-        ObjMover.ObjInstance.Spin(trolleyClone).Forget();
+        ObjMover.ObjInstance.Spin().Forget();
         GenQTE().Forget();
     }
 

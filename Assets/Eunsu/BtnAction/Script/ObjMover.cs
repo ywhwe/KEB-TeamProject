@@ -1,15 +1,19 @@
 using System;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
+using UnityEngine.Serialization;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 
 public class ObjMover : MonoBehaviour
 {
     public static ObjMover ObjInstance;
-    private const float Coefficient = 3f;
+    private const float Coefficient = 7f;
 
+    [FormerlySerializedAs("FrontWheels")]
     [Header("Trolley")]
+    [HideInInspector] public GameObject frontWheels; 
+    [HideInInspector] public GameObject backWheels;
     
     [Header("Rail")]
     public GameObject railPrefab;
@@ -124,15 +128,12 @@ public class ObjMover : MonoBehaviour
         var tempVec2 = bgMoveVector;
         var tempVec3 = groundMoveVector;*/
         
-        if (GameManagerBtn.instance.IsMatch)
+        while (timer < 2f)
         {
-            while (timer < MathF.PI)
-            {
-                timer += Time.deltaTime;
-                objSpeed = 5f * MathF.Sin(timer) + Coefficient;
-            }
-
-            await UniTask.Delay(2000);
+            timer += Time.deltaTime;
+            objSpeed = Coefficient * MathF.Sin(timer * Mathf.PI/2f) + 1;
+            await UniTask.Yield();
+        }
             /*railMoveVector = new Vector3(-10f, 0f, 0f);
             bgMoveVector = new Vector3(10f, 0f, 0f);
             groundMoveVector = new Vector3(-10f, 0f, 0f);
@@ -142,17 +143,20 @@ public class ObjMover : MonoBehaviour
             railMoveVector = tempVec1;
             bgMoveVector = tempVec2;
             groundMoveVector = tempVec3;*/
-        }
+        
+        objSpeed = 1f;
+        timer = 0f;
     }
     
-    public async UniTask Spin(GameObject hmm)
+    public async UniTask Spin()
     {
         while (GameManagerBtn.instance.successCount < 10)
         {
             await UniTask.Yield();
             
-            hmm?.transform.Find("FrontWheels").Rotate(Vector3.back, angle, Space.Self);
-            hmm?.transform.Find("BackWheels").Rotate(Vector3.back, angle, Space.Self);
+            // Fix angle value bigger
+            frontWheels?.transform.Rotate(Vector3.back, objSpeed * 0.5f, Space.Self);
+            backWheels?.transform.Rotate(Vector3.back, objSpeed * 0.5f, Space.Self);
         }
     }
 }

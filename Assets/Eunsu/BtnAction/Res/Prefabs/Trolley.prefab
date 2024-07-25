@@ -25965,7 +25965,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6669615517523068043}
   - component: {fileID: 8953968590679098065}
-  - component: {fileID: 2963289152619367576}
+  - component: {fileID: 8758750049273323249}
   m_Layer: 0
   m_Name: Trolley
   m_TagString: Trolley
@@ -26013,7 +26013,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2963289152619367576
+--- !u!114 &8758750049273323249
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -26022,11 +26022,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6845186158050518054}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f9440dad0eb14a419ddb22a2b596308, type: 3}
+  m_Script: {fileID: 11500000, guid: 621376d9160d15b4284a4310e18e5def, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerContainer: {fileID: 0}
-  playerModel: {fileID: 0}
+  ani: {fileID: 8953968590679098065}
+  FrontWheels: {fileID: 4806914426145898446}
+  BackWheels: {fileID: 3971465317266533427}
 --- !u!1 &7002938628487833696
 GameObject:
   m_ObjectHideFlags: 0
