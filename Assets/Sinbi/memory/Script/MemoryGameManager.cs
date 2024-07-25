@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
+using Photon.Pun;
 
 
 public class MemoryGameManager : WholeGameManager
@@ -17,11 +18,15 @@ public class MemoryGameManager : WholeGameManager
     
     private List<int> randomMotions = new();
     private int playerInputIdx = 0;
-    private int turn = 0; 
+    private int turn = 0;
+    private float getScore = 0f;
     
     private bool isPlayerTurn;
     private bool isTimedOut;
+    private bool isTimerActive;
 
+    public PhotonView PV;
+    
     private Coroutine cpuMotionPlayCoroutine;
     
     private float playingTime = 0;
@@ -39,50 +44,44 @@ public class MemoryGameManager : WholeGameManager
     {
         instance = this;
         playerController.OnKeyPressed += PlayerInput;
-        StartGame();
     }
 
     private void Update()
-    {
+    { 
         Timer();
-        
-       /* //if 문으로 플래그 심기...
-        //if ( time out )
-        {
-            if (isPlayerTurn)
-            {
-                //플레이어 입력 처리
-                //스코어 계산
-            }
-            else
-            {
-                StopCoroutine(cpuMotionPlayCoroutine);
-                //스코어 계산
-            }
-        }*/
     }
     
     public override void GameStart()
     {
-        //StartGame();
+      StartGame();
     }
 
     public override void GetScore()
     {
-        
+        score = getScore;
+        AddScore(PhotonNetwork.LocalPlayer.NickName,score);
+    }
+    
+    private void AddScore(string name, float score)
+    {
+        PV.RPC("rpcAddScore",RpcTarget.All,name,score);
+    }
+    [PunRPC]
+    
+    void rpcAddScore(string name, float score)
+    {
+        NetworkManager.instance.currentplayerscore[name] = score;
     }
 
     public override void GameEnd()
     {
-        
-        TotalManager.instance.ScoreBoardTest();
+       TotalManager.instance.StartFinish();
     }
 
 
     private void StartGame()
     {
-        //Timer 시작
-        
+        isTimerActive = true;
        cpuMotionPlayCoroutine = StartCoroutine(PlayRandomMotion());
     }
     
@@ -110,7 +109,6 @@ public class MemoryGameManager : WholeGameManager
     private IEnumerator PlayRandomMotion()
     {
         Debug.Log($"Current turn is {turn}");
-        
         isPlayerTurn = false;
         playerController.SetActiveInput(false);
         
@@ -135,7 +133,7 @@ public class MemoryGameManager : WholeGameManager
         else
         {
             Debug.Log("Incorrect");
-            StartCoroutine(PlayRandomMotion());
+            cpuMotionPlayCoroutine = StartCoroutine(PlayRandomMotion());
         }
         
         playerInputIdx++;
@@ -146,8 +144,9 @@ public class MemoryGameManager : WholeGameManager
 
             if (turn >= turnDB.Length)
             {
-                isTimedOut = true;
+                isTimerActive = false;
                 FinishGame();
+                
             }
             else
             {
@@ -167,28 +166,31 @@ public class MemoryGameManager : WholeGameManager
         
         playerController.SetActiveInput(false);
         
-        if (isTimedOut)
+        if (isTimedOut)       
         {
-            score = turn;
+            getScore = turn;
         }
-        else
+        else 
         {
-            score = limitTime - playingTime + turnDB.Length;
+            getScore = limitTime - playingTime + turnDB.Length;
         }
         
-        Debug.Log($"Score is {score}");
+        Debug.Log($"Score is {getScore}");
+        
+        GameEnd();
     }
 
     private void Timer()
     {
-        if (isTimedOut) return;
+        if (!isTimerActive) return;
         playingTime += Time.deltaTime;
 
         if (playingTime > limitTime)
         {
             Debug.Log("TIMES UP!");
+            isTimedOut = true;
             FinishGame(); // 게임 종료
-            isTimedOut = true; // 타이머 off
+            isTimerActive = false;
         }
     }
 }

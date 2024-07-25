@@ -49,6 +49,7 @@ MonoBehaviour:
   - rpcAddScore
   - rpcSendgameEnd
   - RPCAddScore
+  - GameEnd
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
