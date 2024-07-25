@@ -10,6 +10,7 @@ public class MemoryGameManager : WholeGameManager
 {
     public static MemoryGameManager instance;
 
+    public float limitTime;
     public TurnInfo[] turnDB;
     public CharacterMotionController playerController;
     public Animator cpuAni;
@@ -17,13 +18,13 @@ public class MemoryGameManager : WholeGameManager
     private List<int> randomMotions = new();
     private int playerInputIdx = 0;
     private int turn = 0; 
+    
     private bool isPlayerTurn;
+    private bool isTimedOut;
 
     private Coroutine cpuMotionPlayCoroutine;
-
-    private float startTime=0;
-    private float PlayingTime = 0;
-    private float limitTime = 0;
+    
+    private float playingTime = 0;
   
     private int[] motionHash =
     {
@@ -43,6 +44,9 @@ public class MemoryGameManager : WholeGameManager
 
     private void Update()
     {
+        Timer();
+        
+       /* //if 문으로 플래그 심기...
         //if ( time out )
         {
             if (isPlayerTurn)
@@ -55,7 +59,7 @@ public class MemoryGameManager : WholeGameManager
                 StopCoroutine(cpuMotionPlayCoroutine);
                 //스코어 계산
             }
-        }
+        }*/
     }
     
     public override void GameStart()
@@ -70,6 +74,7 @@ public class MemoryGameManager : WholeGameManager
 
     public override void GameEnd()
     {
+        
         TotalManager.instance.ScoreBoardTest();
     }
 
@@ -77,7 +82,8 @@ public class MemoryGameManager : WholeGameManager
     private void StartGame()
     {
         //Timer 시작
-        cpuMotionPlayCoroutine = StartCoroutine(PlayRandomMotion());
+        
+       cpuMotionPlayCoroutine = StartCoroutine(PlayRandomMotion());
     }
     
     public void SelectRandomMotion()
@@ -140,22 +146,50 @@ public class MemoryGameManager : WholeGameManager
 
             if (turn >= turnDB.Length)
             {
-                CalcScore();
+                isTimedOut = true;
+                FinishGame();
             }
             else
             {
                 StartCoroutine(PlayRandomMotion());
+               
             }
         }
     }
 
-    private void CalcScore()
+    private void FinishGame()
     {
         //게임하는 시간 기록, 제한시간 내에 못 끝내면 turn수가 점수...
         //시간이 끝났을 때 강제 종료
-       
         
+        if(cpuMotionPlayCoroutine != null)
+            StopCoroutine(cpuMotionPlayCoroutine);
         
+        playerController.SetActiveInput(false);
+        
+        if (isTimedOut)
+        {
+            score = turn;
+        }
+        else
+        {
+            score = limitTime - playingTime + turnDB.Length;
+        }
+        
+        Debug.Log($"Score is {score}");
+    }
+
+    private void Timer()
+    {
+        if (isTimedOut) return;
+        playingTime += Time.deltaTime;
+
+        if (playingTime > limitTime)
+        {
+            Debug.Log("TIMES UP!");
+            FinishGame(); // 게임 종료
+            isTimedOut = true; // 타이머 off
+        }
     }
 }
 
