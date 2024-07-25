@@ -7,7 +7,7 @@ using Vector3 = UnityEngine.Vector3;
 public class ObjMover : MonoBehaviour
 {
     public static ObjMover ObjInstance;
-    private const float Coefficient = 1f;
+    private const float Coefficient = 3f;
 
     [Header("Trolley")]
     
@@ -73,10 +73,10 @@ public class ObjMover : MonoBehaviour
             
             rails1 ??= Instantiate(railPrefab, nextRailPos, Quaternion.identity);
             
-            rails.transform.Translate(railMoveVector * (objSpeed * Time.deltaTime));
-            rails1.transform.Translate(railMoveVector * (objSpeed * Time.deltaTime));
+            rails?.transform.Translate(railMoveVector * (objSpeed * Time.deltaTime));
+            rails1?.transform.Translate(railMoveVector * (objSpeed * Time.deltaTime));
 
-            if (!(rails1.transform.position.x < -1.8f)) continue;
+            if (!(rails1?.transform.position.x < -1.8f)) continue;
             var rails2 = Instantiate(railPrefab, nextRailPos, Quaternion.identity);
             Destroy(rails);
             rails = rails1;
@@ -96,13 +96,13 @@ public class ObjMover : MonoBehaviour
             nextBackground ??= Instantiate(backgroundPrefab, secBgPos, initBgAngle);
             nextGround ??= Instantiate(groundPrefab, secGroundPos, initGroundAngle);
             
-            currentBackground.transform.Translate(bgMoveVector * (objSpeed * Time.deltaTime));
-            currentGround.transform.Translate(groundMoveVector * (objSpeed * Time.deltaTime));
+            currentBackground?.transform.Translate(bgMoveVector * (objSpeed * Time.deltaTime));
+            currentGround?.transform.Translate(groundMoveVector * (objSpeed * Time.deltaTime));
             
-            nextBackground.transform.Translate(bgMoveVector * (objSpeed * Time.deltaTime));
-            nextGround.transform.Translate(groundMoveVector * (objSpeed * Time.deltaTime));
+            nextBackground?.transform.Translate(bgMoveVector * (objSpeed * Time.deltaTime));
+            nextGround?.transform.Translate(groundMoveVector * (objSpeed * Time.deltaTime));
             
-            if (!(nextBackground.transform.position.x < -8.7f && nextGround.transform.position.x < -8.7f)) continue;
+            if (!(nextBackground?.transform.position.x < -8.7f && nextGround?.transform.position.x < -8.7f)) continue;
             
             var background = Instantiate(backgroundPrefab, nextBgPos, initBgAngle);
             var ground = Instantiate(groundPrefab, nextGroundPos, initGroundAngle);
@@ -132,7 +132,7 @@ public class ObjMover : MonoBehaviour
                 objSpeed = 5f * MathF.Sin(timer) + Coefficient;
             }
 
-            UniTask.Delay(4000);
+            await UniTask.Delay(2000);
             /*railMoveVector = new Vector3(-10f, 0f, 0f);
             bgMoveVector = new Vector3(10f, 0f, 0f);
             groundMoveVector = new Vector3(-10f, 0f, 0f);
@@ -151,8 +151,8 @@ public class ObjMover : MonoBehaviour
         {
             await UniTask.Yield();
             
-            hmm.transform.Find("FrontWheels").Rotate(Vector3.back, angle, Space.Self);
-            hmm.transform.Find("BackWheels").Rotate(Vector3.back, angle, Space.Self);
+            hmm?.transform.Find("FrontWheels").Rotate(Vector3.back, angle, Space.Self);
+            hmm?.transform.Find("BackWheels").Rotate(Vector3.back, angle, Space.Self);
         }
     }
 }

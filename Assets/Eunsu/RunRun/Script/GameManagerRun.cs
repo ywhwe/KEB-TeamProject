@@ -42,7 +42,7 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
     }
     
     [PunRPC]
-    void RPCAddScore(string curName, float curScore)
+    private void RPCAddScore(string curName, float curScore)
     {
         NetworkManager.instance.currentplayerscore[curName] = curScore;
     }
@@ -51,7 +51,6 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
     {
         Background.bgInstance.BackgroundMove().Forget();
         StartCoroutine(NoteController.instance.GenNotes());
-        //TwoKeyPlayer.playerInstance.KeyInteraction().Forget();
     }
 
     public override void GetScore()

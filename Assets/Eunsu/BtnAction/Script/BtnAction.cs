@@ -1,9 +1,4 @@
-using System.Threading;
-using TMPro;
 using UnityEngine;
-using Cysharp.Threading.Tasks;
-using UnityEngine.Serialization;
-using Random = UnityEngine.Random;
 
 public class BtnAction : MonoBehaviour
 {

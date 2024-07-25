@@ -12,31 +12,34 @@ public class GameManagerBtn : WholeGameManager
     public static GameManagerBtn instance;
 
     [HideInInspector]
-    public bool flag = true;
+    public bool flag = true; // This will be false when game is ended
     
     [Header("Trolley")]
     public GameObject trolleyPrefab;
     private Vector3 trolleyPos = new (2f, 0.25f, -0.197f);
+
     [HideInInspector]
     public GameObject trolleyClone;
     
     [Header("Button")]
     public TextMeshProUGUI qteBtnText;
+    
     [HideInInspector]
     public KeyCode waitingKeyCode = KeyCode.None;
     
-    private float reductionRate = 2f;
+    private float reductionRate = 2f; // This is for calculating score
     private float rand;
+    
     [HideInInspector]
     public int successCount;
     
-    private float objSpeed = 1f;
-    
-    private bool isMatch = true;
+    private bool isMatch = true; // This checks user input is correct
     public bool IsMatch => isMatch;
 
+    private bool isLegal = false; // This checks if user input is consecutive but mostly incorrect
+
     [HideInInspector]
-    public bool isGen = false;
+    public bool isGen = false; // This will be true if button has generated
     
     public PhotonView PV;
 
@@ -54,21 +57,28 @@ public class GameManagerBtn : WholeGameManager
         isGameEnd = false;
     }
 
-    private void Update()
+    private async void Update()
     {
         isMatch = false;
         score -= Time.deltaTime * reductionRate;
-        
-        BtnController.ctrlInstance.SetKey();
-        if (BtnController.ctrlInstance.inputKeyCode is KeyCode.None) return;
-        CompKey();
 
-        if (isGameEnd)
+        if (isLegal)
         {
-            StartCoroutine(EndScene());
-            isGameEnd = false;
+            BtnController.ctrlInstance.SetKey();
         }
-        
+        else
+        {
+            await DenyInput();
+            isLegal = true;
+        }
+
+        if (BtnController.ctrlInstance.inputKeyCode is KeyCode.None) return;
+        await CompKey();
+
+        if (!isGameEnd) return;
+        StartCoroutine(EndScene());
+        isGameEnd = false; // Load scoreboard scene just for one time
+
     }
     
     private async UniTask GenQTE()
@@ -116,12 +126,13 @@ public class GameManagerBtn : WholeGameManager
         }
     }
     
-    private async void CompKey()
+    private async UniTask CompKey()
     {
         if (waitingKeyCode == BtnController.ctrlInstance.inputKeyCode)
         {
             BtnController.ctrlInstance.inputKeyCode = KeyCode.None;
             isMatch = true;
+            isLegal = true;
             ObjMover.ObjInstance.angle = 34f;
             ObjMover.ObjInstance.SpeedController().Forget();
             await UniTask.Delay(1000);
@@ -132,8 +143,20 @@ public class GameManagerBtn : WholeGameManager
             BtnController.ctrlInstance.inputKeyCode = KeyCode.None;
             await UniTask.WaitForSeconds(1f);
             isMatch = false;
+            isLegal = false;
             ObjMover.ObjInstance.angle = 3f;
         }
+    }
+
+    private static async UniTask DenyInput()
+    {
+        await UniTask.Delay(2000);
+    }
+    
+    [PunRPC]
+    private void RPCAddScore(string curName, float curScore)
+    {
+        NetworkManager.instance.currentplayerscore[curName] = curScore;
     }
     
     public override void GameStart()
