@@ -21,15 +21,15 @@ public class NoteSpawner : MonoBehaviour
         randnum = 0;
         foreach (var ang in notedb.notepos[randnum].sethaW)
         {
-            SpawnNote(ang,2.2f,noteW);
+            SpawnNote(ang,2.23f,noteW);
         }
         foreach (var ang in notedb.notepos[randnum].sethaA)
         {
-            SpawnNote(ang,2.7f,noteA);
+            SpawnNote(ang,2.75f,noteA);
         }
         foreach (var ang in notedb.notepos[randnum].sethaS)
         {
-            SpawnNote(ang,3.2f,noteS);
+            SpawnNote(ang,3.25f,noteS);
         }
         foreach (var ang in notedb.notepos[randnum].sethaD)
         {

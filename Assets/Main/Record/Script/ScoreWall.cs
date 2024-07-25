@@ -12,11 +12,20 @@ public class ScoreWall : MonoBehaviour
     private RaycastHit hitnote;
 
     public GameObject hiteffect;
+    public GameObject effect;
 
     private Vector3 posW;
     private Vector3 posA;
     private Vector3 posS;
     private Vector3 posD;
+
+    private Vector3 poseffW;
+    private Vector3 poseffA;
+    private Vector3 poseffS;
+    private Vector3 poseffD;
+
+    private float hitangle = 3.5f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +33,11 @@ public class ScoreWall : MonoBehaviour
         posA = boardForA.transform.position;
         posD = boardForD.transform.position;
         posS = boardForS.transform.position;
+        poseffW = new Vector3(2.45f, 0.6f, 0f);
+        poseffA = new Vector3(2.9f, 0.6f, 0f);
+        poseffS = new Vector3(3.37f, 0.6f, 0f);
+        poseffD = new Vector3(3.8f, 0.6f, 0f);
+
     }
 
     // Update is called once per frame
@@ -31,56 +45,49 @@ public class ScoreWall : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
-            if (Physics.BoxCast(boardForW.transform.position, new Vector3(0.1f, 0.1f, 0.1f), Vector3.down, out hitnote,
-                    Quaternion.identity,
-                    3f, 1 << 6))
-            {
-                var vfx = Instantiate(hiteffect, new Vector3(2.4f,0.6f,0f), Quaternion.identity);
-                Destroy(hitnote.collider.gameObject);
-                Destroy(vfx,0.7f);
-                RecordGameManager.instance.CountScoreRecord();
-            }
+           JudgeNote(posW,poseffW);
         }
 
         if (Input.GetKeyDown(KeyCode.A))
         {
-            if (Physics.BoxCast(boardForA.transform.position, new Vector3(0.1f, 0.1f, 0.1f), Vector3.down, out hitnote,
-                    Quaternion.identity,
-                    3f, 1 << 6))
-            {
-                var vfx = Instantiate(hiteffect, new Vector3(2.83f,0.6f,0f), Quaternion.identity);
-                Destroy(hitnote.collider.gameObject);
-                Destroy(vfx,0.7f);
-                RecordGameManager.instance.CountScoreRecord();
-            }
+            JudgeNote(posA,poseffA);
         }
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-
-            if (Physics.BoxCast(boardForS.transform.position, new Vector3(0.1f, 0.1f, 0.1f), Vector3.down,
-                    out hitnote, Quaternion.identity,
-                    3f, 1 << 6))
-            {
-                var vfx = Instantiate(hiteffect, new Vector3(3.3f,0.6f,0f), Quaternion.identity);
-                Destroy(hitnote.collider.gameObject);
-                Destroy(vfx,0.7f);
-                RecordGameManager.instance.CountScoreRecord();
-            }
-
+            JudgeNote(posS,poseffS);
         }
 
         if (Input.GetKeyDown(KeyCode.D))
         {
-            if (Physics.BoxCast(boardForD.transform.position, new Vector3(0.1f, 0.1f, 0.1f), Vector3.down,
-                    out hitnote, Quaternion.identity,
-                    3f, 1 << 6))
+            JudgeNote(posD,poseffD);
+        }
+    }
+
+    private void JudgeNote(Vector3 Raycenter,Vector3 effpos)
+    {
+        if (Physics.BoxCast(Raycenter, new Vector3(0.1f, 0.1f, 0.15f), Vector3.down, out hitnote,
+                Quaternion.identity,
+                3f, 1 << 6))
+        {
+            if(Vector3.Angle(Vector3.right, hitnote.transform.position + Vector3.down * 0.08f) < hitangle)
+                
+                //if (Mathf.Abs(hitnote.transform.position.z) <= 0.2)
             {
-                var vfx = Instantiate(hiteffect, new Vector3(3.8f, 0.6f, 0f), Quaternion.identity);
-                Destroy(hitnote.collider.gameObject);
-                Destroy(vfx,0.7f);
+                var vfx = Instantiate(hiteffect, effpos, Quaternion.identity);
+                hitnote.collider.GetComponent<RecordNoteCon>().Destroynote();
+                Destroy(vfx, 0.6f);
                 RecordGameManager.instance.CountScoreRecord();
             }
+            else
+            {
+                hitnote.collider.GetComponent<RecordNoteCon>().Blinknote();
+            }
+        }
+        else
+        {
+            var vfx2 = Instantiate(effect, effpos, Quaternion.identity);
+            Destroy(vfx2,0.2f);
         }
     }
 

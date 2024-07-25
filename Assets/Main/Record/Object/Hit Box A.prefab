@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1977410676628698021}
   - component: {fileID: 9088033625739392309}
   m_Layer: 0
-  m_Name: Cylinder (1)
+  m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -176,6 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5088586111838670862}
   - component: {fileID: 4248201540354452095}
+  - component: {fileID: 3045442902918846212}
   m_Layer: 6
   m_Name: Hit Box A
   m_TagString: Untagged
@@ -221,3 +222,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.3, y: 0.04, z: 0.3}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3045442902918846212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672602155270072642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6339f7b38a028242bfd46aa35ce8c89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notemat:
+  - {fileID: 2100000, guid: df7e69cbdc29a4cf19760a1c68e33f49, type: 2}
+  - {fileID: 2100000, guid: c59fc47760214854282590595d7f3f2b, type: 2}
