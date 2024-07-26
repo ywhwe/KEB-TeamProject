@@ -12,17 +12,16 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public static LobbyManager Instance;
 
     [Tooltip("The prefab to use for representing the player")]
-    public GameObject playerPrefab;
 
     private void Start()
     {
         Instance = this;
-        if (playerPrefab == null)
-        {
-            Debug.LogError(
-                "<Color=Red><a>Missing</a></Color> playerPrefabNumber Reference. Please set it up in GameObject 'Game Manager'",
-                this);
-        }
+        // if (playerPrefab == null)
+        // {
+        //     Debug.LogError(
+        //         "<Color=Red><a>Missing</a></Color> playerPrefabNumber Reference. Please set it up in GameObject 'Game Manager'",
+        //         this);
+        // }
         //
         // if (PlayerManager.LocalPlayerInstance == null)
         // {
@@ -36,12 +35,12 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         // }
     }
 
-    IEnumerator DelayInst()
-    {
-        yield return new WaitForSeconds(1f);
-        PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
-
-    }
+    // IEnumerator DelayInst()
+    // {
+    //     yield return new WaitForSeconds(1f);
+    //     PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+    //
+    // }
 
     #region Photon CallBacks
 

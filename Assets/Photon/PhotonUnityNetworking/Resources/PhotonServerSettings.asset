@@ -54,6 +54,10 @@ MonoBehaviour:
   - rpcCountForStart
   - rpcSendGameStart
   - rpcGoToGameScene
+  - KickRoom
+  - rpcKickRoom
+  - SendLoadScore
+  - rpcSendLoadScore
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

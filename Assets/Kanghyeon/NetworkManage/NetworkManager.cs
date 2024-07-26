@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Cysharp.Threading.Tasks;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
 using Photon.Realtime;
@@ -12,12 +14,14 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public static NetworkManager instance;
     public List<string> scoredb;
     public GenericDictionary<string, float> currentplayerscore = new GenericDictionary<string, float>();
+    
     // public Dictionary<int, int> rankPt = new Dictionary<int, int>()
     // {
     //     {4,10},{3,5},{2,3},{1,1}
     // };
 
     public bool isDescending;
+    private int isLoadScene;
     
     private void Awake()
     {
@@ -45,6 +49,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
     
 
+
     public override void OnPlayerEnteredRoom(Player other)
     {
         Debug.Log("New Player initScore");
@@ -55,7 +60,39 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Debug.Log("Lefted Player initScore");
         currentplayerscore.Remove(other.NickName);
     }
-    
-    //모든 게임에서 쓰일 점수를 등록하는 함수
+
+    public void SendLoadScore()
+    {
+        photonView.RPC("rpcSendLoadScore",RpcTarget.MasterClient);
+    } 
+
+    [PunRPC]
+    void rpcSendLoadScore()
+    {
+        IsLoadScore();
+    }
+     async UniTask IsLoadScore()
+    {
+        isLoadScene++;
+        if (isLoadScene==PhotonNetwork.PlayerList.Length)
+        {
+            await UniTask.WaitForSeconds(3f);
+            SendKickRoom();
+        }
+    }
+    public void SendKickRoom()
+    {
+        string name = ScoreBoardManager.instance.ranklist[^1].Key;
+        Debug.Log(name);
+        int index = Array.FindIndex(PhotonNetwork.PlayerList, x => x.NickName == name);
+        Debug.Log(index);
+        photonView.RPC("rpcKickRoom",PhotonNetwork.PlayerList[index]);
+    } 
+
+    [PunRPC]
+    void rpcKickRoom()
+    {
+        PhotonNetwork.LeaveRoom();
+    }
 
 }

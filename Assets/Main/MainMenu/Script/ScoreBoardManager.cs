@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Photon.Pun;
+using Photon.Realtime;
 using TMPro;
 using UnityEngine;
 
@@ -10,7 +11,9 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
 {
     public TextMeshProUGUI[] scoretxt;
     public PhotonView PV;
-    private List<KeyValuePair<string, float>> ranklist;
+    public List<KeyValuePair<string, float>> ranklist;
+    public static ScoreBoardManager instance;
+    public int isLoadScore;
     public void RestartGame()
     {
         if (!PhotonNetwork.IsMasterClient)
@@ -28,13 +31,28 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
         TotalManager.instance.MoveScene(0);
     }
 
-    
-    private void Start()
+    private void Awake()
     {
-        CalculScore(NetworkManager.instance.currentplayerscore,NetworkManager.instance.isDescending);
-        UpdateScoreUI();
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
+    private void Start()
+    {
+        NetworkManager.instance.SendLoadScore();
+        CalculScore(NetworkManager.instance.currentplayerscore,NetworkManager.instance.isDescending);
+        UpdateScoreUI();
+        
+    }
+
+    #region Score
+    
     public void CalculScore(GenericDictionary<string,float> scoredb,bool Descending)
     {
         // var sortedscore = scoredb.OrderByDescending(x => x.Value).ToList();
@@ -85,6 +103,7 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
             }
         }
     }
+    #endregion
 
-   
+
 }
