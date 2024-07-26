@@ -5384,6 +5384,15 @@ MonoBehaviour:
   - {fileID: 6349251540357761729, guid: e11b9677de51f0a459f2655f269c351c, type: 3}
   - {fileID: 7424971432624032287, guid: 862072df3371ca149881f4e3d7772e15, type: 3}
   - {fileID: 5418767941780303649, guid: d0dd1196bb71fb64b875f2fa5d94c8c2, type: 3}
+  memoryPrefabDB:
+  - {fileID: 6182162820492919152, guid: d6abd0cc75731405e827aa339f3c0e68, type: 3}
+  - {fileID: 6842458599697738422, guid: b5ecc7de2e20f4bd3a2b1ee837fef98b, type: 3}
+  - {fileID: 1342889782683910774, guid: 14ff3a0cb891344729a1d28e0b42bd35, type: 3}
+  - {fileID: 4950779065795438720, guid: 958972142eae24f90b85d31f9673cb1c, type: 3}
+  - {fileID: 5279811246306103102, guid: a25ed9380c04b4dc79182bf34b189e42, type: 3}
+  - {fileID: 6788538757290762323, guid: 7b9d7aa965e544ca993b60063b7e2273, type: 3}
+  - {fileID: 7511180232019162148, guid: 7b6714b209ea64acc8764a7b44a353b6, type: 3}
+  - {fileID: 4807929556901506227, guid: 7b01b519270004f4db467a3965bc147b, type: 3}
   playerPrefabNumber: 0
   fadeScreen: {fileID: 1174207166}
   optionScreen: {fileID: 280211600}
