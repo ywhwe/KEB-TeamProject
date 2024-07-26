@@ -17,9 +17,6 @@ public class GameManagerBtn : WholeGameManager
     [Header("Trolley")]
     public GameObject trolleyPrefab;
     private Vector3 trolleyPos = new (2f, 0.25f, -0.197f);
-
-    [HideInInspector]
-    public GameObject trolleyClone;
     
     [Header("Button")]
     public TextMeshProUGUI qteBtnText;
@@ -37,8 +34,9 @@ public class GameManagerBtn : WholeGameManager
     
     private bool isMatch = true; // This checks user input is correct
     public bool IsMatch => isMatch;
-
-    private bool isLegal = false; // This checks if user input is consecutive but mostly incorrect
+    
+    [HideInInspector]
+    public bool isLegal = true; // This checks if user input is consecutive but mostly incorrect
 
     [HideInInspector]
     public bool isGen = false; // This will be true if button has generated
@@ -56,29 +54,27 @@ public class GameManagerBtn : WholeGameManager
         NetworkManager.instance.isDescending = false;
         ObjMover.ObjInstance.BgMove().Forget();
         ObjMover.ObjInstance.RailMove().Forget();
-        score = 1000;
         isGameEnd = false;
     }
 
     private async void Update()
     {
         isMatch = false;
-        // score -= Time.deltaTime * reductionRate;
+        
         clearTime += Time.deltaTime;
 
         if (isLegal)
         {
             BtnController.ctrlInstance.SetKey();
         }
-        else
-        {
-            DenyInput();
-            isLegal = true;
-        }
 
         if (BtnController.ctrlInstance.inputKeyCode is KeyCode.None) return;
-        CompKey();
 
+        if (isLegal)
+        {
+            await CompKey();
+        }
+        
         if (!isGameEnd) return;
         StartCoroutine(EndScene());
         isGameEnd = false; // Load scoreboard scene just for one time
@@ -87,7 +83,7 @@ public class GameManagerBtn : WholeGameManager
     
     private async UniTask GenQTE()
     {
-        while (successCount < 10) // if successCount bigger than setting value stops loop
+        while (!isGameEnd)
         {
             rand = Random.Range(0, 100);
             BtnControl(rand);
@@ -97,10 +93,12 @@ public class GameManagerBtn : WholeGameManager
 
             if (!IsMatch) continue; // user input matched with QTE buttons, increase successCount
             successCount++;
+
+            if (successCount is 10) break;
         }
 
         isGameEnd = true;
-        Debug.Log("Remain score: " + score);
+        Debug.Log("All Cleared in " + clearTime + " sec");
     }
     
     private void BtnControl(float random)
@@ -130,34 +128,41 @@ public class GameManagerBtn : WholeGameManager
         }
     }
     
-    private async void CompKey()
+    private async UniTask CompKey()
     {
-        if (waitingKeyCode == BtnController.ctrlInstance.inputKeyCode)
+        if (waitingKeyCode == BtnController.ctrlInstance.inputKeyCode && isLegal)
         {
-            BtnController.ctrlInstance.inputKeyCode = KeyCode.None;
-            isMatch = true;
-            isLegal = true;
+            await AllowInput();
             
             ObjMover.ObjInstance.SpeedController().Forget();
         }
         else
         {
-            BtnController.ctrlInstance.inputKeyCode = KeyCode.None;
-            await UniTask.WaitForSeconds(1f);
-            isMatch = false;
-            isLegal = false;
-            ObjMover.ObjInstance.angle = 3f;
+            await DenyInput();
         }
+        
+        BtnController.ctrlInstance.inputKeyCode = KeyCode.None;
     }
 
-    private static async void DenyInput()
+    private async UniTask AllowInput()
     {
-        await UniTask.Delay(2000);
+        isMatch = true;
+        
+        await UniTask.Yield();
+    }
+
+    private async UniTask DenyInput()
+    {
+        isMatch = false;
+        isLegal = false;
+        
+        await UniTask.WaitForSeconds(2f);
+        isLegal = true;
     }
     
     public override void GameStart()
     {
-        trolleyClone = Instantiate(trolleyPrefab, trolleyPos, Quaternion.identity);
+        Instantiate(trolleyPrefab, trolleyPos, Quaternion.identity);
         ObjMover.ObjInstance.Spin().Forget();
         GenQTE().Forget();
     }
