@@ -17,9 +17,11 @@ public class TotalManager : MonoBehaviourPunCallbacks
 
     public GameObject[] prefabDB;
     public GameObject[] obprefabDB;
+    public GameObject[] memoryPrefabDB;
     public int playerPrefabNumber = 0;
     public GameObject playerPrefab => prefabDB[playerPrefabNumber];
     public GameObject obplayerPrefab => obprefabDB[playerPrefabNumber];
+    public GameObject memoryGamePrefab => memoryPrefabDB[playerPrefabNumber];
     
     public Image fadeScreen;
     public Image optionScreen;
@@ -250,7 +252,6 @@ public class TotalManager : MonoBehaviourPunCallbacks
 
     public void GoToGameWith()
     {
-        
         PV.RPC("GoToIngame",RpcTarget.All);
     }
     [PunRPC]

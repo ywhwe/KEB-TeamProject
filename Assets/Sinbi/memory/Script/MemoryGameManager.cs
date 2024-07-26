@@ -11,9 +11,15 @@ public class MemoryGameManager : WholeGameManager
 {
     public static MemoryGameManager instance;
 
+    public GameObject[] playerPosDB;
+    private GameObject playerPref;
+   /* private GameObject[] playerScaleDB;
+    private GameObject playerScale;*/
+    private GameObject playerPos;
+    
     public float limitTime;
     public TurnInfo[] turnDB;
-    public CharacterMotionController playerController;
+    private CharacterMotionController playerController;
     public Animator cpuAni;
     
     private List<int> randomMotions = new();
@@ -43,18 +49,31 @@ public class MemoryGameManager : WholeGameManager
     private void Awake()
     {
         instance = this;
-        playerController.OnKeyPressed += PlayerInput;
+        playerPref = TotalManager.instance.memoryGamePrefab;
+        int index = Array.FindIndex(PhotonNetwork.PlayerList, x => x.NickName == PhotonNetwork.LocalPlayer.NickName);
+        playerPos = playerPosDB[index];
+        Debug.Log(index);
+        
         NetworkManager.instance.isDescending = true; // If change score system make this false
+        StartCoroutine(DelayInst());
     }
-
+    
+    IEnumerator DelayInst() //플레이어 instant 함수
+    {
+        yield return new WaitForSeconds(1f);
+        var playerObj = PhotonNetwork.Instantiate("MemoryGamePrefab/" + playerPref.name, playerPos.transform.position, playerPos.transform.rotation);
+        playerController = playerObj.GetComponent<CharacterMotionController>();
+        playerController.OnKeyPressed += PlayerInput;
+    }
+    
     private void Update()
     { 
         Timer();
     }
     
     public override void GameStart()
-    {
-      StartGame();
+    { 
+        StartGame();
     }
 
     public override void SpawnObsPlayer()
