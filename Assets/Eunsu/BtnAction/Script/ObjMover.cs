@@ -53,10 +53,8 @@ public class ObjMover : MonoBehaviour
     private Vector3 groundMoveVector = new (-3f, 0f, 0f);
     
     private Quaternion initGroundAngle = new (0f, 0f, 0f, 1f);
-    
-    private float objSpeed = 1f;
 
-    [HideInInspector] public float angle = 3f;
+    private float objSpeed = 1f;
 
     private GameObject[] trolley;
 
@@ -124,25 +122,12 @@ public class ObjMover : MonoBehaviour
     
     public async UniTask SpeedController()
     {
-        /*var tempVec1 = railMoveVector;
-        var tempVec2 = bgMoveVector;
-        var tempVec3 = groundMoveVector;*/
-        
         while (timer < 2f)
         {
             timer += Time.deltaTime;
             objSpeed = Coefficient * MathF.Sin(timer * Mathf.PI/2f) + 1;
             await UniTask.Yield();
         }
-            /*railMoveVector = new Vector3(-10f, 0f, 0f);
-            bgMoveVector = new Vector3(10f, 0f, 0f);
-            groundMoveVector = new Vector3(-10f, 0f, 0f);
-
-            await UniTask.Delay(1000);
-
-            railMoveVector = tempVec1;
-            bgMoveVector = tempVec2;
-            groundMoveVector = tempVec3;*/
         
         objSpeed = 1f;
         timer = 0f;
