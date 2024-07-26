@@ -40,6 +40,11 @@ public class BaseBallGameManager : WholeGameManager
         NetworkManager.instance.isDescending = isDescend;
     }
 
+    public override void SpawnObsPlayer()
+    {
+        
+    }
+
     // public override void GetScore()
     // {
     //     score = finalscore;

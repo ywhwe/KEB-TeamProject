@@ -57,6 +57,11 @@ public class MemoryGameManager : WholeGameManager
       StartGame();
     }
 
+    public override void SpawnObsPlayer()
+    {
+        
+    }
+
     private void StartGame()
     {
         isTimerActive = true;

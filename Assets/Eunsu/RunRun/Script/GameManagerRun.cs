@@ -33,13 +33,12 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
     private void Start()
     {
         NetworkManager.instance.isDescending = true;
-        StartCoroutine(DelayInst());
     }
-    IEnumerator DelayInst() //플레이어 instant 함수
-    {
-        yield return new WaitForSeconds(1f);
-        PhotonNetwork.Instantiate(playerpref.name, playerpos.transform.position, Quaternion.identity);
-    }
+    // IEnumerator DelayInst() //플레이어 instant 함수
+    // {
+    //     yield return new WaitForSeconds(1f);
+    //     PhotonNetwork.Instantiate(playerpref.name, playerpos.transform.position, Quaternion.identity);
+    // }
 
     private void Update()
     {
@@ -64,7 +63,11 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
         Background.bgInstance.BackgroundMove().Forget();
         StartCoroutine(NoteController.instance.GenNotes());
     }
-    
+
+    public override void SpawnObsPlayer()
+    {
+        PhotonNetwork.Instantiate(playerpref.name, playerpos.transform.position, Quaternion.identity);
+    }
     private IEnumerator EndScene()
     {
         score = ScoreBoard.scoreInstance.score;

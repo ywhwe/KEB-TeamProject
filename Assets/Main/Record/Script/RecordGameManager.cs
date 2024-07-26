@@ -29,18 +29,21 @@ public class RecordGameManager : WholeGameManager
     private void Start()
     {
         NetworkManager.instance.isDescending = false;
-        StartCoroutine(DelayInst());
     }
-    IEnumerator DelayInst() //플레이어 instant 함수
-    {
-        yield return new WaitForSeconds(1f);
-        PhotonNetwork.Instantiate(playerpref.name, playerpos.transform.position, Quaternion.Euler(0f,90f,0f));
-    }
-
+    // IEnumerator DelayInst() //플레이어 instant 함수
+    // {
+    //     yield return new WaitForSeconds(1f);
+    //     PhotonNetwork.Instantiate(playerpref.name, playerpos.transform.position, Quaternion.Euler(0f,90f,0f));
+    // }
     public override void GameStart()
     {
         record.enabled = true;
         recordtime = Time.time;
+    }
+
+    public override void SpawnObsPlayer()
+    {
+        PhotonNetwork.Instantiate(playerpref.name, playerpos.transform.position, Quaternion.Euler(0f,90f,0f));
     }
 
     // public override void GetScore()

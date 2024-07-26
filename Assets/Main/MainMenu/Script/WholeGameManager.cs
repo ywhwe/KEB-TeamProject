@@ -15,6 +15,7 @@ public abstract class WholeGameManager : MonoBehaviourPunCallbacks
     
     public abstract void GameStart();
 
+    public abstract void SpawnObsPlayer();
     public  void GetScore()
     {
         photonView.RPC("rpcAddScore",RpcTarget.All,PhotonNetwork.LocalPlayer.NickName,score);

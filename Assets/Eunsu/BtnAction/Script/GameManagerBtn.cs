@@ -161,6 +161,11 @@ public class GameManagerBtn : WholeGameManager
         ObjMover.ObjInstance.Spin().Forget();
         GenQTE().Forget();
     }
+
+    public override void SpawnObsPlayer()
+    {
+        
+    }
     
     private IEnumerator EndScene()
     {

@@ -22,4 +22,9 @@ public class GameManagerFTM : WholeGameManager
     {
         RandomMotion.instance.StartGame();
     }
+
+    public override void SpawnObsPlayer()
+    {
+        
+    }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using Photon.Pun;
 using TMPro;
 using UnityEngine;
@@ -37,7 +38,8 @@ public class TotalManager : MonoBehaviourPunCallbacks
 
     public GameObject gameManager;
     public PhotonView PV;
-    private int isGameEnd=0;
+    private int isGameEnd = 0;
+    private int isGameStart = 0;
     public WaitForSeconds waitHalfSecond = new WaitForSeconds(0.5f);
     public WaitForSeconds waitTwoSecond = new WaitForSeconds(2f);
     public WaitForSeconds waitFiveSeconds = new WaitForSeconds(5f);
@@ -84,6 +86,114 @@ public class TotalManager : MonoBehaviourPunCallbacks
         yield return StartCoroutine(FadeScreen(false));
         gameManager = GameObject.Find("GameManager");
     }
+
+    #region UniTask 로 로드씬구현
+
+    public void GoToGameScene()
+    {
+        PV.RPC("rpcGoToGameScene",RpcTarget.All);
+    }
+
+    [PunRPC]
+    public void rpcGoToGameScene()
+    {
+        UniTaskGoToGameScene();
+    }
+    private async UniTask UniTaskGoToGameScene()
+    {
+        int gamenum = 1;
+        await MoveFadeScene(gamenum);
+        gameManager = GameObject.Find("GameManager");
+        BGM.Stop();
+        await ReadyForStart();
+        gameManager.GetComponent<WholeGameManager>().SpawnObsPlayer();
+        SendGameStart();
+    }
+
+    #region RPC Call
+
+    public void CallCountForStart()
+    {
+        PV.RPC("rpcCountForStart",RpcTarget.All);
+    }
+
+    [PunRPC]
+    private void rpcCountForStart()
+    {
+        UniTaskCountForStart();
+    }
+    private async UniTask UniTaskCountForStart()
+    {
+        await UniTask.WaitForSeconds(2f); // *** need count 
+        for (int i = 3; i >= 1; i--)
+        {
+            waitText.text = i.ToString();
+            await UniTask.WaitForSeconds(0.5f);
+        }
+        waitText.text= "Go!";
+        await UniTask.WaitForSeconds(0.5f);
+        waitScreen.gameObject.SetActive(false);
+        gameManager.GetComponent<WholeGameManager>().GameStart();
+
+    }
+    public void SendGameStart()
+    {
+        PV.RPC("rpcSendGameStart",RpcTarget.MasterClient);
+    }
+    [PunRPC]
+    void rpcSendGameStart()
+    {
+        isGameStart++;
+        
+        if (isGameStart == PhotonNetwork.PlayerList.Length)
+        {
+            CallCountForStart();
+            isGameStart = 0;
+        }
+    }
+
+    #endregion
+    
+    #region private region
+    private async UniTask MoveFadeScene(int id)
+    {
+        await FadeScreenTask(true);
+        PhotonNetwork.LoadLevel(id);
+        await FadeScreenTask(false);
+    }
+    private async UniTask ReadyForStart()
+    {
+        waitScreen.gameObject.SetActive(true);
+        await UniTask.WaitForSeconds(2f);
+        waitText.text = "Ready";
+    }
+
+    private async UniTask FadeScreenTask(bool fadeOut)
+    {
+        var fadeTimer = 0f;
+        const float FadeDuration = 1f;
+
+        var initialValue = fadeOut ? 0f : 1f;
+        var fadeDir = fadeOut ? 1f : -1f;
+        
+        while (fadeTimer < FadeDuration)
+        {
+            await UniTask.NextFrame(); //한 프레임만 기다려서 업데이트처럼 프레임당 움직임
+            fadeTimer += Time.deltaTime;
+
+            var color = fadeScreen.color;
+
+            initialValue += fadeDir * Time.deltaTime;
+            color.a = initialValue;
+
+            fadeScreen.color = color;
+        }
+    }
+
+    #endregion
+    
+    
+    #endregion
 
     #region TestSceneField //test씬 만들기
     
@@ -157,7 +267,7 @@ public class TotalManager : MonoBehaviourPunCallbacks
         waitScreen.gameObject.SetActive(true);
         yield return waitTwoSecond;
         waitText.text = "Ready";
-        yield return waitTwoSecond;
+        yield return waitTwoSecond;           // *** need count 
         for (int i = 3; i >= 1; i--)
         {
             waitText.text = i.ToString();

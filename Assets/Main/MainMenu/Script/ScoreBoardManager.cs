@@ -18,7 +18,7 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
             Debug.LogError("PhotonNetwork : Trying to Load a level but we are not the master Client");
             return;
         }
-        TotalManager.instance.GoToGameWith();
+        TotalManager.instance.GoToGameScene();
     }
 
     public void GoToMainMenu()
