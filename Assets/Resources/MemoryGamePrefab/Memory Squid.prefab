@@ -700,6 +700,7 @@ GameObject:
   - component: {fileID: 4105349500978914225}
   - component: {fileID: 8033698545883803558}
   - component: {fileID: 6167921155990082509}
+  - component: {fileID: 5572522011850042505}
   m_Layer: 0
   m_Name: Memory Squid
   m_TagString: Untagged
@@ -791,6 +792,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 940d60d6ac174456db851915b307428b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5572522011850042505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7511180232019162148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &7535825155527325181
 GameObject:
   m_ObjectHideFlags: 0
