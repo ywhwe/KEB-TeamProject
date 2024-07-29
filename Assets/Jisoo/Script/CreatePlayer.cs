@@ -15,15 +15,4 @@ public class CreatePlayer : MonoBehaviour
         temp.transform.SetParent(transform);
         player1 = temp;
     }
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

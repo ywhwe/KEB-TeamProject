@@ -31,27 +31,26 @@ public class RandomMotion : MonoBehaviour
     
     public void RandomAction()
     {
-        GameManagerFTM.instance.player.GetComponent<CharacterControl>().motionNumber = 0;
-        randomMotionNumber = 0;
-        randomMotionNumber = Random.Range(1, 5);
+        randomMotionNumber = Random.Range(0, 4);
 
-        if (randomMotionNumber == 1)
+        if (randomMotionNumber == 0)
         {
             ani.SetTrigger(IsWMove);
         }
-        else if (randomMotionNumber == 2)
+        else if (randomMotionNumber == 1)
         {
             ani.SetTrigger(IsAMove);
         }
-        else if (randomMotionNumber == 3)
+        else if (randomMotionNumber == 2)
         {
             ani.SetTrigger(IsSMove);
         }
-        else if (randomMotionNumber == 4)
+        else if (randomMotionNumber == 3)
         {
             ani.SetTrigger(IsDMove);
         }
-
+        
+        Debug.Log(randomMotionNumber);
         stage++;
         if (stage >= 4)
         {

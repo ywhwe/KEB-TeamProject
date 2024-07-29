@@ -456,7 +456,6 @@ GameObject:
   - component: {fileID: 192329290}
   - component: {fileID: 192329289}
   - component: {fileID: 192329288}
-  - component: {fileID: 192329292}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -552,19 +551,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &192329292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 192329287}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07cb527c0ddb8e24dbd4f101b9c682f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeBar: {fileID: 2109552040}
 --- !u!1 &271662435
 GameObject:
   m_ObjectHideFlags: 0
@@ -1287,17 +1273,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
-  isGameEnd: 0
+  isGameEnd: 1
   isDescend: 0
   playerLife: 3
   lifeImage:
   - {fileID: 1493794201}
   - {fileID: 703111056}
   - {fileID: 1481848870}
+  playerMotionNum: 5
   startTime: 0
   finishTime: 0
   PV: {fileID: 809650560}
   player: {fileID: 0}
+  playerController: {fileID: 0}
+  timeBar: {fileID: 2109552040}
+  isGameEnd: 0
 --- !u!4 &809650559
 Transform:
   m_ObjectHideFlags: 0
@@ -2259,7 +2249,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 171, y: 194}
-  m_SizeDelta: {x: 500, y: 20}
+  m_SizeDelta: {x: 0, y: 20}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &2109552041
 MonoBehaviour:

@@ -7,14 +7,18 @@ public class CharacterMotionController : MonoBehaviour
 {
     private Animator ani;
 
-    private bool isInputActive = false;
+    private bool isInputActive = true;
+
+    public static bool isTwoKey = false;
     
     private KeyCode[] key =
     {
         KeyCode.W,
         KeyCode.A,
         KeyCode.S,
-        KeyCode.D
+        KeyCode.D,
+        KeyCode.W,
+        KeyCode.S
     };
     
     private int[] motionHash =
@@ -22,7 +26,9 @@ public class CharacterMotionController : MonoBehaviour
         Animator.StringToHash("isWMove"),
         Animator.StringToHash("isAMove"),
         Animator.StringToHash("isSMove"),
-        Animator.StringToHash("isDMove")
+        Animator.StringToHash("isDMove"),
+        Animator.StringToHash("isTwoKeyWMove"),
+        Animator.StringToHash("isTwoKeySMove")
     };
     
     public event Action<int> OnKeyPressed;
@@ -35,15 +41,34 @@ public class CharacterMotionController : MonoBehaviour
     void Update()
     {
         if (!isInputActive) return;
-        
-        for (var i = 0; i < key.Length; i++)
+
+        if (!isTwoKey)
         {
-            if (Input.GetKeyDown(key[i]))
+            for (int i = 0; i <= 3; i++)
             {
-                ani.SetTrigger(motionHash[i]);
-                OnKeyPressed?.Invoke(i);
+                if (Input.GetKeyDown(key[i]))
+                {
+                    ani.SetTrigger(motionHash[i]);
+                    OnKeyPressed?.Invoke(i);
+                }
             }
         }
+        
+        if (isTwoKey)
+        {
+            for (int i = 4; i <= 5; i++)
+            {
+                if (Input.GetKeyDown(key[i]))
+                {
+                    ani.SetTrigger(motionHash[i]);
+                    OnKeyPressed?.Invoke(i);
+                }
+            }
+        }
+        
+
+        
+        
     }
 
     public void SetActiveInput(bool active)

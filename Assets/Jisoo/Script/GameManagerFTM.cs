@@ -12,6 +12,7 @@ public class GameManagerFTM : WholeGameManager
     
     public int playerLife = 3;
     public Image[] lifeImage;
+    public int playerMotionNum = 5;
     
     public float startTime;
     public float finishTime;
@@ -19,32 +20,52 @@ public class GameManagerFTM : WholeGameManager
     
     protected WaitForSeconds calTime = new WaitForSeconds(5f);
     public GameObject player;
-    protected int player1Motion;
+    public CharacterMotionController playerController;
+    
+    public RectTransform timeBar;
+    private float timeBarSize = 500.0f;
+    private Vector2 tempSize;
+
+    private bool isTimeBarOn = false;
     
     private void Awake()
     {
         instance = this;
-        
+        tempSize = timeBar.sizeDelta;
     }
 
     private void Start()
     {
         player = CreatePlayer.instance.player1;
+        playerController = player.GetComponent<CharacterMotionController>();
+        playerController.OnKeyPressed += PlayerInput;
         NetworkManager.instance.isDescending = true;
     }
     
     void Update()
     {
-        player1Motion = player.GetComponent<CharacterControl>().motionNumber;
+        if (isTimeBarOn)
+        {
+            tempSize.x += 100f * Time.smoothDeltaTime;
+            timeBar.sizeDelta = tempSize;
+
+            if (timeBar.sizeDelta.x >= timeBarSize)
+            {
+                tempSize.x = 0f;
+                timeBar.sizeDelta = tempSize;
+            }
+        }
     }
 
     public IEnumerator PlayGameRoutine()
     {
+        
         RandomMotion.instance.RandomAction();
-
+        playerMotionNum = 4;
+        
         yield return calTime;
         
-        playerLife = RandomMotion.instance.CompareMotionNumber(player1Motion, playerLife);
+        playerLife = RandomMotion.instance.CompareMotionNumber(playerMotionNum, playerLife);
         LifeImageDelete();
         
         if (playerLife == 0)
@@ -73,10 +94,15 @@ public class GameManagerFTM : WholeGameManager
         }
     }
 
+    private void PlayerInput(int motionNum)
+    {
+        playerMotionNum = motionNum;
+    }
+
     public void StartGame()
     {
         startTime = Time.time;
-        
+        isTimeBarOn = true;
         StartCoroutine(PlayGameRoutine());
     }
 

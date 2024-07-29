@@ -702,7 +702,7 @@ GameObject:
   - component: {fileID: 6167921155990082509}
   - component: {fileID: 5572522011850042505}
   m_Layer: 0
-  m_Name: Memory Squid
+  m_Name: Player Squid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -769,7 +769,7 @@ Animator:
   m_GameObject: {fileID: 7511180232019162148}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 61832f42196964b92b6cd89d5b830e50, type: 2}
+  m_Controller: {fileID: 9100000, guid: d54353f55b6e9b74db9d62c8afb72bea, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
