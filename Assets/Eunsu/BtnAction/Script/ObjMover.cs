@@ -9,11 +9,13 @@ public class ObjMover : MonoBehaviour
 {
     public static ObjMover ObjInstance;
     private const float Coefficient = 7f;
-
-    [FormerlySerializedAs("FrontWheels")]
+    
     [Header("Trolley")]
     [HideInInspector] public GameObject frontWheels; 
     [HideInInspector] public GameObject backWheels;
+    [HideInInspector] public ParticleSystem smoke;
+    [HideInInspector] public ParticleSystem spark1;
+    [HideInInspector] public ParticleSystem spark2;
     
     [Header("Rail")]
     public GameObject railPrefab;
@@ -55,8 +57,6 @@ public class ObjMover : MonoBehaviour
     private Quaternion initGroundAngle = new (0f, 0f, 0f, 1f);
 
     private float objSpeed = 1f;
-
-    private GameObject[] trolley;
 
     private float timer = 0;
 
@@ -122,15 +122,25 @@ public class ObjMover : MonoBehaviour
     
     public async UniTask SpeedController()
     {
+        smoke?.Play();
+        
         while (timer < 2f)
         {
             timer += Time.deltaTime;
             objSpeed = Coefficient * MathF.Sin(timer * Mathf.PI/2f) + 1;
+            
             await UniTask.Yield();
         }
         
+        smoke?.Stop();
+        spark1?.Play();
+        spark2?.Play();
         objSpeed = 1f;
         timer = 0f;
+
+        await UniTask.Yield();
+        spark1?.Stop();
+        spark2?.Stop();
     }
     
     public async UniTask Spin()
