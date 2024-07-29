@@ -24,7 +24,6 @@ public class GameManagerBtn : WholeGameManager
     [HideInInspector]
     public KeyCode waitingKeyCode = KeyCode.None;
     
-    private float reductionRate = 2f; // This is for calculating score
     private float rand;
     
     [HideInInspector]
@@ -34,12 +33,12 @@ public class GameManagerBtn : WholeGameManager
     
     private bool isMatch = true; // This checks user input is correct
     public bool IsMatch => isMatch;
-    
-    [HideInInspector]
-    public bool isLegal = true; // This checks if user input is consecutive but mostly incorrect
 
-    [HideInInspector]
-    public bool isGen = false; // This will be true if button has generated
+    [HideInInspector] public bool isAccel = false;
+
+    [HideInInspector] public bool isLegal = true; // This checks if user input is consecutive but mostly incorrect
+
+    [HideInInspector] public bool isGen = false; // This will be true if button has generated
     
     public PhotonView PV;
 
@@ -55,6 +54,7 @@ public class GameManagerBtn : WholeGameManager
         ObjMover.ObjInstance.BgMove().Forget();
         ObjMover.ObjInstance.RailMove().Forget();
         isGameEnd = false;
+        isAccel = false;
     }
 
     private async void Update()
@@ -70,10 +70,7 @@ public class GameManagerBtn : WholeGameManager
 
         if (BtnController.ctrlInstance.inputKeyCode is KeyCode.None) return;
 
-        if (isLegal)
-        {
-            await CompKey();
-        }
+        await CompKey();
         
         if (!isGameEnd) return;
         StartCoroutine(EndScene());
@@ -85,6 +82,8 @@ public class GameManagerBtn : WholeGameManager
     {
         while (!isGameEnd)
         {
+            await UniTask.WaitWhile(() => isAccel);
+            
             rand = Random.Range(0, 100);
             BtnControl(rand);
             
@@ -132,9 +131,12 @@ public class GameManagerBtn : WholeGameManager
     {
         if (waitingKeyCode == BtnController.ctrlInstance.inputKeyCode && isLegal)
         {
+            isAccel = true;
             await AllowInput();
-            
+
             ObjMover.ObjInstance.SpeedController().Forget();
+            await UniTask.WaitForSeconds(1f);
+            isAccel = false;
         }
         else
         {
@@ -147,6 +149,7 @@ public class GameManagerBtn : WholeGameManager
     private async UniTask AllowInput()
     {
         isMatch = true;
+        isLegal = true;
         
         await UniTask.Yield();
     }

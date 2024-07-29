@@ -122,6 +122,7 @@ public class ObjMover : MonoBehaviour
     
     public async UniTask SpeedController()
     {
+        // GameManagerBtn.instance.isAccel = true;
         smoke?.Play();
         
         while (timer < 2f)
@@ -133,14 +134,11 @@ public class ObjMover : MonoBehaviour
         }
         
         smoke?.Stop();
-        spark1?.Play();
-        spark2?.Play();
+        
         objSpeed = 1f;
         timer = 0f;
 
-        await UniTask.Yield();
-        spark1?.Stop();
-        spark2?.Stop();
+        // GameManagerBtn.instance.isAccel = false;
     }
     
     public async UniTask Spin()
