@@ -72,8 +72,12 @@ public class TotalManager : MonoBehaviourPunCallbacks
                 optionEnabled = true;
             }
         }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            Debug.Log(PhotonNetwork.NetworkClientState);
+        }
     }
-    
+
     public void MoveScene(int id)
     {
         StartCoroutine(MoveSceneWithFade(id));

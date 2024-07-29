@@ -46,7 +46,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public override void OnLeftRoom()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Main");
+        Debug.Log("Im out");
     }
 
     public override void OnPlayerEnteredRoom(Photon.Realtime.Player other)
@@ -79,6 +80,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.LeaveRoom();
         Destroy(GameObject.Find("NetworkManager"));
+
     }
 
     #endregion

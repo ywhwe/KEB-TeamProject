@@ -21,7 +21,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     // };
 
     public bool isDescending;
-    private int isLoadScene;
+    public int isLoadScene = 0;
     
     private void Awake()
     {
@@ -49,7 +49,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
     
 
-
     public override void OnPlayerEnteredRoom(Player other)
     {
         Debug.Log("New Player initScore");
@@ -71,21 +70,24 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         IsLoadScore();
     }
-     async UniTask IsLoadScore()
+    public async UniTask IsLoadScore()
     {
         isLoadScene++;
         if (isLoadScene==PhotonNetwork.PlayerList.Length)
         {
-            await UniTask.WaitForSeconds(3f);
+            ScoreBoardManager.instance.LoadingTimer();
             SendKickRoom();
+            
+            isLoadScene = 0;
         }
     }
-    public void SendKickRoom()
+    async UniTask SendKickRoom()
     {
         string name = ScoreBoardManager.instance.ranklist[^1].Key;
         Debug.Log(name);
         int index = Array.FindIndex(PhotonNetwork.PlayerList, x => x.NickName == name);
         Debug.Log(index);
+        
         photonView.RPC("rpcKickRoom",PhotonNetwork.PlayerList[index]);
     } 
 
