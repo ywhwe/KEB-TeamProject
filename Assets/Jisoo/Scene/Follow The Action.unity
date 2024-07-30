@@ -1287,7 +1287,6 @@ MonoBehaviour:
   player: {fileID: 0}
   playerController: {fileID: 0}
   timeBar: {fileID: 2109552040}
-  isGameEnd: 0
 --- !u!4 &809650559
 Transform:
   m_ObjectHideFlags: 0

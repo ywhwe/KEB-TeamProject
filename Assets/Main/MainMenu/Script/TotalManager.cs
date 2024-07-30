@@ -214,6 +214,7 @@ public class TotalManager : MonoBehaviourPunCallbacks
     {
         int gameNumber = Random.Range(1, 2);
         MoveTestScene();
+        BGM.Stop();
         StartCoroutine(CountBeforeStart()); // sendgameend 방식을 응용해서 플레이어가 준비 되면 start하는걸 고민
     }
     #endregion
