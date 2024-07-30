@@ -122,7 +122,6 @@ public class ObjMover : MonoBehaviour
     
     public async UniTask SpeedController()
     {
-        // GameManagerBtn.instance.isAccel = true;
         smoke?.Play();
         
         while (timer < 2f)
@@ -137,8 +136,6 @@ public class ObjMover : MonoBehaviour
         
         objSpeed = 1f;
         timer = 0f;
-
-        // GameManagerBtn.instance.isAccel = false;
     }
     
     public async UniTask Spin()

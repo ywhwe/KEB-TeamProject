@@ -1,15 +1,15 @@
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 using Random = UnityEngine.Random;
 using Photon.Pun;
-using UnityEngine.Serialization;
 
 public class GameManagerBtn : WholeGameManager
 {
     public static GameManagerBtn instance;
+
+    private UniTask compKey;
 
     [HideInInspector]
     public bool flag = true; // This will be false when game is ended
@@ -24,17 +24,12 @@ public class GameManagerBtn : WholeGameManager
     [HideInInspector]
     public KeyCode waitingKeyCode = KeyCode.None;
     
-    private float rand;
-    
     [HideInInspector]
     public int successCount;
 
-    private float clearTime;
+    private float clearTime, rand;
     
     private bool isMatch = true; // This checks user input is correct
-    public bool IsMatch => isMatch;
-
-    [HideInInspector] public bool isAccel = false;
 
     [HideInInspector] public bool isLegal = true; // This checks if user input is consecutive but mostly incorrect
 
@@ -54,43 +49,23 @@ public class GameManagerBtn : WholeGameManager
         ObjMover.ObjInstance.BgMove().Forget();
         ObjMover.ObjInstance.RailMove().Forget();
         isGameEnd = false;
-        isAccel = false;
     }
 
-    private async void Update()
+    private void Update()
     {
-        isMatch = false;
-        
         clearTime += Time.deltaTime;
-
-        if (isLegal)
-        {
-            BtnController.ctrlInstance.SetKey();
-        }
-
-        if (BtnController.ctrlInstance.inputKeyCode is KeyCode.None) return;
-
-        await CompKey();
-        
-        if (!isGameEnd) return;
-        StartCoroutine(EndScene());
-        isGameEnd = false; // Load scoreboard scene just for one time
-
     }
     
     private async UniTask GenQTE()
     {
         while (!isGameEnd)
         {
-            await UniTask.WaitWhile(() => isAccel);
-            
             rand = Random.Range(0, 100);
             BtnControl(rand);
             
             // if IsMatch is false, suspends coroutine 'til it is true
-            await UniTask.WaitUntil(() => IsMatch);
+            await UniTask.WaitUntil(() => isMatch);
 
-            if (!IsMatch) continue; // user input matched with QTE buttons, increase successCount
             successCount++;
 
             if (successCount is 10) break;
@@ -126,17 +101,37 @@ public class GameManagerBtn : WholeGameManager
                 break;
         }
     }
+
+    private async UniTask InputControl()
+    {
+        while (!isGameEnd)
+        {
+            isMatch = false;
+
+            if (isLegal)
+            {
+                BtnController.ctrlInstance.SetKey();
+            }
+
+            if (BtnController.ctrlInstance.inputKeyCode is KeyCode.None)
+            {
+                await UniTask.Yield();
+                continue;
+            }
+
+            await CompKey();
+        }
+        
+        StartCoroutine(EndScene());
+    }
     
     private async UniTask CompKey()
     {
         if (waitingKeyCode == BtnController.ctrlInstance.inputKeyCode && isLegal)
         {
-            isAccel = true;
             await AllowInput();
 
             ObjMover.ObjInstance.SpeedController().Forget();
-            await UniTask.WaitForSeconds(1f);
-            isAccel = false;
         }
         else
         {
@@ -167,6 +162,7 @@ public class GameManagerBtn : WholeGameManager
     {
         Instantiate(trolleyPrefab, trolleyPos, Quaternion.identity);
         ObjMover.ObjInstance.Spin().Forget();
+        InputControl().Forget();
         GenQTE().Forget();
     }
 
