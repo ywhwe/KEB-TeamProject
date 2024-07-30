@@ -127,6 +127,9 @@ public class MemoryGameManager : WholeGameManager
     {
         if (!isPlayerTurn) return;
 
+        if (motionIdx == 1) motionIdx = 3;
+        if (motionIdx == 3) motionIdx = 1;
+        
         if (randomMotions[playerInputIdx] == motionIdx)
         {
             //나아중에 이펙트 재생 (후순위)

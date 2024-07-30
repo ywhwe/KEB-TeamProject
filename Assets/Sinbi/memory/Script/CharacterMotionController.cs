@@ -7,7 +7,7 @@ public class CharacterMotionController : MonoBehaviour
 {
     private Animator ani;
 
-    private bool isInputActive = false;
+    private bool isInputActive = true;
     
     private KeyCode[] key =
     {
