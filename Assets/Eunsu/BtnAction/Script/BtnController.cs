@@ -12,69 +12,54 @@ public class BtnController : MonoBehaviour
     public GameObject Dbtn;
 
     private Color tempColor = Color.black;
+
+    private Color wColor, aColor, sColor, dColor;
     
     [HideInInspector]
     public KeyCode inputKeyCode = KeyCode.None;
 
     private void Awake()
     {
-        ctrlInstance = this;
+        ctrlInstance = this; 
+        wColor = Wbtn.GetComponent<Image>().color;
+        aColor = Abtn.GetComponent<Image>().color;
+        sColor = Sbtn.GetComponent<Image>().color;
+        dColor = Dbtn.GetComponent<Image>().color;
     }
     
     // Stocks user input in range WASD and change color of buttons
     public async void SetKey()
     {
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W))
         {
             inputKeyCode = KeyCode.W;
-            Wbtn.GetComponent<Image>().color = Color.red;
+            wColor = Color.red;
             await UniTask.WaitForSeconds(0.3f);
-            Wbtn.GetComponent<Image>().color = tempColor;
+            wColor = tempColor;
         }
-/*
-        if (Input.GetKeyUp(KeyCode.W))
-        {
-            Wbtn.GetComponent<Image>().color = tempColor;
-        }
-*/
-        if (Input.GetKey(KeyCode.A))
+
+        if (Input.GetKeyDown(KeyCode.A))
         {
             inputKeyCode = KeyCode.A;
-            Abtn.GetComponent<Image>().color = Color.yellow;
+            aColor = Color.yellow;
             await UniTask.WaitForSeconds(0.3f);
-            Abtn.GetComponent<Image>().color = tempColor;
+            aColor = tempColor;
         }
-/*
-        if (Input.GetKeyUp(KeyCode.A))
-        {
-            Abtn.GetComponent<Image>().color = tempColor;
-        }
-*/
-        if (Input.GetKey(KeyCode.S))
+
+        if (Input.GetKeyDown(KeyCode.S))
         {
             inputKeyCode = KeyCode.S;
-            Sbtn.GetComponent<Image>().color = Color.blue;
+            sColor = Color.blue;
             await UniTask.WaitForSeconds(0.3f);
-            Sbtn.GetComponent<Image>().color = tempColor;
+            sColor = tempColor;
         }
-/*
-        if (Input.GetKeyUp(KeyCode.S))
-        {
-            Sbtn.GetComponent<Image>().color = tempColor;
-        }
-*/
-        if (Input.GetKey(KeyCode.D))
+
+        if (Input.GetKeyDown(KeyCode.D))
         {
             inputKeyCode = KeyCode.D;
-            Dbtn.GetComponent<Image>().color = Color.green;
+            dColor = Color.green;
             await UniTask.WaitForSeconds(0.3f);
-            Dbtn.GetComponent<Image>().color = tempColor;
+            dColor = tempColor;
         }
-/*
-        if (Input.GetKeyUp(KeyCode.D))
-        {
-            Dbtn.GetComponent<Image>().color = tempColor;
-        }
-*/        
     }
 }
