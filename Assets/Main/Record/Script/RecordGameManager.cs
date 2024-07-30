@@ -43,7 +43,7 @@ public class RecordGameManager : WholeGameManager
 
     public override void SpawnObsPlayer()
     {
-        PhotonNetwork.Instantiate(playerpref.name, playerpos.transform.position, Quaternion.Euler(0f,90f,0f));
+        PhotonNetwork.Instantiate(playerpref.name, playerpos.transform.position, Quaternion.Euler(0f,90f,0f),0);
     }
 
     // public override void GetScore()

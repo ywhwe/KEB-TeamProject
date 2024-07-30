@@ -15,7 +15,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     private GameObject progressLabel;
     [Tooltip("The maximum number of players per room. When a room is full, it can't be joined by new players, and so new room will be created")]
     [SerializeField]
-    private byte maxPlayersPerRoom = 4;
+    private byte maxPlayersPerRoom = 12;
 
     private string gameversion = "1";
 
