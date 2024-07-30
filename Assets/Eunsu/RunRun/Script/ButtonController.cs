@@ -28,7 +28,7 @@ public class ButtonController : MonoBehaviour
         img.sprite = defaultImage;
     }
     
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(keyToPress))
         {
@@ -47,15 +47,12 @@ public class ButtonController : MonoBehaviour
                 switch (distance)
                 {
                     case < 2:
-                        Debug.Log("Perfect");
                         noteScore = 200;
                         break;
                     case < 15:
-                        Debug.Log("Great");
                         noteScore = 100;
                         break;
                     default:
-                        Debug.Log("Good");
                         noteScore = 50;
                         break;
                 }

@@ -23,22 +23,10 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
 
     }
 
-    /*private void Start()
-    {
-        Background.bgInstance.BackgroundMove().Forget();
-        StartCoroutine(NoteController.instance.GenNotes());
-        // TwoKeyPlayer.playerInstance.KeyInteraction().Forget();
-    }*/
-
     private void Start()
     {
         NetworkManager.instance.isDescending = true;
     }
-    // IEnumerator DelayInst() //플레이어 instant 함수
-    // {
-    //     yield return new WaitForSeconds(1f);
-    //     PhotonNetwork.Instantiate(playerpref.name, playerpos.transform.position, Quaternion.identity);
-    // }
 
     private void Update()
     {
@@ -60,6 +48,7 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
 
     public override void GameStart()
     {
+        CharacterMotionController.instance.isTwoKey = true;
         Background.bgInstance.BackgroundMove().Forget();
         StartCoroutine(NoteController.instance.GenNotes());
     }
@@ -72,6 +61,7 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
     {
         score = ScoreBoard.scoreInstance.score;
         isGameEnded = true;
+        CharacterMotionController.instance.isTwoKey = false;
         yield return new WaitForSeconds(1f);
         TotalManager.instance.StartFinish();
     }

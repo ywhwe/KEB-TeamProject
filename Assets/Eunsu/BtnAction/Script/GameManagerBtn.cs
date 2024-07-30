@@ -34,6 +34,8 @@ public class GameManagerBtn : WholeGameManager
     [HideInInspector] public bool isLegal = true; // This checks if user input is consecutive but mostly incorrect
 
     [HideInInspector] public bool isGen = false; // This will be true if button has generated
+
+    private bool isAccel = false;
     
     public PhotonView PV;
 
@@ -60,6 +62,8 @@ public class GameManagerBtn : WholeGameManager
     {
         while (!isGameEnd)
         {
+            await UniTask.WaitUntil(() => !isAccel);
+            
             rand = Random.Range(0, 100);
             BtnControl(rand);
             
@@ -120,6 +124,7 @@ public class GameManagerBtn : WholeGameManager
             }
 
             await CompKey();
+            isAccel = false;
         }
         
         StartCoroutine(EndScene());
@@ -129,9 +134,11 @@ public class GameManagerBtn : WholeGameManager
     {
         if (waitingKeyCode == BtnController.ctrlInstance.inputKeyCode && isLegal)
         {
+            isAccel = true;
             await AllowInput();
 
             ObjMover.ObjInstance.SpeedController().Forget();
+            await UniTask.WaitForSeconds(0.5f);
         }
         else
         {

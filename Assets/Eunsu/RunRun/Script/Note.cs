@@ -4,7 +4,6 @@ using UnityEngine;
 public class Note : MonoBehaviour
 {
     private RectTransform _rectTransform;
-    private WaitForSeconds hmm = new(0.01f);
     private float noteSpeed = 7f;
     private float movePos;
 
@@ -15,37 +14,35 @@ public class Note : MonoBehaviour
         _rectTransform = GetComponent<RectTransform>();
     }
 
-    void Start()
+    private void Start()
     {
         StartCoroutine(MoveNote());
     }
 
-    void Update()
+    private void Update()
     {
         durationTime += Time.deltaTime;
-        if (durationTime < 13f) return;
+        if (durationTime < 12f) return;
         Destroy(gameObject);
         NoteController.instance.noteCount--;
     }
 
     private IEnumerator MoveNote()
     {
-        while (true)
+        while (durationTime < 12f)
         {
-            yield return hmm;
-
-            //movePos -= noteSpeed;
+            yield return null;
+            
             var vector2 = _rectTransform.anchoredPosition;
             vector2.x -= noteSpeed;
             _rectTransform.anchoredPosition = vector2;
-            _rectTransform.anchoredPosition = new Vector2(_rectTransform.anchoredPosition.x, _rectTransform.anchoredPosition.y);
-            // gameObject.transform.Translate(-1f * (noteSpeed * Time.deltaTime), 0f, 0f);
+            _rectTransform.anchoredPosition 
+                = new Vector2(_rectTransform.anchoredPosition.x, _rectTransform.anchoredPosition.y);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("");
         Destroy(gameObject);
     }
 }

@@ -5,15 +5,17 @@ using Random = UnityEngine.Random;
 
 public class NoteController : MonoBehaviour
 {
-    private WaitForSeconds term = new(0.9f);
+    public static NoteController instance;
     
     public GameObject canvas;
     private Transform canvasTrans;
     
+    [Header("UpNote")]
     public GameObject UpNotePrefab;
     private GameObject upNote;
     private Vector3 upNotePos = new Vector3(910f, 100f, 0f);
     
+    [Header("DownNote")]
     public GameObject DownNotePrefab;
     private GameObject downNote;
     private Vector3 downNotePos = new Vector3(910f, -100f, 0f);
@@ -40,8 +42,6 @@ public class NoteController : MonoBehaviour
     }
 
     public int noteCount = 0;
-
-    public static NoteController instance;
 
     private void Awake()
     {
@@ -91,11 +91,5 @@ public class NoteController : MonoBehaviour
                     break;
             }
         }
-    }
-
-    public void GenStop()
-    {
-        StopCoroutine(GenNotes());
-        Debug.Log("Gen Stopped");
     }
 }

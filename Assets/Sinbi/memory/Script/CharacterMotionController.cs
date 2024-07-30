@@ -5,9 +5,13 @@ using UnityEngine;
 
 public class CharacterMotionController : MonoBehaviour
 {
+    public static CharacterMotionController instance;
+    
     private Animator ani;
 
     private bool isInputActive = true;
+    
+    public bool isTwoKey = false;
     
     private KeyCode[] key =
     {
@@ -33,6 +37,7 @@ public class CharacterMotionController : MonoBehaviour
     
     void Awake()
     {
+        instance = this;
         ani = GetComponent<Animator>();
     }
     

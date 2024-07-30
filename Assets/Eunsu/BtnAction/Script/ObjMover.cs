@@ -124,10 +124,10 @@ public class ObjMover : MonoBehaviour
     {
         smoke?.Play();
         
-        while (timer < 2f)
+        while (timer < 1f)
         {
             timer += Time.deltaTime;
-            objSpeed = Coefficient * MathF.Sin(timer * Mathf.PI/2f) + 1;
+            objSpeed = Coefficient * MathF.Sin(timer * Mathf.PI) + 1;
             
             await UniTask.Yield();
         }
