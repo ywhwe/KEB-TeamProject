@@ -55,7 +55,9 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
 
     public override void SpawnObsPlayer()
     {
-        PhotonNetwork.Instantiate(playerpref.name, playerpos.transform.position, Quaternion.identity);
+        var obj = PhotonNetwork.Instantiate(playerpref.name, playerpos.transform.position, Quaternion.identity);
+        obj.transform.SetParent(playerpos.transform);
+        obj.transform.localScale = Vector3.one;
     }
     private IEnumerator EndScene()
     {

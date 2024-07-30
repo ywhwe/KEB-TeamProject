@@ -15,6 +15,7 @@ public class RecordGameManager : WholeGameManager
     public GameObject[] playerposdb; // 각 플레이어 pos 데이터
     private GameObject playerpref; // local 플레이어의 프리펩
     private GameObject playerpos; // local 플레이어의 pos위치
+    public GameObject tempos;
 
     private void Awake()
     {
@@ -43,7 +44,9 @@ public class RecordGameManager : WholeGameManager
 
     public override void SpawnObsPlayer()
     {
-        PhotonNetwork.Instantiate(playerpref.name, playerpos.transform.position, Quaternion.Euler(0f,90f,0f),0);
+        var localojb = PhotonNetwork.Instantiate(playerpref.name, playerpos.transform.position, Quaternion.Euler(0f,90f,0f),0);
+        // localojb.GetComponent<PhotonTransformView>().m_SynchronizePosition = false;
+
     }
 
     // public override void GetScore()
