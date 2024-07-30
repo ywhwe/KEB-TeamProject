@@ -2,16 +2,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using Photon.Pun;
+using Photon.Realtime;
 using TMPro;
 using UnityEngine;
 
 public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 위해 모든 게임의 점수를 int로 순위는 내림차순으로 정리
 {
     public TextMeshProUGUI[] scoretxt;
+    public TextMeshProUGUI nexttimer;
     public PhotonView PV;
-    private List<KeyValuePair<string, float>> ranklist;
-    public void RestartGame()
+    public List<KeyValuePair<string, float>> ranklist;
+    public static ScoreBoardManager instance;
+    public int isLoadScore=0;
+    public GameObject controlpanel;
+    public void NextGame()
     {
         if (!PhotonNetwork.IsMasterClient)
         {
@@ -25,16 +31,76 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
     {
         PhotonNetwork.LeaveRoom();
         Destroy(GameObject.Find("NetworkManager"));
-        TotalManager.instance.MoveScene(0);
+        TotalManager.instance.MoveScene(2);
     }
 
-    
+    public override void OnLeftRoom()
+    {
+        Debug.Log("Im out2");
+    }
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void Start()
     {
         CalculScore(NetworkManager.instance.currentplayerscore,NetworkManager.instance.isDescending);
         UpdateScoreUI();
+        NetworkManager.instance.SendLoadScore();
+
     }
 
+    public async UniTask LoadingTimer()
+    {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
+        // await UniTask.WaitUntil(() => isLoadScore == PhotonNetwork.PlayerList.Length);
+        PV.RPC("rpcRunTimer",RpcTarget.All);
+        
+    }
+
+    [PunRPC]
+    void rpcRunTimer()
+    {
+        LoadTimer();
+    }
+    
+    private async UniTask LoadTimer()
+    {
+        await UniTask.WaitForSeconds(3f);
+
+        if (PhotonNetwork.NetworkClientState == ClientState.ConnectedToMasterServer)
+        {
+            nexttimer.text = "You Failed";
+            controlpanel.SetActive(true);
+            return;
+        }
+       
+        int time = 5;
+        for (int i = 0; i < 6; i++)
+        {
+            nexttimer.text = time.ToString();
+            if (time==0)
+            {
+                NextGame();
+            }
+            time--;
+            await UniTask.WaitForSeconds(1f);
+        }
+    }
+
+    #region Score
+    
     public void CalculScore(GenericDictionary<string,float> scoredb,bool Descending)
     {
         // var sortedscore = scoredb.OrderByDescending(x => x.Value).ToList();
@@ -69,7 +135,10 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
 
     public void UpdateScoreUI()
     {
-        photonView.RPC("UpdateScore",RpcTarget.All);
+        if (PhotonNetwork.IsMasterClient)
+        {
+            photonView.RPC("UpdateScore", RpcTarget.All);
+        }
     }
 
     [PunRPC]
@@ -85,6 +154,7 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
             }
         }
     }
+    #endregion
 
-   
+
 }

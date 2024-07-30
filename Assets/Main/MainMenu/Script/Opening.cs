@@ -7,6 +7,6 @@ public class Opening : MonoBehaviour
 {
     private void Start()
     {
-        TotalManager.instance.MoveScene(0);
+        TotalManager.instance.MoveScene(2);
     }
 }

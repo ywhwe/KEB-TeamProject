@@ -72,8 +72,12 @@ public class TotalManager : MonoBehaviourPunCallbacks
                 optionEnabled = true;
             }
         }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            Debug.Log(PhotonNetwork.NetworkClientState);
+        }
     }
-    
+
     public void MoveScene(int id)
     {
         StartCoroutine(MoveSceneWithFade(id));
@@ -118,6 +122,7 @@ public class TotalManager : MonoBehaviourPunCallbacks
     {
         PV.RPC("rpcCountForStart",RpcTarget.All);
     }
+    
 
     [PunRPC]
     private void rpcCountForStart()
@@ -250,19 +255,6 @@ public class TotalManager : MonoBehaviourPunCallbacks
     public void SetLevel(float sliderVal) {
         mixer.SetFloat("BGM", Mathf.Log10(sliderVal)*20);
     }
-
-    public void GoToGameWith()
-    {
-        PV.RPC("GoToIngame",RpcTarget.All);
-    }
-    [PunRPC]
-    public void GoToIngame()
-    {
-        int gameNumber = Random.Range(1, 2);
-        MoveScene(gameNumber);
-        BGM.Stop();
-        StartCoroutine(CountBeforeStart()); // sendgameend 방식을 응용해서 플레이어가 준비 되면 start하는걸 고민
-    }
     
     private IEnumerator CountBeforeStart()
     {
@@ -311,12 +303,7 @@ public class TotalManager : MonoBehaviourPunCallbacks
         Application.Quit();
 #endif
     }
-
-    public void ScoreBoardTest()
-    {
-        SendGameEnd();
-    }
-
+    
     void SendGameEnd()
     {
         PV.RPC("rpcSendgameEnd",RpcTarget.MasterClient);
