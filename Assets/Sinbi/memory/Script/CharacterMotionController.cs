@@ -8,9 +8,11 @@ public class CharacterMotionController : MonoBehaviour
     public static CharacterMotionController instance;
     
     private Animator ani;
-
+    
     private bool isInputActive = true;
 
+    public bool isTwoKey = false;
+    
     public bool isTwoKey = false;
     
     public bool isTwoKey = false;
