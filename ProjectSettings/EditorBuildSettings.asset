@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Jisoo/Scene/Follow The Action.unity
     guid: 4a0d28bc19defc347a0f30268f595bdd
   - enabled: 1
+    path: Assets/Main/MainMenu/Scenes/Main.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
     path: Assets/Main/Record/Sence/RecordPlay.unity
     guid: de63d1dd09aebdb439833c38537f2051
   - enabled: 0
@@ -35,13 +38,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Main/MainMenu/Scenes/ScoreBoard.unity
     guid: 4ab20b0fb2148f34eae8154cae281599
-  - enabled: 1
+  - enabled: 0
     path: Assets/Kanghyeon/NetworkManage/templobby.unity
     guid: 0ef8a76094ceffe47bc8ea93bc8a28f1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Kanghyeon/NetworkManage/tempmain.unity
     guid: dc9d71dc0d6fc9048875308d1115f407
-  - enabled: 1
+  - enabled: 0
     path: Assets/Kanghyeon/NetworkManage/tempscene.unity
     guid: 5807f327eb2d7f7478ed3085f33d4555
   - enabled: 1
