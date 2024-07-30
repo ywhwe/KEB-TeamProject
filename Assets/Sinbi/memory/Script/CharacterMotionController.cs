@@ -8,6 +8,7 @@ public class CharacterMotionController : MonoBehaviour
     private Animator ani;
 
     private bool isInputActive = true;
+    public bool isTwoKey = false;
     
     private KeyCode[] key =
     {
