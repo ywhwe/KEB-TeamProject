@@ -7,6 +7,7 @@ using Photon.Pun;
 using Photon.Pun.UtilityScripts;
 using Photon.Realtime;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
@@ -19,10 +20,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     // {
     //     {4,10},{3,5},{2,3},{1,1}
     // };
-
+    private List<string> loserdb = new List<string>();
     public bool isDescending;
     public int isLoadScene = 0;
-    
+
     private void Awake()
     {
         if (instance == null)
@@ -75,6 +76,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         isLoadScene++;
         if (isLoadScene==PhotonNetwork.PlayerList.Length)
         {
+            
+            SelectLoser();
             ScoreBoardManager.instance.LoadingTimer();
             SendKickRoom();
             
@@ -83,13 +86,86 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
     async UniTask SendKickRoom()
     {
-        string name = ScoreBoardManager.instance.ranklist[^1].Key;
-        Debug.Log(name);
-        int index = Array.FindIndex(PhotonNetwork.PlayerList, x => x.NickName == name);
-        Debug.Log(index);
         
-        photonView.RPC("rpcKickRoom",PhotonNetwork.PlayerList[index]);
-    } 
+        List<int> indexlist = new List<int>();
+        foreach (var VAR in loserdb)
+        {
+            Debug.Log(VAR);
+            int index = Array.FindIndex(PhotonNetwork.PlayerList, x => x.NickName == VAR);
+            Debug.Log(index);
+            indexlist.Add(index);
+        }
+        loserdb = new List<string>();
+        foreach (var VAR in indexlist)
+        {
+            photonView.RPC("rpcKickRoom",PhotonNetwork.PlayerList[VAR]);
+        }
+    }
+
+    public void SelectLoser()
+    {
+        var ranklist = ScoreBoardManager.instance.ranklist;
+        int length = ranklist.Count - 1;
+        float score = ranklist[length].Value;
+        int count = 0;
+        int target = 1;
+        if (!isDescending)
+        {
+            while (target >= 0)
+            {
+                if (length - 1 < 0)
+                {
+                    break;
+                }
+                if (score == ranklist[length - 1].Value)
+                {
+                    loserdb.Add(ranklist[length].Key);
+                    length--;
+                    count++;
+                    continue;
+                }
+                target = target - count;
+                count = 0;
+                if (score > ranklist[length - 1].Value)
+                {
+                    if (target <= 0 )
+                    {
+                        break;
+                    }
+                    loserdb.Add(ranklist[length].Key);
+                    target--;
+                    length--;
+                }
+            }
+        }
+  
+        while (target >= 0)
+        {
+            if (length - 1 < 0)
+            {
+                break;
+            }
+            if (score == ranklist[length - 1].Value)
+            {
+                loserdb.Add(ranklist[length].Key);
+                length--;
+                count++;
+                continue;
+            }
+            target = target - count;
+            count = 0;
+            if (score < ranklist[length - 1].Value)
+            {
+                if (target <= 0 )
+                {
+                    break;
+                }
+                loserdb.Add(ranklist[length].Key);
+                target--;
+                length--;
+            }
+        }
+    }
 
     [PunRPC]
     void rpcKickRoom()
