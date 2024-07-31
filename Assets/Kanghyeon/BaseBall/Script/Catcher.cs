@@ -14,7 +14,8 @@ public class Catcher : MonoBehaviour
         {
             BaseBallGameManager.instance.CountBall();
             Destroy(other.gameObject);
-            text.text = "Strike";
+            Board.instance.hitFlag = false;
+            StartCoroutine(Board.instance.TextScreenOn());
         }
     }
 }

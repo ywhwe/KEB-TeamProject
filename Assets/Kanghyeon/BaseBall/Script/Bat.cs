@@ -42,10 +42,6 @@ public class Bat : MonoBehaviour
                     Debug.Log(Time.time);
                     Check(ballendtime);
                 }
-                else
-                {
-                    scoreboard.text = "Strike";
-                }
             }
         }
     }
@@ -87,12 +83,11 @@ public class Bat : MonoBehaviour
 
         if (0 <= (endtime - Time.time) && (endtime - Time.time) <= 0.5f)
         {
-            scoreboard.text = "HomeRun";
+            Board.instance.hitFlag = true;
+            StartCoroutine(Board.instance.TextScreenOn());
             BaseBallGameManager.instance.CountScore();
-            return;
         }
-
-        scoreboard.text = "Strike";
+        
     }
 
     public void IsGameStart()

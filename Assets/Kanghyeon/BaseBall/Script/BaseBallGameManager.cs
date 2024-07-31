@@ -6,6 +6,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BaseBallGameManager : WholeGameManager
 {
@@ -25,7 +26,7 @@ public class BaseBallGameManager : WholeGameManager
     public bool IsGameStart = false;
     public bool IsGameEnd = false;
     public PhotonView PV;
-
+    
     private void Awake()
     {
         instance = this;
