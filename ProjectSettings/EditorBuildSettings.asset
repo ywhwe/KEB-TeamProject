@@ -15,9 +15,12 @@ EditorBuildSettings:
     path: Assets/Main/Record/Sence/RecordPlay.unity
     guid: de63d1dd09aebdb439833c38537f2051
   - enabled: 1
+    path: Assets/Sinbi/memory/Scene/memory game.unity
+    guid: c32501fcdebe1194c818d9d41da50966
+  - enabled: 1
     path: Assets/Main/MainMenu/Scenes/Main.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Eunsu/RunRun/Scene/RunRun.unity
     guid: 0ba516eee7349b547b935226ad43a160
   - enabled: 0

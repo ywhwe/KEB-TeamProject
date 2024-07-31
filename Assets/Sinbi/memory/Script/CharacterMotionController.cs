@@ -13,10 +13,6 @@ public class CharacterMotionController : MonoBehaviour
 
     public bool isTwoKey = false;
     
-    public bool isTwoKey = false;
-    
-    public bool isTwoKey = false;
-    
     private KeyCode[] key =
     {
         KeyCode.W,
