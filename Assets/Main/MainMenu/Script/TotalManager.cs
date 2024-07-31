@@ -33,10 +33,13 @@ public class TotalManager : MonoBehaviourPunCallbacks
     public Button optionResumeButton;
     private bool optionEnabled = false;
     
-    public TextMeshProUGUI volumeText;
+    public TextMeshProUGUI BGMVolumeText;
+    public TextMeshProUGUI SFXVolumeText;
     public AudioMixer mixer;
-    public Slider volumeSlider;
-    private float perVolume;
+    public Slider BGMVolumeSlider;
+    private float perBGMVolume;
+    public Slider SFXVolumeSlider;
+    private float perSFXVolume;
 
     public GameObject gameManager;
     public PhotonView PV;
@@ -53,7 +56,8 @@ public class TotalManager : MonoBehaviourPunCallbacks
     {
         instance = this;
         DontDestroyOnLoad(gameObject);
-        volumeSlider.onValueChanged.AddListener(SetLevel);
+        BGMVolumeSlider.onValueChanged.AddListener(SetBGMLevel);
+        SFXVolumeSlider.onValueChanged.AddListener(SetSFXLevel);
         BGM = GetComponent<AudioSource>();
         BGM.Play();
         Debug.Log("BGM");
@@ -250,14 +254,24 @@ public class TotalManager : MonoBehaviourPunCallbacks
         }
     }
 
-    public void SetVolumeText()
+    public void SetBGMVolumeText()
     {
-        perVolume = volumeSlider.value * 100.0f;
-        volumeText.text = perVolume.ToString("N0") + "%";
+        perBGMVolume = BGMVolumeSlider.value * 100.0f;
+        BGMVolumeText.text = perBGMVolume.ToString("N0") + "%";
+    }
+    
+    public void SetSFXVolumeText()
+    {
+        perBGMVolume = BGMVolumeSlider.value * 100.0f;
+        SFXVolumeText.text = perBGMVolume.ToString("N0") + "%";
     }
 
-    public void SetLevel(float sliderVal) {
+    public void SetBGMLevel(float sliderVal) {
         mixer.SetFloat("BGM", Mathf.Log10(sliderVal)*20);
+    }
+    
+    public void SetSFXLevel(float sliderVal) {
+        mixer.SetFloat("SFX", Mathf.Log10(sliderVal)*20);
     }
     
     private IEnumerator CountBeforeStart()
