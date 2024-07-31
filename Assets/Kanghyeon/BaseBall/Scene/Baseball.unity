@@ -907,13 +907,13 @@ MonoBehaviour:
   finishboard: {fileID: 1460529567}
   pitcher: {fileID: 404209230}
   bat: {fileID: 2118377604}
-  starttime: 0
   balltotal: 4
   ballcount: 0
   finalscore: 0
   IsGameStart: 0
   IsGameEnd: 0
-  PV: {fileID: 0}
+  PV: {fileID: 243301964}
+  gameindex: 
 --- !u!4 &243301963
 Transform:
   m_ObjectHideFlags: 0
@@ -9865,7 +9865,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3870727370712082991, guid: 3a6fdf6d35554334399a2bb050cf8cc5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.98
+      value: 4.45
       objectReference: {fileID: 0}
     - target: {fileID: 3870727370712082991, guid: 3a6fdf6d35554334399a2bb050cf8cc5, type: 3}
       propertyPath: m_LocalPosition.y

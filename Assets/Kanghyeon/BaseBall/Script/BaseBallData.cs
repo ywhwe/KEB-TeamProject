@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName= "New Ball Data",menuName="CustomData/Create Ball Data")]
 public class BaseBallData : ScriptableObject
 {
-    public BallData[] balldata;
+    public BallDatadb[] balldatadbs;
 
+}
+
+[Serializable]
+public class BallDatadb
+{
+    public BallData[] balldata;
 }

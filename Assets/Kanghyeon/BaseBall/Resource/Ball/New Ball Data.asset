@@ -12,28 +12,115 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 506c9e6a497feba42999b2f99fe15c80, type: 3}
   m_Name: New Ball Data
   m_EditorClassIdentifier: 
-  balldata:
-  - ballnum: 0
-    delay: 0.5
-    endtime: 2
-    ballname: Throw0
-  - ballnum: 0
-    delay: 0.5
-    endtime: 4
-    ballname: Throw0
-  - ballnum: 0
-    delay: 0.5
-    endtime: 6
-    ballname: Throw0
-  - ballnum: 0
-    delay: 0.5
-    endtime: 8
-    ballname: Throw1
-  - ballnum: 0
-    delay: 0.5
-    endtime: 8
-    ballname: Throw0
-  - ballnum: 0
-    delay: 0.5
-    endtime: 8
-    ballname: Throw1
+  balldatadbs:
+  - balldata:
+    - ballnum: 0
+      delay: 2
+      endtime: 0.6666667
+      ballname: Throw0
+    - ballnum: 0
+      delay: 2
+      endtime: 0.6666667
+      ballname: Throw0
+    - ballnum: 0
+      delay: 3.3333333
+      endtime: 0.6666667
+      ballname: Throw1
+    - ballnum: 0
+      delay: 2
+      endtime: 0.6666667
+      ballname: Throw0
+    - ballnum: 0
+      delay: 1.33333
+      endtime: 0.6666667
+      ballname: Throw1
+    - ballnum: 0
+      delay: 2
+      endtime: 0.6666667
+      ballname: Throw1
+    - ballnum: 0
+      delay: 2.0001
+      endtime: 0.6666667
+      ballname: Throw0
+    - ballnum: 0
+      delay: 2.05
+      endtime: 0.6666667
+      ballname: Throw0
+    - ballnum: 0
+      delay: 2
+      endtime: 0.6666667
+      ballname: Throw2
+  - balldata:
+    - ballnum: 0
+      delay: 2
+      endtime: 2
+      ballname: Throw0
+    - ballnum: 0
+      delay: 1.33333
+      endtime: 3.3333333
+      ballname: Throw1
+    - ballnum: 0
+      delay: 2
+      endtime: 5.3333335
+      ballname: Throw0
+    - ballnum: 0
+      delay: 0.6666667
+      endtime: 6
+      ballname: Throw2
+    - ballnum: 0
+      delay: 2
+      endtime: 8
+      ballname: Throw0
+    - ballnum: 0
+      delay: 0.6666667
+      endtime: 8.666667
+      ballname: Throw2
+    - ballnum: 0
+      delay: 1.3333334
+      endtime: 10
+      ballname: Throw1
+    - ballnum: 0
+      delay: 2
+      endtime: 12
+      ballname: Throw0
+    - ballnum: 0
+      delay: 1.3333334
+      endtime: 13.333333
+      ballname: Throw1
+  - balldata:
+    - ballnum: 0
+      delay: 1.3333334
+      endtime: 1.3333334
+      ballname: Throw1
+    - ballnum: 0
+      delay: 2
+      endtime: 3.333333
+      ballname: Throw0
+    - ballnum: 0
+      delay: 0.6666667
+      endtime: 3.9999998
+      ballname: Throw2
+    - ballnum: 0
+      delay: 1.3333334
+      endtime: 5.333333
+      ballname: Throw1
+    - ballnum: 0
+      delay: 2
+      endtime: 7.333333
+      ballname: Throw0
+    - ballnum: 0
+      delay: 2
+      endtime: 7.333333
+      ballname: Throw0
+    - ballnum: 0
+      delay: 1.3333334
+      endtime: 8.666666
+      ballname: Throw1
+    - ballnum: 0
+      delay: 1.3333334
+      endtime: 10
+      ballname: Throw1
+    - ballnum: 0
+      delay: 1.3333334
+      endtime: 11.333333
+      ballname: Throw1

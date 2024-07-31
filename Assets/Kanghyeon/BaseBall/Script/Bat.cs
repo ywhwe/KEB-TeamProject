@@ -54,8 +54,8 @@ public class Bat : MonoBehaviour
     {
         var pos = transform.position;
         pos.x = 3f;
-        if (Physics.BoxCast(pos, new Vector3(0.5f, 0.5f, 0.5f), Vector3.left, out ballhit,
-                Quaternion.identity, 7f))
+        if (Physics.BoxCast(pos, new Vector3(0.3f, 0.3f, 0.3f), Vector3.left, out ballhit,
+                Quaternion.identity, 5.5f))
         {
             ballendtime = ballhit.collider.GetComponent<TestBall>().endtime;
             return true;
@@ -68,10 +68,10 @@ public class Bat : MonoBehaviour
     {
         if (0 <= (ballendtime - Time.time) && (ballendtime - Time.time) <= 0.5f)
         {
-            var time = Mathf.Abs(2f - ballhit.transform.position.x) /
-                       ballhit.collider.GetComponent<TestBall>().ballspeed;
+            // var time = Mathf.Abs(2f - ballhit.transform.position.x) /
+            //            ballhit.collider.GetComponent<TestBall>().ballspeed;
             Destroy(ballhit.collider.gameObject, 3f);
-            Invoke("BallAway", time);
+            Invoke("BallAway", 0.07f);
             Board.instance.hitFlag = true;
             StartCoroutine(Board.instance.TextScreenOn());
             BaseBallGameManager.instance.CountScore();

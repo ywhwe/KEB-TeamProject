@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Photon.Pun;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class BaseBallGameManager : WholeGameManager
 {
@@ -17,26 +19,96 @@ public class BaseBallGameManager : WholeGameManager
 
     public Bat bat;
 
+    private int gameready=0;
+
     // public float score;
-    public float starttime;
     public float balltotal;
     public float ballcount;
+    private int roundcount=1;
     public float finalscore;
 
     public bool IsGameStart = false;
     public bool IsGameEnd = false;
     public PhotonView PV;
+   
+    #region ShuffleGame
+    public List<int> gameindex;
+    private void Shuffle(int num)
+    {
+        if (num == 1)
+        {
+            gameindex = new List<int>() { 0, 1, 2 };
+        }
+        if (num == 2)
+        {
+            gameindex = new List<int>() { 0, 2, 1 };
+        }
+        if (num == 3)
+        {
+            gameindex = new List<int>() { 1, 0, 2 };
+        }
+        if (num == 4)
+        {
+            gameindex = new List<int>() { 1, 2, 0 };
+        }
+        if (num == 5)
+        {
+            gameindex = new List<int>() { 2, 0, 1 };
+        }
+        if (num == 6)
+        {
+            gameindex = new List<int>() { 2, 1, 0 };
+        }
+    }
     
+    public void Sendindex()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            int id = Random.Range(1, 7);
+            PV.RPC("rpcSendindex",RpcTarget.All,id);
+        }
+    }
+    
+    [PunRPC]
+    void rpcSendindex(int id)
+    {
+        Shuffle(id);
+    }
+
+    #region CheckReady
+
+    public void CheckReady()
+    {
+        PV.RPC("rpcCheckReady",RpcTarget.MasterClient);
+    }
+
+    [PunRPC]
+    void rpcCheckReady()
+    {
+        gameready++;
+        if (gameready == PhotonNetwork.PlayerList.Length)
+        {
+            Sendindex();
+        }
+    }
+
+    #endregion
+    #endregion
     private void Awake()
     {
         instance = this;
         isDescend = true;
     }
 
+    private void Start()
+    {
+        CheckReady();
+    }
+
     public override void GameStart()
     {
-        starttime = Time.time;
-        pitcher.ShootBall();
+        pitcher.StartCycle(gameindex[0]);
         bat.IsGameStart();
         NetworkManager.instance.isDescending = isDescend;
     }
@@ -63,12 +135,17 @@ public class BaseBallGameManager : WholeGameManager
     public void CountBall()
     {
         ballcount = ballcount + 1f;
-        if (ballcount == balltotal)
+        if (ballcount == 9)
         {
-            IsGameEnd = true;
-            finishboard.text = "End" + " Score:" + score;
-            StartCoroutine(EndScene());
-
+            roundcount++;
+            ballcount = 0;
+            if (roundcount==3)
+            {
+                IsGameEnd = true;
+                finishboard.text = "End" + " Score:" + score;
+                StartCoroutine(EndScene());
+            }
+            pitcher.StartCycle(gameindex[roundcount]);
         }
     }
 
