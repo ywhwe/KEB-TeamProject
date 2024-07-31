@@ -15,11 +15,6 @@ public class MemoryGameManager : WholeGameManager
     private GameObject playerPref;
     private GameObject playerPos;
     
-    public GameObject rightIndex;
-    public GameObject leftIndex;
-    public GameObject upIndex;
-    public GameObject downtIndex;
-    
     public float limitTime;
     public TurnInfo[] turnDB;
     private CharacterMotionController playerController;
@@ -47,6 +42,9 @@ public class MemoryGameManager : WholeGameManager
         Animator.StringToHash("isSMove"),
         Animator.StringToHash("isDMove")
     };
+
+    public GameObject[] indexDirection;
+    
     protected static readonly int MotionSpeed = Animator.StringToHash("MotionSpeed");
     
     private void Awake()
@@ -106,6 +104,7 @@ public class MemoryGameManager : WholeGameManager
         {
             Debug.Log(randomMotions[i]);
             cpuAni.SetTrigger(motionHash[randomMotions[i]]);
+            indexDirection[randomMotions[i]].SetActive(true);
             cpuAni.SetFloat(MotionSpeed, 1f/turnDB[turn].motionPlayTime);
 
             yield return new WaitForSeconds(turnDB[turn].motionPlayTime);
