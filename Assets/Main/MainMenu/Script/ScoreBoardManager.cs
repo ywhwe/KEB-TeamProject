@@ -18,6 +18,8 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
     public static ScoreBoardManager instance;
     public int isLoadScore=0;
     public GameObject controlpanel;
+    public GameObject player;
+    
     public void NextGame()
     {
         if (!PhotonNetwork.IsMasterClient)
@@ -49,6 +51,9 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
         {
             Destroy(gameObject);
         }
+        GameObject playerPrefab = Instantiate(TotalManager.instance.obplayerPrefab, player.transform.position, player.transform.rotation);
+        playerPrefab.transform.SetParent(player.transform);
+        playerPrefab.transform.localScale = new Vector3(300f, 300f, 300f);
     }
 
     private void Start()

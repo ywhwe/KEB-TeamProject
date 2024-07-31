@@ -5943,6 +5943,7 @@ MonoBehaviour:
   PV: {fileID: 2119134639}
   BGM: {fileID: 2119134635}
   gameRound: 0
+  cursurIcon: {fileID: 2800000, guid: 8219bfdc2f8e07c4087a040ba8777203, type: 3}
 --- !u!4 &2119134637
 Transform:
   m_ObjectHideFlags: 0

@@ -21,8 +21,10 @@ public class MainMenuManager : MonoBehaviour
     {
         // startButton.onClick.AddListener(TotalManager.instance.GoToIngame);
         startButton.onClick.AddListener(() => SoundManager.instance.PlaySound("s1"));
+        customizeButton.onClick.AddListener(() => SoundManager.instance.PlaySound("s1"));
         customizeButton.onClick.AddListener(CustomizeScreenOn);
         customizeScreenOffButton.onClick.AddListener(CustomizeScreenOff);
+        customizeScreenOffButton.onClick.AddListener(() => SoundManager.instance.PlaySound("s1"));
         exitButton.onClick.AddListener(TotalManager.instance.ExitGame);
         testscenebutton.onClick.AddListener(TotalManager.instance.GoToTestgame);
     }

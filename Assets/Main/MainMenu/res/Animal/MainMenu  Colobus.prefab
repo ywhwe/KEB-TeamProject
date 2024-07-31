@@ -648,7 +648,7 @@ GameObject:
   - component: {fileID: 902679048135734430}
   - component: {fileID: 2150264655143669745}
   m_Layer: 0
-  m_Name: Main Colobus
+  m_Name: MainMenu  Colobus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

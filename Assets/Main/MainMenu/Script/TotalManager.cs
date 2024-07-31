@@ -51,6 +51,8 @@ public class TotalManager : MonoBehaviourPunCallbacks
     public AudioSource BGM;
 
     public int gameRound = 0;
+
+    public Texture2D cursurIcon;
     
     private void Awake()
     {
@@ -60,7 +62,7 @@ public class TotalManager : MonoBehaviourPunCallbacks
         SFXVolumeSlider.onValueChanged.AddListener(SetSFXLevel);
         BGM = GetComponent<AudioSource>();
         BGM.Play();
-        Debug.Log("BGM");
+        Cursor.SetCursor(cursurIcon,Vector2.zero, CursorMode.Auto);
     }
 
     public void Update()
@@ -262,8 +264,8 @@ public class TotalManager : MonoBehaviourPunCallbacks
     
     public void SetSFXVolumeText()
     {
-        perBGMVolume = BGMVolumeSlider.value * 100.0f;
-        SFXVolumeText.text = perBGMVolume.ToString("N0") + "%";
+        perSFXVolume = SFXVolumeSlider.value * 100.0f;
+        SFXVolumeText.text = perSFXVolume.ToString("N0") + "%";
     }
 
     public void SetBGMLevel(float sliderVal) {
