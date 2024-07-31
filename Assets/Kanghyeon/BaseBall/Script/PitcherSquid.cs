@@ -19,14 +19,23 @@ public class PitcherSquid : MonoBehaviour
     void Awake()
     {
         ani = GetComponent<Animator>();
+       
+        
+    }
+
+    public void StartCycle(int index)
+    {
+        CheckBalldb(index);
+        ShootBall();
+    }
+    private void CheckBalldb(int index)
+    {
         balllist = new List<BallData>();
-        foreach (var data in balldb[0].balldata)
+        foreach (var data in balldb[0].balldatadbs[index].balldata)
         {
             balllist.Add(data);
         }
-        
     }
-    
     private void ThrowNum0Ball()
     {
  
@@ -35,7 +44,7 @@ public class PitcherSquid : MonoBehaviour
         
     }
     
-    public void ShootBall()
+    private void ShootBall()
     {
         ani.SetTrigger(balllist[0].ballname);
         if (balllist.Count > 1)
@@ -52,7 +61,7 @@ public class PitcherSquid : MonoBehaviour
         pos.x = -19f;
         pos.y = 1.4f;
         var ball = Instantiate(Ball, pos, Quaternion.identity).GetComponent<TestBall>();
-        ball.Init(balllist[0].endtime+BaseBallGameManager.instance.starttime);
+        ball.Init(balllist[0].endtime+Time.time);
         balllist.RemoveAt(0);
     }
 

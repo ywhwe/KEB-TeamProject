@@ -59,6 +59,8 @@ MonoBehaviour:
   - SendLoadScore
   - rpcSendLoadScore
   - rpcRunTimer
+  - rpcCheckReady
+  - rpcSendindex
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
