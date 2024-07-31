@@ -84,15 +84,19 @@ public class Bat : MonoBehaviour
 
     public void Check(float endtime)
     {
-
         if (0 <= (endtime - Time.time) && (endtime - Time.time) <= 0.5f)
         {
             scoreboard.text = "HomeRun";
             BaseBallGameManager.instance.CountScore();
+            SoundSwing();
             return;
         }
-
         scoreboard.text = "Strike";
+    }
+    public void SoundSwing()
+    {
+        SoundManager.instance.PlaySound("Swing");
+
     }
 
     public void IsGameStart()
