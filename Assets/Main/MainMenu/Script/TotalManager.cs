@@ -46,6 +46,8 @@ public class TotalManager : MonoBehaviourPunCallbacks
     public WaitForSeconds waitTwoSecond = new WaitForSeconds(2f);
     public WaitForSeconds waitFiveSeconds = new WaitForSeconds(5f);
     public AudioSource BGM;
+
+    public int gameRound = 0;
     
     private void Awake()
     {
@@ -80,18 +82,13 @@ public class TotalManager : MonoBehaviourPunCallbacks
 
     public void MoveScene(int id)
     {
-        StartCoroutine(MoveSceneWithFade(id));
+        MoveFadeScene(id);
+    }
+    public void MoveScene(string str)
+    {
+        MoveFadeScene(str);
     }
     
-
-    private IEnumerator MoveSceneWithFade(int id)
-    {
-        yield return StartCoroutine(FadeScreen(true));
-        PhotonNetwork.LoadLevel(id);
-        // SceneManager.LoadScene(id);
-        yield return StartCoroutine(FadeScreen(false));
-        gameManager = GameObject.Find("GameManager");
-    }
 
     #region UniTask 로 로드씬구현
 
@@ -107,6 +104,7 @@ public class TotalManager : MonoBehaviourPunCallbacks
     }
     private async UniTask UniTaskGoToGameScene()
     {
+        gameRound++;
         int gamenum = 1;
         await MoveFadeScene(gamenum);
         gameManager = GameObject.Find("GameManager");
@@ -166,6 +164,12 @@ public class TotalManager : MonoBehaviourPunCallbacks
     {
         await FadeScreenTask(true);
         PhotonNetwork.LoadLevel(id);
+        await FadeScreenTask(false);
+    }
+    private async UniTask MoveFadeScene(string str)
+    {
+        await FadeScreenTask(true);
+        PhotonNetwork.LoadLevel(str);
         await FadeScreenTask(false);
     }
     private async UniTask ReadyForStart()

@@ -12,6 +12,7 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
 {
     public TextMeshProUGUI[] scoretxt;
     public TextMeshProUGUI nexttimer;
+    public TextMeshProUGUI winner;
     public PhotonView PV;
     public List<KeyValuePair<string, float>> ranklist;
     public static ScoreBoardManager instance;
@@ -52,6 +53,15 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
 
     private void Start()
     {
+        if (TotalManager.instance.gameRound==3)
+        {
+            CalculScore(NetworkManager.instance.currentplayerscore,NetworkManager.instance.isDescending);
+            UpdateScoreUI();
+            winner.text = "Winner is " + ranklist[0].Key;
+            nexttimer.text = "Go to Menu";
+            controlpanel.SetActive(true);
+            return;
+        }
         CalculScore(NetworkManager.instance.currentplayerscore,NetworkManager.instance.isDescending);
         UpdateScoreUI();
         NetworkManager.instance.SendLoadScore();
