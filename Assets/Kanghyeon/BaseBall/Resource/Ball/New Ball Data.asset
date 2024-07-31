@@ -28,4 +28,12 @@ MonoBehaviour:
   - ballnum: 0
     delay: 0.5
     endtime: 8
+    ballname: Throw1
+  - ballnum: 0
+    delay: 0.5
+    endtime: 8
     ballname: Throw0
+  - ballnum: 0
+    delay: 0.5
+    endtime: 8
+    ballname: Throw1

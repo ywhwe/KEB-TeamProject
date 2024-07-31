@@ -32,7 +32,7 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
     {
         PhotonNetwork.LeaveRoom();
         Destroy(GameObject.Find("NetworkManager"));
-        TotalManager.instance.MoveScene(2);
+        TotalManager.instance.MoveScene("Main");
     }
 
     public override void OnLeftRoom()
@@ -65,7 +65,6 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
         CalculScore(NetworkManager.instance.currentplayerscore,NetworkManager.instance.isDescending);
         UpdateScoreUI();
         NetworkManager.instance.SendLoadScore();
-
     }
 
     public async UniTask LoadingTimer()
@@ -76,7 +75,6 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
         }
         // await UniTask.WaitUntil(() => isLoadScore == PhotonNetwork.PlayerList.Length);
         PV.RPC("rpcRunTimer",RpcTarget.All);
-        
     }
 
     [PunRPC]

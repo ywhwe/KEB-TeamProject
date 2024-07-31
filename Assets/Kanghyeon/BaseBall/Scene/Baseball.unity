@@ -1579,6 +1579,61 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &435808692
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 435808694}
+  - component: {fileID: 435808693}
+  m_Layer: 0
+  m_Name: Sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &435808693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435808692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eaaddb7bd6e2f2418b4f38608720678, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundResources:
+  - key: Yap
+    Clip: {fileID: 8300000, guid: 75275de83362d3c419d4660a92747717, type: 3}
+  - key: Hap
+    Clip: {fileID: 8300000, guid: a2f7f42f6fd2d4a4aba02abb7c2675d7, type: 3}
+  - key: Hit
+    Clip: {fileID: 8300000, guid: 806dceb13df26b34d91415fcdad9d67b, type: 3}
+  - key: Swing
+    Clip: {fileID: 8300000, guid: f416b59ea2e05b4489815acbabd3e71c, type: 3}
+  poolSize: 4
+  soundNodePrefab: {fileID: 650559423976733254, guid: ee71c4f01bccf444499c9bbd63e3d249, type: 3}
+--- !u!4 &435808694
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435808692}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 625.15894, y: 198.25613, z: 0.2125722}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &448699047
 GameObject:
   m_ObjectHideFlags: 0
@@ -7614,74 +7669,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 927285577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2065691639
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2065691642}
-  - component: {fileID: 2065691641}
-  - component: {fileID: 2065691640}
-  m_Layer: 0
-  m_Name: EventSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &2065691640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2065691639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
---- !u!114 &2065691641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2065691639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
---- !u!4 &2065691642
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2065691639}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2103462994
 GameObject:
   m_ObjectHideFlags: 0
@@ -7792,7 +7779,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6816929263167300614, guid: 11594e505e29ff84b8260f16049d07a0, type: 3}
   m_PrefabInstance: {fileID: 311292983905181308}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 311292983905181309}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c5bcefb96a96f1c4db23643ae8a38744, type: 3}
@@ -7965,33 +7952,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 9103414847723628624, guid: 11594e505e29ff84b8260f16049d07a0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 311292983905181310}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11594e505e29ff84b8260f16049d07a0, type: 3}
---- !u!1 &311292983905181309 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9103414847723628624, guid: 11594e505e29ff84b8260f16049d07a0, type: 3}
-  m_PrefabInstance: {fileID: 311292983905181308}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &311292983905181310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 311292983905181309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7bb8b0600eb7049aaf37b2819231a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundResources:
-  - key: Swing
-    Clip: {fileID: 8300000, guid: 806dceb13df26b34d91415fcdad9d67b, type: 3}
-  poolSize: 1
-  soundNodePrefab: {fileID: 650559423976733254, guid: ee71c4f01bccf444499c9bbd63e3d249, type: 3}
 --- !u!1001 &6824825775303187941
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8068,5 +8030,5 @@ SceneRoots:
   - {fileID: 6824825775303187941}
   - {fileID: 243301963}
   - {fileID: 927285577}
-  - {fileID: 2065691642}
   - {fileID: 267463857}
+  - {fileID: 435808694}
