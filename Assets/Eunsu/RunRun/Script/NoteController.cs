@@ -20,9 +20,7 @@ public class NoteController : MonoBehaviour
     private GameObject downNote;
     private Vector3 downNotePos = new Vector3(910f, -100f, 0f);
     
-    private float timeLimit = 0.2f;
-    private float curTime;
-    private int rand;
+    private int rand, noteNumber;
 
     private float musicBPM = 117f;
     private float musicTempo = 4f;
@@ -56,7 +54,6 @@ public class NoteController : MonoBehaviour
 
     public IEnumerator GenNotes()
     {
-        curTime = 0f;
         isTimedOut = false;
         isFinished = false;
         
@@ -64,11 +61,11 @@ public class NoteController : MonoBehaviour
         {
             yield return new WaitForSeconds(genTime);
             
-            curTime += Time.deltaTime;
+            noteNumber++;
             
             rand = Random.Range(0, 101);
 
-            if (curTime > timeLimit)
+            if (noteNumber > 115)
             {
                 isTimedOut = true;
                 break;
@@ -76,12 +73,12 @@ public class NoteController : MonoBehaviour
 
             switch (rand)
             {
-                case > 60 and <= 100:
+                case > 51 and <= 100:
                     upNote = Instantiate(UpNotePrefab, upNotePos, Quaternion.identity);
                     upNote.transform.SetParent(canvasTrans, false);
                     noteCount++;
                     break;
-                case > 0 and <= 40:
+                case > 0 and <= 50:
                     downNote = Instantiate(DownNotePrefab, downNotePos, Quaternion.identity);
                     downNote.transform.SetParent(canvasTrans, false);
                     noteCount++;

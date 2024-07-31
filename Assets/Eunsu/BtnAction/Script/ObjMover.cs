@@ -13,9 +13,9 @@ public class ObjMover : MonoBehaviour
     [Header("Trolley")]
     [HideInInspector] public GameObject frontWheels; 
     [HideInInspector] public GameObject backWheels;
-    [HideInInspector] public ParticleSystem smoke;
-    [HideInInspector] public ParticleSystem spark1;
-    [HideInInspector] public ParticleSystem spark2;
+    [HideInInspector] public GameObject smoke;
+    [HideInInspector] public GameObject spark1;
+    [HideInInspector] public GameObject spark2;
     
     [Header("Rail")]
     public GameObject railPrefab;
@@ -122,25 +122,28 @@ public class ObjMover : MonoBehaviour
     
     public async UniTask SpeedController()
     {
-        smoke?.Play();
+        smoke?.SetActive(true);
         
         while (timer < 1f)
         {
             timer += Time.deltaTime;
             objSpeed = Coefficient * MathF.Sin(timer * Mathf.PI) + 1;
             
+            if (timer > 0.5f)
+            {
+                spark1.SetActive(true);
+                spark2.SetActive(true);
+            }
+            else
+            {
+                spark1.SetActive(false);
+                spark2.SetActive(false);
+            }
+            
             await UniTask.Yield();
         }
         
-        spark1?.Play();
-        spark2?.Play();
-        
-        smoke?.Stop();
-        
-        await UniTask.WaitForSeconds(0.3f);
-        
-        spark1?.Stop();
-        spark2?.Stop();
+        smoke?.SetActive(false);
         
         objSpeed = 1f;
         timer = 0f;

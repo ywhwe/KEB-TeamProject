@@ -26031,9 +26031,9 @@ MonoBehaviour:
   ani: {fileID: 8953968590679098065}
   FrontWheels: {fileID: 4806914426145898446}
   BackWheels: {fileID: 3971465317266533427}
-  accelerationSmoke: {fileID: 5025506340992185819}
-  decelerationSpark1: {fileID: 4821767472561722476}
-  decelerationSpark2: {fileID: 1894949278057076295}
+  accelerationSmoke: {fileID: 5025506340976710477}
+  decelerationSpark1: {fileID: 4821767472547888474}
+  decelerationSpark2: {fileID: 1894949278037933937}
 --- !u!1 &7002938628487833696
 GameObject:
   m_ObjectHideFlags: 0
@@ -26338,6 +26338,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SparkLoopYellow (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 132274, guid: fe3d56eddfcbadb418d81896e5ec547c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 476132, guid: fe3d56eddfcbadb418d81896e5ec547c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.6530002
@@ -26380,23 +26384,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19804860, guid: fe3d56eddfcbadb418d81896e5ec547c, type: 3}
       propertyPath: playOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19818996, guid: fe3d56eddfcbadb418d81896e5ec547c, type: 3}
       propertyPath: playOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19852676, guid: fe3d56eddfcbadb418d81896e5ec547c, type: 3}
       propertyPath: playOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19862984, guid: fe3d56eddfcbadb418d81896e5ec547c, type: 3}
       propertyPath: playOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19897956, guid: fe3d56eddfcbadb418d81896e5ec547c, type: 3}
       propertyPath: playOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26408,9 +26412,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 476132, guid: fe3d56eddfcbadb418d81896e5ec547c, type: 3}
   m_PrefabInstance: {fileID: 1894949278038064067}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &1894949278057076295 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 19852676, guid: fe3d56eddfcbadb418d81896e5ec547c, type: 3}
+--- !u!1 &1894949278037933937 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 132274, guid: fe3d56eddfcbadb418d81896e5ec547c, type: 3}
   m_PrefabInstance: {fileID: 1894949278038064067}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4821767472547756520
@@ -26424,6 +26428,10 @@ PrefabInstance:
     - target: {fileID: 132274, guid: fe3d56eddfcbadb418d81896e5ec547c, type: 3}
       propertyPath: m_Name
       value: SparkLoopYellow
+      objectReference: {fileID: 0}
+    - target: {fileID: 132274, guid: fe3d56eddfcbadb418d81896e5ec547c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 476132, guid: fe3d56eddfcbadb418d81896e5ec547c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26467,23 +26475,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19804860, guid: fe3d56eddfcbadb418d81896e5ec547c, type: 3}
       propertyPath: playOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19818996, guid: fe3d56eddfcbadb418d81896e5ec547c, type: 3}
       propertyPath: playOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19852676, guid: fe3d56eddfcbadb418d81896e5ec547c, type: 3}
       propertyPath: playOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19862984, guid: fe3d56eddfcbadb418d81896e5ec547c, type: 3}
       propertyPath: playOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19897956, guid: fe3d56eddfcbadb418d81896e5ec547c, type: 3}
       propertyPath: playOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26495,9 +26503,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 476132, guid: fe3d56eddfcbadb418d81896e5ec547c, type: 3}
   m_PrefabInstance: {fileID: 4821767472547756520}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &4821767472561722476 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 19852676, guid: fe3d56eddfcbadb418d81896e5ec547c, type: 3}
+--- !u!1 &4821767472547888474 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 132274, guid: fe3d56eddfcbadb418d81896e5ec547c, type: 3}
   m_PrefabInstance: {fileID: 4821767472547756520}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5025506340976566025
@@ -26514,7 +26522,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 150596, guid: 341fc2e91226cc747a53965fecbee5c6, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 434340, guid: 341fc2e91226cc747a53965fecbee5c6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26558,7 +26566,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19819218, guid: 341fc2e91226cc747a53965fecbee5c6, type: 3}
       propertyPath: playOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19819218, guid: 341fc2e91226cc747a53965fecbee5c6, type: 3}
       propertyPath: EmissionModule.enabled
@@ -26577,13 +26585,13 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 341fc2e91226cc747a53965fecbee5c6, type: 3}
+--- !u!1 &5025506340976710477 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 150596, guid: 341fc2e91226cc747a53965fecbee5c6, type: 3}
+  m_PrefabInstance: {fileID: 5025506340976566025}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5025506340976934829 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 434340, guid: 341fc2e91226cc747a53965fecbee5c6, type: 3}
-  m_PrefabInstance: {fileID: 5025506340976566025}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &5025506340992185819 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 19819218, guid: 341fc2e91226cc747a53965fecbee5c6, type: 3}
   m_PrefabInstance: {fileID: 5025506340976566025}
   m_PrefabAsset: {fileID: 0}

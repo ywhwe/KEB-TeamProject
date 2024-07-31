@@ -57,7 +57,7 @@ public class ButtonController : MonoBehaviour
                         break;
                 }
                 
-                SoundManager.instance.PlaySound("ClearNote");
+                SoundManagerForRunrun.instance.PlaySound("ClearNote");
                 var fx = Instantiate(hitFX, judge.transform.position, Quaternion.identity);
                 
                 Destroy(judge.gameObject);
