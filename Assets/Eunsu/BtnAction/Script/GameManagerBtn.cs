@@ -11,6 +11,8 @@ public class GameManagerBtn : WholeGameManager
 
     private UniTask compKey;
 
+    [SerializeField] private AudioSource audioSource;
+
     [HideInInspector]
     public bool flag = true; // This will be false when game is ended
     
@@ -174,6 +176,7 @@ public class GameManagerBtn : WholeGameManager
         startTime = Time.time;
         InputControl().Forget();
         GenQTE().Forget();
+        audioSource.PlayOneShot(audioSource.clip);
     }
 
     public override void SpawnObsPlayer()

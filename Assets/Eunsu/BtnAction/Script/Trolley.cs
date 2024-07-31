@@ -13,9 +13,9 @@ public class Trolley : MonoBehaviour
     [SerializeField] private GameObject FrontWheels;
     [SerializeField] private GameObject BackWheels;
 
-    public ParticleSystem accelerationSmoke;
-    public ParticleSystem decelerationSpark1;
-    public ParticleSystem decelerationSpark2;
+    public GameObject accelerationSmoke;
+    public GameObject decelerationSpark1;
+    public GameObject decelerationSpark2;
     
     private static readonly int isFinished = Animator.StringToHash("isFinished");
 
