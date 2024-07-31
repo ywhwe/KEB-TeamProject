@@ -106,8 +106,10 @@ public class MemoryGameManager : WholeGameManager
             cpuAni.SetTrigger(motionHash[randomMotions[i]]);
             indexDirection[randomMotions[i]].SetActive(true);
             cpuAni.SetFloat(MotionSpeed, 1f/turnDB[turn].motionPlayTime);
+          ;
 
             yield return new WaitForSeconds(turnDB[turn].motionPlayTime);
+            indexDirection[randomMotions[i]].SetActive(false);
         }
     }
     
