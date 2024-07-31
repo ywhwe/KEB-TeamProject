@@ -240,7 +240,6 @@ GameObject:
   - component: {fileID: 4838585563979027735}
   - component: {fileID: 3623676488283472405}
   - component: {fileID: 5572338123769223222}
-  - component: {fileID: 4956936605564374331}
   m_Layer: 0
   m_Name: Squid 1
   m_TagString: Untagged
@@ -335,25 +334,6 @@ MonoBehaviour:
   balldb:
   - {fileID: 11400000, guid: dda129a69cc4a804bac54e9c78e4f048, type: 2}
   Ball: {fileID: 143084233917995797, guid: b79ec75f09b393b4b86e03143c63ffea, type: 3}
---- !u!114 &4956936605564374331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2281439795177648798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7bb8b0600eb7049aaf37b2819231a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundResources:
-  - key: Hap
-    Clip: {fileID: 8300000, guid: a2f7f42f6fd2d4a4aba02abb7c2675d7, type: 3}
-  - key: Yap
-    Clip: {fileID: 8300000, guid: 75275de83362d3c419d4660a92747717, type: 3}
-  poolSize: 3
-  soundNodePrefab: {fileID: 650559423976733254, guid: ee71c4f01bccf444499c9bbd63e3d249, type: 3}
 --- !u!1 &2874476769911672451
 GameObject:
   m_ObjectHideFlags: 0

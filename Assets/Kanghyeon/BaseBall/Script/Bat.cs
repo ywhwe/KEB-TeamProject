@@ -40,7 +40,11 @@ public class Bat : MonoBehaviour
                     AwayBall();
                     Debug.Log(ballendtime);
                     Debug.Log(Time.time);
-                    Check(ballendtime);
+                 
+                }
+                else
+                {
+                    SoundSwing();
                 }
             }
         }
@@ -68,7 +72,15 @@ public class Bat : MonoBehaviour
                        ballhit.collider.GetComponent<TestBall>().ballspeed;
             Destroy(ballhit.collider.gameObject, 3f);
             Invoke("BallAway", time);
+            Board.instance.hitFlag = true;
+            StartCoroutine(Board.instance.TextScreenOn());
+            BaseBallGameManager.instance.CountScore();
+            SoundHit();
 
+        }
+        else
+        {
+            SoundSwing();
         }
     }
 
@@ -78,22 +90,16 @@ public class Bat : MonoBehaviour
         ballhit.collider.GetComponent<Rigidbody>().AddForce(angle, ForceMode.VelocityChange);
     }
 
-    public void Check(float endtime)
-    {
-        if (0 <= (endtime - Time.time) && (endtime - Time.time) <= 0.5f)
-        {
-            Board.instance.hitFlag = true;
-            StartCoroutine(Board.instance.TextScreenOn());
-            BaseBallGameManager.instance.CountScore();
-            SoundSwing();
-            return;
-        }
-        scoreboard.text = "Strike";
-    }
-    public void SoundSwing()
-    {
-        SoundManager.instance.PlaySound("Swing");
 
+    private void SoundHit()
+    {
+        SoundManagerForBaseBall.instance.PlaySound("Hit");
+
+    }
+
+    private void SoundSwing()
+    {
+        SoundManagerForBaseBall.instance.PlaySound("Swing");
     }
 
     public void IsGameStart()

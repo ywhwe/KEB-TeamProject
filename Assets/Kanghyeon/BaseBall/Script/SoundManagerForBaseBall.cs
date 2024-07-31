@@ -3,16 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundManagerForGame : MonoBehaviour
+public class SoundManagerForBaseBall : MonoBehaviour
 {
-   public static SoundManagerForGame instance;
+   public static SoundManagerForBaseBall instance;
     
     public AudioDataInBaseBall[] soundResources;
     private Dictionary<string, AudioClip> soundDB = new();
 
     public int poolSize;
     public GameObject soundNodePrefab;
-    private Queue<AudioNode> soundPool = new();
+    private Queue<AudioNodeForBaseBall> soundPool = new();
     
     void Awake()
     {
@@ -23,7 +23,6 @@ public class SoundManagerForGame : MonoBehaviour
             soundDB.Add(soundResource.key, soundResource.Clip); 
         }
         
-        DontDestroyOnLoad(gameObject);
 
         for (int i = 0; i < poolSize; i++)
         {
@@ -33,7 +32,7 @@ public class SoundManagerForGame : MonoBehaviour
 
     private void MakeNode()
     {
-        var audioNode = Instantiate(soundNodePrefab, transform).GetComponent<AudioNode>();
+        var audioNode = Instantiate(soundNodePrefab, transform).GetComponent<AudioNodeForBaseBall>();
         soundPool.Enqueue(audioNode);
     }
 
@@ -83,7 +82,7 @@ public class SoundManagerForGame : MonoBehaviour
         node.Play(soundDB[key]);
     }
     
-    private AudioNode GetNode()
+    private AudioNodeForBaseBall GetNode()
     {
         if (soundPool.Count < 1)
         {
@@ -95,7 +94,7 @@ public class SoundManagerForGame : MonoBehaviour
         return node;
     }
 
-    public void SetNode(AudioNode node)
+    public void SetNode(AudioNodeForBaseBall node)
     {
         node.transform.SetParent(transform);
         
