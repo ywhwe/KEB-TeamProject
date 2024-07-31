@@ -1,24 +1,32 @@
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 public class BtnAction : MonoBehaviour
 {
-    private Animator ani;
-    public GameManagerBtn gameManagerBtn;
+    private Animator genAni;
+    public GameObject blockBox;
     
     private static readonly int Gen = Animator.StringToHash("Gen");
 
     private void Awake()
     {
-        ani = GetComponent<Animator>();
+        genAni = GetComponent<Animator>();
     }
 
-    private void Update()
+    private async void Update()
     {
-        if (gameManagerBtn.isGen)
+        if (GameManagerBtn.instance.isGen)
         {
-            ani.SetTrigger(Gen);
+            genAni.SetTrigger(Gen);
+        }
+        
+        if (!GameManagerBtn.instance.isLegal)
+        {
+            blockBox.SetActive(true);
+            await UniTask.WaitForSeconds(1f);
+            blockBox.SetActive(false);
         }
 
-        gameManagerBtn.isGen = false;
+        GameManagerBtn.instance.isGen = false;
     }
 }
