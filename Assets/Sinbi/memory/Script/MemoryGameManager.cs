@@ -13,9 +13,12 @@ public class MemoryGameManager : WholeGameManager
 
     public GameObject[] playerPosDB;
     private GameObject playerPref;
-   /* private GameObject[] playerScaleDB;
-    private GameObject playerScale;*/
     private GameObject playerPos;
+    
+    public GameObject rightIndex;
+    public GameObject leftIndex;
+    public GameObject upIndex;
+    public GameObject downtIndex;
     
     public float limitTime;
     public TurnInfo[] turnDB;
@@ -62,6 +65,7 @@ public class MemoryGameManager : WholeGameManager
     {
         yield return new WaitForSeconds(1f);
         var playerObj = PhotonNetwork.Instantiate("MemoryGamePrefab/" + playerPref.name, playerPos.transform.position, playerPos.transform.rotation);
+        playerObj.transform.localScale = playerPos.transform.localScale;
         playerController = playerObj.GetComponent<CharacterMotionController>();
         playerController.OnKeyPressed += PlayerInput;
     }
@@ -127,8 +131,8 @@ public class MemoryGameManager : WholeGameManager
     {
         if (!isPlayerTurn) return;
 
-        if (motionIdx == 1) motionIdx = 3;
-        if (motionIdx == 3) motionIdx = 1;
+       /* if (motionIdx == 1) motionIdx = 3;
+        if (motionIdx == 3) motionIdx = 1;*/
         
         if (randomMotions[playerInputIdx] == motionIdx)
         {
