@@ -16,7 +16,7 @@ public class GameManagerBtn : WholeGameManager
     
     [Header("Trolley")]
     public GameObject trolleyPrefab;
-    private Vector3 trolleyPos = new (2f, 0.25f, -0.197f);
+    private Vector3 trolleyPos = new (2f, 0.44f, -0.197f);
     
     [Header("Button")]
     public TextMeshProUGUI qteBtnText;
