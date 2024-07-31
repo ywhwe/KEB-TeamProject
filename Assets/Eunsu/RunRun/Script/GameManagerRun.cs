@@ -7,12 +7,20 @@ using Photon.Pun;
 public class GameManagerRun : WholeGameManager // Need fix for inheritance
 {
     public static GameManagerRun instance;
+    
+    [SerializeField]
+    private AudioSource audioSource;
+    
     private float playerScore;
+    
     public PhotonView pvTest;
+    
     private bool isGameEnded = false;
+    
     public GameObject[] playerposdb; // 각 플레이어 pos 데이터
     private GameObject playerpref; // local 플레이어의 프리펩
     private GameObject playerpos; // local 플레이어의 pos위치
+    
     private void Awake()
     {
         instance = this;
@@ -51,6 +59,7 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
         CharacterMotionController.instance.isTwoKey = true;
         Background.bgInstance.BackgroundMove().Forget();
         StartCoroutine(NoteController.instance.GenNotes());
+        audioSource.PlayOneShot(audioSource.clip);
     }
 
     public override void SpawnObsPlayer()

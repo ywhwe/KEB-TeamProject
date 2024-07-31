@@ -4,7 +4,7 @@ using UnityEngine;
 public class Note : MonoBehaviour
 {
     private RectTransform _rectTransform;
-    private float noteSpeed = 7f;
+    private float noteSpeed = 5f;
     private float movePos;
 
     private float durationTime = 0f;
