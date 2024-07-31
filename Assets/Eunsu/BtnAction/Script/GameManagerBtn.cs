@@ -27,7 +27,7 @@ public class GameManagerBtn : WholeGameManager
     [HideInInspector]
     public int successCount;
 
-    private float clearTime, rand;
+    private float startTime, curTime, clearTime, rand;
     
     private bool isMatch = true; // This checks user input is correct
 
@@ -56,6 +56,8 @@ public class GameManagerBtn : WholeGameManager
     private void Update()
     {
         clearTime += Time.deltaTime;
+
+        if (clearTime > 120f) isGameEnd = true;
     }
     
     private async UniTask GenQTE()
@@ -72,7 +74,7 @@ public class GameManagerBtn : WholeGameManager
 
             successCount++;
 
-            if (successCount is 10) break;
+            if (successCount is 50) break;
         }
 
         isGameEnd = true;
@@ -169,6 +171,7 @@ public class GameManagerBtn : WholeGameManager
     {
         Instantiate(trolleyPrefab, trolleyPos, Quaternion.identity);
         ObjMover.ObjInstance.Spin().Forget();
+        startTime = Time.time;
         InputControl().Forget();
         GenQTE().Forget();
     }
@@ -182,6 +185,7 @@ public class GameManagerBtn : WholeGameManager
     {
         if (!isGameEnd) yield break;
         score = clearTime;
+        curTime = 0f;
         yield return new WaitForSeconds(1f);
         flag = false;
         TotalManager.instance.StartFinish();
