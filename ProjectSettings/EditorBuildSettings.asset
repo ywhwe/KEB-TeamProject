@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Jisoo/Scene/Follow The Action.unity
     guid: 4a0d28bc19defc347a0f30268f595bdd
-  - enabled: 1
+  - enabled: 0
     path: Assets/Main/Record/Sence/RecordPlay.unity
     guid: de63d1dd09aebdb439833c38537f2051
   - enabled: 0
@@ -32,8 +32,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Kanghyeon/NetworkManage/Lobby.unity
     guid: 9ea23d69ef0cb4b489b04847f07def08
-  - enabled: 1
-    path: Assets/Main/MainMenu/Scenes/Main.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: d57b90fedc7b7814f936228a5e06ac79, type: 2}

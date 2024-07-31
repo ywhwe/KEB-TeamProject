@@ -25,8 +25,8 @@ public class ObjMover : MonoBehaviour
     private Transform railTrans;
     private Vector3 railMoveVector = new (-3f, 0f, 0f);
     
-    private Vector3 railPos = new (-1.84f, 0.05f, 1.04f);
-    private Vector3 nextRailPos = new(10f, 0.05f, 1.04f);
+    private Vector3 railPos = new (-1.84f, 0.15f, 1.04f);
+    private Vector3 nextRailPos = new(10f, 0.15f, 1.04f);
     
     [Header("Background")]
     public GameObject backgroundPrefab;
@@ -132,7 +132,15 @@ public class ObjMover : MonoBehaviour
             await UniTask.Yield();
         }
         
+        spark1?.Play();
+        spark2?.Play();
+        
         smoke?.Stop();
+        
+        await UniTask.WaitForSeconds(0.3f);
+        
+        spark1?.Stop();
+        spark2?.Stop();
         
         objSpeed = 1f;
         timer = 0f;
