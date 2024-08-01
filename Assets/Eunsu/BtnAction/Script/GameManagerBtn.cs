@@ -18,7 +18,7 @@ public class GameManagerBtn : WholeGameManager
     
     [Header("Trolley")]
     public GameObject trolleyPrefab;
-    private Vector3 trolleyPos = new (2f, 0.44f, -0.197f);
+    private readonly Vector3 trolleyPos = new (2f, 0.44f, -0.197f);
     
     [Header("Button")]
     public TextMeshProUGUI qteBtnText;
@@ -29,7 +29,7 @@ public class GameManagerBtn : WholeGameManager
     [HideInInspector]
     public int successCount;
 
-    private float startTime, curTime, clearTime, rand;
+    private float clearTime, rand;
     
     private bool isMatch = true; // This checks user input is correct
 
@@ -141,7 +141,7 @@ public class GameManagerBtn : WholeGameManager
             isAccel = true;
             await AllowInput();
 
-            ObjMover.ObjInstance.SpeedController().Forget();
+            ObjMover.ObjInstance.AccelerationSpeed().Forget();
             await UniTask.WaitForSeconds(0.5f);
         }
         else
@@ -165,7 +165,9 @@ public class GameManagerBtn : WholeGameManager
         isMatch = false;
         isLegal = false;
         
+        ObjMover.ObjInstance.DecelerationSpeed().Forget();
         await UniTask.WaitForSeconds(2f);
+        
         isLegal = true;
     }
     
@@ -173,7 +175,7 @@ public class GameManagerBtn : WholeGameManager
     {
         Instantiate(trolleyPrefab, trolleyPos, Quaternion.identity);
         ObjMover.ObjInstance.Spin().Forget();
-        startTime = Time.time;
+        
         InputControl().Forget();
         GenQTE().Forget();
         audioSource.PlayOneShot(audioSource.clip);
@@ -188,7 +190,7 @@ public class GameManagerBtn : WholeGameManager
     {
         if (!isGameEnd) yield break;
         score = clearTime;
-        curTime = 0f;
+        
         yield return new WaitForSeconds(1f);
         flag = false;
         TotalManager.instance.StartFinish();
