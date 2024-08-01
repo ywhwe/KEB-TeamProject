@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
-using UnityEngine.Serialization;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 
@@ -23,10 +22,10 @@ public class ObjMover : MonoBehaviour
     private GameObject rails;
     private GameObject rails1;
     private Transform railTrans;
-    private Vector3 railMoveVector = new (-3f, 0f, 0f);
+    private readonly Vector3 railMoveVector = new (-3f, 0f, 0f);
     
-    private Vector3 railPos = new (-1.84f, 0.15f, 1.04f);
-    private Vector3 nextRailPos = new(10f, 0.15f, 1.04f);
+    private readonly Vector3 railPos = new (-1.84f, 0.15f, 1.04f);
+    private readonly Vector3 nextRailPos = new(10f, 0.15f, 1.04f);
     
     [Header("Background")]
     public GameObject backgroundPrefab;
@@ -34,13 +33,13 @@ public class ObjMover : MonoBehaviour
     private GameObject currentBackground;
     private GameObject nextBackground;
     
-    private Vector3 initBgPos = new (10.62f, 3.95f, 3f);
-    private Vector3 secBgPos = new(55.36f, 3.95f, 3f);
-    private Vector3 nextBgPos = new (35.36f, 3.95f, 3f);
+    private readonly Vector3 initBgPos = new (10.62f, 3.95f, 3f);
+    private readonly Vector3 secBgPos = new(55.36f, 3.95f, 3f);
+    private readonly Vector3 nextBgPos = new (35.36f, 3.95f, 3f);
     
-    private Vector3 bgMoveVector = new (3f, 0f, 0f);
+    private readonly Vector3 bgMoveVector = new (3f, 0f, 0f);
     
-    private Quaternion initBgAngle = new (0f, 0.7071068f, -0.7071068f, 0f);
+    private readonly Quaternion initBgAngle = new (0f, 0.7071068f, -0.7071068f, 0f);
     
     [Header("Ground")]
     public GameObject groundPrefab;
@@ -48,13 +47,13 @@ public class ObjMover : MonoBehaviour
     private GameObject currentGround;
     private GameObject nextGround;
     
-    private Vector3 initGroundPos = new (10.62f, 0.1f, -1.4f);
-    private Vector3 secGroundPos = new(55.36f, 0.1f, -1.4f);
-    private Vector3 nextGroundPos = new (35.36f, 0.1f, -1.4f);
+    private readonly Vector3 initGroundPos = new (10.62f, 0.1f, -1.4f);
+    private readonly Vector3 secGroundPos = new(55.36f, 0.1f, -1.4f);
+    private readonly Vector3 nextGroundPos = new (35.36f, 0.1f, -1.4f);
     
-    private Vector3 groundMoveVector = new (-3f, 0f, 0f);
+    private readonly Vector3 groundMoveVector = new (-3f, 0f, 0f);
     
-    private Quaternion initGroundAngle = new (0f, 0f, 0f, 1f);
+    private readonly Quaternion initGroundAngle = new (0f, 0f, 0f, 1f);
 
     private float objSpeed = 1f;
 
@@ -63,6 +62,7 @@ public class ObjMover : MonoBehaviour
     private void Awake()
     {
         ObjInstance = this;
+        timer = 0f;
     }
 
     public async UniTask RailMove()
@@ -120,32 +120,36 @@ public class ObjMover : MonoBehaviour
         }
     }
     
-    public async UniTask SpeedController()
+    public async UniTask AccelerationSpeed()
     {
         smoke?.SetActive(true);
         
         while (timer < 1f)
         {
             timer += Time.deltaTime;
-            objSpeed = Coefficient * MathF.Sin(timer * Mathf.PI) + 1;
-            
-            if (timer > 0.5f)
-            {
-                spark1.SetActive(true);
-                spark2.SetActive(true);
-            }
-            else
-            {
-                spark1.SetActive(false);
-                spark2.SetActive(false);
-            }
+            objSpeed = Coefficient * MathF.Sin(timer * Mathf.PI) + 3;
             
             await UniTask.Yield();
         }
         
         smoke?.SetActive(false);
         
+        objSpeed = 3f;
+        timer = 0f;
+    }
+    
+    public async UniTask DecelerationSpeed()
+    {
+        spark1?.SetActive(true);
+        spark2?.SetActive(true);
+
         objSpeed = 1f;
+        await UniTask.WaitForSeconds(1f);
+        
+        spark1?.SetActive(false);
+        spark2?.SetActive(false);
+        
+        objSpeed = 3f;
         timer = 0f;
     }
     
