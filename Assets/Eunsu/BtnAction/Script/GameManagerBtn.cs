@@ -29,6 +29,8 @@ public class GameManagerBtn : WholeGameManager
 
     private float clearTime, rand;
     
+    public const int NumberOfButtons = 50;
+    
     private bool isMatch = true; // This checks user input is correct
 
     [HideInInspector] public bool isLegal = true; // This checks if user input is consecutive but mostly incorrect
@@ -75,11 +77,10 @@ public class GameManagerBtn : WholeGameManager
 
             successCount++;
 
-            if (successCount is 50) break;
+            if (successCount is NumberOfButtons) break;
         }
 
         isGameEnd = true;
-        Debug.Log("All Cleared in " + clearTime + " sec");
     }
     
     private void BtnControl(float random)

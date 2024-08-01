@@ -57,7 +57,7 @@ public class ObjMover : MonoBehaviour
 
     private float objSpeed = 1f;
 
-    private float timer = 0;
+    private float timer;
 
     private void Awake()
     {
@@ -155,11 +155,10 @@ public class ObjMover : MonoBehaviour
     
     public async UniTask Spin()
     {
-        while (GameManagerBtn.instance.successCount < 10)
+        while (GameManagerBtn.instance.successCount < GameManagerBtn.NumberOfButtons)
         {
             await UniTask.Yield();
             
-            // Fix angle value bigger
             frontWheels?.transform.Rotate(Vector3.back, objSpeed * 0.5f, Space.Self);
             backWheels?.transform.Rotate(Vector3.back, objSpeed * 0.5f, Space.Self);
         }
