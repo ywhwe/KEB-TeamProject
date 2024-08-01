@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
-using UnityEngine.Serialization;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 
@@ -63,6 +62,7 @@ public class ObjMover : MonoBehaviour
     private void Awake()
     {
         ObjInstance = this;
+        timer = 0f;
     }
 
     public async UniTask RailMove()

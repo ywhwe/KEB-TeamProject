@@ -9,8 +9,6 @@ public class GameManagerBtn : WholeGameManager
 {
     public static GameManagerBtn instance;
 
-    private UniTask compKey;
-
     [SerializeField] private AudioSource audioSource;
 
     [HideInInspector]
@@ -35,9 +33,9 @@ public class GameManagerBtn : WholeGameManager
 
     [HideInInspector] public bool isLegal = true; // This checks if user input is consecutive but mostly incorrect
 
-    [HideInInspector] public bool isGen = false; // This will be true if button has generated
+    [HideInInspector] public bool isGen; // This will be true if button has generated
 
-    private bool isAccel = false;
+    private bool isAccel;
     
     public PhotonView PV;
 
@@ -53,6 +51,7 @@ public class GameManagerBtn : WholeGameManager
         ObjMover.ObjInstance.BgMove().Forget();
         ObjMover.ObjInstance.RailMove().Forget();
         isGameEnd = false;
+        isAccel = false;
     }
 
     private void Update()
