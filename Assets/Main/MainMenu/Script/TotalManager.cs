@@ -17,11 +17,9 @@ public class TotalManager : MonoBehaviourPunCallbacks
 
     public GameObject[] prefabDB;
     public GameObject[] obprefabDB;
-    public GameObject[] memoryPrefabDB;
     public int playerPrefabNumber = 0;
     public GameObject playerPrefab => prefabDB[playerPrefabNumber];
     public GameObject obplayerPrefab => obprefabDB[playerPrefabNumber];
-    public GameObject memoryGamePrefab => memoryPrefabDB[playerPrefabNumber];
     
     public Image fadeScreen;
     public Image optionScreen;
@@ -88,11 +86,15 @@ public class TotalManager : MonoBehaviourPunCallbacks
 
     public void MoveScene(int id)
     {
-        MoveFadeScene(id);
+        MoveFadeScene(id); //  warning CS4014: Because this call is not awaited,
+                           // execution of the current method continues before the call is completed.
+                           // Consider applying the 'await' operator to the result of the call.
     }
     public void MoveScene(string str)
     {
-        MoveFadeScene(str);
+        MoveFadeScene(str); //  warning CS4014: Because this call is not awaited,
+                            // execution of the current method continues before the call is completed.
+                            // Consider applying the 'await' operator to the result of the call.
     }
     
 
@@ -106,7 +108,9 @@ public class TotalManager : MonoBehaviourPunCallbacks
     [PunRPC]
     public void rpcGoToGameScene()
     {
-        UniTaskGoToGameScene();
+        UniTaskGoToGameScene(); //  warning CS4014: Because this call is not awaited,
+                                // execution of the current method continues before the call is completed.
+                                // Consider applying the 'await' operator to the result of the call.
     }
     private async UniTask UniTaskGoToGameScene()
     {
@@ -131,7 +135,9 @@ public class TotalManager : MonoBehaviourPunCallbacks
     [PunRPC]
     private void rpcCountForStart()
     {
-        UniTaskCountForStart();
+        UniTaskCountForStart(); //  warning CS4014: Because this call is not awaited,
+                                // execution of the current method continues before the call is completed.
+                                // Consider applying the 'await' operator to the result of the call.
     }
     private async UniTask UniTaskCountForStart()
     {

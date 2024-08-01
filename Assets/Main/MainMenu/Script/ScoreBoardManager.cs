@@ -72,7 +72,9 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
         NetworkManager.instance.SendLoadScore();
     }
 
-    public async UniTask LoadingTimer()
+    public async UniTask LoadingTimer() // Need fix " warning CS1998: This async method lacks 'await' operators and will run synchronously.
+                                        // Consider using the 'await' operator to await non-blocking API calls,
+                                        // or 'await Task.Run(...)' to do CPU-bound work on a background thread."
     {
         if (!PhotonNetwork.IsMasterClient)
         {
@@ -85,7 +87,9 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
     [PunRPC]
     void rpcRunTimer()
     {
-        LoadTimer();
+        LoadTimer(); // warning CS4014: Because this call is not awaited,
+                     // execution of the current method continues before the call is completed.
+                     // Consider applying the 'await' operator to the result of the call.
     }
     
     private async UniTask LoadTimer()
