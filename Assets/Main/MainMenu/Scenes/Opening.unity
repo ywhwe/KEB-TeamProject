@@ -2346,7 +2346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: e30abdc49ea0d814e85d9c46f32cc5df, type: 2}
+  m_Material: {fileID: 2100000, guid: 0e1ce2108c3482d41b3d5774c4e63737, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -2355,7 +2355,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 051dd122c0b97e64a955db64e9bbad59, type: 2}
+    m_Font: {fileID: 12800000, guid: 1de25a1a764eeae4a9ed4e3476f67510, type: 2}
     m_FontSize: 70
     m_FontStyle: 0
     m_BestFit: 0

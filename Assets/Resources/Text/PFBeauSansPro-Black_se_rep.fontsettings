@@ -9,9 +9,9 @@ Font:
   m_Name: PFBeauSansPro-Black_se_rep
   serializedVersion: 5
   m_LineSpacing: 84
-  m_DefaultMaterial: {fileID: 2100000, guid: 738e45077d0153b4d93d0f886f1a6354, type: 2}
+  m_DefaultMaterial: {fileID: 2100000, guid: e30abdc49ea0d814e85d9c46f32cc5df, type: 2}
   m_FontSize: 70
-  m_Texture: {fileID: 2800000, guid: 56e1223656621424e94f053682fb5d1c, type: 3}
+  m_Texture: {fileID: 2800000, guid: b70bfa52d87647f478fc2e55b3d319a1, type: 3}
   m_AsciiStartOffset: 0
   m_Tracking: 1
   m_CharacterSpacing: 0
@@ -1819,7 +1819,8 @@ Font:
   m_DefaultStyle: 0
   m_FontNames:
   - PF BeauSans Pro
-  m_FallbackFonts: []
+  m_FallbackFonts:
+  - {fileID: 12800000, guid: 4667828bc24094141963ca09c6559807, type: 3}
   m_FontRenderingMode: 0
   m_UseLegacyBoundsCalculation: 0
   m_ShouldRoundAdvanceValue: 1
