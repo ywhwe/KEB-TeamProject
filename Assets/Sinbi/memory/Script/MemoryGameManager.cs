@@ -15,6 +15,10 @@ public class MemoryGameManager : WholeGameManager
     private GameObject playerPref;
     private GameObject playerPos;
     
+    [FormerlySerializedAs("timeBar")] public GameObject timer;
+    private Vector3 maxTimeBar = new Vector3(-0.7f,8.6f,-1.213f);
+    private Vector3 emptyTimeBar = new Vector3(-0.7f,8.6f,-1.43f);
+    
     public float limitTime;
     public TurnInfo[] turnDB;
     private CharacterMotionController playerController;
@@ -34,6 +38,7 @@ public class MemoryGameManager : WholeGameManager
     private Coroutine cpuMotionPlayCoroutine;
     
     private float playingTime = 0;
+    
   
     private int[] motionHash =
     {
@@ -50,7 +55,7 @@ public class MemoryGameManager : WholeGameManager
     private void Awake()
     {
         instance = this;
-        playerPref = TotalManager.instance.memoryGamePrefab;
+        playerPref = TotalManager.instance.playerPrefab;
         int index = Array.FindIndex(PhotonNetwork.PlayerList, x => x.NickName == PhotonNetwork.LocalPlayer.NickName);
         playerPos = playerPosDB[index];
         Debug.Log(index);
@@ -62,9 +67,10 @@ public class MemoryGameManager : WholeGameManager
     IEnumerator DelayInst() //플레이어 instant 함수
     {
         yield return new WaitForSeconds(1f);
-        var playerObj = PhotonNetwork.Instantiate("MemoryGamePrefab/" + playerPref.name, playerPos.transform.position, playerPos.transform.rotation);
+        var playerObj = PhotonNetwork.Instantiate("MainAnimal/FREE/Prefabs/Player Prefab/"+ playerPref.name, playerPos.transform.position, playerPos.transform.rotation);
         playerObj.transform.localScale = playerPos.transform.localScale;
         playerController = playerObj.GetComponent<CharacterMotionController>();
+        playerController.isMirrored = true;
         playerController.OnKeyPressed += PlayerInput;
     }
     
@@ -131,10 +137,7 @@ public class MemoryGameManager : WholeGameManager
     private void PlayerInput(int motionIdx)
     {
         if (!isPlayerTurn) return;
-
-       /* if (motionIdx == 1) motionIdx = 3;
-        if (motionIdx == 3) motionIdx = 1;*/
-        
+       
         if (randomMotions[playerInputIdx] == motionIdx)
         {
             //나아중에 이펙트 재생 (후순위)
@@ -143,6 +146,15 @@ public class MemoryGameManager : WholeGameManager
         else
         {
             Debug.Log("Incorrect");
+            StartCoroutine(WaitAndStartMotion());
+        }
+
+        IEnumerator WaitAndStartMotion()
+        {
+            // 1초 대기
+            yield return new WaitForSeconds(1f);
+
+            // 코루틴 시작
             cpuMotionPlayCoroutine = StartCoroutine(PlayRandomMotion());
         }
         
@@ -195,7 +207,8 @@ public class MemoryGameManager : WholeGameManager
     {
         if (!isTimerActive) return;
         playingTime += Time.deltaTime;
-
+        timer.transform.position = Vector3.Lerp(maxTimeBar, emptyTimeBar, playingTime / limitTime);
+        
         if (playingTime > limitTime)
         {
             Debug.Log("TIMES UP!");

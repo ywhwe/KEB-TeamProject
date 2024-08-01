@@ -12,15 +12,20 @@ public class CharacterMotionController : MonoBehaviour
     private bool isInputActive = true;
 
     public bool isTwoKey = false;
+    public bool isMirrored = false;
     
-    private KeyCode[] key =
+    private KeyCode[] keyCodes =
     {
         KeyCode.W,
         KeyCode.A,
         KeyCode.S,
         KeyCode.D,
+    };
+    
+    private KeyCode[] twoKeyCodes =
+    {
         KeyCode.W,
-        KeyCode.S
+        KeyCode.S,
     };
     
     private int[] motionHash =
@@ -28,7 +33,19 @@ public class CharacterMotionController : MonoBehaviour
         Animator.StringToHash("isWMove"),
         Animator.StringToHash("isAMove"),
         Animator.StringToHash("isSMove"),
+        Animator.StringToHash("isDMove")
+    };
+    
+    private int[] mirroredMotionHash =
+    {
+        Animator.StringToHash("isWMove"),
         Animator.StringToHash("isDMove"),
+        Animator.StringToHash("isSMove"),
+        Animator.StringToHash("isAMove")
+    };
+
+    private int[] twoKeyMotionHash =
+    {
         Animator.StringToHash("isTwoKeyWMove"),
         Animator.StringToHash("isTwoKeySMove")
     };
@@ -45,32 +62,40 @@ public class CharacterMotionController : MonoBehaviour
     {
         if (!isInputActive) return;
 
-        if (!isTwoKey)
+        var keyCode = isTwoKey ? twoKeyCodes : keyCodes;
+        var hashCode = isTwoKey ? twoKeyMotionHash : (isMirrored ? mirroredMotionHash : motionHash);
+        
+        for (int i = 0; i < hashCode.Length; i++)
         {
-            for (int i = 0; i <= 3; i++)
+            if (Input.GetKeyDown(keyCode[i]))
             {
-                if (Input.GetKeyDown(key[i]))
-                {
-                    ani.SetTrigger(motionHash[i]);
-                    OnKeyPressed?.Invoke(i);
-                }
+                ani.SetTrigger(hashCode[i]);
+                OnKeyPressed?.Invoke(i);
             }
         }
         
-        if (isTwoKey)
-        {
-            for (int i = 4; i <= 5; i++)
-            {
-                if (Input.GetKeyDown(key[i]))
-                {
-                    ani.SetTrigger(motionHash[i]);
-                    OnKeyPressed?.Invoke(i);
-                }
-            }
-        }
-        
-
-        
+        // if (isTwoKey)
+        // {
+        //     for (int i = 0; i <= 1; i++)
+        //     {
+        //         if (Input.GetKeyDown(key[i]))
+        //         {
+        //             ani.SetTrigger(twoKeyMotionHash[i]);
+        //             OnKeyPressed?.Invoke(i);
+        //         }
+        //     }
+        // }
+        // else
+        // {
+        //     for (int i = 0; i <= 3; i++)
+        //     {
+        //         if (Input.GetKeyDown(key[i]))
+        //         {
+        //             ani.SetTrigger(motionHash[i]);
+        //             OnKeyPressed?.Invoke(i);
+        //         }
+        //     }
+        // }
         
     }
 
