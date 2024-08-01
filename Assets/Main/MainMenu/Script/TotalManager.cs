@@ -24,7 +24,7 @@ public class TotalManager : MonoBehaviourPunCallbacks
     public Image fadeScreen;
     public Image optionScreen;
     public Image waitScreen;
-    public Text waitText;
+    public TextMeshProUGUI waitText;
 
     
     public Button optionGameExitButton;
