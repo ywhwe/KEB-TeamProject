@@ -11,7 +11,7 @@ public class BtnController : MonoBehaviour
     public GameObject Sbtn;
     public GameObject Dbtn;
 
-    private Color tempColor = Color.black;
+    private readonly Color tempColor = Color.black;
 
     private Color wColor, aColor, sColor, dColor;
     

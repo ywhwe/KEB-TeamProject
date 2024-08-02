@@ -1,23 +1,15 @@
-using System;
 using UnityEngine;
 
 public class BtnPlayer : MonoBehaviour
 {
-    public static BtnPlayer playerInstance;
-    
     [SerializeField]
     private GameObject playerContainer;
     
     public GameObject playerModel;
     private Transform modelTrans;
 
-    private Vector3 modelPosition = new(0f, 0f, 0f);
-    private Quaternion modelAngle = new(0f, 0.7071068f, 0f, 0.7071068f);
-
-    private void Awake()
-    {
-        playerInstance = this;
-    }
+    private readonly Vector3 modelPosition = new(0f, 0f, 0f);
+    private readonly Quaternion modelAngle = new(0f, 0.7071068f, 0f, 0.7071068f);
 
     private void Start()
     {
