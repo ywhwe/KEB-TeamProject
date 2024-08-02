@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks.Triggers;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -14,6 +15,10 @@ public class MemoryGameManager : WholeGameManager
     public GameObject[] playerPosDB;
     private GameObject playerPref;
     private GameObject playerPos;
+    
+    public GameObject[] indexDirection;
+    public GameObject[] playerIndexDirection;
+    public GameObject[] stamp;
     
     public Transform timer;
     public Vector3 maxTimeBar;
@@ -38,7 +43,8 @@ public class MemoryGameManager : WholeGameManager
 
     public PhotonView PV;
     
-    private Coroutine cpuMotionPlayCoroutine;
+            private Coroutine cpuMotionPlayCoroutine;
+            private Coroutine[] playerIndexCor = new Coroutine[4];
     
     private float playingTime = 0;
     
@@ -50,8 +56,6 @@ public class MemoryGameManager : WholeGameManager
         Animator.StringToHash("isSMove"),
         Animator.StringToHash("isDMove")
     };
-
-    public GameObject[] indexDirection;
     
     protected static readonly int MotionSpeed = Animator.StringToHash("MotionSpeed");
     
@@ -75,6 +79,7 @@ public class MemoryGameManager : WholeGameManager
         playerController = playerObj.GetComponent<CharacterMotionController>();
         playerController.isMirrored = true;
         playerController.OnKeyPressed += PlayerInput;
+        
     }
     
     private void Update()
@@ -94,7 +99,7 @@ public class MemoryGameManager : WholeGameManager
 
     private void StartGame()
     {
-        isTimerActive = true;
+       isTimerActive = true;
        cpuMotionPlayCoroutine = StartCoroutine(PlayRandomMotion());
     }
     
@@ -115,7 +120,7 @@ public class MemoryGameManager : WholeGameManager
             cpuAni.SetTrigger(motionHash[randomMotions[i]]);
             indexDirection[randomMotions[i]].SetActive(true);
             cpuAni.SetFloat(MotionSpeed, 1f/turnDB[turn].motionPlayTime);
-          ;
+          
 
             yield return new WaitForSeconds(turnDB[turn].motionPlayTime);
             indexDirection[randomMotions[i]].SetActive(false);
@@ -124,32 +129,55 @@ public class MemoryGameManager : WholeGameManager
     
     private IEnumerator PlayRandomMotion()
     {
+       
+
         Debug.Log($"Current turn is {turn}");
         isPlayerTurn = false;
         playerController.SetActiveInput(false);
         
         SelectRandomMotion();
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f); 
+        stamp[0].SetActive(false);
+        stamp[1].SetActive(false);
+        yield return new WaitForSeconds(0.5f); 
         yield return StartCoroutine(PlayMotion());
 
         playerInputIdx = 0;
         playerController.SetActiveInput(true);
         isPlayerTurn = true;
     }
-    
+
+    IEnumerator falsePlayerIndex(int motionIdx)
+    {
+        playerIndexDirection[motionIdx].SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        playerIndexDirection[motionIdx].SetActive(false);
+    }
     private void PlayerInput(int motionIdx)
     {
         if (!isPlayerTurn) return;
+        if (playerIndexCor[motionIdx] != null)
+        { 
+            StopCoroutine(playerIndexCor[motionIdx]);
+        }
+    
+        playerIndexCor[motionIdx] = StartCoroutine(falsePlayerIndex(motionIdx));
        
+        
+        
         if (randomMotions[playerInputIdx] == motionIdx)
         {
             //나아중에 이펙트 재생 (후순위)
+            stamp[0].SetActive(true);
             Debug.Log("Correct");
         }
         else
         {
+            stamp[0].SetActive(false);
+            stamp[1].SetActive(true);
             Debug.Log("Incorrect"); 
             cpuMotionPlayCoroutine = StartCoroutine(PlayRandomMotion());
+            return;
         }
         
         playerInputIdx++;
@@ -162,12 +190,10 @@ public class MemoryGameManager : WholeGameManager
             {
                 isTimerActive = false;
                 FinishGame();
-                
             }
             else
             {
-                StartCoroutine(PlayRandomMotion());
-               
+                cpuMotionPlayCoroutine = StartCoroutine(PlayRandomMotion());
             }
         }
     }
