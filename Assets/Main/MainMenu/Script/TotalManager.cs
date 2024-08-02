@@ -147,6 +147,21 @@ public class TotalManager : MonoBehaviourPunCallbacks
         gameManager.GetComponent<WholeGameManager>().GameStart();
 
     }
+    public async UniTask UniReadyCount()
+    {
+        waitText.text = "";
+        waitScreen.gameObject.SetActive(true);
+        await UniTask.WaitForSeconds(1f); // *** need count 
+        for (int i = 3; i >= 1; i--)
+        {
+            waitText.text = i.ToString();
+            await UniTask.WaitForSeconds(0.5f);
+        }
+        waitText.text= "Go!";
+        await UniTask.WaitForSeconds(0.5f);
+        waitScreen.gameObject.SetActive(false);
+ 
+    }
     public void SendGameStart()
     {
         PV.RPC("rpcSendGameStart",RpcTarget.MasterClient);

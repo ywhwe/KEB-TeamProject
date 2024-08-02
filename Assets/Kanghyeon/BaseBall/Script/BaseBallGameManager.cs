@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using Photon.Pun;
 using TMPro;
 using Unity.VisualScripting;
@@ -24,7 +25,7 @@ public class BaseBallGameManager : WholeGameManager
     // public float score;
     public float balltotal;
     public float ballcount;
-    private int roundcount=1;
+    private int roundcount=0;
     public float finalscore;
 
     public bool IsGameStart = false;
@@ -132,7 +133,7 @@ public class BaseBallGameManager : WholeGameManager
     {
         
     }
-    public void CountBall()
+    public async UniTask CountBall()
     {
         ballcount = ballcount + 1f;
         if (ballcount == 9)
@@ -145,7 +146,12 @@ public class BaseBallGameManager : WholeGameManager
                 finishboard.text = "End" + " Score:" + score;
                 StartCoroutine(EndScene());
             }
-            pitcher.StartCycle(gameindex[roundcount]);
+            else
+            {
+                await TotalManager.instance.UniReadyCount();
+                pitcher.StartCycle(gameindex[roundcount]);
+            }
+            
         }
     }
 
