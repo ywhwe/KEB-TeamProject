@@ -15,9 +15,12 @@ public class MemoryGameManager : WholeGameManager
     private GameObject playerPref;
     private GameObject playerPos;
     
-    [FormerlySerializedAs("timeBar")] public GameObject timer;
-    private Vector3 maxTimeBar = new Vector3(-0.7f,8.6f,-1.213f);
-    private Vector3 emptyTimeBar = new Vector3(-0.7f,8.6f,-1.43f);
+    public Transform timer;
+    public Vector3 maxTimeBar;
+    public Vector3 emptyTimeBar;
+    public SpriteRenderer timerColor;
+    public Color white;
+    public Color red;
     
     public float limitTime;
     public TurnInfo[] turnDB;
@@ -126,7 +129,7 @@ public class MemoryGameManager : WholeGameManager
         playerController.SetActiveInput(false);
         
         SelectRandomMotion();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(2f);
         yield return StartCoroutine(PlayMotion());
 
         playerInputIdx = 0;
@@ -145,16 +148,7 @@ public class MemoryGameManager : WholeGameManager
         }
         else
         {
-            Debug.Log("Incorrect");
-            StartCoroutine(WaitAndStartMotion());
-        }
-
-        IEnumerator WaitAndStartMotion()
-        {
-            // 1초 대기
-            yield return new WaitForSeconds(1f);
-
-            // 코루틴 시작
+            Debug.Log("Incorrect"); 
             cpuMotionPlayCoroutine = StartCoroutine(PlayRandomMotion());
         }
         
@@ -207,7 +201,8 @@ public class MemoryGameManager : WholeGameManager
     {
         if (!isTimerActive) return;
         playingTime += Time.deltaTime;
-        timer.transform.position = Vector3.Lerp(maxTimeBar, emptyTimeBar, playingTime / limitTime);
+        timer.position = Vector3.Lerp(maxTimeBar, emptyTimeBar, playingTime / limitTime);
+        timerColor.color = Color.Lerp(white,red,playingTime / limitTime);
         
         if (playingTime > limitTime)
         {
