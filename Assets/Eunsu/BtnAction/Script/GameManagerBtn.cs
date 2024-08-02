@@ -20,6 +20,10 @@ public class GameManagerBtn : WholeGameManager
     
     [Header("Button")]
     public TextMeshProUGUI qteBtnText;
+
+    [Header("Counter")]
+    public TextMeshProUGUI timeCounter;
+    public TextMeshProUGUI successCounter;
     
     [HideInInspector]
     public KeyCode waitingKeyCode = KeyCode.None;
@@ -27,7 +31,11 @@ public class GameManagerBtn : WholeGameManager
     [HideInInspector]
     public int successCount;
 
-    private float clearTime, rand;
+    private float rand;
+
+    private float clearTime;
+    
+    private const float StartTime = 120.00f;
     
     public const int NumberOfButtons = 50;
     
@@ -44,7 +52,12 @@ public class GameManagerBtn : WholeGameManager
     private void Awake()
     {
         instance = this;
+        
         successCount = 0;
+        clearTime = 0;
+        
+        successCounter.text = successCount.ToString();
+        timeCounter.text = StartTime.ToString("F2");
     }
 
     private void Start()
@@ -54,12 +67,12 @@ public class GameManagerBtn : WholeGameManager
         ObjMover.ObjInstance.RailMove().Forget();
         isGameEnd = false;
         isAccel = false;
+        
+        audioSource.PlayOneShot(audioSource.clip);
     }
 
     private void Update()
     {
-        clearTime += Time.deltaTime;
-
         if (clearTime > 120f) isGameEnd = true;
     }
     
@@ -76,7 +89,8 @@ public class GameManagerBtn : WholeGameManager
             await UniTask.WaitUntil(() => isMatch);
 
             successCount++;
-
+            successCounter.text = successCount.ToString();
+            
             if (successCount is NumberOfButtons) break;
         }
 
@@ -171,14 +185,25 @@ public class GameManagerBtn : WholeGameManager
         isLegal = true;
     }
     
+    private async UniTask TimeCount()
+    {
+        while(!isGameEnd)
+        {
+            clearTime += Time.deltaTime;
+            timeCounter.text = (StartTime - clearTime).ToString("F2");
+
+            await UniTask.Yield();
+        }
+    }
+    
     public override void GameStart()
     {
         Instantiate(trolleyPrefab, trolleyPos, Quaternion.identity);
         ObjMover.ObjInstance.Spin().Forget();
         
+        TimeCount().Forget();
         InputControl().Forget();
         GenQTE().Forget();
-        audioSource.PlayOneShot(audioSource.clip);
     }
 
     public override void SpawnObsPlayer()
@@ -193,6 +218,9 @@ public class GameManagerBtn : WholeGameManager
         
         yield return new WaitForSeconds(1f);
         flag = false;
+        
+        audioSource.Stop();
+        
         TotalManager.instance.StartFinish();
     }
 }
