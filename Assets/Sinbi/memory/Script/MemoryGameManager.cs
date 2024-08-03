@@ -42,9 +42,12 @@ public class MemoryGameManager : WholeGameManager
     private bool isTimerActive;
 
     public PhotonView PV;
-    
-            private Coroutine cpuMotionPlayCoroutine;
-            private Coroutine[] playerIndexCor = new Coroutine[4];
+    private Coroutine cpuMotionPlayCoroutine;
+    private Coroutine[] playerIndexCor = new Coroutine[4];
+
+    public GameObject[] round1;
+    public GameObject[] round10;
+    public GameObject startRound;
     
     private float playingTime = 0;
     
@@ -69,6 +72,7 @@ public class MemoryGameManager : WholeGameManager
         
         NetworkManager.instance.isDescending = true; // If change score system make this false
         StartCoroutine(DelayInst());
+        startRound.SetActive(true);
     }
     
     IEnumerator DelayInst() //플레이어 instant 함수
@@ -129,17 +133,35 @@ public class MemoryGameManager : WholeGameManager
     
     private IEnumerator PlayRandomMotion()
     {
-       
+        ;
 
         Debug.Log($"Current turn is {turn}");
         isPlayerTurn = false;
         playerController.SetActiveInput(false);
         
+    
         SelectRandomMotion();
-        yield return new WaitForSeconds(1.5f); 
+        yield return new WaitForSeconds(1f);
+        startRound.SetActive(false);
+             round1[turn % 10].SetActive(false);
+             round1[(turn % 10)+1].SetActive(true);
+                 
+             if (turn >= 10)
+             {
+                 round10[turn%100].SetActive(false);
+                 round10[(turn%100)+1].SetActive(true);
+             }
+                
+             else
+             {
+                 round10[0].SetActive(true);
+             }
+                
         stamp[0].SetActive(false);
         stamp[1].SetActive(false);
+        
         yield return new WaitForSeconds(0.5f); 
+        
         yield return StartCoroutine(PlayMotion());
 
         playerInputIdx = 0;
