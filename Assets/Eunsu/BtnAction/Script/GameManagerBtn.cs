@@ -16,6 +16,7 @@ public class GameManagerBtn : WholeGameManager
     
     [Header("Trolley")]
     public GameObject trolleyPrefab;
+    private GameObject trolleyClone;
     private readonly Vector3 trolleyPos = new (2f, 0.44f, -0.197f);
     
     [Header("Button")]
@@ -160,6 +161,7 @@ public class GameManagerBtn : WholeGameManager
         }
         else
         {
+            SoundManagerForBtnAction.instance.PlaySound("Break");
             await DenyInput();
         }
         
@@ -198,7 +200,8 @@ public class GameManagerBtn : WholeGameManager
     
     public override void GameStart()
     {
-        Instantiate(trolleyPrefab, trolleyPos, Quaternion.identity);
+        trolleyClone = Instantiate(trolleyPrefab, trolleyPos, Quaternion.identity);
+        
         ObjMover.ObjInstance.Spin().Forget();
         
         TimeCount().Forget();

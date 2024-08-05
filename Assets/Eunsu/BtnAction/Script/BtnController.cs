@@ -11,55 +11,56 @@ public class BtnController : MonoBehaviour
     public GameObject Sbtn;
     public GameObject Dbtn;
 
-    private readonly Color tempColor = Color.black;
+    private static readonly int PressedW = Animator.StringToHash("PressedW");
+    private static readonly int PressedA = Animator.StringToHash("PressedA");
+    private static readonly int PressedS = Animator.StringToHash("PressedS");
+    private static readonly int PressedD = Animator.StringToHash("PressedD");
 
-    private Color wColor, aColor, sColor, dColor;
+    private Animator aniW;
+    private Animator aniA;
+    private Animator aniS;
+    private Animator aniD;
     
     [HideInInspector]
     public KeyCode inputKeyCode = KeyCode.None;
 
     private void Awake()
     {
-        ctrlInstance = this; 
-        wColor = Wbtn.GetComponent<Image>().color;
-        aColor = Abtn.GetComponent<Image>().color;
-        sColor = Sbtn.GetComponent<Image>().color;
-        dColor = Dbtn.GetComponent<Image>().color;
+        ctrlInstance = this;
+        
+        aniW = Wbtn.GetComponent<Animator>();
+        aniA = Abtn.GetComponent<Animator>();
+        aniS = Sbtn.GetComponent<Animator>();
+        aniD = Dbtn.GetComponent<Animator>();
     }
     
     // Stocks user input in range WASD and change color of buttons
-    public async void SetKey()
+    public void SetKey()
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
             inputKeyCode = KeyCode.W;
-            wColor = Color.red;
-            await UniTask.WaitForSeconds(0.3f);
-            wColor = tempColor;
+            
+            aniW.SetTrigger(PressedW);
         }
 
         if (Input.GetKeyDown(KeyCode.A))
         {
             inputKeyCode = KeyCode.A;
-            aColor = Color.yellow;
-            await UniTask.WaitForSeconds(0.3f);
-            aColor = tempColor;
+            
+            aniA.SetTrigger(PressedA);
         }
 
         if (Input.GetKeyDown(KeyCode.S))
         {
             inputKeyCode = KeyCode.S;
-            sColor = Color.blue;
-            await UniTask.WaitForSeconds(0.3f);
-            sColor = tempColor;
+            
+            aniS.SetTrigger(PressedS);
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            inputKeyCode = KeyCode.D;
-            dColor = Color.green;
-            await UniTask.WaitForSeconds(0.3f);
-            dColor = tempColor;
-        }
+        if (!Input.GetKeyDown(KeyCode.D)) return;
+        inputKeyCode = KeyCode.D;
+            
+        aniD.SetTrigger(PressedD);
     }
 }

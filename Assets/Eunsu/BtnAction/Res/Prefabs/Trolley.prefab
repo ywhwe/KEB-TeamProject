@@ -25966,6 +25966,7 @@ GameObject:
   - component: {fileID: 6669615517523068043}
   - component: {fileID: 8953968590679098065}
   - component: {fileID: 8758750049273323249}
+  - component: {fileID: 8537290838022843167}
   m_Layer: 0
   m_Name: Trolley
   m_TagString: Trolley
@@ -26034,6 +26035,23 @@ MonoBehaviour:
   accelerationSmoke: {fileID: 5025506340976710477}
   decelerationSpark1: {fileID: 4821767472547888474}
   decelerationSpark2: {fileID: 1894949278037933937}
+--- !u!114 &8537290838022843167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6845186158050518054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae391db4f1594cf468967dfe2d0ebda4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundResources:
+  - key: Break
+    Clip: {fileID: 8300000, guid: f04fa785307a0664aab17f24c90a38ff, type: 3}
+  poolSize: 2
+  soundNodePrefab: {fileID: 165740829917176418, guid: 98f7de846fb5ecc439746e8b47e5fe7e, type: 3}
 --- !u!1 &7002938628487833696
 GameObject:
   m_ObjectHideFlags: 0

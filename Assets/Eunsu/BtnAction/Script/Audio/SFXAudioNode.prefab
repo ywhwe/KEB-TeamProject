@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1924074975219141782}
-  - component: {fileID: 42942884048746455}
+  - component: {fileID: 8437653588709156315}
   - component: {fileID: -1472311208439127967}
   m_Layer: 0
   m_Name: SFXAudioNode
@@ -33,7 +33,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &42942884048746455
+--- !u!114 &8437653588709156315
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,7 +42,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 165740829917176418}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b66cd0de9152fc94cb5b12b4d892fb3a, type: 3}
+  m_Script: {fileID: 11500000, guid: aa27d15b7a150be4fa8e38ad4e2cb3d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: -1472311208439127967}
