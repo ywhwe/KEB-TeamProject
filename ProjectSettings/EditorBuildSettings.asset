@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Eunsu/RunRun/Scene/RunRun.unity
     guid: 0ba516eee7349b547b935226ad43a160
-  - enabled: 0
+  - enabled: 1
     path: Assets/Jisoo/Scene/Follow The Action.unity
     guid: 4a0d28bc19defc347a0f30268f595bdd
   - enabled: 0
