@@ -155,7 +155,8 @@ public class TotalManager : MonoBehaviourPunCallbacks
     }
     public async UniTask UniReadyCount()
     {
-        waitText.text = "";
+        waitText.text = "Ready";
+        gameManager.GetComponent<WholeGameManager>().ReadyForStart();
         waitScreen.gameObject.SetActive(true);
         await UniTask.WaitForSeconds(1f); // *** need count 
         for (int i = 3; i >= 1; i--)
@@ -204,6 +205,8 @@ public class TotalManager : MonoBehaviourPunCallbacks
         waitScreen.gameObject.SetActive(true);
         await UniTask.WaitForSeconds(2f);
         waitText.text = "Ready";
+        gameManager.GetComponent<WholeGameManager>().ReadyForStart();
+        
     }
 
     private async UniTask FadeScreenTask(bool fadeOut)

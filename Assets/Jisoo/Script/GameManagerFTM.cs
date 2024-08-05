@@ -124,4 +124,8 @@ public class GameManagerFTM : WholeGameManager
     {
         
     }
+    public override void ReadyForStart()
+    {
+        
+    }
 }

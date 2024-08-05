@@ -68,6 +68,10 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
         obj.transform.SetParent(playerpos.transform);
         obj.transform.localScale = Vector3.one;
     }
+    public override void ReadyForStart()
+    {
+        
+    }
     private IEnumerator EndScene()
     {
         score = ScoreBoard.scoreInstance.score;

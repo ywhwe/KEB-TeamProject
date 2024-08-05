@@ -14,8 +14,7 @@ public class Catcher : MonoBehaviour
         {
             BaseBallGameManager.instance.CountBall();
             Destroy(other.gameObject);
-            Board.instance.hitFlag = false;
-            StartCoroutine(Board.instance.TextScreenOn());
+            Board.instance.OXImageOn(1);
         }
     }
 }

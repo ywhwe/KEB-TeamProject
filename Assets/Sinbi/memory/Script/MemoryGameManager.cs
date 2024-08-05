@@ -91,6 +91,10 @@ public class MemoryGameManager : WholeGameManager
     {
         
     }
+    public override void ReadyForStart()
+    {
+        
+    }
 
     private void StartGame()
     {

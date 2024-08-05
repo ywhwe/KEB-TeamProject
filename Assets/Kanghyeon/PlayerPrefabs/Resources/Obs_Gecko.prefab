@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3050135471598765274}
   - component: {fileID: 838754674130615783}
+  - component: {fileID: 6990036165491903251}
   m_Layer: 0
   m_Name: Mesh_LOD1
   m_TagString: Untagged
@@ -93,6 +94,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 0.0027338201, z: 0.006320959}
     m_Extent: {x: 0.004607145, y: 0.017415822, z: 0.006241029}
   m_DirtyAABB: 0
+--- !u!114 &6990036165491903251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86693249159650070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &486127245311967678
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,6 +154,7 @@ GameObject:
   - component: {fileID: -7256007249633191184}
   - component: {fileID: 145844320900336930}
   - component: {fileID: 1057079299054604440}
+  - component: {fileID: 5633704599734312502}
   m_Layer: 0
   m_Name: Obs_Gecko
   m_TagString: Untagged
@@ -397,6 +411,111 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &5633704599734312502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051007875642603820}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fe91dc294731a9428c0941ea7579110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  complexMaskingMode: 0
+  drawingMode: 1
+  outlineLayer: 0
+  outlineTargets:
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 5421255312750139091}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 838754674130615783}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 8246028591612045556}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 8630562731120769297}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  renderStyle: 1
+  outlineParameters:
+    enabled: 1
+    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    dilateShift: 1
+    blurShift: 1
+    fillPass:
+      shader: {fileID: 0}
+      serializedProperties: []
+  backParameters:
+    enabled: 1
+    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    dilateShift: 1
+    blurShift: 1
+    fillPass:
+      shader: {fileID: 0}
+      serializedProperties: []
+  frontParameters:
+    enabled: 1
+    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    dilateShift: 1
+    blurShift: 1
+    fillPass:
+      shader: {fileID: 0}
+      serializedProperties: []
 --- !u!1 &2599947057118581998
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,6 +557,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1845430884825637005}
   - component: {fileID: 8246028591612045556}
+  - component: {fileID: -244268156201065933}
   m_Layer: 0
   m_Name: Mesh_LOD2
   m_TagString: Untagged
@@ -521,6 +641,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 0.0027338201, z: 0.006320959}
     m_Extent: {x: 0.004607145, y: 0.017415822, z: 0.006241029}
   m_DirtyAABB: 0
+--- !u!114 &-244268156201065933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3246118312391579207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3967488815365810879
 GameObject:
   m_ObjectHideFlags: 0
@@ -662,6 +794,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5734768660568761134}
   - component: {fileID: 5421255312750139091}
+  - component: {fileID: -881256154207832479}
   m_Layer: 0
   m_Name: Mesh_LOD0
   m_TagString: Untagged
@@ -745,6 +878,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 0.0027338201, z: 0.006320959}
     m_Extent: {x: 0.004607145, y: 0.017415822, z: 0.006241029}
   m_DirtyAABB: 0
+--- !u!114 &-881256154207832479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6439035784669261831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7632268319450239841
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,6 +900,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6275073524847710081}
   - component: {fileID: 8630562731120769297}
+  - component: {fileID: 5356608548329236918}
   m_Layer: 0
   m_Name: Mesh_LOD3
   m_TagString: Untagged
@@ -838,6 +984,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 0.0027338201, z: 0.006320959}
     m_Extent: {x: 0.004607145, y: 0.017415822, z: 0.006241029}
   m_DirtyAABB: 0
+--- !u!114 &5356608548329236918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7632268319450239841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8514917244781428316
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,7 +20,6 @@ public class BaseBallGameManager : WholeGameManager
 
     public Bat bat;
 
-    private int gameready=0;
 
     // public float score;
     public float balltotal;
@@ -31,9 +30,12 @@ public class BaseBallGameManager : WholeGameManager
     public bool IsGameStart = false;
     public bool IsGameEnd = false;
     public PhotonView PV;
-   
+
+    public AudioSource audio;
     #region ShuffleGame
     public List<int> gameindex;
+    private int gameready=0;
+
     private void Shuffle(int num)
     {
         if (num == 1)
@@ -104,6 +106,7 @@ public class BaseBallGameManager : WholeGameManager
 
     private void Start()
     {
+        audio.Play();
         CheckReady();
     }
 
@@ -115,6 +118,10 @@ public class BaseBallGameManager : WholeGameManager
     }
 
     public override void SpawnObsPlayer()
+    {
+        
+    }
+    public override void ReadyForStart()
     {
         
     }
@@ -144,6 +151,7 @@ public class BaseBallGameManager : WholeGameManager
             {
                 IsGameEnd = true;
                 finishboard.text = "End" + " Score:" + score;
+                audio.Stop();
                 StartCoroutine(EndScene());
             }
             else

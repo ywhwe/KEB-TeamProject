@@ -15,37 +15,37 @@ MonoBehaviour:
   balldatadbs:
   - balldata:
     - ballnum: 0
+      delay: 0.6666667
+      endtime: 0.6666667
+      ballname: Throw0
+    - ballnum: 0
+      delay: 0.6666667
+      endtime: 0.6666667
+      ballname: Throw2
+    - ballnum: 0
+      delay: 0.6666667
+      endtime: 0.6666667
+      ballname: Throw2
+    - ballnum: 0
+      delay: 1
+      endtime: 0.6666667
+      ballname: Throw2
+    - ballnum: 0
+      delay: 1
+      endtime: 0.6666667
+      ballname: Throw2
+    - ballnum: 0
+      delay: 1
+      endtime: 0.6666667
+      ballname: Throw2
+    - ballnum: 0
       delay: 2
       endtime: 0.6666667
-      ballname: Throw0
+      ballname: Throw2
     - ballnum: 0
       delay: 2
       endtime: 0.6666667
-      ballname: Throw0
-    - ballnum: 0
-      delay: 3.3333333
-      endtime: 0.6666667
-      ballname: Throw1
-    - ballnum: 0
-      delay: 2
-      endtime: 0.6666667
-      ballname: Throw0
-    - ballnum: 0
-      delay: 1.33333
-      endtime: 0.6666667
-      ballname: Throw1
-    - ballnum: 0
-      delay: 2
-      endtime: 0.6666667
-      ballname: Throw1
-    - ballnum: 0
-      delay: 2.0001
-      endtime: 0.6666667
-      ballname: Throw0
-    - ballnum: 0
-      delay: 3
-      endtime: 0.6666667
-      ballname: Throw0
+      ballname: Throw2
     - ballnum: 0
       delay: 2
       endtime: 0.6666667
@@ -56,17 +56,17 @@ MonoBehaviour:
       endtime: 0.6666667
       ballname: Throw0
     - ballnum: 0
-      delay: 2
+      delay: 0.6666667
       endtime: 0.6666667
-      ballname: Throw1
+      ballname: Throw2
     - ballnum: 0
       delay: 2
       endtime: 0.6666667
       ballname: Throw0
     - ballnum: 0
-      delay: 2
+      delay: 0.6666667
       endtime: 0.6666667
-      ballname: Throw1
+      ballname: Throw2
     - ballnum: 0
       delay: 1
       endtime: 0.6666667
@@ -124,3 +124,40 @@ MonoBehaviour:
       delay: 1.3333334
       endtime: 0.6666667
       ballname: Throw1
+  - balldata:
+    - ballnum: 0
+      delay: 2
+      endtime: 0.6666667
+      ballname: Throw0
+    - ballnum: 0
+      delay: 2
+      endtime: 0.6666667
+      ballname: Throw0
+    - ballnum: 0
+      delay: 3.3333333
+      endtime: 0.6666667
+      ballname: Throw1
+    - ballnum: 0
+      delay: 2
+      endtime: 0.6666667
+      ballname: Throw0
+    - ballnum: 0
+      delay: 1.33333
+      endtime: 0.6666667
+      ballname: Throw1
+    - ballnum: 0
+      delay: 2
+      endtime: 0.6666667
+      ballname: Throw1
+    - ballnum: 0
+      delay: 2.0001
+      endtime: 0.6666667
+      ballname: Throw0
+    - ballnum: 0
+      delay: 3
+      endtime: 0.6666667
+      ballname: Throw0
+    - ballnum: 0
+      delay: 2
+      endtime: 0.6666667
+      ballname: Throw2

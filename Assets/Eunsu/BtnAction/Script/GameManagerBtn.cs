@@ -185,6 +185,10 @@ public class GameManagerBtn : WholeGameManager
     {
         
     }
+    public override void ReadyForStart()
+    {
+        
+    }
     
     private IEnumerator EndScene()
     {
