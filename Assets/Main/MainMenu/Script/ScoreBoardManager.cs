@@ -35,6 +35,7 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
         PhotonNetwork.LeaveRoom();
         Destroy(GameObject.Find("NetworkManager"));
         TotalManager.instance.MoveScene("Main");
+        TotalManager.instance.BGM.Play();
     }
 
     public override void OnLeftRoom()

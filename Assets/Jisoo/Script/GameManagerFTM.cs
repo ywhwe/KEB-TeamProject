@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -13,6 +14,7 @@ public class GameManagerFTM : WholeGameManager
     public int playerLife = 3;
     public Image[] lifeImage;
     public int playerMotionNum = 5;
+    public AudioSource BGM;
     
     public float startTime;
     public float finishTime;
@@ -26,17 +28,23 @@ public class GameManagerFTM : WholeGameManager
     private float timeBarSize = 500.0f;
     private Vector2 tempSize;
 
-    private bool isTimeBarOn = false;
+    public bool isTimeBarOn = false;
+    public TextMeshProUGUI text;
+    public int stageTimer = 0;
+    public int stageUpTime = 4;
     
     private void Awake()
     {
         instance = this;
         tempSize = timeBar.sizeDelta;
+        GameObject temp = Instantiate(TotalManager.instance.playerPrefab, player.transform.position, player.transform.rotation);
+        temp.transform.SetParent(player.transform);
+        player = temp;
     }
 
     private void Start()
     {
-        player = CreatePlayer.instance.player1;
+        BGM.Play();
         playerController = player.GetComponent<CharacterMotionController>();
         playerController.OnKeyPressed += PlayerInput;
         NetworkManager.instance.isDescending = true;
@@ -67,17 +75,45 @@ public class GameManagerFTM : WholeGameManager
         
         playerLife = RandomMotion.instance.CompareMotionNumber(playerMotionNum, playerLife);
         LifeImageDelete();
-        
+
+        stageTimer++;
         if (playerLife == 0)
         {
             EndGame();
         }
+
+        if (stageTimer >= stageUpTime)
+        {
+            StartCoroutine(FasterText());
+        }
         else
         {
-            StartCoroutine(PlayGameRoutine());   
+            StartCoroutine(NextText());
+            StartCoroutine(PlayGameRoutine());
         }
     }
 
+    public IEnumerator NextText()
+    {
+        text.text = "Next";
+        yield return new WaitForSeconds(1f);
+        text.text = "";
+    }
+
+    public IEnumerator FasterText()
+    {
+        SoundManagerForFollowTheMotion.instance.PlaySound("StageUp");
+        text.text = "Faster";
+        isTimeBarOn = false;
+        yield return new WaitForSeconds(1f);
+        isTimeBarOn = true;
+        text.text = "";
+        Time.timeScale += 0.5f;
+        stageTimer = 0;
+        stageUpTime++;
+        StartCoroutine(PlayGameRoutine());
+    }
+    
     public void LifeImageDelete()
     {
         switch (playerLife)
@@ -108,8 +144,9 @@ public class GameManagerFTM : WholeGameManager
 
     public void EndGame()
     {
+        BGM.Stop();
         Time.timeScale = 1f;
-        RandomMotion.instance.stage = 0;
+        stageTimer = 0;
         finishTime = Time.time;
         score = finishTime - startTime;
         TotalManager.instance.StartFinish();

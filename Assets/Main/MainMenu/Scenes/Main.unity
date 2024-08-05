@@ -11917,7 +11917,7 @@ GameObject:
   - component: {fileID: 1737719832}
   - component: {fileID: 1737719831}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11964,7 +11964,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Beats
 
-    Animals!'
+    Animals
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d8515fef3ade38345af900cc7b950c81, type: 2}
   m_sharedMaterial: {fileID: 3554202636223160948, guid: d8515fef3ade38345af900cc7b950c81, type: 2}

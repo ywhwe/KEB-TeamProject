@@ -147,7 +147,7 @@ public class TotalManager : MonoBehaviourPunCallbacks
             waitText.text = i.ToString();
             await UniTask.WaitForSeconds(0.5f);
         }
-        waitText.text= "Go!";
+        waitText.text= "Go";
         await UniTask.WaitForSeconds(0.5f);
         waitScreen.gameObject.SetActive(false);
         gameManager.GetComponent<WholeGameManager>().GameStart();

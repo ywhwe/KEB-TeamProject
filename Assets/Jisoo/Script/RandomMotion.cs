@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -11,7 +12,6 @@ public class RandomMotion : MonoBehaviour
     public static RandomMotion instance;
     
     public int randomMotionNumber;
-    public int stage = 0;
     
     protected static readonly int IsWMove = Animator.StringToHash("isWMove");
     protected static readonly int IsAMove = Animator.StringToHash("isAMove");
@@ -35,27 +35,23 @@ public class RandomMotion : MonoBehaviour
 
         if (randomMotionNumber == 0)
         {
+            SoundManagerForFollowTheMotion.instance.PlaySound("W");
             ani.SetTrigger(IsWMove);
         }
         else if (randomMotionNumber == 1)
         {
+            SoundManagerForFollowTheMotion.instance.PlaySound("A");
             ani.SetTrigger(IsAMove);
         }
         else if (randomMotionNumber == 2)
         {
+            SoundManagerForFollowTheMotion.instance.PlaySound("S");
             ani.SetTrigger(IsSMove);
         }
         else if (randomMotionNumber == 3)
         {
+            SoundManagerForFollowTheMotion.instance.PlaySound("D");
             ani.SetTrigger(IsDMove);
-        }
-        
-        Debug.Log(randomMotionNumber);
-        stage++;
-        if (stage >= 4)
-        {
-            Time.timeScale += 0.5f;
-            stage = 0;
         }
     }
     
@@ -67,4 +63,6 @@ public class RandomMotion : MonoBehaviour
         }
         return playerLife;
     }
+
+
 }
