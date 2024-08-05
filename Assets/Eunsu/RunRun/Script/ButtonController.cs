@@ -4,8 +4,6 @@ using static System.MathF;
 
 public class ButtonController : MonoBehaviour
 {
-    public ScoreBoard scoreBoard;
-
     private Image img;
     
     public Sprite defaultImage;
@@ -58,13 +56,15 @@ public class ButtonController : MonoBehaviour
                 }
                 
                 SoundManagerForRunrun.instance.PlaySound("ClearNote");
-                var fx = Instantiate(hitFX, judge.transform.position, Quaternion.identity);
+                
+                var fx = Instantiate(hitFX, judge.transform.position, Quaternion.identity, gameObject.transform);
                 
                 Destroy(judge.gameObject);
                 Destroy(fx,0.5f);
                 
                 NoteController.instance.noteCount--;
-                scoreBoard.SetScore(noteScore);
+                
+                GameManagerRun.instance.SetScore(noteScore);
             }
         }
         

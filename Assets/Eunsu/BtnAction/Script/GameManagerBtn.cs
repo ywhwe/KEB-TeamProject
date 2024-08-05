@@ -4,6 +4,7 @@ using UnityEngine;
 using Cysharp.Threading.Tasks;
 using Random = UnityEngine.Random;
 using Photon.Pun;
+using UnityEngine.UI;
 
 public class GameManagerBtn : WholeGameManager
 {
@@ -16,11 +17,14 @@ public class GameManagerBtn : WholeGameManager
     
     [Header("Trolley")]
     public GameObject trolleyPrefab;
-    private GameObject trolleyClone;
     private readonly Vector3 trolleyPos = new (2f, 0.44f, -0.197f);
-    
-    [Header("Button")]
-    public TextMeshProUGUI qteBtnText;
+
+    [Header("Buttons")]
+    [SerializeField] private GameObject W;
+    [SerializeField] private GameObject A;
+    [SerializeField] private GameObject S;
+    [SerializeField] private GameObject D;
+    private GameObject waitingKey;
 
     [Header("Counter")]
     public TextMeshProUGUI timeCounter;
@@ -32,9 +36,7 @@ public class GameManagerBtn : WholeGameManager
     [HideInInspector]
     public int successCount;
 
-    private float rand;
-
-    private float clearTime;
+    private float rand, clearTime;
     
     private const float StartTime = 120.00f;
     
@@ -92,6 +94,8 @@ public class GameManagerBtn : WholeGameManager
             successCount++;
             successCounter.text = successCount.ToString();
             
+            waitingKey.SetActive(false);
+            
             if (successCount is NumberOfButtons) break;
         }
 
@@ -103,22 +107,26 @@ public class GameManagerBtn : WholeGameManager
         switch (random)
         {
             case >= 0 and < 25 :
-                qteBtnText.text = "[ W ]";
+                W.SetActive(true);
+                waitingKey = W;
                 waitingKeyCode = KeyCode.W;
                 isGen = true;
                 break;
             case >= 25 and < 50 :
-                qteBtnText.text = "[ A ]";
+                A.SetActive(true);
+                waitingKey = A;
                 waitingKeyCode = KeyCode.A;
                 isGen = true;
                 break;
             case >= 50 and <75 :
-                qteBtnText.text = "[ S ]";
+                S.SetActive(true);
+                waitingKey = S;
                 waitingKeyCode = KeyCode.S;
                 isGen = true;
                 break;
             case >= 75 and < 100 :
-                qteBtnText.text = "[ D ]";
+                D.SetActive(true);
+                waitingKey = D;
                 waitingKeyCode = KeyCode.D;
                 isGen = true;
                 break;
@@ -157,11 +165,14 @@ public class GameManagerBtn : WholeGameManager
             await AllowInput();
 
             ObjMover.ObjInstance.AccelerationSpeed().Forget();
+            SoundManagerForBtnAction.instance.PlaySound("Accel");
+            
             await UniTask.WaitForSeconds(0.5f);
         }
         else
         {
             SoundManagerForBtnAction.instance.PlaySound("Break");
+            
             await DenyInput();
         }
         
@@ -200,7 +211,7 @@ public class GameManagerBtn : WholeGameManager
     
     public override void GameStart()
     {
-        trolleyClone = Instantiate(trolleyPrefab, trolleyPos, Quaternion.identity);
+        Instantiate(trolleyPrefab, trolleyPos, Quaternion.identity);
         
         ObjMover.ObjInstance.Spin().Forget();
         

@@ -26049,8 +26049,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundResources:
   - key: Break
-    Clip: {fileID: 8300000, guid: f04fa785307a0664aab17f24c90a38ff, type: 3}
-  poolSize: 2
+    Clip: {fileID: 8300000, guid: d4b071bbaad7b09458df28edbe740109, type: 3}
+  - key: Accel
+    Clip: {fileID: 8300000, guid: 731dcb13f80e6c34696d7240e65ed079, type: 3}
+  poolSize: 4
   soundNodePrefab: {fileID: 165740829917176418, guid: 98f7de846fb5ecc439746e8b47e5fe7e, type: 3}
 --- !u!1 &7002938628487833696
 GameObject:

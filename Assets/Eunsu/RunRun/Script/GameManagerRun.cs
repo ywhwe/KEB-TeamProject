@@ -3,10 +3,30 @@ using System.Collections;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Photon.Pun;
+using TMPro;
 
 public class GameManagerRun : WholeGameManager // Need fix for inheritance
 {
     public static GameManagerRun instance;
+    
+    [Header("Score Board")]
+    public TextMeshProUGUI scoreText;
+    
+    [Header("Background")]
+    public GameObject backComp;
+    public GameObject backgroundPrefab;
+    
+    private GameObject currentBg;
+    private GameObject nextBg;
+    
+    private readonly Vector3 initPos = new(0f, 0f, 0f);
+    private readonly Vector3 nextPos = new(1920f, 0f, 0f);
+
+    private readonly Vector3 movePos = new(-5f, 0f, 0f);
+
+    private readonly Quaternion defaultAngle = new(0f, 0f, 0f, 1f);
+
+    private const float moveSpeed = 10f;
     
     [SerializeField]
     private AudioSource audioSource;
@@ -14,8 +34,6 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
     private float playerScore;
     
     public PhotonView pvTest;
-    
-    private bool isGameEnded = false;
     
     public GameObject[] playerposdb; // 각 플레이어 pos 데이터
     private GameObject playerpref; // local 플레이어의 프리펩
@@ -34,10 +52,14 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
     private void Start()
     {
         NetworkManager.instance.isDescending = true;
+        isGameEnd = false;
+        scoreText.text = 0.ToString();
     }
 
     private void Update()
     {
+        scoreText.text = score.ToString();
+        
         if (!(Time.deltaTime > 1f)) return;
         Destroy(NoteController.instance.gameObject);
     }
@@ -49,15 +71,46 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
         
         if (!NoteController.instance.IsFinished) return;
 
-        if (isGameEnded) return;
+        isGameEnd = true;
         StopCoroutine(NoteController.instance.GenNotes());
         StartCoroutine(EndScene());
+    }
+    
+    public void SetScore(int number)
+    {
+        score += number;
+    }
+    
+    private async UniTask BackgroundMove()
+    {
+        while (Application.isPlaying)
+        {
+            await UniTask.Yield();
+            
+            currentBg ??= Instantiate(backgroundPrefab, initPos, defaultAngle);
+            nextBg ??= Instantiate(backgroundPrefab, nextPos, defaultAngle);
+            
+            currentBg.transform.SetParent(backComp.transform, false);
+            nextBg.transform.SetParent(backComp.transform, false);
+            
+            currentBg.transform.Translate(movePos * (moveSpeed * Time.deltaTime));
+            nextBg.transform.Translate(movePos * (moveSpeed * Time.deltaTime));
+
+            if (!(nextBg.transform.position.x < 0.3f)) continue;
+            
+            var bg = Instantiate(backgroundPrefab, nextPos, defaultAngle);
+            
+            Destroy(currentBg);
+
+            currentBg = nextBg;
+            nextBg = bg;
+        }
     }
 
     public override void GameStart()
     {
         CharacterMotionController.instance.isTwoKey = true;
-        Background.bgInstance.BackgroundMove().Forget();
+        BackgroundMove().Forget();
         StartCoroutine(NoteController.instance.GenNotes());
         audioSource.PlayOneShot(audioSource.clip);
     }
@@ -70,8 +123,6 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
     }
     private IEnumerator EndScene()
     {
-        score = ScoreBoard.scoreInstance.score;
-        isGameEnded = true;
         CharacterMotionController.instance.isTwoKey = false;
         yield return new WaitForSeconds(1f);
         TotalManager.instance.StartFinish();

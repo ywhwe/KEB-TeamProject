@@ -13,31 +13,27 @@ public class NoteController : MonoBehaviour
     [Header("UpNote")]
     public GameObject UpNotePrefab;
     private GameObject upNote;
-    private Vector3 upNotePos = new Vector3(910f, 100f, 0f);
+    private readonly Vector3 upNotePos = new (910f, 100f, 0f);
     
     [Header("DownNote")]
     public GameObject DownNotePrefab;
     private GameObject downNote;
-    private Vector3 downNotePos = new Vector3(910f, -100f, 0f);
+    private readonly Vector3 downNotePos = new (910f, -100f, 0f);
     
-    private int rand, noteNumber;
+    private int rand;
+    
+    [HideInInspector] public int noteNumber;
 
-    private float musicBPM = 117f;
+    private const float musicBPM = 117f;
     private float musicTempo = 4f;
-    private float stdBPM = 60f;
+    private const float stdBPM = 60f;
     private float stdTempo = 4f;
 
     private float genTime = 0f;
 
-    private bool isTimedOut;
-    public bool IsTimedOut => isTimedOut;
-    
-    private bool isFinished;
-    public bool IsFinished
-    {
-        get => isFinished;
-        set => isFinished = value;
-    }
+    public bool IsTimedOut { get; private set; }
+
+    public bool IsFinished { get; set; }
 
     public int noteCount = 0;
 
@@ -45,6 +41,9 @@ public class NoteController : MonoBehaviour
     {
         instance = this;
         canvasTrans = canvas.transform;
+        
+        IsTimedOut = false;
+        IsFinished = false;
     }
 
     private void Update()
@@ -54,22 +53,11 @@ public class NoteController : MonoBehaviour
 
     public IEnumerator GenNotes()
     {
-        isTimedOut = false;
-        isFinished = false;
-        
         while (true)
         {
             yield return new WaitForSeconds(genTime);
             
-            noteNumber++;
-            
             rand = Random.Range(0, 101);
-
-            if (noteNumber > 115)
-            {
-                isTimedOut = true;
-                break;
-            }
 
             switch (rand)
             {
@@ -77,16 +65,24 @@ public class NoteController : MonoBehaviour
                     upNote = Instantiate(UpNotePrefab, upNotePos, Quaternion.identity);
                     upNote.transform.SetParent(canvasTrans, false);
                     noteCount++;
+                    noteNumber++;
                     break;
+                
                 case > 0 and <= 50:
                     downNote = Instantiate(DownNotePrefab, downNotePos, Quaternion.identity);
                     downNote.transform.SetParent(canvasTrans, false);
                     noteCount++;
+                    noteNumber++;
                     break;
+                
                 default:
                     Debug.Log("Unexpected Range");
                     break;
             }
+
+            if (noteNumber <= 115) continue;
+            IsTimedOut = true;
+            break;
         }
     }
 }

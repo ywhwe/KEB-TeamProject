@@ -891,7 +891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f3174f10dbd3f4db3f628eccc8efec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreBoard: {fileID: 2078012284}
+  scoreBoard: {fileID: 0}
   defaultImage: {fileID: 21300000, guid: 07edcfa1e8b2abf4cb21aeb23877144e, type: 3}
   pressedImage: {fileID: 21300000, guid: 553ffb236860c2a4ab0b3b302b83f720, type: 3}
   hitFX: {fileID: 1967835574231978638, guid: 2dd368c9eba194140a30c73fc1ff43f0, type: 3}
@@ -13753,7 +13753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f3174f10dbd3f4db3f628eccc8efec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreBoard: {fileID: 2078012284}
+  scoreBoard: {fileID: 0}
   defaultImage: {fileID: 21300000, guid: 0a17623efc0c1c74fad1e984cf97953b, type: 3}
   pressedImage: {fileID: 21300000, guid: 02054c2350683084185c82e061451ffe, type: 3}
   hitFX: {fileID: 1967835574231978638, guid: 2dd368c9eba194140a30c73fc1ff43f0, type: 3}
@@ -19501,7 +19501,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1446660595}
   - component: {fileID: 1446660598}
-  - component: {fileID: 1446660597}
   - component: {fileID: 1446660599}
   m_Layer: 5
   m_Name: GameManager
@@ -19529,20 +19528,6 @@ RectTransform:
   m_AnchoredPosition: {x: 910, y: -490}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1446660597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1446660594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: affaf26ae3dd10d40aec3a6e321a057c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  backComp: {fileID: 408989981}
-  backgroundPrefab: {fileID: 489547258383717509, guid: 545461111f2eea14484d5318401cbd7a, type: 3}
 --- !u!114 &1446660598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19555,9 +19540,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dff22af36e9ab349ae4e31a60b4edff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 0
-  isGameEnd: 0
-  isDescend: 0
+  scoreText: {fileID: 1988708440}
+  backComp: {fileID: 408989981}
+  backgroundPrefab: {fileID: 489547258383717509, guid: 545461111f2eea14484d5318401cbd7a, type: 3}
   audioSource: {fileID: 46628788}
   pvTest: {fileID: 1446660599}
   playerposdb:
@@ -25444,7 +25429,6 @@ GameObject:
   - component: {fileID: 2078012281}
   - component: {fileID: 2078012283}
   - component: {fileID: 2078012282}
-  - component: {fileID: 2078012284}
   m_Layer: 5
   m_Name: Score Board
   m_TagString: Untagged
@@ -25510,20 +25494,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2078012280}
   m_CullTransparentMesh: 1
---- !u!114 &2078012284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2078012280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d7066d6d3b1abf4dae9b5403051e9b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreText: {fileID: 1988708440}
-  score: 0
 --- !u!1 &2078316848
 GameObject:
   m_ObjectHideFlags: 0

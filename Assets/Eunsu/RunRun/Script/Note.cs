@@ -4,7 +4,9 @@ using UnityEngine;
 public class Note : MonoBehaviour
 {
     private RectTransform _rectTransform;
-    private float noteSpeed = 5f;
+    
+    [HideInInspector] public float noteSpeed = 5f;
+    
     private float movePos;
 
     private float durationTime = 0f;
@@ -16,14 +18,18 @@ public class Note : MonoBehaviour
 
     private void Start()
     {
+        if (NoteController.instance.noteNumber > 50) noteSpeed = 7f;
         StartCoroutine(MoveNote());
     }
 
     private void Update()
     {
         durationTime += Time.deltaTime;
+        
         if (durationTime < 12f) return;
+        
         Destroy(gameObject);
+        
         NoteController.instance.noteCount--;
     }
 
@@ -35,7 +41,9 @@ public class Note : MonoBehaviour
             
             var vector2 = _rectTransform.anchoredPosition;
             vector2.x -= noteSpeed;
+            
             _rectTransform.anchoredPosition = vector2;
+            
             _rectTransform.anchoredPosition 
                 = new Vector2(_rectTransform.anchoredPosition.x, _rectTransform.anchoredPosition.y);
         }
