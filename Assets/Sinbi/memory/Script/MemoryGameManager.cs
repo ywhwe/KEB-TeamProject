@@ -106,6 +106,10 @@ public class MemoryGameManager : WholeGameManager
     public override void SpawnObsPlayer()
     {
     }
+    public override void ReadyForStart()
+    {
+        
+    }
 
     private void InitNumbers()
     {

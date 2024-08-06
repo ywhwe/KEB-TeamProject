@@ -16,4 +16,5 @@ public class RecordNote
     public List<float> sethaA;
     public List<float> sethaS;
     public List<float> sethaD;
+    public float rotatespeed;
 }

@@ -22,6 +22,7 @@ public abstract class WholeGameManager : MonoBehaviourPunCallbacks
         Debug.Log(score);
     }
 
+    public abstract void ReadyForStart();
     // public abstract void GameEnd();
     
 

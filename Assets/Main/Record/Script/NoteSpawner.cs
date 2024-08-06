@@ -15,10 +15,42 @@ public class NoteSpawner : MonoBehaviour
     public Transform noteparents;
     
     // Start is called before the first frame update
-    void Start()
+    // void Start()
+    // {
+    //     var randnum = Random.Range(0, 3);
+    //     randnum = 0;
+    //     foreach (var ang in notedb.notepos[randnum].sethaW)
+    //     {
+    //         SpawnNote(ang,2.23f,noteW);
+    //     }
+    //     foreach (var ang in notedb.notepos[randnum].sethaA)
+    //     {
+    //         SpawnNote(ang,2.75f,noteA);
+    //     }
+    //     foreach (var ang in notedb.notepos[randnum].sethaS)
+    //     {
+    //         SpawnNote(ang,3.25f,noteS);
+    //     }
+    //     foreach (var ang in notedb.notepos[randnum].sethaD)
+    //     {
+    //         SpawnNote(ang,3.71f,noteD);
+    //     }
+    //     
+    // }
+    private void Update()
     {
-        var randnum = Random.Range(0, 3);
-        randnum = 0;
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            RecordingNote(2);
+        }
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            RecordingNote(1);
+        }
+    }
+
+    public void RecordingNote(int randnum)
+    {
         foreach (var ang in notedb.notepos[randnum].sethaW)
         {
             SpawnNote(ang,2.23f,noteW);
@@ -35,7 +67,6 @@ public class NoteSpawner : MonoBehaviour
         {
             SpawnNote(ang,3.71f,noteD);
         }
-        
     }
     
     

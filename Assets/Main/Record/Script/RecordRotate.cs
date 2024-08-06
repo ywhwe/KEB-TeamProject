@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class RecordRotate : MonoBehaviour
 {
-    public float rotatespeed;
+    public float rotatespeed=0f;
 
     
-    void Update()
-    {
-        transform.Rotate(Vector3.down * (rotatespeed * Time.deltaTime));
-    }
+    // void Update()
+    // {
+    //     transform.Rotate(Vector3.down * (rotatespeed * Time.deltaTime));
+    // }
+    //
+    // public void SetRotateSpeed(float speed)
+    // {
+    //     rotatespeed = speed;
+    // }
 }

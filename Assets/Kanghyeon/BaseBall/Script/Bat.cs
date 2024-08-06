@@ -70,10 +70,9 @@ public class Bat : MonoBehaviour
         {
             // var time = Mathf.Abs(2f - ballhit.transform.position.x) /
             //            ballhit.collider.GetComponent<TestBall>().ballspeed;
-            Destroy(ballhit.collider.gameObject, 3f);
+            Destroy(ballhit.collider.gameObject, 8f);
             Invoke("BallAway", 0.07f);
-            Board.instance.hitFlag = true;
-            StartCoroutine(Board.instance.TextScreenOn());
+            Board.instance.OXImageOn(0);
             BaseBallGameManager.instance.CountScore();
             SoundHit();
 
@@ -86,8 +85,9 @@ public class Bat : MonoBehaviour
 
     private void BallAway()
     {
-        var angle = new Vector3(-15f,5f,3f).normalized * 70f;
+        var angle = new Vector3(-18f,7.4f,5f).normalized * 100f;
         ballhit.collider.GetComponent<Rigidbody>().AddForce(angle, ForceMode.VelocityChange);
+        ballhit.collider.GetComponent<Rigidbody>().useGravity = true;
     }
 
 
