@@ -1470,9 +1470,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c86dd530c313a5448baa40f8be69366, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 0
-  isGameEnd: 1
-  isDescend: 0
   playerLife: 3
   lifeImage:
   - {fileID: 1493794201}
