@@ -35,6 +35,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     private void Start()
     {
+        TotalManager.instance.gameRound = 0;
         playernum.text = PhotonNetwork.PlayerList.Length + "/" + PhotonNetwork.CurrentRoom.MaxPlayers;
         StartCoroutine(DelayInst());
     }
