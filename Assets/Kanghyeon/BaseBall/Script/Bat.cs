@@ -73,6 +73,7 @@ public class Bat : MonoBehaviour
             Destroy(ballhit.collider.gameObject, 8f);
             Invoke("BallAway", 0.07f);
             Board.instance.OXImageOn(0);
+            SoundManagerForBaseBall.instance.PlaySound("Homerun");
             BaseBallGameManager.instance.CountScore();
             SoundHit();
 
