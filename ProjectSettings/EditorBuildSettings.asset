@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Main/MainMenu/Scenes/Opening.unity
     guid: 352357ab4c6ca5140b130ee074b5f760
-  - enabled: 1
+  - enabled: 0
     path: Assets/Sinbi/memory/Scene/memory game.unity
     guid: c32501fcdebe1194c818d9d41da50966
-  - enabled: 0
+  - enabled: 1
     path: Assets/Kanghyeon/BaseBall/Scene/Baseball.unity
     guid: a27c5352792ebca4798f8ee8941c1e2b
   - enabled: 0
@@ -20,10 +20,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Eunsu/RunRun/Scene/RunRun.unity
     guid: 0ba516eee7349b547b935226ad43a160
-  - enabled: 0
+  - enabled: 1
     path: Assets/Jisoo/Scene/Follow The Action.unity
     guid: 4a0d28bc19defc347a0f30268f595bdd
-  - enabled: 0
+  - enabled: 1
     path: Assets/Main/Record/Sence/RecordPlay.unity
     guid: de63d1dd09aebdb439833c38537f2051
   - enabled: 1
