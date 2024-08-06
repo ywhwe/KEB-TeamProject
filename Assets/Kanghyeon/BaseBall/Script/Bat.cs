@@ -74,6 +74,7 @@ public class Bat : MonoBehaviour
             Invoke("BallAway", 0.07f);
             Board.instance.hitFlag = true;
             StartCoroutine(Board.instance.TextScreenOn());
+            SoundManagerForBaseBall.instance.PlaySound("Homerun");
             BaseBallGameManager.instance.CountScore();
             SoundHit();
 

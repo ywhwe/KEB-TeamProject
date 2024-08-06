@@ -1237,9 +1237,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7e3e8f642ffa0c4eada666e93583eca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 0
-  isGameEnd: 0
-  isDescend: 0
   finishboard: {fileID: 1460529567}
   pitcher: {fileID: 404209230}
   bat: {fileID: 2118377604}
@@ -2841,6 +2838,8 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: 806dceb13df26b34d91415fcdad9d67b, type: 3}
   - key: Swing
     Clip: {fileID: 8300000, guid: f416b59ea2e05b4489815acbabd3e71c, type: 3}
+  - key: Homerun
+    Clip: {fileID: 8300000, guid: 53d7ee6b5de2cbe4d82d53b578f8f8a7, type: 3}
   poolSize: 4
   soundNodePrefab: {fileID: 650559423976733254, guid: ee71c4f01bccf444499c9bbd63e3d249, type: 3}
 --- !u!4 &435808694
@@ -9059,6 +9058,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1398881325}
   - component: {fileID: 1398881326}
+  - component: {fileID: 1398881327}
   m_Layer: 0
   m_Name: crowd
   m_TagString: Untagged
@@ -9133,6 +9133,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1398881327
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398881324}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1159a60dd8def644f81594ac6f76040f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1422475104
 GameObject:
   m_ObjectHideFlags: 0
