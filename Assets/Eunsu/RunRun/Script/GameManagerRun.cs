@@ -4,10 +4,14 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Photon.Pun;
 using TMPro;
+using Random = UnityEngine.Random;
 
 public class GameManagerRun : WholeGameManager // Need fix for inheritance
 {
     public static GameManagerRun instance;
+    
+    public GameObject canvas;
+    private Transform canvasTrans;
     
     [Header("Score Board")]
     public TextMeshProUGUI scoreText;
@@ -28,10 +32,28 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
 
     private const float moveSpeed = 10f;
     
-    [SerializeField]
-    private AudioSource audioSource;
+    [Header("UpNote")]
+    public GameObject UpNotePrefab;
+    private GameObject upNote;
+    private readonly Vector3 upNotePos = new (910f, 100f, 0f);
     
-    private float playerScore;
+    [Header("DownNote")]
+    public GameObject DownNotePrefab;
+    private GameObject downNote;
+    private readonly Vector3 downNotePos = new (910f, -100f, 0f);
+    
+    private const float musicBPM = 117f;
+    private float musicTempo = 4f;
+    private const float stdBPM = 60f;
+    private float stdTempo = 4f;
+
+    private float genTime = 0f;
+
+    [HideInInspector] public int rand, noteNumber;
+    [HideInInspector] public bool isFinished, isTimedOut;
+    [HideInInspector] public int noteCount = 0;
+    
+    [SerializeField] private AudioSource audioSource;
     
     public PhotonView pvTest;
     
@@ -46,33 +68,71 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
         int index = Array.FindIndex(PhotonNetwork.PlayerList, x => x.NickName == PhotonNetwork.LocalPlayer.NickName);
         Debug.Log(index);
         playerpos= playerposdb[index];
+        
+        canvasTrans = canvas.transform;
 
+        isTimedOut = false;
+        isFinished = false;
     }
 
     private void Start()
     {
         NetworkManager.instance.isDescending = true;
         isGameEnd = false;
+        
         scoreText.text = 0.ToString();
     }
 
     private void Update()
     {
+        genTime = (stdBPM / musicBPM) * (musicTempo / stdTempo);
         scoreText.text = score.ToString();
-        
-        if (!(Time.deltaTime > 1f)) return;
-        Destroy(NoteController.instance.gameObject);
     }
     
     private void LateUpdate()
     {
-        if (NoteController.instance.noteCount < 1 && NoteController.instance.IsTimedOut)
-            NoteController.instance.IsFinished = true;
-        
-        if (!NoteController.instance.IsFinished) return;
+        if (noteCount < 1 && isTimedOut)
+            isFinished = true;
+    }
+    
+    private async UniTask GenNotes()
+    {
+        while (!isFinished)
+        {
+            await UniTask.WaitForSeconds(genTime);
+            
+            rand = Random.Range(0, 101);
+
+            switch (rand)
+            {
+                case > 51 and <= 100:
+                    upNote = Instantiate(UpNotePrefab, upNotePos, Quaternion.identity);
+                    upNote.transform.SetParent(canvasTrans, false);
+                    noteCount++;
+                    noteNumber++;
+                    break;
+                
+                case > 0 and <= 50:
+                    downNote = Instantiate(DownNotePrefab, downNotePos, Quaternion.identity);
+                    downNote.transform.SetParent(canvasTrans, false);
+                    noteCount++;
+                    noteNumber++;
+                    break;
+                
+                default:
+                    Debug.Log("Unexpected Range");
+                    break;
+            }
+
+            if (noteNumber <= 115) continue;
+
+            isTimedOut = true;
+            break;
+        }
 
         isGameEnd = true;
-        StopCoroutine(NoteController.instance.GenNotes());
+
+        await UniTask.WaitForSeconds(4f);
         StartCoroutine(EndScene());
     }
     
@@ -111,7 +171,8 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
     {
         CharacterMotionController.instance.isTwoKey = true;
         BackgroundMove().Forget();
-        StartCoroutine(NoteController.instance.GenNotes());
+        GenNotes().Forget();
+        
         audioSource.PlayOneShot(audioSource.clip);
     }
 

@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using static System.MathF;
+using Cysharp.Threading.Tasks;
 
 public class ButtonController : MonoBehaviour
 {
@@ -25,52 +27,62 @@ public class ButtonController : MonoBehaviour
         img = GetComponent<Image>();
         img.sprite = defaultImage;
     }
-    
-    private void Update()
+
+    private void Start()
     {
-        if (Input.GetKeyDown(keyToPress))
+        InputControl().Forget();
+    }
+
+    private async UniTask InputControl()
+    {
+        while(!GameManagerRun.instance.isFinished)
         {
-            img.sprite = pressedImage;
-            var judge = Physics2D.OverlapBox(transform.position, hitboxSize, 0f);
+            await UniTask.Yield();
             
-            if (judge is null)
+            if (Input.GetKeyDown(keyToPress))
             {
-                // When Note Missed
-            }
-            else if (judge.CompareTag("JudgeLine")) // When Note Hit
-            {
-                var dist = gameObject.transform.position - judge.transform.position;
-                var distance = Abs(dist.x);
-                
-                switch (distance)
+                img.sprite = pressedImage;
+                var judge = Physics2D.OverlapBox(transform.position, hitboxSize, 0f);
+            
+                if (judge is null)
                 {
-                    case < 2:
-                        noteScore = 200;
-                        break;
-                    case < 15:
-                        noteScore = 100;
-                        break;
-                    default:
-                        noteScore = 50;
-                        break;
+                    // When Note Missed
                 }
+                else if (judge.CompareTag("JudgeLine")) // When Note Hit
+                {
+                    var dist = gameObject.transform.position - judge.transform.position;
+                    var distance = Abs(dist.x);
                 
-                SoundManagerForRunrun.instance.PlaySound("ClearNote");
+                    switch (distance)
+                    {
+                        case < 2:
+                            noteScore = 200;
+                            break;
+                        case < 15:
+                            noteScore = 100;
+                            break;
+                        default:
+                            noteScore = 50;
+                            break;
+                    }
                 
-                var fx = Instantiate(hitFX, judge.transform.position, Quaternion.identity, gameObject.transform);
+                    SoundManagerForRunrun.instance.PlaySound("ClearNote");
                 
-                Destroy(judge.gameObject);
-                Destroy(fx,0.5f);
+                    var fx = Instantiate(hitFX, judge.transform.position, Quaternion.identity, gameObject.transform);
                 
-                NoteController.instance.noteCount--;
+                    Destroy(judge.gameObject);
+                    Destroy(fx,0.5f);
                 
-                GameManagerRun.instance.SetScore(noteScore);
+                    GameManagerRun.instance.noteCount--;
+                
+                    GameManagerRun.instance.SetScore(noteScore);
+                }
             }
-        }
         
-        if (Input.GetKeyUp(keyToPress))
-        {
-            img.sprite = defaultImage;
+            if (Input.GetKeyUp(keyToPress))
+            {
+                img.sprite = defaultImage;
+            }
         }
     }
 }

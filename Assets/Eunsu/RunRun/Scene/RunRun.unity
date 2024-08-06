@@ -216,10 +216,9 @@ RectTransform:
   m_LocalScale: {x: 0.4510549, y: 0.4510549, z: 0.4510549}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1005743474}
-  - {fileID: 1446660595}
   - {fileID: 423626678}
   - {fileID: 408989982}
+  - {fileID: 1446660595}
   - {fileID: 1735338351}
   - {fileID: 2078012281}
   m_Father: {fileID: 0}
@@ -891,7 +890,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f3174f10dbd3f4db3f628eccc8efec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreBoard: {fileID: 0}
   defaultImage: {fileID: 21300000, guid: 07edcfa1e8b2abf4cb21aeb23877144e, type: 3}
   pressedImage: {fileID: 21300000, guid: 553ffb236860c2a4ab0b3b302b83f720, type: 3}
   hitFX: {fileID: 1967835574231978638, guid: 2dd368c9eba194140a30c73fc1ff43f0, type: 3}
@@ -12888,7 +12886,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 8.32
+  m_Intensity: 8.97
   m_Range: 84.39
   m_SpotAngle: 75
   m_InnerSpotAngle: 21.80208
@@ -13327,58 +13325,6 @@ MonoBehaviour:
       sizeMultiplier: 2
     innerMonitorShineRadius: -0.087
     innerMonitorShineCurve: 10
---- !u!1 &1005743473
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1005743474}
-  - component: {fileID: 1005743475}
-  m_Layer: 5
-  m_Name: NoteController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1005743474
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1005743473}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 9544422}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -50.5, y: 0}
-  m_SizeDelta: {x: 100, y: 300}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1005743475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1005743473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d81edba2004a256438d4aeb1760843b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvas: {fileID: 9544418}
-  UpNotePrefab: {fileID: 2913420432027634928, guid: d9f5f1cf9e50abc42bd3d0daff68c4e7, type: 3}
-  DownNotePrefab: {fileID: 3748040575701395322, guid: 7e27653bbab16d148b8cda2385dfa1fd, type: 3}
-  noteCount: 0
 --- !u!43 &1037176331
 Mesh:
   m_ObjectHideFlags: 0
@@ -13570,7 +13516,7 @@ Transform:
   m_GameObject: {fileID: 1038480740}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.71, y: 5.51, z: -13}
+  m_LocalPosition: {x: -0.71, y: 5.51, z: -9.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13753,7 +13699,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f3174f10dbd3f4db3f628eccc8efec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreBoard: {fileID: 0}
   defaultImage: {fileID: 21300000, guid: 0a17623efc0c1c74fad1e984cf97953b, type: 3}
   pressedImage: {fileID: 21300000, guid: 02054c2350683084185c82e061451ffe, type: 3}
   hitFX: {fileID: 1967835574231978638, guid: 2dd368c9eba194140a30c73fc1ff43f0, type: 3}
@@ -19523,10 +19468,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 9544422}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 910, y: -490}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -50.5, y: 0}
+  m_SizeDelta: {x: 100, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1446660598
 MonoBehaviour:
@@ -19540,9 +19485,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dff22af36e9ab349ae4e31a60b4edff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 9544418}
   scoreText: {fileID: 1988708440}
   backComp: {fileID: 408989981}
   backgroundPrefab: {fileID: 489547258383717509, guid: 545461111f2eea14484d5318401cbd7a, type: 3}
+  UpNotePrefab: {fileID: 2913420432027634928, guid: d9f5f1cf9e50abc42bd3d0daff68c4e7, type: 3}
+  DownNotePrefab: {fileID: 3748040575701395322, guid: 7e27653bbab16d148b8cda2385dfa1fd, type: 3}
+  rand: 0
+  noteNumber: 0
+  isFinished: 0
+  isTimedOut: 0
+  noteCount: 0
   audioSource: {fileID: 46628788}
   pvTest: {fileID: 1446660599}
   playerposdb:

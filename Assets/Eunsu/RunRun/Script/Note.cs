@@ -9,8 +9,6 @@ public class Note : MonoBehaviour
     
     private float movePos;
 
-    private float durationTime = 0f;
-
     private void Awake()
     {
         _rectTransform = GetComponent<RectTransform>();
@@ -18,24 +16,22 @@ public class Note : MonoBehaviour
 
     private void Start()
     {
-        if (NoteController.instance.noteNumber > 50) noteSpeed = 7f;
+        if (GameManagerRun.instance.noteNumber > 50) noteSpeed = 7f;
         StartCoroutine(MoveNote());
     }
 
     private void Update()
     {
-        durationTime += Time.deltaTime;
-        
-        if (durationTime < 12f) return;
+        if (_rectTransform.position.x > -980f) return;
         
         Destroy(gameObject);
         
-        NoteController.instance.noteCount--;
+        GameManagerRun.instance.noteCount--;
     }
 
     private IEnumerator MoveNote()
     {
-        while (durationTime < 12f)
+        while (_rectTransform.position.x > -980f)
         {
             yield return null;
             
