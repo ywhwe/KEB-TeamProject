@@ -80,6 +80,7 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
         NetworkManager.instance.isDescending = true;
         isGameEnd = false;
         
+        BackgroundMove().Forget();
         scoreText.text = 0.ToString();
     }
 
@@ -156,10 +157,12 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
             currentBg.transform.Translate(movePos * (moveSpeed * Time.deltaTime));
             nextBg.transform.Translate(movePos * (moveSpeed * Time.deltaTime));
 
-            if (!(nextBg.transform.position.x < 0.3f)) continue;
+            if (!(nextBg.transform.position.x < -200f)) continue;
             
             var bg = Instantiate(backgroundPrefab, nextPos, defaultAngle);
             
+            Debug.Log(currentBg.transform.position.x);
+            Debug.Log(nextBg.transform.position.x);
             Destroy(currentBg);
 
             currentBg = nextBg;
@@ -170,7 +173,7 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
     public override void GameStart()
     {
         CharacterMotionController.instance.isTwoKey = true;
-        BackgroundMove().Forget();
+        
         GenNotes().Forget();
         
         audioSource.PlayOneShot(audioSource.clip);

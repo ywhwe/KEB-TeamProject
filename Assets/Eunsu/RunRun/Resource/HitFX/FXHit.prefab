@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1967835574231978632}
   - component: {fileID: 1967835574231978633}
   - component: {fileID: 8960960123371398619}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FXHit
   m_TagString: Untagged
   m_Icon: {fileID: 0}

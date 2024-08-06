@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Sinbi/memory/Scene/memory game.unity
     guid: c32501fcdebe1194c818d9d41da50966
-  - enabled: 1
+  - enabled: 0
     path: Assets/Kanghyeon/BaseBall/Scene/Baseball.unity
     guid: a27c5352792ebca4798f8ee8941c1e2b
   - enabled: 0
@@ -23,7 +23,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Jisoo/Scene/Follow The Action.unity
     guid: 4a0d28bc19defc347a0f30268f595bdd
-  - enabled: 1
+  - enabled: 0
     path: Assets/Main/Record/Sence/RecordPlay.unity
     guid: de63d1dd09aebdb439833c38537f2051
   - enabled: 1

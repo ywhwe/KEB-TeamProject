@@ -892,7 +892,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultImage: {fileID: 21300000, guid: 07edcfa1e8b2abf4cb21aeb23877144e, type: 3}
   pressedImage: {fileID: 21300000, guid: 553ffb236860c2a4ab0b3b302b83f720, type: 3}
-  hitFX: {fileID: 1967835574231978638, guid: 2dd368c9eba194140a30c73fc1ff43f0, type: 3}
+  hitFX: {fileID: 5045158375597583302, guid: 24149fd5d5ba827438d3fa8128844b9b, type: 3}
   keyToPress: 115
   noteScore: 100
 --- !u!114 &639339946
@@ -13701,7 +13701,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultImage: {fileID: 21300000, guid: 0a17623efc0c1c74fad1e984cf97953b, type: 3}
   pressedImage: {fileID: 21300000, guid: 02054c2350683084185c82e061451ffe, type: 3}
-  hitFX: {fileID: 1967835574231978638, guid: 2dd368c9eba194140a30c73fc1ff43f0, type: 3}
+  hitFX: {fileID: 5045158375597583302, guid: 24149fd5d5ba827438d3fa8128844b9b, type: 3}
   keyToPress: 119
   noteScore: 100
 --- !u!114 &1115058749
