@@ -3047,7 +3047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00e43e3f161054ce5803cb0b85e33437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notedb: {fileID: 11400000, guid: 769a88d303d58c64fbd274e94390a9bf, type: 2}
+  notedb: {fileID: 11400000, guid: 543f736b261bb2f40a482bd65a899c4b, type: 2}
   noteW: {fileID: 6672602155270072642, guid: b1bac11f933a247bcb51a2ae8630665c, type: 3}
   noteA: {fileID: 6672602155270072642, guid: d92d172c0c5974106af11f5995f9287f, type: 3}
   noteS: {fileID: 6672602155270072642, guid: 76ab7567ce21d4cfe80742bc4b390dd1, type: 3}
@@ -4626,9 +4626,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76290f894f5fe0643930b4eae90a72d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 0
-  isGameEnd: 0
-  isDescend: 0
   recordtime: 0
   PV: {fileID: 1760370355}
   playerposdb:
@@ -4641,9 +4638,9 @@ MonoBehaviour:
   record: {fileID: 1329824999}
   audio: {fileID: 1760370356}
   audiodb:
-  - {fileID: 8300000, guid: ca95cc117169090479c80fc78712cb3a, type: 3}
-  - {fileID: 8300000, guid: ea6484d1a51053942890072c8a76ff6b, type: 3}
-  - {fileID: 8300000, guid: 51f8b85c54f65d048b3115214170ad64, type: 3}
+  - {fileID: 8300000, guid: bbf010b7aeaf6eb43b1e5d1db3df846f, type: 3}
+  - {fileID: 8300000, guid: d1471cd7af8884d41847ee3c3436acc5, type: 3}
+  - {fileID: 8300000, guid: add254913fcd4e8408ecfd5b6d4cbd1a, type: 3}
   gameindex: 
 --- !u!4 &1760370354
 Transform:
