@@ -108,7 +108,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         int length = ranklist.Count - 1;
         float score = ranklist[length].Value;
         int count = 0;
-        int target = 1;
+        int target = Mathf.CeilToInt(PhotonNetwork.PlayerList.Length / 3);
         if (!isDescending)
         {
             while (target >= 0)

@@ -33,11 +33,11 @@ public class RecordGameManager : WholeGameManager
         audio.clip = audiodb[num];
         if (num==2)
         {
-            audio.Play();
+            audio.PlayDelayed(0.3f);
             return;
         }
 
-        audio.Play();
+        audio.PlayDelayed(0.25f);
 
     }
     

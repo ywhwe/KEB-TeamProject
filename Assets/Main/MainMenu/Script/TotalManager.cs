@@ -48,7 +48,7 @@ public class TotalManager : MonoBehaviourPunCallbacks
     public WaitForSeconds waitFiveSeconds = new WaitForSeconds(5f);
     public AudioSource BGM;
 
-    public int gameRound = 0;
+    public int gameRound;
 
     public Texture2D cursurIcon;
     
@@ -115,8 +115,7 @@ public class TotalManager : MonoBehaviourPunCallbacks
     private async UniTask UniTaskGoToGameScene()
     {
         gameRound++;
-        int gamenum = 1;
-        await MoveFadeScene(gamenum);
+        await MoveFadeScene(gameRound);
         gameManager = GameObject.Find("GameManager");
         BGM.Stop();
         await ReadyForStart();

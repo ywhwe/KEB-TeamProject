@@ -7,10 +7,14 @@ using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 위해 모든 게임의 점수를 int로 순위는 내림차순으로 정리
 {
     public TextMeshProUGUI[] scoretxt;
+    public TextMeshProUGUI[] ranktxt;
+    public TextMeshProUGUI[] nametxt;
+    public GameObject[] scorelist;
     public TextMeshProUGUI nexttimer;
     public TextMeshProUGUI winner;
     public PhotonView PV;
@@ -19,6 +23,8 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
     public int isLoadScore=0;
     public GameObject controlpanel;
     public GameObject player;
+    
+    public RectTransform viewtransform;
     
     public void NextGame()
     {
@@ -167,8 +173,14 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
         {
             if (index < scoretxt.Length)
             {
-                scoretxt[index].text = player.Key + ":" + player.Value;
+                var size = viewtransform.sizeDelta;
+                size.y += 135;
+                viewtransform.sizeDelta = size;
+                scorelist[index].SetActive(true);
+                nametxt[index].text = player.Key;
+                scoretxt[index].text = player.Value.ToString();
                 index++;
+                ranktxt[index-1].text = index.ToString();
             }
         }
     }

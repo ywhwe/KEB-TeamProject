@@ -35,6 +35,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     private void Start()
     {
+        TotalManager.instance.gameRound = 0;
+        playernum.text = PhotonNetwork.PlayerList.Length + "/" + PhotonNetwork.CurrentRoom.MaxPlayers;
         StartCoroutine(DelayInst());
     }
 
@@ -63,7 +65,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         Debug.LogFormat("PhotonNetwork : Loading Level : baseball");
         TotalManager.instance.GoToGameScene();
     }
-
+    
     public override void OnPlayerEnteredRoom(Photon.Realtime.Player other)
     {
         playernum.text = PhotonNetwork.PlayerList.Length + "/" + PhotonNetwork.CurrentRoom.MaxPlayers;
