@@ -10,6 +10,8 @@ using UnityEngine.UI;
 public class GameManagerFTM : WholeGameManager
 {
     public static GameManagerFTM instance;
+
+    private IEnumerator compareIsPressed;
     
     public int playerLife = 3;
     public Image[] lifeImage;
@@ -20,18 +22,22 @@ public class GameManagerFTM : WholeGameManager
     public float finishTime;
     public PhotonView PV;
     
-    protected WaitForSeconds calTime = new WaitForSeconds(5f);
+    protected WaitForSeconds calTime = new WaitForSeconds(3f);
+    private float tempTime = 3f;
     public GameObject player;
     public CharacterMotionController playerController;
     
     public RectTransform timeBar;
-    private float timeBarSize = 500.0f;
+    public RectTransform timeBarBackground;
+    public float timeBarSize;
     private Vector2 tempSize;
 
     public bool isTimeBarOn = false;
     public TextMeshProUGUI text;
-    public int stageTimer = 0;
-    public int stageUpTime = 4;
+    public float stageTimer = 0f;
+    private float stageUpTime = 3f;
+
+    public bool isPressed = false;
     
     private void Awake()
     {
@@ -40,6 +46,8 @@ public class GameManagerFTM : WholeGameManager
         GameObject temp = Instantiate(TotalManager.instance.playerPrefab, player.transform.position, player.transform.rotation);
         temp.transform.SetParent(player.transform);
         player = temp;
+        tempSize = timeBarBackground.sizeDelta;
+        timeBarSize = tempSize.x;
     }
 
     private void Start()
@@ -65,24 +73,49 @@ public class GameManagerFTM : WholeGameManager
         }
     }
 
-    public IEnumerator PlayGameRoutine()
+    public IEnumerator CompareIsPressed()
     {
-        
-        RandomMotion.instance.RandomAction();
-        playerMotionNum = 4;
-        
-        yield return calTime;
-        
+        yield return new WaitUntil(()=>isPressed);
         playerLife = RandomMotion.instance.CompareMotionNumber(playerMotionNum, playerLife);
         LifeImageDelete();
+    }
 
+    public void StartCoroutineCompareIsPressed()
+    {
+        compareIsPressed = CompareIsPressed();
+        StartCoroutine(compareIsPressed);
+    }
+    
+    public void StopCoroutineCompareIsPressed()
+    {
+        StopCoroutine(compareIsPressed);
+    }
+
+    public IEnumerator PlayGameRoutine()
+    {
+        RandomMotion.instance.RandomAction();
+        playerMotionNum = 4;
+        isPressed = false;
+
+        StartCoroutineCompareIsPressed();
+        
+        yield return calTime;
+
+        if (!isPressed)
+        {
+            playerLife = RandomMotion.instance.CompareMotionNumber(playerMotionNum, playerLife);
+            LifeImageDelete();
+            isPressed = true;
+        }
+        
         stageTimer++;
+        
+        StopCoroutineCompareIsPressed();
         if (playerLife == 0)
         {
             EndGame();
-        }
-
-        if (stageTimer >= stageUpTime)
+        } 
+        else if (stageTimer >= stageUpTime)
         {
             StartCoroutine(FasterText());
         }
@@ -104,14 +137,24 @@ public class GameManagerFTM : WholeGameManager
     {
         SoundManagerForFollowTheMotion.instance.PlaySound("StageUp");
         text.text = "Faster";
+        Nextround();
         isTimeBarOn = false;
         yield return new WaitForSeconds(1f);
         isTimeBarOn = true;
         text.text = "";
-        Time.timeScale += 0.5f;
-        stageTimer = 0;
-        stageUpTime++;
+        Time.timeScale += 0.2f;
+        stageTimer = 0f;
+        stageUpTime += 0.5f;
         StartCoroutine(PlayGameRoutine());
+    }
+
+    public void Nextround()
+    {
+        tempSize.x = timeBarSize - 20f;
+        timeBarBackground.sizeDelta = tempSize;
+        timeBarSize = tempSize.x;
+        tempTime -= 0.2f;
+        calTime = new WaitForSeconds(tempTime);
     }
     
     public void LifeImageDelete()
@@ -132,7 +175,12 @@ public class GameManagerFTM : WholeGameManager
 
     private void PlayerInput(int motionNum)
     {
-        playerMotionNum = motionNum;
+        if (!isPressed)
+        {
+            playerMotionNum = motionNum;
+            isPressed = true;
+        }
+        
     }
 
     public void StartGame()
@@ -144,7 +192,7 @@ public class GameManagerFTM : WholeGameManager
 
     public void EndGame()
     {
-        BGM.Stop();
+        isTimeBarOn = false;
         Time.timeScale = 1f;
         stageTimer = 0;
         finishTime = Time.time;
