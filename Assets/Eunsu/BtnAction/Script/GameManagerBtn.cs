@@ -71,7 +71,7 @@ public class GameManagerBtn : WholeGameManager
         isGameEnd = false;
         isAccel = false;
         
-        audioSource.PlayOneShot(audioSource.clip);
+        audioSource.Play();
     }
 
     private void Update()
