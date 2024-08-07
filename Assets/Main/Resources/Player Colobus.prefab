@@ -762,16 +762,16 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: isWMove
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: isAMove
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: isSMove
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: isDMove
   - Type: 9
     SynchronizeType: 0
