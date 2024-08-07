@@ -899,7 +899,7 @@ MonoBehaviour:
   isLoadScore: 0
   controlpanel: {fileID: 1743007694}
   player: {fileID: 1633331318}
-  timer: {fileID: 0}
+  timer: {fileID: 2017611454}
   viewtransform: {fileID: 1947399046}
 --- !u!4 &143931373
 Transform:
@@ -7853,6 +7853,11 @@ PrefabInstance:
 --- !u!224 &2017611453 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 22400004, guid: 337cc916794ec9448acf3747bab44db8, type: 3}
+  m_PrefabInstance: {fileID: 2017611452}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2017611454 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100004, guid: 337cc916794ec9448acf3747bab44db8, type: 3}
   m_PrefabInstance: {fileID: 2017611452}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2053731652
