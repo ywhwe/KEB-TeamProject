@@ -50,6 +50,7 @@ public class GameManagerFTM : WholeGameManager
     private void Awake()
     {
         instance = this;
+        TotalManager.instance.SendMessageSceneStarted();
         tempSize = timeBar.sizeDelta;
         playerpref = TotalManager.instance.playerPrefab;
         int index = Array.FindIndex(PhotonNetwork.PlayerList, x => x.NickName == PhotonNetwork.LocalPlayer.NickName);

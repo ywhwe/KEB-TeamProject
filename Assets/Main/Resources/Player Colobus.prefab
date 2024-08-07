@@ -760,8 +760,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowLayerWeightsInspector: 1
   ShowParameterInspector: 1
-  m_SynchronizeParameters: []
-  m_SynchronizeLayers: []
+  m_SynchronizeParameters:
+  - Type: 9
+    SynchronizeType: 0
+    Name: isWMove
+  - Type: 9
+    SynchronizeType: 0
+    Name: isAMove
+  - Type: 9
+    SynchronizeType: 0
+    Name: isSMove
+  - Type: 9
+    SynchronizeType: 0
+    Name: isDMove
+  - Type: 9
+    SynchronizeType: 0
+    Name: isTwoKeyWMove
+  - Type: 9
+    SynchronizeType: 0
+    Name: isTwoKeySMove
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
 --- !u!114 &6746219898557391735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -785,7 +805,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6182162820492919152}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3fe91dc294731a9428c0941ea7579110, type: 3}
   m_Name: 

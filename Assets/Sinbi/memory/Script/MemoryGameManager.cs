@@ -68,7 +68,7 @@ public class MemoryGameManager : WholeGameManager
     private void Awake()
     {
         instance = this;
-
+        TotalManager.instance.SendMessageSceneStarted();
         InitNumbers();
         
         playerPref = TotalManager.instance.playerPrefab;

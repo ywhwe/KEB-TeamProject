@@ -102,10 +102,12 @@ public class BaseBallGameManager : WholeGameManager
     {
         instance = this;
         isDescend = true;
+        TotalManager.instance.SendMessageSceneStarted();
     }
 
     private void Start()
     {
+        
         audio.Play();
         CheckReady();
     }

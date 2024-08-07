@@ -115,6 +115,7 @@ public class RecordGameManager : WholeGameManager
     private void Awake()
     {
         instance = this;
+        TotalManager.instance.SendMessageSceneStarted();
         recordnum = 0;
         playerpref = TotalManager.instance.obplayerPrefab;
         int index = Array.FindIndex(PhotonNetwork.PlayerList, x => x.NickName == PhotonNetwork.LocalPlayer.NickName);

@@ -40,7 +40,8 @@ public class TotalManager : MonoBehaviourPunCallbacks
     private float perBGMVolume;
     public Slider SFXVolumeSlider;
     private float perSFXVolume;
-
+    private bool isSceneStarted;
+    
     public GameObject gameManager;
     public PhotonView PV;
     private int isGameEnd = 0;
@@ -197,10 +198,19 @@ public class TotalManager : MonoBehaviourPunCallbacks
         await UniTask.WaitForSeconds(5f);
         await FadeScreenTask(true);
         fadeimage.gameObject.SetActive(false);
+
+        isSceneStarted = false;
         PhotonNetwork.LoadLevel(id);
-        await UniTask.WaitUntil(() => PhotonNetwork.LevelLoadingProgress == 1f);
+        
+        await UniTask.WaitUntil(() => isSceneStarted);
         await FadeScreenTask(false);
     }
+
+    public void SendMessageSceneStarted()
+    {
+        isSceneStarted = true;
+    }
+    
     private async UniTask MoveFadeScene(string str)
     {
         await FadeScreenTask(true);
@@ -213,7 +223,6 @@ public class TotalManager : MonoBehaviourPunCallbacks
         await UniTask.WaitForSeconds(2f);
         waitText.text = "Ready";
         gameManager.GetComponent<WholeGameManager>().ReadyForStart();
-        
     }
 
     private async UniTask FadeImageTask(bool fadeOut)

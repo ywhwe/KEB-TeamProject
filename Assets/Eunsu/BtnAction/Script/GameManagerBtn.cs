@@ -55,7 +55,7 @@ public class GameManagerBtn : WholeGameManager
     private void Awake()
     {
         instance = this;
-        
+        TotalManager.instance.SendMessageSceneStarted();
         successCount = 0;
         clearTime = 0;
         

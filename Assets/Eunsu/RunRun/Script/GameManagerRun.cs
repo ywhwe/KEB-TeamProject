@@ -64,7 +64,7 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
     private void Awake()
     {
         instance = this;
-        
+        TotalManager.instance.SendMessageSceneStarted();
         playerpref = TotalManager.instance.obplayerPrefab;
         int index = Array.FindIndex(PhotonNetwork.PlayerList, x => x.NickName == PhotonNetwork.LocalPlayer.NickName);
         Debug.Log(index);
