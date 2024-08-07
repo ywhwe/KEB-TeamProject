@@ -11,6 +11,8 @@ public class RandomMotion : MonoBehaviour
     public Animator ani;
     public static RandomMotion instance;
     
+    public ParticleSystem[] isCorrectParticle;
+    
     public int randomMotionNumber;
     
     protected static readonly int IsWMove = Animator.StringToHash("isWMove");
@@ -59,7 +61,14 @@ public class RandomMotion : MonoBehaviour
     {
         if (playerMotionNumber != randomMotionNumber)
         {
+            SoundManagerForFollowTheMotion.instance.PlaySound("Incorrect");
+            isCorrectParticle[1].Play();
             playerLife--;
+        }
+        else
+        {
+            SoundManagerForFollowTheMotion.instance.PlaySound("Correct");
+            isCorrectParticle[0].Play();
         }
         return playerLife;
     }
