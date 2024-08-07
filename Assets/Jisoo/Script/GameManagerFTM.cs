@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using EPOOutline;
 using Photon.Pun;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -33,20 +35,25 @@ public class GameManagerFTM : WholeGameManager
     public int stageTimer = 0;
     public int stageUpTime = 4;
     
+    public GameObject[] playerposdb;
+    public GameObject mypos;
+
+    private GameObject playerpos;
+    private GameObject playerpref;
+    
     private void Awake()
     {
         instance = this;
         tempSize = timeBar.sizeDelta;
-        GameObject temp = Instantiate(TotalManager.instance.playerPrefab, player.transform.position, player.transform.rotation);
-        temp.transform.SetParent(player.transform);
-        player = temp;
+        playerpref = TotalManager.instance.playerPrefab;
+        int index = Array.FindIndex(PhotonNetwork.PlayerList, x => x.NickName == PhotonNetwork.LocalPlayer.NickName);
+        playerpos= playerposdb[index];
     }
 
     private void Start()
     {
         BGM.Play();
-        playerController = player.GetComponent<CharacterMotionController>();
-        playerController.OnKeyPressed += PlayerInput;
+        
         NetworkManager.instance.isDescending = true;
     }
     
@@ -159,7 +166,14 @@ public class GameManagerFTM : WholeGameManager
 
     public override void SpawnObsPlayer()
     {
-        
+        var localojb = PhotonNetwork.Instantiate(playerpref.name, playerpos.transform.position, playerpos.transform.rotation,0);
+        localojb.GetComponent<Outlinable>().enabled = true;
+        localojb.GetComponent<PhotonTransformView>().m_SynchronizePosition = false;
+        localojb.transform.position = mypos.transform.position;
+        localojb.transform.rotation = Quaternion.Euler(0f,90f,0f);
+        player = localojb;
+        playerController = player.GetComponent<CharacterMotionController>();
+        playerController.OnKeyPressed += PlayerInput;
     }
     public override void ReadyForStart()
     {

@@ -20,7 +20,9 @@ public class TotalManager : MonoBehaviourPunCallbacks
     public int playerPrefabNumber = 0;
     public GameObject playerPrefab => prefabDB[playerPrefabNumber];
     public GameObject obplayerPrefab => obprefabDB[playerPrefabNumber];
-    
+
+    public Image[] fadeimgaedb;
+    public Image fadeimage;
     public Image fadeScreen;
     public Image optionScreen;
     public Image waitScreen;
@@ -190,7 +192,13 @@ public class TotalManager : MonoBehaviourPunCallbacks
     private async UniTask MoveFadeScene(int id)
     {
         await FadeScreenTask(true);
+        fadeimage.gameObject.SetActive(true);
+        await FadeScreenTask(false);
+        await UniTask.WaitForSeconds(5f);
+        await FadeScreenTask(true);
+        fadeimage.gameObject.SetActive(false);
         PhotonNetwork.LoadLevel(id);
+        await UniTask.WaitUntil(() => PhotonNetwork.LevelLoadingProgress == 1f);
         await FadeScreenTask(false);
     }
     private async UniTask MoveFadeScene(string str)
@@ -208,6 +216,27 @@ public class TotalManager : MonoBehaviourPunCallbacks
         
     }
 
+    private async UniTask FadeImageTask(bool fadeOut)
+    {
+        var fadeTimer = 0f;
+        const float FadeDuration = 1f;
+
+        var initialValue = fadeOut ? 0f : 1f;
+        var fadeDir = fadeOut ? 1f : -1f;
+        
+        while (fadeTimer < FadeDuration)
+        {
+            await UniTask.NextFrame(); //한 프레임만 기다려서 업데이트처럼 프레임당 움직임
+            fadeTimer += Time.deltaTime;
+
+            var color = fadeimage.color;
+
+            initialValue += fadeDir * Time.deltaTime;
+            color.a = initialValue;
+
+            fadeimage.color = color;
+        }
+    }
     private async UniTask FadeScreenTask(bool fadeOut)
     {
         var fadeTimer = 0f;

@@ -23,6 +23,7 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
     public int isLoadScore=0;
     public GameObject controlpanel;
     public GameObject player;
+    public GameObject timer;
     
     public RectTransform viewtransform;
     
@@ -110,6 +111,7 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
             return;
         }
        
+        timer.SetActive(true);
         int time = 5;
         for (int i = 0; i < 6; i++)
         {

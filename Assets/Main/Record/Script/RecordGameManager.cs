@@ -118,7 +118,6 @@ public class RecordGameManager : WholeGameManager
         recordnum = 0;
         playerpref = TotalManager.instance.obplayerPrefab;
         int index = Array.FindIndex(PhotonNetwork.PlayerList, x => x.NickName == PhotonNetwork.LocalPlayer.NickName);
-        Debug.Log(index);
         playerpos= playerposdb[index];
         
     }

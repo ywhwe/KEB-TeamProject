@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
-public class CharacterMotionController : MonoBehaviour
+public class CharacterMotionController : MonoBehaviourPun
 {
     public static CharacterMotionController instance;
     
@@ -67,7 +68,7 @@ public class CharacterMotionController : MonoBehaviour
         
         for (int i = 0; i < hashCode.Length; i++)
         {
-            if (Input.GetKeyDown(keyCode[i]))
+            if (Input.GetKeyDown(keyCode[i])&&photonView.IsMine)
             {
                 ani.SetTrigger(hashCode[i]);
                 OnKeyPressed?.Invoke(i);

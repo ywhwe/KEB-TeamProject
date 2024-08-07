@@ -82,6 +82,7 @@ public class ScoreWall : MonoBehaviour
             else
             {
                 hitnote.collider.GetComponent<RecordNoteCon>().Blinknote();
+                SoundBip();
             }
         }
         else
@@ -90,6 +91,11 @@ public class ScoreWall : MonoBehaviour
             Destroy(vfx2,0.2f);
         }
     }
+    private void SoundBip()
+    {
+        SoundManageForRecord.instance.PlaySound("Bibip");
+    }
+
 
 
 }

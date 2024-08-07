@@ -22,6 +22,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     private GameObject playerpos;
 
     private CancellationTokenSource cancel;
+
+    private GameObject playerobj;
+    public GameObject timer;
+    private bool isTimerOn;
     
     [Tooltip("The prefab to use for representing the player")]
     private void Awake()
@@ -43,8 +47,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     IEnumerator DelayInst()
     {
         yield return new WaitForSeconds(1f);
-        var localojb = PhotonNetwork.Instantiate(playerpref.name, playerpos.transform.position, Quaternion.identity,0);
-        localojb.GetComponent<Outlinable>().enabled = true;
+        playerobj = PhotonNetwork.Instantiate(playerpref.name, playerpos.transform.position, Quaternion.identity,0);
+        playerobj.GetComponent<Outlinable>().enabled = true;
     }
 
     #region Photon CallBacks
@@ -62,17 +66,22 @@ public class LobbyManager : MonoBehaviourPunCallbacks
             await UniTask.WaitForSeconds(1f, cancellationToken:cancel.Token);
         }
         PhotonNetwork.CurrentRoom.IsOpen = false;
-        Debug.LogFormat("PhotonNetwork : Loading Level : baseball");
+        Debug.LogFormat("PhotonNetwork : Loading Level : Round1");
         TotalManager.instance.GoToGameScene();
     }
     
     public override void OnPlayerEnteredRoom(Photon.Realtime.Player other)
     {
         playernum.text = PhotonNetwork.PlayerList.Length + "/" + PhotonNetwork.CurrentRoom.MaxPlayers;
+        int index = Array.FindIndex(PhotonNetwork.PlayerList, x => x.NickName == PhotonNetwork.LocalPlayer.NickName);
+        playerpos= playerposdb[index];
+        playerobj.transform.position = playerpos.transform.position;
         Debug.LogFormat("OnPlayerEnteredRoom() {0}", other.NickName); // not seen if you're the player connecting
-        if (PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.PlayerList.Length == PhotonNetwork.CurrentRoom.MaxPlayers)
         {
-            if (PhotonNetwork.PlayerList.Length == PhotonNetwork.CurrentRoom.MaxPlayers)
+            timer.SetActive(true);
+            isTimerOn = true;
+            if (PhotonNetwork.IsMasterClient)
             {
                 cancel = new CancellationTokenSource();
                 StartCounting().Forget();
@@ -88,6 +97,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         Debug.LogFormat("OnPlayerLeftRoom() {0}", other.NickName); // seen when other disconnects
         playernum.text = PhotonNetwork.PlayerList.Length + "/" + PhotonNetwork.CurrentRoom.MaxPlayers;
+        if (isTimerOn==true)
+        {
+            timer.SetActive(false);
+        }
         if (PhotonNetwork.IsMasterClient)
         {
             if (cancel != null)
