@@ -221,6 +221,7 @@ RectTransform:
   - {fileID: 1446660595}
   - {fileID: 1735338351}
   - {fileID: 2078012281}
+  - {fileID: 1935090320}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -851,7 +852,6 @@ GameObject:
   - component: {fileID: 639339945}
   - component: {fileID: 639339947}
   - component: {fileID: 639339946}
-  - component: {fileID: 639339948}
   m_Layer: 5
   m_Name: Down Button
   m_TagString: Untagged
@@ -933,23 +933,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 639339943}
   m_CullTransparentMesh: 1
---- !u!114 &639339948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 639339943}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d03e888da11b08c4e98eeb2c53d08226, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundResources:
-  - key: ClearNote
-    Clip: {fileID: 8300000, guid: 1c3959f207c5dbe4296d09da5001c5e1, type: 3}
-  poolSize: 3
-  soundNodePrefab: {fileID: 165740829917176418, guid: 1a80e695204dd7d4d89b744f7108ae92, type: 3}
 --- !u!1 &710905325
 GameObject:
   m_ObjectHideFlags: 0
@@ -13660,7 +13643,6 @@ GameObject:
   - component: {fileID: 1115058748}
   - component: {fileID: 1115058750}
   - component: {fileID: 1115058749}
-  - component: {fileID: 1115058751}
   m_Layer: 5
   m_Name: Up Button
   m_TagString: Untagged
@@ -13742,23 +13724,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1115058746}
   m_CullTransparentMesh: 1
---- !u!114 &1115058751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1115058746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d03e888da11b08c4e98eeb2c53d08226, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundResources:
-  - key: ClearNote
-    Clip: {fileID: 8300000, guid: 1c3959f207c5dbe4296d09da5001c5e1, type: 3}
-  poolSize: 3
-  soundNodePrefab: {fileID: 165740829917176418, guid: 1a80e695204dd7d4d89b744f7108ae92, type: 3}
 --- !u!1 &1132736561
 GameObject:
   m_ObjectHideFlags: 0
@@ -19493,6 +19458,7 @@ MonoBehaviour:
   DownNotePrefab: {fileID: 3748040575701395322, guid: 7e27653bbab16d148b8cda2385dfa1fd, type: 3}
   rand: 0
   noteNumber: 0
+  getHigher: 0
   isFinished: 0
   isTimedOut: 0
   noteCount: 0
@@ -24902,6 +24868,61 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1935090319
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1935090320}
+  - component: {fileID: 1935090321}
+  m_Layer: 5
+  m_Name: SFX Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1935090320
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935090319}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9544422}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1935090321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935090319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d03e888da11b08c4e98eeb2c53d08226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundResources:
+  - key: ClearNote
+    Clip: {fileID: 8300000, guid: 1c3959f207c5dbe4296d09da5001c5e1, type: 3}
+  - key: LevelUp
+    Clip: {fileID: 8300000, guid: 66d8309498b3a20459f0c959cfd73586, type: 3}
+  poolSize: 10
+  soundNodePrefab: {fileID: 165740829917176418, guid: 1a80e695204dd7d4d89b744f7108ae92, type: 3}
 --- !u!1 &1941349811
 GameObject:
   m_ObjectHideFlags: 0

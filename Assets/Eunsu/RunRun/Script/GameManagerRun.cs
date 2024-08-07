@@ -49,8 +49,8 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
 
     private float genTime = 0f;
 
-    [HideInInspector] public int rand, noteNumber;
-    [HideInInspector] public bool isFinished, isTimedOut;
+    [HideInInspector] public int rand, noteNumber, getHigher;
+    [HideInInspector] public bool isFinished, isTimedOut, isPlayed;
     [HideInInspector] public int noteCount = 0;
     
     [SerializeField] private AudioSource audioSource;
@@ -64,6 +64,7 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
     private void Awake()
     {
         instance = this;
+        
         playerpref = TotalManager.instance.obplayerPrefab;
         int index = Array.FindIndex(PhotonNetwork.PlayerList, x => x.NickName == PhotonNetwork.LocalPlayer.NickName);
         Debug.Log(index);
@@ -73,6 +74,7 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
 
         isTimedOut = false;
         isFinished = false;
+        isPlayed = false;
     }
 
     private void Start()
@@ -86,7 +88,11 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
 
     private void Update()
     {
+        if (isPlayed && score is >= 2950 and < 3050 or >= 4950 and < 5050 or >= 6950 and < 7050)
+            isPlayed = false;
+        
         genTime = (stdBPM / musicBPM) * (musicTempo / stdTempo);
+        
         scoreText.text = score.ToString();
     }
     
@@ -140,6 +146,35 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
     public void SetScore(int number)
     {
         score += number;
+
+        if (isPlayed) return; 
+        
+        switch (score)
+        {
+            case >= 7000:
+                SoundManagerForRunrun.instance.PlaySound("LevelUp");
+                isPlayed = true;
+                stdTempo = 8f;
+                break;
+            case >= 5000:
+                SoundManagerForRunrun.instance.PlaySound("LevelUp");
+                isPlayed = true;
+                getHigher = 3;
+                break;
+            case >= 3000:
+                SoundManagerForRunrun.instance.PlaySound("LevelUp");
+                isPlayed = true;
+                getHigher = 2;
+                break;
+            case >= 1000:
+                SoundManagerForRunrun.instance.PlaySound("LevelUp");
+                isPlayed = true;
+                getHigher = 1;
+                break;
+            default:
+                getHigher = 0;
+                break;
+        }
     }
     
     private async UniTask BackgroundMove()
@@ -161,8 +196,6 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
             
             var bg = Instantiate(backgroundPrefab, nextPos, defaultAngle);
             
-            Debug.Log(currentBg.transform.position.x);
-            Debug.Log(nextBg.transform.position.x);
             Destroy(currentBg);
 
             currentBg = nextBg;
@@ -176,7 +209,7 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
         
         GenNotes().Forget();
         
-        audioSource.PlayOneShot(audioSource.clip);
+        audioSource.Play();
     }
 
     public override void SpawnObsPlayer()

@@ -1,11 +1,12 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Note : MonoBehaviour
 {
     private RectTransform _rectTransform;
     
-    [HideInInspector] public float noteSpeed = 5f;
+    [HideInInspector] public float noteSpeed = 3f;
     
     private float movePos;
 
@@ -16,7 +17,7 @@ public class Note : MonoBehaviour
 
     private void Start()
     {
-        if (GameManagerRun.instance.noteNumber > 50) noteSpeed = 7f;
+        SpeedChecker(GameManagerRun.instance.getHigher);
         StartCoroutine(MoveNote());
     }
 
@@ -48,5 +49,23 @@ public class Note : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         Destroy(gameObject);
+    }
+
+    private void SpeedChecker(int flag)
+    {
+        switch (flag)
+        {
+            case 0:
+                break;
+            case 1:
+                noteSpeed = 4f;
+                break;
+            case 2:
+                noteSpeed = 5f;
+                break;
+            case 3:
+                noteSpeed = 7f;
+                break;
+        }
     }
 }
