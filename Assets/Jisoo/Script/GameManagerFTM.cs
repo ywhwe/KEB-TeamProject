@@ -13,7 +13,7 @@ public class GameManagerFTM : WholeGameManager
 {
     public static GameManagerFTM instance;
 
-    private IEnumerator compareIsPressed;
+    private Coroutine compareIsPressed;
     
     public int playerLife = 3;
     public Image[] lifeImage;
@@ -89,8 +89,7 @@ public class GameManagerFTM : WholeGameManager
 
     public void StartCoroutineCompareIsPressed()
     {
-        compareIsPressed = CompareIsPressed();
-        StartCoroutine(compareIsPressed);
+        compareIsPressed = StartCoroutine(CompareIsPressed());
     }
     
     public void StopCoroutineCompareIsPressed()
