@@ -101,6 +101,13 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.arrayelementtitle": {
+      "version": "https://github.com/NK-Studio/Array-Element-Title.git#UPM",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "403f60bddfee9ec088ff2a981cf0c13495884e08"
+    },
     "com.unity.burst": {
       "version": "1.8.15",
       "depth": 1,
