@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.Triggers;
+using EPOOutline;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -13,6 +15,7 @@ public class MemoryGameManager : WholeGameManager
     public static MemoryGameManager instance;
 
     public GameObject[] playerPosDB;
+    public GameObject Mypos;
     private GameObject playerPref;
     private GameObject playerPos;
 
@@ -80,21 +83,14 @@ public class MemoryGameManager : WholeGameManager
         Debug.Log(index);
 
         NetworkManager.instance.isDescending = true; // If change score system make this false
-        StartCoroutine(DelayInst());
+       
     }
 
-    IEnumerator DelayInst() //플레이어 instant 함수
-    {
-        yield return new WaitForSeconds(1f);
-        
-        var playerObj = PhotonNetwork.Instantiate(playerPref.name,
-            playerPos.transform.position, playerPos.transform.rotation);
-        playerObj.transform.localScale = playerPos.transform.localScale;
-        
-        playerController = playerObj.GetComponent<CharacterMotionController>();
-        playerController.isMirrored = true;
-        playerController.OnKeyPressed += PlayerInput;
-    }
+    // IEnumerator DelayInst() //플레이어 instant 함수
+    // {
+    //     yield return new WaitForSeconds(1f);
+    //     
+    // }
 
     private void Update()
     {
@@ -108,6 +104,30 @@ public class MemoryGameManager : WholeGameManager
 
     public override void SpawnObsPlayer()
     {
+        spawn().Forget();
+    }
+
+    private async UniTaskVoid spawn()
+    {
+        playerPref = TotalManager.instance.playerPrefab;
+        int index = Array.FindIndex(PhotonNetwork.PlayerList, x => x.NickName == PhotonNetwork.LocalPlayer.NickName);
+        playerPos = playerPosDB[index];
+        
+        var playerObj = PhotonNetwork.Instantiate(playerPref.name,
+            playerPos.transform.position, playerPos.transform.rotation);
+        playerObj.transform.localScale = new Vector3(2f, 2f, 2f);
+        playerObj.GetComponent<Outlinable>().enabled = true;
+        
+        await UniTask.WaitForSeconds(0.3f);
+        
+        playerObj.GetComponent<PhotonTransformView>().m_SynchronizePosition = false;
+        
+        
+        playerObj.transform.position = Mypos.transform.position;
+        
+        playerController = playerObj.GetComponent<CharacterMotionController>();
+        playerController.isMirrored = true;
+        playerController.OnKeyPressed += PlayerInput;
     }
 
     public override void ReadyForStart()

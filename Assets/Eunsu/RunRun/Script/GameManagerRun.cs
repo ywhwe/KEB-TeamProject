@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Cysharp.Threading.Tasks;
+using EPOOutline;
 using UnityEngine;
 using Photon.Pun;
 using TMPro;
@@ -215,8 +216,9 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
         Debug.Log(index);
         playerpos= playerposdb[index];
         var obj = PhotonNetwork.Instantiate(playerpref.name, playerpos.transform.position, Quaternion.identity);
-        obj.transform.SetParent(playerpos.transform);
-        obj.transform.localScale = Vector3.one;
+        // obj.transform.SetParent(playerpos.transform);
+        obj.GetComponent<Outlinable>().enabled = true;
+        obj.transform.localScale = new Vector3(2.1f,2.1f,2.1f);
     }
     public override void ReadyForStart()
     {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using EPOOutline;
 using Photon.Pun;
 using TMPro;
@@ -214,8 +215,14 @@ public class GameManagerFTM : WholeGameManager
 
     public override void SpawnObsPlayer()
     {
+     Spawn().Forget();
+    }
+
+    private async UniTaskVoid Spawn()
+    {
         var localojb = PhotonNetwork.Instantiate(playerpref.name, playerpos.transform.position, playerpos.transform.rotation,0);
         localojb.GetComponent<Outlinable>().enabled = true;
+        await UniTask.WaitForSeconds(0.3f);
         localojb.GetComponent<PhotonTransformView>().m_SynchronizePosition = false;
         localojb.transform.position = mypos.transform.position;
         localojb.transform.rotation = Quaternion.Euler(0f,90f,0f);
