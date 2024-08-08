@@ -63,6 +63,9 @@ public class MemoryGameManager : WholeGameManager
         Animator.StringToHash("isDMove")
     };
 
+    public ParticleSystem correctEffect;
+    public ParticleSystem enCorrectffect;
+
     protected static readonly int MotionSpeed = Animator.StringToHash("MotionSpeed");
 
     private void Awake()
@@ -84,9 +87,9 @@ public class MemoryGameManager : WholeGameManager
     {
         yield return new WaitForSeconds(1f);
         
-        var playerObj = PhotonNetwork.Instantiate("MainAnimal/FREE/Prefabs/Player Prefab/" + playerPref.name,
-            playerPos.transform.position, playerPos.transform.rotation);
-        playerObj.transform.localScale = playerPos.transform.localScale;
+        var playerObj = PhotonNetwork.Instantiate( playerPref.name, playerPos.transform.position, playerPos.transform.rotation);
+        playerObj.transform.SetParent(playerPos.transform);
+        playerObj.transform.localScale = Vector3.one;
         
         playerController = playerObj.GetComponent<CharacterMotionController>();
         playerController.isMirrored = true;
@@ -106,9 +109,10 @@ public class MemoryGameManager : WholeGameManager
     public override void SpawnObsPlayer()
     {
     }
+
     public override void ReadyForStart()
     {
-        
+       
     }
 
     private void InitNumbers()
@@ -187,8 +191,9 @@ public class MemoryGameManager : WholeGameManager
 
         stamp[0].SetActive(false);
         stamp[1].SetActive(false);
-
+        
         yield return new WaitForSeconds(0.5f);
+        correctEffect.Stop(correctEffect);
 
         yield return StartCoroutine(PlayMotion());
 
@@ -218,6 +223,7 @@ public class MemoryGameManager : WholeGameManager
         {
             //나아중에 이펙트 재생 (후순위)
             stamp[0].SetActive(true);
+            correctEffect.Play(correctEffect);
             Debug.Log("Correct");
         }
         else
@@ -225,6 +231,7 @@ public class MemoryGameManager : WholeGameManager
             stamp[0].SetActive(false);
             stamp[1].SetActive(true);
             Debug.Log("Incorrect");
+            correctEffect.Play(enCorrectffect);
             cpuMotionPlayCoroutine = StartCoroutine(PlayRandomMotion());
             return;
         }
