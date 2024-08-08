@@ -65,10 +65,6 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
     {
         instance = this;
         TotalManager.instance.SendMessageSceneStarted();
-        playerpref = TotalManager.instance.obplayerPrefab;
-        int index = Array.FindIndex(PhotonNetwork.PlayerList, x => x.NickName == PhotonNetwork.LocalPlayer.NickName);
-        Debug.Log(index);
-        playerpos= playerposdb[index];
         
         canvasTrans = canvas.transform;
 
@@ -214,6 +210,10 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
 
     public override void SpawnObsPlayer()
     {
+        playerpref = TotalManager.instance.obplayerPrefab;
+        int index = Array.FindIndex(PhotonNetwork.PlayerList, x => x.NickName == PhotonNetwork.LocalPlayer.NickName);
+        Debug.Log(index);
+        playerpos= playerposdb[index];
         var obj = PhotonNetwork.Instantiate(playerpref.name, playerpos.transform.position, Quaternion.identity);
         obj.transform.SetParent(playerpos.transform);
         obj.transform.localScale = Vector3.one;

@@ -84,7 +84,7 @@ public class MemoryGameManager : WholeGameManager
     {
         yield return new WaitForSeconds(1f);
         
-        var playerObj = PhotonNetwork.Instantiate("MainAnimal/FREE/Prefabs/Player Prefab/" + playerPref.name,
+        var playerObj = PhotonNetwork.Instantiate(playerPref.name,
             playerPos.transform.position, playerPos.transform.rotation);
         playerObj.transform.localScale = playerPos.transform.localScale;
         

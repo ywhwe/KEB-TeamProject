@@ -3249,7 +3249,13 @@ MonoBehaviour:
   - {fileID: 7424971432624032287, guid: 862072df3371ca149881f4e3d7772e15, type: 3}
   - {fileID: 5418767941780303649, guid: d0dd1196bb71fb64b875f2fa5d94c8c2, type: 3}
   playerPrefabNumber: 0
-  fadeimgaedb: []
+  fadeimgaedb:
+  - {fileID: 21300000, guid: 607c0a8c66a162741a61e25d9f18b12e, type: 3}
+  - {fileID: 21300000, guid: 21cbcec38218d384bba858c40bf94baf, type: 3}
+  - {fileID: 21300000, guid: 5325576266ff9b14eb09dd5372d26497, type: 3}
+  - {fileID: 21300000, guid: cb5db17b83f45834892594e8c2d6726d, type: 3}
+  - {fileID: 21300000, guid: 2a4f949d864729e4596e0ab32d139246, type: 3}
+  - {fileID: 21300000, guid: 414c81e212960da44aae877b974f3566, type: 3}
   fadeimage: {fileID: 1087242216}
   fadeScreen: {fileID: 1174207166}
   optionScreen: {fileID: 280211600}
@@ -3266,6 +3272,7 @@ MonoBehaviour:
   PV: {fileID: 2119134639}
   BGM: {fileID: 2119134635}
   gameRound: 0
+  NextgameNum: 
   cursurIcon: {fileID: 2800000, guid: 8219bfdc2f8e07c4087a040ba8777203, type: 3}
 --- !u!4 &2119134637
 Transform:

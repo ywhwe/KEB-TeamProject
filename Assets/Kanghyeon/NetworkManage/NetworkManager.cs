@@ -9,13 +9,17 @@ using Photon.Realtime;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
     public static NetworkManager instance;
     public List<string> scoredb;
     public GenericDictionary<string, float> currentplayerscore = new GenericDictionary<string, float>();
-    
+
+    private int gamenum1;
+    private int gamenum2;
+    private int gamenum3;
     // public Dictionary<int, int> rankPt = new Dictionary<int, int>()
     // {
     //     {4,10},{3,5},{2,3},{1,1}
@@ -108,7 +112,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         int length = ranklist.Count - 1;
         float score = ranklist[length].Value;
         int count = 0;
-        int target = Mathf.CeilToInt(PhotonNetwork.PlayerList.Length / 3);
+        int target = Mathf.CeilToInt(PhotonNetwork.PlayerList.Length / 3f);
+        Debug.Log(target);
         if (!isDescending)
         {
             while (target >= 0)
@@ -138,31 +143,36 @@ public class NetworkManager : MonoBehaviourPunCallbacks
                 }
             }
         }
-  
-        while (target >= 0)
+        if (isDescending)
         {
-            if (length - 1 < 0)
+            while (target >= 0)
             {
-                break;
-            }
-            if (score == ranklist[length - 1].Value)
-            {
-                loserdb.Add(ranklist[length].Key);
-                length--;
-                count++;
-                continue;
-            }
-            target = target - count;
-            count = 0;
-            if (score < ranklist[length - 1].Value)
-            {
-                if (target <= 0 )
+                if (length - 1 < 0)
                 {
                     break;
                 }
-                loserdb.Add(ranklist[length].Key);
-                target--;
-                length--;
+
+                if (score == ranklist[length - 1].Value)
+                {
+                    loserdb.Add(ranklist[length].Key);
+                    length--;
+                    count++;
+                    continue;
+                }
+
+                target = target - count;
+                count = 0;
+                if (score < ranklist[length - 1].Value)
+                {
+                    if (target <= 0)
+                    {
+                        break;
+                    }
+
+                    loserdb.Add(ranklist[length].Key);
+                    target--;
+                    length--;
+                }
             }
         }
     }
@@ -173,4 +183,31 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.LeaveRoom();
     }
 
+    private void SelectNextGameNum()
+    {
+        gamenum1 = (Random.Range(1,4));
+        gamenum2 = (Random.Range(4,6));
+        gamenum3 = (6);
+    }
+
+    public void SendNextGameNum()
+    {
+        SelectNextGameNum();
+        photonView.RPC("rpcSendNextGameNum",RpcTarget.All,gamenum1,gamenum2,gamenum3);
+    }
+    [PunRPC]
+    void rpcSendNextGameNum(int num1 , int num2 , int num3)
+    {
+        photonView.RPC("rpcSendReady",RpcTarget.MasterClient);
+        TotalManager.instance.NextgameNum.Add(0);
+        TotalManager.instance.NextgameNum.Add(3);  //round1
+        TotalManager.instance.NextgameNum.Add(num2);  //round2
+        TotalManager.instance.NextgameNum.Add(num3);  //round3
+    }
+
+    [PunRPC]
+    void rpcSendReady()
+    {
+        LobbyManager.Instance.ReadyToMatch++;
+    }
 }
