@@ -87,9 +87,9 @@ public class MemoryGameManager : WholeGameManager
     {
         yield return new WaitForSeconds(1f);
         
-        var playerObj = PhotonNetwork.Instantiate( playerPref.name, playerPos.transform.position, playerPos.transform.rotation);
-        playerObj.transform.SetParent(playerPos.transform);
-        playerObj.transform.localScale = Vector3.one;
+        var playerObj = PhotonNetwork.Instantiate(playerPref.name,
+            playerPos.transform.position, playerPos.transform.rotation);
+        playerObj.transform.localScale = playerPos.transform.localScale;
         
         playerController = playerObj.GetComponent<CharacterMotionController>();
         playerController.isMirrored = true;

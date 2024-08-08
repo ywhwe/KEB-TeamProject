@@ -21,7 +21,7 @@ public class TotalManager : MonoBehaviourPunCallbacks
     public GameObject playerPrefab => prefabDB[playerPrefabNumber];
     public GameObject obplayerPrefab => obprefabDB[playerPrefabNumber];
 
-    public Image[] fadeimgaedb;
+    public Sprite[] fadeimgaedb;
     public Image fadeimage;
     public Image fadeScreen;
     public Image optionScreen;
@@ -52,6 +52,7 @@ public class TotalManager : MonoBehaviourPunCallbacks
     public AudioSource BGM;
 
     public int gameRound;
+    public List<int> NextgameNum;
 
     public Texture2D cursurIcon;
     
@@ -118,7 +119,7 @@ public class TotalManager : MonoBehaviourPunCallbacks
     private async UniTask UniTaskGoToGameScene()
     {
         gameRound++;
-        await MoveFadeScene(gameRound);
+        await MoveFadeScene(NextgameNum[gameRound]);
         gameManager = GameObject.Find("GameManager");
         BGM.Stop();
         await ReadyForStart();
@@ -126,6 +127,7 @@ public class TotalManager : MonoBehaviourPunCallbacks
         SendGameStart();
     }
 
+  
     #region RPC Call
 
     public void CallCountForStart()
@@ -153,7 +155,6 @@ public class TotalManager : MonoBehaviourPunCallbacks
         await UniTask.WaitForSeconds(0.5f);
         waitScreen.gameObject.SetActive(false);
         gameManager.GetComponent<WholeGameManager>().GameStart();
-
     }
     public async UniTask UniReadyCount()
     {
@@ -189,9 +190,10 @@ public class TotalManager : MonoBehaviourPunCallbacks
 
     #endregion
     
-    #region private region
+    #region MoveFade
     private async UniTask MoveFadeScene(int id)
     {
+        fadeimage.sprite = fadeimgaedb[id-1];
         await FadeScreenTask(true);
         fadeimage.gameObject.SetActive(true);
         await FadeScreenTask(false);

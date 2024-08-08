@@ -10,6 +10,7 @@ using Photon.Realtime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
@@ -26,6 +27,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     private GameObject playerobj;
     public GameObject timer;
     private bool isTimerOn;
+
+    public int ReadyToMatch=0;
     
     [Tooltip("The prefab to use for representing the player")]
     private void Awake()
@@ -96,6 +99,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public override void OnPlayerLeftRoom(Photon.Realtime.Player other)
     {
         Debug.LogFormat("OnPlayerLeftRoom() {0}", other.NickName); // seen when other disconnects
+        int index = Array.FindIndex(PhotonNetwork.PlayerList, x => x.NickName == PhotonNetwork.LocalPlayer.NickName);
+        playerpos= playerposdb[index];
+        playerobj.transform.position = playerpos.transform.position;
         playernum.text = PhotonNetwork.PlayerList.Length + "/" + PhotonNetwork.CurrentRoom.MaxPlayers;
         if (isTimerOn==true)
         {
@@ -127,11 +133,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         Destroy(GameObject.Find("NetworkManager"));
 
     }
-
-    #endregion
-
-    #region Private Methods
-
+    
     public void LoadArena()
     {
         if (!PhotonNetwork.IsMasterClient)
@@ -141,10 +143,21 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         }
 
         PhotonNetwork.CurrentRoom.IsOpen = false;
-        Debug.LogFormat("PhotonNetwork : Loading Level : baseball");
-        TotalManager.instance.GoToGameScene();
+        Debug.LogFormat("PhotonNetwork : Loading Level : Round1");
+        StartMatch().Forget();
     }
 
     #endregion
+
+    private async UniTaskVoid StartMatch()
+    {
+        NetworkManager.instance.SendNextGameNum();
+        await UniTask.WaitUntil(() => ReadyToMatch == PhotonNetwork.PlayerList.Length);
+        TotalManager.instance.GoToGameScene();
+    }
+
+  
+    
+    
 
 }
