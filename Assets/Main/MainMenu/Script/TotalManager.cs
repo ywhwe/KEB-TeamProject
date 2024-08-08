@@ -26,8 +26,8 @@ public class TotalManager : MonoBehaviourPunCallbacks
     public Image fadeScreen;
     public Image optionScreen;
     public Image waitScreen;
-    public TextMeshProUGUI waitText;
-
+    public Sprite[] waitSpriteDB;
+    public Image waitImage;
     
     public Button optionGameExitButton;
     public Button optionResumeButton;
@@ -144,12 +144,12 @@ public class TotalManager : MonoBehaviourPunCallbacks
     private async UniTask UniTaskCountForStart()
     {
         await UniTask.WaitForSeconds(2f); // *** need count 
-        for (int i = 3; i >= 1; i--)
+        for (int i = 1; i < 4; i++)
         {
-            waitText.text = i.ToString();
+            waitImage.sprite = waitSpriteDB[i]; // 3 2 1
             await UniTask.WaitForSeconds(0.5f);
         }
-        waitText.text= "Go";
+        waitImage.sprite = waitSpriteDB[4]; //Go
         await UniTask.WaitForSeconds(0.5f);
         waitScreen.gameObject.SetActive(false);
         gameManager.GetComponent<WholeGameManager>().GameStart();
@@ -157,16 +157,16 @@ public class TotalManager : MonoBehaviourPunCallbacks
     }
     public async UniTask UniReadyCount()
     {
-        waitText.text = "Ready";
+        waitImage.sprite = waitSpriteDB[0]; //Ready
         gameManager.GetComponent<WholeGameManager>().ReadyForStart();
         waitScreen.gameObject.SetActive(true);
         await UniTask.WaitForSeconds(1f); // *** need count 
-        for (int i = 3; i >= 1; i--)
+        for (int i = 1; i < 4; i++)
         {
-            waitText.text = i.ToString();
+            waitImage.sprite = waitSpriteDB[i]; // 3 2 1
             await UniTask.WaitForSeconds(0.5f);
         }
-        waitText.text= "Go!";
+        waitImage.sprite = waitSpriteDB[4]; //Go
         await UniTask.WaitForSeconds(0.5f);
         waitScreen.gameObject.SetActive(false);
  
@@ -221,7 +221,7 @@ public class TotalManager : MonoBehaviourPunCallbacks
     {
         waitScreen.gameObject.SetActive(true);
         await UniTask.WaitForSeconds(2f);
-        waitText.text = "Ready";
+        waitImage.sprite = waitSpriteDB[0]; //Ready
         gameManager.GetComponent<WholeGameManager>().ReadyForStart();
     }
 
@@ -341,14 +341,14 @@ public class TotalManager : MonoBehaviourPunCallbacks
     {
         waitScreen.gameObject.SetActive(true);
         yield return waitTwoSecond;
-        waitText.text = "Ready";
+        waitImage.sprite = waitSpriteDB[0]; //Ready
         yield return waitTwoSecond;           // *** need count 
-        for (int i = 3; i >= 1; i--)
+        for (int i = 1; i < 4; i++)
         {
-            waitText.text = i.ToString();
+            waitImage.sprite = waitSpriteDB[i]; // 3 2 1
             yield return waitHalfSecond;
         }
-        waitText.text= "Go!";
+        waitImage.sprite = waitSpriteDB[4]; //Go
         yield return waitHalfSecond;
         waitScreen.gameObject.SetActive(false);
         gameManager.GetComponent<WholeGameManager>().GameStart();
@@ -363,10 +363,10 @@ public class TotalManager : MonoBehaviourPunCallbacks
         gameManager.GetComponent<WholeGameManager>().GetScore();
         yield return waitHalfSecond;
         waitScreen.gameObject.SetActive(true);
-        waitText.text = "FINISH!";
+        waitImage.sprite = waitSpriteDB[5]; //Finish
         yield return waitTwoSecond;
-        waitText.text = "";
         waitScreen.gameObject.SetActive(false);
+        waitImage.sprite = waitSpriteDB[0];
         SendGameEnd();
     }
     

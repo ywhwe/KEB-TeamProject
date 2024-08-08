@@ -646,7 +646,9 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: -1468166961096040845}
+  - {fileID: 7184096723990271258}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -664,8 +666,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowLayerWeightsInspector: 1
   ShowParameterInspector: 1
-  m_SynchronizeParameters: []
-  m_SynchronizeLayers: []
+  m_SynchronizeParameters:
+  - Type: 9
+    SynchronizeType: 0
+    Name: isWMove
+  - Type: 9
+    SynchronizeType: 0
+    Name: isAMove
+  - Type: 9
+    SynchronizeType: 0
+    Name: isSMove
+  - Type: 9
+    SynchronizeType: 0
+    Name: isDMove
+  - Type: 9
+    SynchronizeType: 0
+    Name: isTwoKeyWMove
+  - Type: 9
+    SynchronizeType: 0
+    Name: isTwoKeySMove
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
 --- !u!114 &7184096723990271258
 MonoBehaviour:
   m_ObjectHideFlags: 0
