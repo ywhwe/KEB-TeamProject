@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.Triggers;
-using EPOOutline;
+//using EPOOutline;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -67,7 +67,7 @@ public class MemoryGameManager : WholeGameManager
     };
 
     public ParticleSystem correctEffect;
-    public ParticleSystem enCorrectffect;
+    public ParticleSystem inCorrectffect;
 
     protected static readonly int MotionSpeed = Animator.StringToHash("MotionSpeed");
 
@@ -189,14 +189,22 @@ public class MemoryGameManager : WholeGameManager
             Debug.Log(randomMotions[i]);
             
             cpuAni.SetTrigger(motionHash[randomMotions[i]]);
-            indexDirection[randomMotions[i]].SetActive(true);
             cpuAni.SetFloat(MotionSpeed, 1f / turnDB[turn].motionPlayTime);
 
-
+            StartCoroutine(ShowCPUIndex(randomMotions[i],turnDB[turn].motionPlayTime * 0.9f));
+            //인덱스재생
             yield return new WaitForSeconds(turnDB[turn].motionPlayTime);
-            indexDirection[randomMotions[i]].SetActive(false);
         }
     }
+    
+    IEnumerator ShowCPUIndex(int motionIdx, float motionPlayTime)
+    {
+        indexDirection[motionIdx].SetActive(true);
+        yield return new WaitForSeconds(motionPlayTime);
+        indexDirection[motionIdx].SetActive(false);
+    }
+
+    
 
     private IEnumerator PlayRandomMotion()
     {
@@ -213,7 +221,7 @@ public class MemoryGameManager : WholeGameManager
         stamp[1].SetActive(false);
         
         yield return new WaitForSeconds(0.5f);
-        correctEffect.Stop(correctEffect);
+        inCorrectffect.Stop();
 
         yield return StartCoroutine(PlayMotion());
 
@@ -241,9 +249,7 @@ public class MemoryGameManager : WholeGameManager
         
         if (randomMotions[playerInputIdx] == motionIdx)
         {
-            //나아중에 이펙트 재생 (후순위)
-            stamp[0].SetActive(true);
-            correctEffect.Play(correctEffect);
+            correctEffect.Play();
             Debug.Log("Correct");
         }
         else
@@ -251,7 +257,7 @@ public class MemoryGameManager : WholeGameManager
             stamp[0].SetActive(false);
             stamp[1].SetActive(true);
             Debug.Log("Incorrect");
-            correctEffect.Play(enCorrectffect);
+            inCorrectffect.Play();
             cpuMotionPlayCoroutine = StartCoroutine(PlayRandomMotion());
             return;
         }
@@ -260,6 +266,7 @@ public class MemoryGameManager : WholeGameManager
 
         if (playerInputIdx == randomMotions.Count)
         {
+            stamp[0].SetActive(true);
             turn++;
 
             if (turn >= turnDB.Length)
@@ -328,7 +335,10 @@ public class MemoryGameManager : WholeGameManager
 
         score = getScore;
         TotalManager.instance.StartFinish();
+
+        //Outlinable.enabled=true;
     }
+    
 }
 
 [Serializable]
