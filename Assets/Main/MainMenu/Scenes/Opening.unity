@@ -2841,6 +2841,14 @@ MonoBehaviour:
   soundResources:
   - key: s1
     Clip: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
+  - key: 3
+    Clip: {fileID: 8300000, guid: 1afc858b991d16d419f1bcf7f5d83e75, type: 3}
+  - key: 2
+    Clip: {fileID: 8300000, guid: 6a31ac2e2a31fb2458953aa98322fcee, type: 3}
+  - key: 1
+    Clip: {fileID: 8300000, guid: ae308d7e21be0e742b642a3fb4cf9411, type: 3}
+  - key: Go
+    Clip: {fileID: 8300000, guid: 25e48ec0e6779074d8c64af87b8c4605, type: 3}
   poolSize: 10
   soundNodePrefab: {fileID: 5946161338215420739, guid: af03c8f19b99e474c9502881e3f86ba2, type: 3}
 --- !u!4 &2004804608

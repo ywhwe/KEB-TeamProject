@@ -149,9 +149,11 @@ public class TotalManager : MonoBehaviourPunCallbacks
         for (int i = 1; i < 4; i++)
         {
             waitImage.sprite = waitSpriteDB[i]; // 3 2 1
+            SoundManager.instance.PlaySound((4-i).ToString());
             await UniTask.WaitForSeconds(0.5f);
         }
         waitImage.sprite = waitSpriteDB[4]; //Go
+        SoundManager.instance.PlaySound("Go");
         await UniTask.WaitForSeconds(0.5f);
         waitScreen.gameObject.SetActive(false);
         gameManager.GetComponent<WholeGameManager>().GameStart();
@@ -165,9 +167,11 @@ public class TotalManager : MonoBehaviourPunCallbacks
         for (int i = 1; i < 4; i++)
         {
             waitImage.sprite = waitSpriteDB[i]; // 3 2 1
+            SoundManager.instance.PlaySound((4-i).ToString());
             await UniTask.WaitForSeconds(0.5f);
         }
         waitImage.sprite = waitSpriteDB[4]; //Go
+        SoundManager.instance.PlaySound("Go");
         await UniTask.WaitForSeconds(0.5f);
         waitScreen.gameObject.SetActive(false);
  
@@ -348,9 +352,11 @@ public class TotalManager : MonoBehaviourPunCallbacks
         for (int i = 1; i < 4; i++)
         {
             waitImage.sprite = waitSpriteDB[i]; // 3 2 1
+            SoundManager.instance.PlaySound((4-i).ToString());
             yield return waitHalfSecond;
         }
         waitImage.sprite = waitSpriteDB[4]; //Go
+        SoundManager.instance.PlaySound("Go");
         yield return waitHalfSecond;
         waitScreen.gameObject.SetActive(false);
         gameManager.GetComponent<WholeGameManager>().GameStart();
