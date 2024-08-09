@@ -23,6 +23,9 @@ public class MemoryGameManager : WholeGameManager
     public GameObject[] playerIndexDirection;
     public GameObject[] stamp;
 
+    private GameObject playerObj;
+    public GameObject cpuObj;
+
     public Transform timer;
     public Vector3 maxTimeBar;
     public Vector3 emptyTimeBar;
@@ -113,20 +116,20 @@ public class MemoryGameManager : WholeGameManager
         int index = Array.FindIndex(PhotonNetwork.PlayerList, x => x.NickName == PhotonNetwork.LocalPlayer.NickName);
         playerPos = playerPosDB[index];
         
-        var playerObj = PhotonNetwork.Instantiate(playerPref.name,
+        playerObj = PhotonNetwork.Instantiate(playerPref.name, 
             playerPos.transform.position, playerPos.transform.rotation);
         playerObj.transform.localScale = new Vector3(2f, 2f, 2f);
         
-        await UniTask.WaitForSeconds(0.1f);
+        //await UniTask.WaitForSeconds(0.3f);
         
         playerObj.GetComponent<PhotonTransformView>().m_SynchronizePosition = false;
-        
-        
+        playerObj.GetComponent<Outlinable>().enabled = true;
         playerObj.transform.position = Mypos.transform.position;
         
         playerController = playerObj.GetComponent<CharacterMotionController>();
         playerController.isMirrored = true;
         playerController.OnKeyPressed += PlayerInput;
+        
     }
 
     public override void ReadyForStart()
@@ -206,13 +209,17 @@ public class MemoryGameManager : WholeGameManager
     
 
     private IEnumerator PlayRandomMotion()
+    
     {
+        playerObj.GetComponent<Outlinable>().enabled = false;
+        yield return new WaitForSeconds(0.3f);
+        cpuObj.GetComponent<Outlinable>().enabled = true;
         Debug.Log($"Current turn is {turn}");
         isPlayerTurn = false;
         playerController.SetActiveInput(false);
         
         SelectRandomMotion();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.7f);
 
         ShowRoundNum(turn + 1);
 
@@ -226,7 +233,9 @@ public class MemoryGameManager : WholeGameManager
 
         playerInputIdx = 0;
         playerController.SetActiveInput(true);
+        cpuObj.GetComponent<Outlinable>().enabled = false;    
         isPlayerTurn = true;
+        playerObj.GetComponent<Outlinable>().enabled = true;
     }
 
     IEnumerator ShowPlayerIndex(int motionIdx)
@@ -239,6 +248,7 @@ public class MemoryGameManager : WholeGameManager
     private void PlayerInput(int motionIdx)
     {
         if (!isPlayerTurn) return;
+        
         if (playerIndexCor[motionIdx] != null)
         {
             StopCoroutine(playerIndexCor[motionIdx]);
@@ -335,7 +345,7 @@ public class MemoryGameManager : WholeGameManager
         score = getScore;
         TotalManager.instance.StartFinish();
 
-        //Outlinable.enabled=true;
+     
     }
     
 }
