@@ -23,7 +23,7 @@ public class Note : MonoBehaviour
 
     private void Update()
     {
-        if (_rectTransform.position.x > -980f) return;
+        if (_rectTransform.position.x > -520f) return;
         
         Destroy(gameObject);
         
@@ -32,7 +32,7 @@ public class Note : MonoBehaviour
 
     private IEnumerator MoveNote()
     {
-        while (_rectTransform.position.x > -980f)
+        while (_rectTransform.position.x > -520f)
         {
             yield return null;
             
