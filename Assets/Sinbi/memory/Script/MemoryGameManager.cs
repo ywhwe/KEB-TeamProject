@@ -117,7 +117,7 @@ public class MemoryGameManager : WholeGameManager
             playerPos.transform.position, playerPos.transform.rotation);
         playerObj.transform.localScale = new Vector3(2f, 2f, 2f);
         
-        await UniTask.WaitForSeconds(0.3f);
+        await UniTask.WaitForSeconds(0.1f);
         
         playerObj.GetComponent<PhotonTransformView>().m_SynchronizePosition = false;
         

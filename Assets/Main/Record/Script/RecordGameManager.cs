@@ -36,82 +36,20 @@ public class RecordGameManager : WholeGameManager
             audio.PlayDelayed(0.3f);
             return;
         }
-
         audio.PlayDelayed(0.25f);
-
     }
     
-
     #endregion
     
-    #region ShuffleGame
-    public List<int> gameindex;
     private int gameready=0;
     private int gameround = 0;
-
-
-    private void Shuffle(int num)
-    {
-        if (num == 1)
-        {
-            gameindex = new List<int>() { 0, 1, 2 };
-        }
-        if (num == 2)
-        {
-            gameindex = new List<int>() { 0, 2, 1 };
-        }
-        if (num == 3)
-        {
-            gameindex = new List<int>() { 1, 0, 2 };
-        }
-        if (num == 4)
-        {
-            gameindex = new List<int>() { 1, 2, 0 };
-        }
-        if (num == 5)
-        {
-            gameindex = new List<int>() { 2, 0, 1 };
-        }
-        if (num == 6)
-        {
-            gameindex = new List<int>() { 2, 1, 0 };
-        }
-    }
     
-    public void Sendindex()
-    {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            int id = Random.Range(1, 7);
-            PV.RPC("rpcSendindex",RpcTarget.All,id);
-        }
-    }
-    
-    [PunRPC]
-    void rpcSendindex(int id)
-    {
-        Shuffle(id);
-    }
 
     #region CheckReady
-
-    public void CheckReady()
-    {
-        PV.RPC("rpcCheckReady",RpcTarget.MasterClient);
-    }
-
-    [PunRPC]
-    void rpcCheckReady()
-    {
-        gameready++;
-        if (gameready == PhotonNetwork.PlayerList.Length)
-        {
-            Sendindex();
-        }
-    }
-
+    
+    
     #endregion
-    #endregion
+    
     private void Awake()
     {
         instance = this;
@@ -120,12 +58,11 @@ public class RecordGameManager : WholeGameManager
         playerpref = TotalManager.instance.obplayerPrefab;
         int index = Array.FindIndex(PhotonNetwork.PlayerList, x => x.NickName == PhotonNetwork.LocalPlayer.NickName);
         playerpos= playerposdb[index];
-        
+
     }
     private void Start()
     {
         NetworkManager.instance.isDescending = false;
-        CheckReady();
     }
 
     private void Update()
@@ -137,7 +74,7 @@ public class RecordGameManager : WholeGameManager
             if (angle >= 360)
             {
                 angle = 0f;
-                MusicStart(gameindex[gameround]);
+                MusicStart(gameround);
             }
         }
     }
@@ -155,7 +92,7 @@ public class RecordGameManager : WholeGameManager
     public override void GameStart()
     {
         recordtime = Time.time;
-        StartCycle(gameindex[0]);
+        StartCycle(0);
     }
 
     private void StartCycle(int index)
@@ -179,7 +116,7 @@ public class RecordGameManager : WholeGameManager
     {
         angle = 0f;
         record.transform.rotation = Quaternion.Euler(0f, angle, 0f);
-        notespawner.GetComponent<NoteSpawner>().RecordingNote(gameindex[gameround]);
+        notespawner.GetComponent<NoteSpawner>().RecordingNote(gameround);
     }
 
     // public override void GetScore()
@@ -217,7 +154,7 @@ public class RecordGameManager : WholeGameManager
             else
             {
                 await TotalManager.instance.UniReadyCount();
-                StartCycle(gameindex[gameround]);
+                StartCycle(gameround);
             }
             
         }
