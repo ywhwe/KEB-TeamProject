@@ -38,8 +38,6 @@ public class Bat : MonoBehaviour
                 if (IsBallHit())
                 {
                     AwayBall();
-                    Debug.Log(ballendtime);
-                    Debug.Log(Time.time);
                  
                 }
                 else

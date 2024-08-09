@@ -171,6 +171,7 @@ public class RecordGameManager : WholeGameManager
     {
         var localojb = PhotonNetwork.Instantiate(playerpref.name, playerpos.transform.position, Quaternion.Euler(0f,90f,0f),0);
         localojb.GetComponent<Outlinable>().enabled = true;
+        
         // localojb.GetComponent<PhotonTransformView>().m_SynchronizePosition = false;
 
     }
@@ -218,8 +219,6 @@ public class RecordGameManager : WholeGameManager
                 await TotalManager.instance.UniReadyCount();
                 StartCycle(gameindex[gameround]);
             }
-          
-            Debug.Log(score);
             
         }
     }
