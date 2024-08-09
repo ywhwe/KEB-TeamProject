@@ -152,7 +152,6 @@ public class BaseBallGameManager : WholeGameManager
             if (roundcount==3)
             {
                 IsGameEnd = true;
-                finishboard.text = "End" + " Score:" + score;
                 audio.Stop();
                 StartCoroutine(EndScene());
             }

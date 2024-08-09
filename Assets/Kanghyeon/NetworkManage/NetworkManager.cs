@@ -40,8 +40,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             Destroy(gameObject);
         }
         scoredb = new List<string>();
-        Debug.Log("netM on");
+        Debug.Log("NetworkManager on");
+        Debug.Log(PhotonNetwork.LocalPlayer.UserId);
         InitCurScore();
+      
     }
     
     public void InitCurScore()
@@ -96,7 +98,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         {
             Debug.Log(VAR);
             int index = Array.FindIndex(PhotonNetwork.PlayerList, x => x.NickName == VAR);
-            Debug.Log(index);
             indexlist.Add(index);
         }
         loserdb = new List<string>();
@@ -113,7 +114,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         float score = ranklist[length].Value;
         int count = 0;
         int target = Mathf.CeilToInt(PhotonNetwork.PlayerList.Length / 3f);
-        Debug.Log(target);
         if (!isDescending)
         {
             while (target >= 0)
@@ -198,11 +198,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void rpcSendNextGameNum(int num1 , int num2 , int num3)
     {
-        photonView.RPC("rpcSendReady",RpcTarget.MasterClient);
         TotalManager.instance.NextgameNum.Add(0);
         TotalManager.instance.NextgameNum.Add(num1);  //round1
         TotalManager.instance.NextgameNum.Add(num2);  //round2
         TotalManager.instance.NextgameNum.Add(num3);  //round3
+        photonView.RPC("rpcSendReady",RpcTarget.MasterClient);
     }
 
     [PunRPC]

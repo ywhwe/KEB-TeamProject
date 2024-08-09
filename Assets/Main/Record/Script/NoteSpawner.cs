@@ -37,18 +37,7 @@ public class NoteSpawner : MonoBehaviour
     //     }
     //     
     // }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            RecordingNote(2);
-        }
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            RecordingNote(1);
-        }
-    }
-
+    
     public void RecordingNote(int randnum)
     {
         foreach (var ang in notedb.notepos[randnum].sethaW)
