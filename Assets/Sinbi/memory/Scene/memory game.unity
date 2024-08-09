@@ -5643,6 +5643,7 @@ MonoBehaviour:
   stamp:
   - {fileID: 520941403}
   - {fileID: 166161109}
+  cpuObj: {fileID: 4203142594976877010}
   timer: {fileID: 493363122}
   maxTimeBar: {x: -0.7, y: 9.4, z: -1.213}
   emptyTimeBar: {x: -0.7, y: 9.4, z: -1.43}
