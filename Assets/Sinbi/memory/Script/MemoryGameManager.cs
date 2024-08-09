@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks.Triggers;
-using EPOOutline;
+//using EPOOutline;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -317,7 +317,7 @@ public class MemoryGameManager : WholeGameManager
         score = getScore;
         TotalManager.instance.StartFinish();
 
-        Outlinable.enabled=true;
+        //Outlinable.enabled=true;
     }
     
 }
