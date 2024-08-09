@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.Triggers;
-//using EPOOutline;
+using EPOOutline;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -116,7 +116,6 @@ public class MemoryGameManager : WholeGameManager
         var playerObj = PhotonNetwork.Instantiate(playerPref.name,
             playerPos.transform.position, playerPos.transform.rotation);
         playerObj.transform.localScale = new Vector3(2f, 2f, 2f);
-        playerObj.GetComponent<Outlinable>().enabled = true;
         
         await UniTask.WaitForSeconds(0.3f);
         
