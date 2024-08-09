@@ -200,7 +200,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         photonView.RPC("rpcSendReady",RpcTarget.MasterClient);
         TotalManager.instance.NextgameNum.Add(0);
-        TotalManager.instance.NextgameNum.Add(3);  //round1
+        TotalManager.instance.NextgameNum.Add(2);  //round1
         TotalManager.instance.NextgameNum.Add(num2);  //round2
         TotalManager.instance.NextgameNum.Add(num3);  //round3
     }

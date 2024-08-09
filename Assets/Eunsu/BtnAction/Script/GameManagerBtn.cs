@@ -59,7 +59,7 @@ public class GameManagerBtn : WholeGameManager
         successCount = 0;
         clearTime = 0;
         btnNumber = 0;
-        delayNext = 2f;
+        delayNext = 1.2f;
         
         successCounter.text = successCount.ToString();
         timeCounter.text = StartTime.ToString("F2");
@@ -85,7 +85,7 @@ public class GameManagerBtn : WholeGameManager
     {
         while (!isGameEnd)
         {
-            await UniTask.WaitUntil(() => !isAccel);
+            // await UniTask.WaitUntil(() => !isAccel);
             
             BtnControl();
             btnNumber++;
@@ -93,21 +93,14 @@ public class GameManagerBtn : WholeGameManager
             // if IsMatch is false, suspends coroutine 'til it is true
             // await UniTask.WaitUntil(() => isMatch);
             
-            await UniTask.WaitForSeconds(delayNext);
-            
-            if (isMatch)
+            delayNext = btnNumber switch
             {
-                successCount++;
-
-                delayNext = btnNumber switch
-                {
-                    15 => 0.7f,
-                    35 => 0.5f,
-                    _ => delayNext
-                };
-
-                successCounter.text = successCount.ToString();
-            }
+                15 => 0.9f,
+                35 => 0.7f,
+                _ => delayNext
+            };
+            
+            await UniTask.WaitForSeconds(delayNext);
             
             waitingKey.SetActive(false);
             
@@ -178,6 +171,9 @@ public class GameManagerBtn : WholeGameManager
     {
         if (waitingKeyCode == BtnController.ctrlInstance.inputKeyCode && isLegal)
         {
+            successCount++;
+            successCounter.text = successCount.ToString();
+            
             isAccel = true;
             await AllowInput();
 
