@@ -17,12 +17,12 @@ public class Note : MonoBehaviour
 
     private void Start()
     {
-        SpeedChecker(GameManagerRun.instance.getHigher);
         StartCoroutine(MoveNote());
     }
 
     private void Update()
     {
+        SpeedChecker(GameManagerRun.instance.getHigher);
         if (_rectTransform.position.x > -520f) return;
         
         Destroy(gameObject);
