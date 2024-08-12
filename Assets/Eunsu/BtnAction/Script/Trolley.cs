@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Trolley : MonoBehaviour
 {
-    public static Trolley trolleyInstance;
     private ObjMover mover;
     
     [SerializeField] private Animator ani;
@@ -18,8 +17,6 @@ public class Trolley : MonoBehaviour
 
     private void Awake()
     {
-        trolleyInstance = this;
-        
         ani = GetComponent<Animator>();
     }
 
