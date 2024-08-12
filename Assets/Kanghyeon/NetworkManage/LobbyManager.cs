@@ -90,7 +90,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
                 StartCounting().Forget();
             }
             
-            //
             Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}",
                 PhotonNetwork.IsMasterClient); // called before OnPlayerLeftRoom
         }
@@ -143,7 +142,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         }
 
         PhotonNetwork.CurrentRoom.IsOpen = false;
-        Debug.LogFormat("PhotonNetwork : Loading Level : Round1");
+        Debug.LogFormat("PhotonNetwork : Match Start");
         StartMatch().Forget();
     }
 

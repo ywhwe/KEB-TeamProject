@@ -6,8 +6,11 @@ using Cysharp.Threading.Tasks;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
+using ColorUtility = UnityEngine.ColorUtility;
+
 
 public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 위해 모든 게임의 점수를 int로 순위는 내림차순으로 정리
 {
@@ -24,7 +27,7 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
     public GameObject controlpanel;
     public GameObject player;
     public GameObject timer;
-    
+    public Image image;
     public RectTransform viewtransform;
     
     public void NextGame()
@@ -74,13 +77,14 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
             nexttimer.text = "Go to Menu";
             controlpanel.SetActive(true);
             return;
-        }
+        }          
         CalculScore(NetworkManager.instance.currentplayerscore,NetworkManager.instance.isDescending);
+        NetworkManager.instance.SelectLoser();
         UpdateScoreUI();
         NetworkManager.instance.SendLoadScore();
     }
 
-    public async UniTask LoadingTimer() // Need fix " warning CS1998: This async method lacks 'await' operators and will run synchronously.
+    public async UniTaskVoid LoadingTimer() // Need fix " warning CS1998: This async method lacks 'await' operators and will run synchronously.
                                         // Consider using the 'await' operator to await non-blocking API calls,
                                         // or 'await Task.Run(...)' to do CPU-bound work on a background thread."
     {
@@ -95,12 +99,12 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
     [PunRPC]
     void rpcRunTimer()
     {
-        LoadTimer(); // warning CS4014: Because this call is not awaited,
+        LoadTimer().Forget(); // warning CS4014: Because this call is not awaited,
                      // execution of the current method continues before the call is completed.
                      // Consider applying the 'await' operator to the result of the call.
     }
     
-    private async UniTask LoadTimer()
+    private async UniTaskVoid LoadTimer()
     {
         await UniTask.WaitForSeconds(3f);
 
@@ -170,7 +174,10 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
     [PunRPC]
     public void UpdateScore()
     {
+        Color color;
         int index = 0;
+        OutlineMyScore();
+        Debug.Log(NetworkManager.instance.loserdb.Count);
         foreach (var player in ranklist)
         {
             if (index < scoretxt.Length)
@@ -183,8 +190,25 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
                 scoretxt[index].text = player.Value.ToString();
                 index++;
                 ranktxt[index-1].text = index.ToString();
+                if (index >= ranklist.Count-NetworkManager.instance.loserdb.Count)
+                {
+                    if (NetworkManager.instance.loserdb.Count == 0)
+                    {
+                        continue;
+                    }
+                    ColorUtility.TryParseHtmlString("#707658", out color);
+                    scorelist[index].GetComponent<Image>().color = color;
+
+
+                }
             }
         }
+    }
+
+    private void OutlineMyScore()
+    {
+        int index = ranklist.FindIndex(x => x.Key == PhotonNetwork.LocalPlayer.NickName);
+        scorelist[index].GetComponent<Outline>().enabled = true;
     }
     #endregion
 

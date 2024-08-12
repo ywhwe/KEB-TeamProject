@@ -24,7 +24,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     // {
     //     {4,10},{3,5},{2,3},{1,1}
     // };
-    private List<string> loserdb = new List<string>();
+    public List<string> loserdb = new List<string>();
     public bool isDescending;
     public int isLoadScene = 0;
 
@@ -82,9 +82,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         isLoadScene++;
         if (isLoadScene==PhotonNetwork.PlayerList.Length)
         {
-            
-            SelectLoser();
-            ScoreBoardManager.instance.LoadingTimer();
+  
+            ScoreBoardManager.instance.LoadingTimer().Forget();
             SendKickRoom();
             
             isLoadScene = 0;
@@ -100,7 +99,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             int index = Array.FindIndex(PhotonNetwork.PlayerList, x => x.NickName == VAR);
             indexlist.Add(index);
         }
-        loserdb = new List<string>();
         foreach (var VAR in indexlist)
         {
             photonView.RPC("rpcKickRoom",PhotonNetwork.PlayerList[VAR]);
@@ -109,6 +107,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public void SelectLoser()
     {
+        loserdb = new List<string>();
         var ranklist = ScoreBoardManager.instance.ranklist;
         int length = ranklist.Count - 1;
         float score = ranklist[length].Value;
