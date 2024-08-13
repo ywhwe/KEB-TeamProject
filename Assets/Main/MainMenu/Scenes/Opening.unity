@@ -3230,6 +3230,7 @@ MonoBehaviour:
   gameRound: 0
   NextgameNum: 
   cursurIcon: {fileID: 2800000, guid: 8219bfdc2f8e07c4087a040ba8777203, type: 3}
+  transition: {fileID: 11400000, guid: b0126e1e0c6c2a04895d564bd230dfb9, type: 2}
 --- !u!4 &2119134637
 Transform:
   m_ObjectHideFlags: 0

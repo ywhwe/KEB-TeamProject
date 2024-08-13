@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using EasyTransition;
 using Photon.Pun;
 using TMPro;
 using UnityEngine;
@@ -55,7 +56,9 @@ public class TotalManager : MonoBehaviourPunCallbacks
     public List<int> NextgameNum;
 
     public Texture2D cursurIcon;
-    
+    private TransitionManager manager;
+
+    public TransitionSettings transition;
     private void Awake()
     {
         instance = this;
@@ -211,7 +214,7 @@ public class TotalManager : MonoBehaviourPunCallbacks
         await UniTask.WaitUntil(() => isSceneStarted);
         await FadeScreenTask(false);
     }
-
+    
     public void SendMessageSceneStarted()
     {
         isSceneStarted = true;
@@ -405,8 +408,22 @@ public class TotalManager : MonoBehaviourPunCallbacks
         if (isGameEnd == PhotonNetwork.PlayerList.Length)
         {
             
-            PhotonNetwork.LoadLevel("ScoreBoard");
-            isGameEnd = 0;
+            PV.RPC("TransGameEnd",RpcTarget.All);
         }
+    }
+
+    [PunRPC]
+    void TransGameEnd()
+    {
+        manager = TransitionManager.Instance();
+        manager.onTransitionCutPointReached += TransScore;
+        manager.Transition(transition,0.01f);
+    }
+
+    public void TransScore()
+    {
+        PhotonNetwork.LoadLevel("ScoreBoard");
+        isGameEnd = 0;
+        manager.onTransitionCutPointReached -= TransScore;
     }
 }

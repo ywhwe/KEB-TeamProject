@@ -9,6 +9,7 @@ using Photon.Realtime;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
@@ -60,11 +61,15 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("New Player initScore");
         InitCurScore();
+        string msg = string.Format("{0} 님이 입장하셨습니다.", other.NickName);
+        rpcReceiveMsg(msg);
     }
     public override void OnPlayerLeftRoom(Player other)
     {
         Debug.Log("Lefted Player initScore");
         currentplayerscore.Remove(other.NickName);
+        string msg = string.Format("{0} 님이 퇴장하셨습니다.", other.NickName);
+        rpcReceiveMsg(msg);
     }
 
     public void SendLoadScore()
@@ -209,4 +214,36 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         LobbyManager.Instance.ReadyToMatch++;
     }
+    
+    #region Chat
+    
+    public TMP_InputField input; //chat
+    public Transform chatlog;
+    public ScrollRect scroll_rect;
+    public void SendCahtMessage()
+    {
+        if (input.text.Equals(""))
+        {
+           return;
+        }
+     
+        string msg = string.Format("{0} : {1}", PhotonNetwork.LocalPlayer.NickName, input.text);
+        photonView.RPC("rpcReceiveMsg",RpcTarget.OthersBuffered,msg);
+        rpcReceiveMsg(msg);
+        input.ActivateInputField();
+        input.text = "";
+    }
+
+    [PunRPC]
+    void rpcReceiveMsg(string msgstr)
+    {
+        var obj = chatlog.GetChild(0).GetComponent<TextMeshProUGUI>();
+        obj.transform.SetAsLastSibling();
+        obj.text = msgstr;
+        scroll_rect.verticalNormalizedPosition = 0.0f;
+    }
+
+    #endregion
+
+
 }

@@ -10,6 +10,7 @@ using Photon.Realtime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
@@ -155,7 +156,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         TotalManager.instance.GoToGameScene();
     }
 
-  
     
     
 

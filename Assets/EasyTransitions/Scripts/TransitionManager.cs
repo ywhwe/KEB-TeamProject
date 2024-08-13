@@ -160,7 +160,7 @@ namespace EasyTransition
 
             onTransitionCutPointReached?.Invoke();
 
-            template.GetComponent<Transition>().OnSceneLoad(SceneManager.GetActiveScene(), LoadSceneMode.Single);
+            // template.GetComponent<Transition>().OnSceneLoad(SceneManager.GetActiveScene(), LoadSceneMode.Single);
 
             yield return new WaitForSecondsRealtime(transitionSettings.destroyTime);
 
