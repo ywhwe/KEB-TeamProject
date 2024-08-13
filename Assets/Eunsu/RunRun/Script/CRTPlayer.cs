@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TwoKeyPlayer : MonoBehaviour
+public class CRTPlayer : MonoBehaviour
 {
     [SerializeField]
     private GameObject playerContainer;

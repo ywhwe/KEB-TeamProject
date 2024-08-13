@@ -3,16 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundManagerForBtnAction : MonoBehaviour
+public class SoundManagerForRTC : MonoBehaviour
 {
-    public static SoundManagerForBtnAction instance;
+    public static SoundManagerForRTC instance;
     
     public BtnAudioData[] soundResources;
     private Dictionary<string, AudioClip> soundDB = new();
 
     public int poolSize;
     public GameObject soundNodePrefab;
-    private Queue<AudioNodeForBtnAction> soundPool = new();
+    private Queue<AudioNodeForRTC> soundPool = new();
     
     private void Awake()
     {
@@ -33,7 +33,7 @@ public class SoundManagerForBtnAction : MonoBehaviour
 
     private void MakeNode()
     {
-        var audioNode = Instantiate(soundNodePrefab, transform).GetComponent<AudioNodeForBtnAction>();
+        var audioNode = Instantiate(soundNodePrefab, transform).GetComponent<AudioNodeForRTC>();
         soundPool.Enqueue(audioNode);
     }
 
@@ -83,7 +83,7 @@ public class SoundManagerForBtnAction : MonoBehaviour
         node.Play(soundDB[key]);
     }
     
-    private AudioNodeForBtnAction GetNode()
+    private AudioNodeForRTC GetNode()
     {
         if (soundPool.Count < 1)
         {
@@ -95,7 +95,7 @@ public class SoundManagerForBtnAction : MonoBehaviour
         return node;
     }
 
-    public void SetNode(AudioNodeForBtnAction node)
+    public void SetNode(AudioNodeForRTC node)
     {
         node.transform.SetParent(transform);
         

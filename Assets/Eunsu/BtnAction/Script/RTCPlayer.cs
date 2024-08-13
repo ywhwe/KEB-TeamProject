@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BtnPlayer : MonoBehaviour
+public class RTCPlayer : MonoBehaviour
 {
     [SerializeField]
     private GameObject playerContainer;

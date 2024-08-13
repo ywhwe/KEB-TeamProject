@@ -1,8 +1,7 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class Note : MonoBehaviour
+public class CRTNote : MonoBehaviour
 {
     private RectTransform _rectTransform;
     
@@ -22,12 +21,12 @@ public class Note : MonoBehaviour
 
     private void Update()
     {
-        SpeedChecker(GameManagerRun.instance.getHigher);
+        SpeedChecker(CRTGameManager.instance.getHigher);
         if (_rectTransform.position.x > -520f) return;
         
         Destroy(gameObject);
         
-        GameManagerRun.instance.noteCount--;
+        CRTGameManager.instance.noteCount--;
     }
 
     private IEnumerator MoveNote()

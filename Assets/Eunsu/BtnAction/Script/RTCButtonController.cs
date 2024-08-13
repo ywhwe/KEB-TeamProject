@@ -2,9 +2,9 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BtnController : MonoBehaviour
+public class RTCButtonController : MonoBehaviour
 {
-    public static BtnController ctrlInstance;
+    public static RTCButtonController ctrlInstance;
     
     public GameObject Wbtn;
     public GameObject Abtn;

@@ -4,9 +4,9 @@ using Cysharp.Threading.Tasks;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 
-public class ObjMover : MonoBehaviour
+public class RTCObjMover : MonoBehaviour
 {
-    public static ObjMover ObjInstance;
+    public static RTCObjMover RtcObjInstance;
     private const float Coefficient = 7f;
     
     [Header("Trolley")]
@@ -61,13 +61,13 @@ public class ObjMover : MonoBehaviour
 
     private void Awake()
     {
-        ObjInstance = this;
+        RtcObjInstance = this;
         timer = 0f;
     }
 
     public async UniTask RailMove()
     {
-        while (GameManagerBtn.instance.flag)
+        while (RTCGameManager.instance.flag)
         {
             await UniTask.Yield();
             
@@ -88,7 +88,7 @@ public class ObjMover : MonoBehaviour
 
     public async UniTask BgMove()
     {
-        while (GameManagerBtn.instance.flag)
+        while (RTCGameManager.instance.flag)
         {
             await UniTask.Yield();
             
@@ -120,6 +120,7 @@ public class ObjMover : MonoBehaviour
         }
     }
     
+    // Background's speed is varied along the sine wave
     public async UniTask AccelerationSpeed()
     {
         smoke?.SetActive(true);
@@ -153,9 +154,10 @@ public class ObjMover : MonoBehaviour
         timer = 0f;
     }
     
+    // Only used for spin wheels of trolley
     public async UniTask Spin()
     {
-        while (GameManagerBtn.instance.successCount < GameManagerBtn.NumberOfButtons)
+        while (RTCGameManager.instance.successCount < RTCGameManager.NumberOfButtons)
         {
             await UniTask.Yield();
             

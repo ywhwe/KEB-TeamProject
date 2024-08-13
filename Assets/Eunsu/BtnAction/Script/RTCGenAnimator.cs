@@ -1,7 +1,7 @@
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 
-public class BtnAction : MonoBehaviour
+public class RTCGenAnimator : MonoBehaviour
 {
     private Animator genAni;
     public GameObject blockBox;
@@ -15,18 +15,18 @@ public class BtnAction : MonoBehaviour
 
     private async void Update()
     {
-        if (GameManagerBtn.instance.isGen)
+        if (RTCGameManager.instance.isGen)
         {
             genAni.SetTrigger(Gen);
         }
         
-        if (!GameManagerBtn.instance.isLegal)
+        if (!RTCGameManager.instance.isLegal)
         {
             blockBox.SetActive(true);
             await UniTask.WaitForSeconds(1f);
             blockBox.SetActive(false);
         }
 
-        GameManagerBtn.instance.isGen = false;
+        RTCGameManager.instance.isGen = false;
     }
 }

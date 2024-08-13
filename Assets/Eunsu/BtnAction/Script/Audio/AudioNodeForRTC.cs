@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioNodeForRunrun : MonoBehaviour
+public class AudioNodeForRTC : MonoBehaviour
 {
     [SerializeField]
     private AudioSource audioSource;
@@ -18,7 +18,7 @@ public class AudioNodeForRunrun : MonoBehaviour
     {
         yield return new WaitWhile(() => audioSource.isPlaying);
         
-        SoundManagerForRunrun.instance.SetNode(this);
+        SoundManagerForRTC.instance.SetNode(this);
     }
 
 }

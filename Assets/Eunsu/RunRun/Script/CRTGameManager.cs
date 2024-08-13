@@ -7,10 +7,13 @@ using Photon.Pun;
 using TMPro;
 using Random = UnityEngine.Random;
 
-public class GameManagerRun : WholeGameManager // Need fix for inheritance
+public class CRTGameManager : WholeGameManager
 {
-    public static GameManagerRun instance;
+    public static CRTGameManager instance;
     
+    [SerializeField] private AudioSource audioSource;
+    
+    [Header("Canvas")]
     public GameObject canvas;
     private Transform canvasTrans;
     
@@ -54,8 +57,6 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
     [HideInInspector] public bool isFinished, isTimedOut, isPlayed;
     [HideInInspector] public int noteCount = 0;
     
-    [SerializeField] private AudioSource audioSource;
-    
     public PhotonView pvTest;
     
     public GameObject[] playerposdb; // 각 플레이어 pos 데이터
@@ -85,6 +86,7 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
 
     private void Update()
     {
+        // This is for level up SFX
         if (isPlayed && score is >= 2950 and < 3050 or >= 4950 and < 5050 or >= 6950 and < 7050)
             isPlayed = false;
         
@@ -149,22 +151,22 @@ public class GameManagerRun : WholeGameManager // Need fix for inheritance
         switch (score)
         {
             case >= 7000:
-                SoundManagerForRunrun.instance.PlaySound("LevelUp");
+                SoundManagerForCRT.instance.PlaySound("LevelUp");
                 isPlayed = true;
                 stdTempo = 8f;
                 break;
             case >= 5000:
-                SoundManagerForRunrun.instance.PlaySound("LevelUp");
+                SoundManagerForCRT.instance.PlaySound("LevelUp");
                 isPlayed = true;
                 getHigher = 3;
                 break;
             case >= 3000:
-                SoundManagerForRunrun.instance.PlaySound("LevelUp");
+                SoundManagerForCRT.instance.PlaySound("LevelUp");
                 isPlayed = true;
                 getHigher = 2;
                 break;
             case >= 1000:
-                SoundManagerForRunrun.instance.PlaySound("LevelUp");
+                SoundManagerForCRT.instance.PlaySound("LevelUp");
                 isPlayed = true;
                 getHigher = 1;
                 break;

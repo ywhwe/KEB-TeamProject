@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using static System.MathF;
 using Cysharp.Threading.Tasks;
 
-public class ButtonController : MonoBehaviour
+public class CRTButtonController : MonoBehaviour
 {
     private Image img;
     
@@ -35,7 +35,7 @@ public class ButtonController : MonoBehaviour
 
     private async UniTask InputControl()
     {
-        while(!GameManagerRun.instance.isFinished)
+        while(!CRTGameManager.instance.isFinished)
         {
             await UniTask.Yield();
             
@@ -66,16 +66,16 @@ public class ButtonController : MonoBehaviour
                             break;
                     }
                 
-                    SoundManagerForRunrun.instance.PlaySound("ClearNote");
+                    SoundManagerForCRT.instance.PlaySound("ClearNote");
                 
                     var fx = Instantiate(hitFX, judge.transform.position, Quaternion.identity, gameObject.transform);
                 
                     Destroy(judge.gameObject);
                     Destroy(fx,0.5f);
                 
-                    GameManagerRun.instance.noteCount--;
+                    CRTGameManager.instance.noteCount--;
                 
-                    GameManagerRun.instance.SetScore(noteScore);
+                    CRTGameManager.instance.SetScore(noteScore);
                 }
             }
         

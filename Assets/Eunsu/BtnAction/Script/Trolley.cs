@@ -2,13 +2,15 @@ using UnityEngine;
 
 public class Trolley : MonoBehaviour
 {
-    private ObjMover mover;
+    private RTCObjMover mover;
     
     [SerializeField] private Animator ani;
     
+    [Header("Wheels")]
     [SerializeField] private GameObject FrontWheels;
     [SerializeField] private GameObject BackWheels;
 
+    [Header("VFX")]
     public GameObject accelerationSmoke;
     public GameObject decelerationSpark1;
     public GameObject decelerationSpark2;
@@ -22,13 +24,13 @@ public class Trolley : MonoBehaviour
 
     private void OnEnable()
     {
-        mover = ObjMover.ObjInstance;
+        mover = RTCObjMover.RtcObjInstance;
     }
 
     private void Start()
     {
-        ObjMover.ObjInstance.frontWheels = FrontWheels;
-        ObjMover.ObjInstance.backWheels = BackWheels;
+        RTCObjMover.RtcObjInstance.frontWheels = FrontWheels;
+        RTCObjMover.RtcObjInstance.backWheels = BackWheels;
         mover.smoke = accelerationSmoke;
         mover.spark1 = decelerationSpark1;
         mover.spark2 = decelerationSpark2;
@@ -36,6 +38,6 @@ public class Trolley : MonoBehaviour
 
     private void Update()
     {
-        if (!GameManagerBtn.instance.flag) ani.SetBool(isFinished, true);
+        if (!RTCGameManager.instance.flag) ani.SetBool(isFinished, true);
     }
 }

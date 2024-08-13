@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioNodeForBtnAction : MonoBehaviour
+public class AudioNodeForCRT : MonoBehaviour
 {
     [SerializeField]
     private AudioSource audioSource;
@@ -18,7 +18,7 @@ public class AudioNodeForBtnAction : MonoBehaviour
     {
         yield return new WaitWhile(() => audioSource.isPlaying);
         
-        SoundManagerForBtnAction.instance.SetNode(this);
+        SoundManagerForCRT.instance.SetNode(this);
     }
 
 }
