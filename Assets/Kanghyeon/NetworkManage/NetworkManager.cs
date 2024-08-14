@@ -61,6 +61,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("New Player initScore");
         InitCurScore();
+        if (chatlog==null)
+        {
+            return;
+        }
         string msg = string.Format("{0} 님이 입장하셨습니다.", other.NickName);
         rpcReceiveMsg(msg);
     }
@@ -68,6 +72,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("Lefted Player initScore");
         currentplayerscore.Remove(other.NickName);
+        if (chatlog == null)
+        {
+            return;   
+        }
         string msg = string.Format("{0} 님이 퇴장하셨습니다.", other.NickName);
         rpcReceiveMsg(msg);
     }
