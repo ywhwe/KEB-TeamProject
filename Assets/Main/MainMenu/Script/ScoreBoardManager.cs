@@ -112,6 +112,7 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
         {
             nexttimer.text = "You Failed";
             controlpanel.SetActive(true);
+            KickTimer().Forget();
             return;
         }
        
@@ -127,6 +128,14 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
             time--;
             await UniTask.WaitForSeconds(1f);
         }
+    }
+    private async UniTaskVoid KickTimer()
+    {
+        for (int i = 0; i < 11 ; i++)
+        {
+            await UniTask.WaitForSeconds(1f);
+        }
+        GoToMainMenu();
     }
 
     #region Score
