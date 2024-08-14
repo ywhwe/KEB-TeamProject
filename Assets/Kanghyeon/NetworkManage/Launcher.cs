@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using EasyTransition;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
@@ -20,6 +21,10 @@ public class Launcher : MonoBehaviourPunCallbacks
     private string gameversion = "1";
 
     private bool isConnecting;
+
+    private TransitionManager manager;
+
+    public TransitionSettings transition;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -34,6 +39,13 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public void Connect()
     {
+        manager = TransitionManager.Instance();
+        manager.onTransitionCutPointReached += ConnectTran;
+        manager.Transition(transition,0.01f);
+    }
+
+    public void ConnectTran()
+    {
         progressLabel.SetActive(true);
         if (PhotonNetwork.IsConnected)
         {
@@ -44,6 +56,7 @@ public class Launcher : MonoBehaviourPunCallbacks
             isConnecting = PhotonNetwork.ConnectUsingSettings();
             PhotonNetwork.GameVersion = gameversion;
         }
+        manager.onTransitionCutPointReached -= ConnectTran;
     }
 
     public override void OnConnectedToMaster()
