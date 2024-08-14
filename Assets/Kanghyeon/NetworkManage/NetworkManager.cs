@@ -211,7 +211,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     void rpcSendNextGameNum(int num1 , int num2 , int num3)
     {
         TotalManager.instance.NextgameNum.Add(0);
-        TotalManager.instance.NextgameNum.Add(num1);  //round1
+        TotalManager.instance.NextgameNum.Add(4);  //round1
         TotalManager.instance.NextgameNum.Add(num2);  //round2
         TotalManager.instance.NextgameNum.Add(num3);  //round3
         photonView.RPC("rpcSendReady",RpcTarget.MasterClient);
