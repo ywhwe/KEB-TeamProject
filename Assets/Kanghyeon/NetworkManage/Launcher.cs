@@ -11,12 +11,11 @@ public class Launcher : MonoBehaviourPunCallbacks
     [Tooltip("The Ui Panel to let the user enter name, connect and play")]
     [SerializeField]
     private GameObject controlPanel;
-    [Tooltip("The UI Label to inform the user that the connection is in progress")]
-    [SerializeField]
-    private GameObject progressLabel;
     [Tooltip("The maximum number of players per room. When a room is full, it can't be joined by new players, and so new room will be created")]
     [SerializeField]
     private byte maxPlayersPerRoom = 12;
+
+    [SerializeField] private GameObject panel;
 
     private string gameversion = "1";
 
@@ -33,8 +32,12 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        progressLabel.SetActive(false);
         controlPanel.SetActive(true);
+    }
+
+    public void StartProgress()
+    {
+        panel.SetActive(true);
     }
 
     public void Connect()
@@ -46,7 +49,6 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public void ConnectTran()
     {
-        progressLabel.SetActive(true);
         if (PhotonNetwork.IsConnected)
         {
             PhotonNetwork.JoinRandomRoom();
@@ -70,7 +72,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     }
     public void OnDisconnected(DisconnectCause cause)
     {
-        progressLabel.SetActive(false);
+      
         controlPanel.SetActive(true);
         Debug.LogWarningFormat("Launcher: OnDisconnected() was called by PUN with reason {0}", cause);
     }
@@ -82,7 +84,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     }
     public override void OnJoinedRoom()
     {
-        progressLabel.SetActive(false);
+       
         Debug.Log("Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.");
         if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
         {

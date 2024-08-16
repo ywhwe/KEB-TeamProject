@@ -196,7 +196,7 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
                 viewtransform.sizeDelta = size;
                 scorelist[index].SetActive(true);
                 nametxt[index].text = player.Key;
-                scoretxt[index].text = player.Value.ToString();
+                scoretxt[index].text = player.Value.ToString("F2");
                 index++;
                 ranktxt[index-1].text = index.ToString();
                 if (index >= ranklist.Count-NetworkManager.instance.loserdb.Count)
@@ -205,7 +205,7 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
                     {
                         continue;
                     }
-                    ColorUtility.TryParseHtmlString("#707658", out color);
+                    ColorUtility.TryParseHtmlString("#656568", out color);
                     scorelist[index].GetComponent<Image>().color = color;
 
 
