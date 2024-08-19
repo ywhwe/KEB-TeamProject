@@ -70,6 +70,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
             await UniTask.WaitForSeconds(1f, cancellationToken:cancel.Token);
         }
         PhotonNetwork.CurrentRoom.IsOpen = false;
+        NetworkManager.instance.SendNextGameNum();
         Debug.LogFormat("PhotonNetwork : Loading Level : Round1");
         TotalManager.instance.GoToGameScene();
     }
@@ -83,12 +84,12 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         Debug.LogFormat("OnPlayerEnteredRoom() {0}", other.NickName); // not seen if you're the player connecting
         if (PhotonNetwork.PlayerList.Length == PhotonNetwork.CurrentRoom.MaxPlayers)
         {
-            timer.SetActive(true);
-            isTimerOn = true;
+            // timer.SetActive(true);
+            // isTimerOn = true;
             if (PhotonNetwork.IsMasterClient)
             {
-                cancel = new CancellationTokenSource();
-                StartCounting().Forget();
+                // cancel = new CancellationTokenSource();
+                // StartCounting().Forget();
             }
             
             Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}",
