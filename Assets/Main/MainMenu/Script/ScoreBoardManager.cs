@@ -27,8 +27,9 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
     public GameObject controlpanel;
     public GameObject player;
     public GameObject timer;
-    public Image image;
+    public GameObject Next;
     public RectTransform viewtransform;
+    public GameObject[] effect;
     
     public void NextGame()
     {
@@ -72,15 +73,25 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
         if (TotalManager.instance.gameRound==3)
         {
             CalculScore(NetworkManager.instance.currentplayerscore,NetworkManager.instance.isDescending);
-            UpdateScoreUI();
+            NetworkManager.instance.SelectLoser();
+            UpdateScore();
+            if (ranklist[0].Key == PhotonNetwork.LocalPlayer.NickName)
+            {
+                foreach (var VARIABLE in effect)
+                {
+                    VARIABLE.SetActive(true);
+                }
+            }
+            winner.enabled = true;
             winner.text = "Winner is " + ranklist[0].Key;
+            nexttimer.enabled = true;
             nexttimer.text = "Go to Menu";
             controlpanel.SetActive(true);
             return;
         }          
         CalculScore(NetworkManager.instance.currentplayerscore,NetworkManager.instance.isDescending);
         NetworkManager.instance.SelectLoser();
-        UpdateScoreUI();
+        UpdateScore();
         NetworkManager.instance.SendLoadScore();
     }
 
@@ -110,13 +121,14 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
 
         if (PhotonNetwork.NetworkClientState == ClientState.ConnectedToMasterServer)
         {
+            nexttimer.enabled = true;
             nexttimer.text = "You Failed";
             controlpanel.SetActive(true);
             KickTimer().Forget();
             return;
         }
        
-        timer.SetActive(true);
+        Next.SetActive(true);
         int time = 5;
         for (int i = 0; i < 6; i++)
         {

@@ -44,6 +44,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Debug.Log("NetworkManager on");
         Debug.Log(PhotonNetwork.LocalPlayer.UserId);
         InitCurScore();
+        scroll_rect.verticalNormalizedPosition = 0.0f;
       
     }
     
