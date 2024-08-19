@@ -198,7 +198,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     private void SelectNextGameNum()
     {
-        gamenum1 = (Random.Range(1,4));
+        gamenum1 = (4);
         gamenum2 = (Random.Range(4,6));
         gamenum3 = (6);
     }

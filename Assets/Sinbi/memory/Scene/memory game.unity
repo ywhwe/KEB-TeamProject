@@ -4315,13 +4315,13 @@ MonoBehaviour:
   - key: player_3
     Clip: {fileID: 8300000, guid: 29c04366685e74ce78db574501197338, type: 3}
   - key: correct
-    Clip: {fileID: 8300000, guid: b70f0a312ce9e46af9aa6cb540240179, type: 3}
+    Clip: {fileID: 8300000, guid: 0eae38bcaf292459285751ddd9ab6030, type: 3}
   - key: turnCorrect
     Clip: {fileID: 8300000, guid: b6bda1fb9a3ea497ca2638d66c66a4a1, type: 3}
   - key: worng
     Clip: {fileID: 8300000, guid: 4633f9e78ff6d4f5eb051a4f4497f696, type: 3}
   - key: bird
-    Clip: {fileID: 8300000, guid: d314f9fa51d094297b249fef682b7750, type: 3}
+    Clip: {fileID: 8300000, guid: a8071c446408a4b8b8f9c5331dd83fd3, type: 3}
   poolSize: 10
   soundNodePrefab: {fileID: 8157114488913002103, guid: 9425f62ce85b94e739f02b43811f6e42, type: 3}
 --- !u!4 &715695002
@@ -5673,7 +5673,7 @@ GameObject:
   - component: {fileID: 1056880219}
   - component: {fileID: 1056880220}
   m_Layer: 0
-  m_Name: q
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5726,35 +5726,35 @@ MonoBehaviour:
   limitTime: 90
   turnDB:
   - numOfSeq: 2
-    motionPlayTime: 1
-  - numOfSeq: 3
-    motionPlayTime: 0.95
-  - numOfSeq: 3
     motionPlayTime: 0.9
   - numOfSeq: 3
-    motionPlayTime: 0.85
-  - numOfSeq: 4
     motionPlayTime: 0.8
-  - numOfSeq: 4
-    motionPlayTime: 0.75
-  - numOfSeq: 5
+  - numOfSeq: 3
     motionPlayTime: 0.7
-  - numOfSeq: 5
+  - numOfSeq: 3
     motionPlayTime: 0.67
+  - numOfSeq: 4
+    motionPlayTime: 0.63
+  - numOfSeq: 4
+    motionPlayTime: 0.6
   - numOfSeq: 5
-    motionPlayTime: 0.64
+    motionPlayTime: 0.57
+  - numOfSeq: 5
+    motionPlayTime: 0.53
+  - numOfSeq: 5
+    motionPlayTime: 0.5
   - numOfSeq: 6
-    motionPlayTime: 0.61
+    motionPlayTime: 0.47
   - numOfSeq: 6
-    motionPlayTime: 0.58
+    motionPlayTime: 0.43
   - numOfSeq: 6
     motionPlayTime: 0.55
   - numOfSeq: 7
-    motionPlayTime: 0.52
-  - numOfSeq: 7
-    motionPlayTime: 0.5
-  - numOfSeq: 7
     motionPlayTime: 0.4
+  - numOfSeq: 7
+    motionPlayTime: 0.37
+  - numOfSeq: 8
+    motionPlayTime: 0.33
   cpuAni: {fileID: 4203142594976877009}
   PV: {fileID: 1056880219}
   round1:

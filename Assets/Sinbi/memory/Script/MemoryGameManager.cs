@@ -220,16 +220,17 @@ public class MemoryGameManager : WholeGameManager
         playerController.SetActiveInput(false);
         
         SelectRandomMotion();
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(1f);
 
         ShowRoundNum(turn + 1);
 
         stamp[0].SetActive(false);
         stamp[1].SetActive(false);
         
-        yield return new WaitForSeconds(0.5f);
         inCorrectffect.Stop();
-
+        yield return new WaitForSeconds(0.5f);
+      
+        
         yield return StartCoroutine(PlayMotion());
 
         playerInputIdx = 0;
@@ -246,10 +247,11 @@ public class MemoryGameManager : WholeGameManager
         playerIndexDirection[motionIdx].SetActive(false);
     }
     
-    IEnumerator WaitWorngSound()
+    IEnumerator WaitSoundEffect(float waittime)
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(waittime);
     }
+    
         
     private void PlayerInput(int motionIdx)
     {
@@ -278,11 +280,12 @@ public class MemoryGameManager : WholeGameManager
             Debug.Log("Incorrect");
             MemorySoundManger.instance.PlaySound("worng");
             inCorrectffect.Play();
+            MemorySoundManger.instance.PlaySound("bird");
             cpuMotionPlayCoroutine = StartCoroutine(PlayRandomMotion());
             return;
         }
         
-        MemorySoundManger.instance.PlaySound("turnCorrect");
+        
         playerInputIdx++;
        
 
@@ -298,6 +301,8 @@ public class MemoryGameManager : WholeGameManager
             }
             else
             {
+                WaitSoundEffect(0.6f);
+                MemorySoundManger.instance.PlaySound("turnCorrect");
                 cpuMotionPlayCoroutine = StartCoroutine(PlayRandomMotion());
             }
         }
