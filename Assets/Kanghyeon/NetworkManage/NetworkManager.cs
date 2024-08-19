@@ -45,7 +45,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Debug.Log(PhotonNetwork.LocalPlayer.UserId);
         InitCurScore();
         scroll_rect.verticalNormalizedPosition = 0.0f;
-      
+        isLoadScene = 0;
+
     }
     
     public void InitCurScore()
@@ -112,7 +113,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             Debug.Log(VAR);
             int index = Array.FindIndex(PhotonNetwork.PlayerList, x => x.NickName == VAR);
             indexlist.Add(index);
+            Debug.Log(indexlist[^1]);
         }
+
+        await UniTask.WaitForSeconds(1f);
         foreach (var VAR in indexlist)
         {
             photonView.RPC("rpcKickRoom",PhotonNetwork.PlayerList[VAR]);
@@ -205,7 +209,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public void SendNextGameNum()
     {
-        SelectNextGameNum();
+        gamenum1 = (Random.Range(1,4));
+        gamenum2 = 5; //(Random.Range(4,6));
+        gamenum3 = (6);
         photonView.RPC("rpcSendNextGameNum",RpcTarget.All,gamenum1,gamenum2,gamenum3);
     }
     [PunRPC]

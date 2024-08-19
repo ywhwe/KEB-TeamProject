@@ -52,7 +52,7 @@ public class TotalManager : MonoBehaviourPunCallbacks
     public WaitForSeconds waitFiveSeconds = new WaitForSeconds(5f);
     public AudioSource BGM;
 
-    public int gameRound;
+    public int gameRound=0;
     public List<int> NextgameNum;
 
     public Texture2D cursurIcon;

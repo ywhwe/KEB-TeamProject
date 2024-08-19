@@ -154,6 +154,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         NetworkManager.instance.SendNextGameNum();
         await UniTask.WaitUntil(() => ReadyToMatch == PhotonNetwork.PlayerList.Length);
+        await UniTask.WaitForSeconds(1f);
         TotalManager.instance.GoToGameScene();
     }
 

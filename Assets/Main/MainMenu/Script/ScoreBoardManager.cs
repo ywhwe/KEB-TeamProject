@@ -117,7 +117,7 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
     
     private async UniTaskVoid LoadTimer()
     {
-        await UniTask.WaitForSeconds(3f);
+        await UniTask.WaitForSeconds(5f);
 
         if (PhotonNetwork.NetworkClientState == ClientState.ConnectedToMasterServer)
         {
