@@ -22,7 +22,7 @@ public class MemoryGameManager : WholeGameManager
     public GameObject[] indexDirection;
     public GameObject[] playerIndexDirection;
     public GameObject[] stamp;
-
+    
     private GameObject playerObj;
     public GameObject cpuObj;
 
@@ -189,7 +189,8 @@ public class MemoryGameManager : WholeGameManager
         for (int i = 0; i < randomMotions.Count; i++)
         {
             Debug.Log(randomMotions[i]);
-            
+            string cpuSoundkey = "cpu_" + randomMotions[i];
+            MemorySoundManger.instance.PlaySound(cpuSoundkey);
             cpuAni.SetTrigger(motionHash[randomMotions[i]]);
             cpuAni.SetFloat(MotionSpeed, 1f / turnDB[turn].motionPlayTime);
 
@@ -244,10 +245,18 @@ public class MemoryGameManager : WholeGameManager
         yield return new WaitForSeconds(0.5f);
         playerIndexDirection[motionIdx].SetActive(false);
     }
-
+    
+    IEnumerator WaitWorngSound()
+    {
+        yield return new WaitForSeconds(0.5f);
+    }
+        
     private void PlayerInput(int motionIdx)
     {
         if (!isPlayerTurn) return;
+        
+        string playerSoundkey = "player_" + motionIdx;
+        MemorySoundManger.instance.PlaySound(playerSoundkey);
         
         if (playerIndexCor[motionIdx] != null)
         {
@@ -260,18 +269,22 @@ public class MemoryGameManager : WholeGameManager
         {
             correctEffect.Play();
             Debug.Log("Correct");
+            MemorySoundManger.instance.PlaySound("correct");
         }
         else
         {
             stamp[0].SetActive(false);
             stamp[1].SetActive(true);
             Debug.Log("Incorrect");
+            MemorySoundManger.instance.PlaySound("worng");
             inCorrectffect.Play();
             cpuMotionPlayCoroutine = StartCoroutine(PlayRandomMotion());
             return;
         }
-
+        
+        MemorySoundManger.instance.PlaySound("turnCorrect");
         playerInputIdx++;
+       
 
         if (playerInputIdx == randomMotions.Count)
         {
