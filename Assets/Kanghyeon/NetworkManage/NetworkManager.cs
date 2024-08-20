@@ -97,11 +97,12 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         isLoadScene++;
         if (isLoadScene==PhotonNetwork.PlayerList.Length)
         {
-  
+            
+            Debug.Log(isLoadScene);
+            isLoadScene = 0;
             ScoreBoardManager.instance.LoadingTimer().Forget();
             SendKickRoom();
             
-            isLoadScene = 0;
         }
     }
     async UniTask SendKickRoom()
@@ -113,7 +114,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             Debug.Log(VAR);
             int index = Array.FindIndex(PhotonNetwork.PlayerList, x => x.NickName == VAR);
             indexlist.Add(index);
-            Debug.Log(indexlist[^1]);
         }
 
         await UniTask.WaitForSeconds(1f);
@@ -209,9 +209,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public void SendNextGameNum()
     {
-        gamenum1 = (Random.Range(1,4));
-        gamenum2 = 5; //(Random.Range(4,6));
-        gamenum3 = (6);
+        SelectNextGameNum();
         photonView.RPC("rpcSendNextGameNum",RpcTarget.All,gamenum1,gamenum2,gamenum3);
     }
     [PunRPC]
@@ -220,7 +218,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         TotalManager.instance.NextgameNum.Add(0);
         TotalManager.instance.NextgameNum.Add(num1);  //round1
         TotalManager.instance.NextgameNum.Add(num2);  //round2
-        TotalManager.instance.NextgameNum.Add(num3);  //round3
+        TotalManager.instance.NextgameNum.Add(num3); //round3
+        Debug.Log(num1);
+        Debug.Log(num2);
+        Debug.Log(num3);
         photonView.RPC("rpcSendReady",RpcTarget.MasterClient);
     }
 

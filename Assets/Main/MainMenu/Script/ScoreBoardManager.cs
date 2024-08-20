@@ -66,6 +66,7 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
         GameObject playerPrefab = Instantiate(TotalManager.instance.obplayerPrefab, player.transform.position, player.transform.rotation);
         playerPrefab.transform.SetParent(player.transform);
         playerPrefab.transform.localScale = new Vector3(300f, 300f, 300f);
+        TotalManager.instance.SendMessageSceneStarted();
     }
 
     private void Start()
@@ -93,6 +94,7 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
         NetworkManager.instance.SelectLoser();
         UpdateScore();
         NetworkManager.instance.SendLoadScore();
+     
     }
 
     public async UniTaskVoid LoadingTimer() // Need fix " warning CS1998: This async method lacks 'await' operators and will run synchronously.
@@ -209,8 +211,6 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
                 scorelist[index].SetActive(true);
                 nametxt[index].text = player.Key;
                 scoretxt[index].text = player.Value.ToString("F2");
-                index++;
-                ranktxt[index-1].text = index.ToString();
                 if (index >= ranklist.Count-NetworkManager.instance.loserdb.Count)
                 {
                     if (NetworkManager.instance.loserdb.Count == 0)
@@ -219,9 +219,9 @@ public class ScoreBoardManager : MonoBehaviourPunCallbacks //점수 계산을 �
                     }
                     ColorUtility.TryParseHtmlString("#656568", out color);
                     scorelist[index].GetComponent<Image>().color = color;
-
-
                 }
+                index++;
+                ranktxt[index-1].text = index.ToString();
             }
         }
     }

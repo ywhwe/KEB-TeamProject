@@ -209,7 +209,10 @@ public class TotalManager : MonoBehaviourPunCallbacks
         fadeimage.gameObject.SetActive(false);
 
         isSceneStarted = false;
-        PhotonNetwork.LoadLevel(id);
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.LoadLevel(id);
+        }
         
         await UniTask.WaitUntil(() => isSceneStarted);
         await FadeScreenTask(false);
@@ -378,6 +381,7 @@ public class TotalManager : MonoBehaviourPunCallbacks
         yield return waitTwoSecond;
         waitScreen.gameObject.SetActive(false);
         waitImage.sprite = waitSpriteDB[0];
+        isSceneStarted = false;
         SendGameEnd();
     }
     
@@ -422,8 +426,18 @@ public class TotalManager : MonoBehaviourPunCallbacks
 
     public void TransScore()
     {
-        PhotonNetwork.LoadLevel("ScoreBoard");
+        UniTransScore();
+
+    }
+
+    async UniTask UniTransScore()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.LoadLevel("ScoreBoard");
+        }
         isGameEnd = 0;
+        await UniTask.WaitUntil(() => isSceneStarted = true);
         manager.onTransitionCutPointReached -= TransScore;
     }
 }

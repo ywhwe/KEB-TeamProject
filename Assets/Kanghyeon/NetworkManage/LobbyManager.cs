@@ -157,8 +157,5 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         await UniTask.WaitForSeconds(1f);
         TotalManager.instance.GoToGameScene();
     }
-
-    
-    
-
+ 
 }
